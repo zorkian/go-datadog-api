@@ -9,8 +9,10 @@
 package datadog
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
+	"io"
 	"io/ioutil"
 	"net/http"
 )
@@ -24,18 +26,39 @@ func (self *Client) uriForAPI(api string) string {
 
 // doJsonRequest is the simplest type of request: a method on a URI that returns
 // some JSON result which we unmarshal into the passed interface.
-func (self *Client) doJsonRequest(method, api string, out interface{}) error {
-	req, err := http.NewRequest(method, self.uriForAPI(api), nil)
+func (self *Client) doJsonRequest(method, api string,
+	reqbody, out interface{}) error {
+	// Handle the body if they gave us one.
+	var bodyreader io.Reader
+	if reqbody != nil {
+		bjson, err := json.Marshal(reqbody)
+		if err != nil {
+			return err
+		}
+		bodyreader = bytes.NewReader(bjson)
+	}
+
+	req, err := http.NewRequest(method, self.uriForAPI(api), bodyreader)
 	if err != nil {
 		return err
 	}
+	if bodyreader != nil {
+		req.Header.Add("Content-Type", "application/json")
+	}
 
+	// Actually do the request, error back if something crazy happened.
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
 	}
 	if resp.StatusCode != 200 {
 		return errors.New("API error: " + resp.Status)
+	}
+
+	// If they don't care about the body, then we don't care to give them one,
+	// so bail out because we're done.
+	if out == nil {
+		return nil
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
