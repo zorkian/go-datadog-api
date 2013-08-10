@@ -18,12 +18,14 @@ Then, you can work with it:
     
     dash, err := client.GetDashboard(10880)
     if err != nil {
-        log.Faltalf("fatal: %s\n", err)
+        log.Fatalf("fatal: %s\n", err)
     }
     log.Printf("dashboard %d: %s\n", dash.Id, dash.Title)
 
 Supported methods:
 
+    PostMetrics([]Metric)       upload timeseries data
+    
     CreateDashboard(Dashboard)  creates a new dashboard
     DeleteDashboard(id)         deletes one dashboard
     GetDashboard(id)            returns one (with details, graphs, etc)

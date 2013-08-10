@@ -51,7 +51,7 @@ func (self *Client) doJsonRequest(method, api string,
 	if err != nil {
 		return err
 	}
-	if resp.StatusCode != 200 {
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
 		return errors.New("API error: " + resp.Status)
 	}
 

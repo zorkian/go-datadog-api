@@ -1,0 +1,39 @@
+/*
+ * Datadog API for Go
+ *
+ * Please see the included LICENSE file for licensing information.
+ *
+ * Copyright 2013 by authors and contributors.
+ */
+
+package datadog
+
+// DataPoint is a tuple of [UNIX timestamp, value]. This has to use floats
+// because the value could be non-integer.
+type DataPoint [2]float64
+
+// Metric represents a collection of data points that we might send or receive
+// on one single metric line.
+type Metric struct {
+	Metric string      `json:"metric"`
+	Points []DataPoint `json:"points"`
+	Type   string      `json:"type"`
+	Host   string      `json:"host"`
+	Tags   []string    `json:"tags"`
+}
+
+// ReqPostSeries from /api/v1/series
+type ReqPostSeries struct {
+	Series []Metric `json:"series"`
+}
+
+// PostSeries takes as input a slice of metrics and then posts them up to the
+// server for posting data.
+func (self *Client) PostMetrics(series []Metric) error {
+	req := ReqPostSeries{Series: series}
+	err := self.doJsonRequest("POST", "/v1/series", req, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}
