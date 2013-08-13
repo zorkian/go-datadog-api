@@ -95,7 +95,7 @@ func (self *Client) DeleteDashboard(id int) error {
 }
 
 // CreateDashboard creates a new dashboard when given a Dashboard struct. Note
-// that the Id and
+// that the Id, Resource, Url and similar elements are not used in creation.
 func (self *Client) CreateDashboard(dash *Dashboard) (*Dashboard, error) {
 	var out ReqGetDashboard
 	err := self.doJsonRequest("POST", "/v1/dash", dash, &out)

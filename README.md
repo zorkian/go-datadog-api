@@ -26,6 +26,10 @@ Supported methods:
 
     PostMetrics([]Metric)       upload timeseries data
     
+    PostEvent(Event)            create a new event
+    GetEvent(id)                return a single event
+    GetEvents(see code)         return a list of events matching a query
+    
     CreateDashboard(Dashboard)  creates a new dashboard
     DeleteDashboard(id)         deletes one dashboard
     GetDashboard(id)            returns one (with details, graphs, etc)

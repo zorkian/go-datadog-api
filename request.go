@@ -15,13 +15,19 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 // uriForAPI is to be called with something like "/v1/events" and it will give
 // the proper request URI to be posted to.
 func (self *Client) uriForAPI(api string) string {
-	return "https://app.datadoghq.com/api" + api + "?api_key=" +
-		self.apiKey + "&application_key=" + self.appKey
+	if strings.Index(api, "?") > -1 {
+		return "https://app.datadoghq.com/api" + api + "&api_key=" +
+			self.apiKey + "&application_key=" + self.appKey
+	} else {
+		return "https://app.datadoghq.com/api" + api + "?api_key=" +
+			self.apiKey + "&application_key=" + self.appKey
+	}
 }
 
 // doJsonRequest is the simplest type of request: a method on a URI that returns
@@ -30,7 +36,7 @@ func (self *Client) doJsonRequest(method, api string,
 	reqbody, out interface{}) error {
 	// Handle the body if they gave us one.
 	var bodyreader io.Reader
-	if reqbody != nil {
+	if method != "GET" && reqbody != nil {
 		bjson, err := json.Marshal(reqbody)
 		if err != nil {
 			return err
