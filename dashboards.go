@@ -87,11 +87,7 @@ func (self *Client) GetDashboards() ([]DashboardLite, error) {
 
 // DeleteDashboard deletes a dashboard by the identifier.
 func (self *Client) DeleteDashboard(id int) error {
-	_, err := self.doSimpleRequest("DELETE", fmt.Sprintf("/v1/dash/%d", id))
-	if err != nil {
-		return err
-	}
-	return nil
+	return self.doJsonRequest("DELETE", fmt.Sprintf("/v1/dash/%d", id), nil, nil)
 }
 
 // CreateDashboard creates a new dashboard when given a Dashboard struct. Note

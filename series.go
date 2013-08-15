@@ -30,10 +30,6 @@ type ReqPostSeries struct {
 // PostSeries takes as input a slice of metrics and then posts them up to the
 // server for posting data.
 func (self *Client) PostMetrics(series []Metric) error {
-	req := ReqPostSeries{Series: series}
-	err := self.doJsonRequest("POST", "/v1/series", req, nil)
-	if err != nil {
-		return err
-	}
-	return nil
+	return self.doJsonRequest("POST", "/v1/series",
+		ReqPostSeries{Series: series}, nil)
 }

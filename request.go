@@ -84,22 +84,3 @@ func (self *Client) doJsonRequest(method, api string,
 	}
 	return nil
 }
-
-// doSimpleRequest performs a requested method on the API and returns the status
-// code and an error message.
-func (self *Client) doSimpleRequest(method, api string) (int, error) {
-	req, err := http.NewRequest(method, self.uriForAPI(api), nil)
-	if err != nil {
-		return 0, err
-	}
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return 0, err
-	}
-	if resp.StatusCode != 200 {
-		return resp.StatusCode, errors.New("API error: " + resp.Status)
-	}
-
-	return resp.StatusCode, nil
-}
