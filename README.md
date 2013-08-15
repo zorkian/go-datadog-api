@@ -30,6 +30,13 @@ Supported methods:
     GetEvent(id)                return a single event
     GetEvents(see code)         return a list of events matching a query
     
+    GetTags(...)                get all tags
+    GetHostTags(...)            get all host tags
+    GetHostTagsBySource(...)    get host tags, with source information
+    AddTagsToHost(...)          add new tags to a host/source
+    UpdateHostTags(...)         overwrite all tags for this host/source
+    RemoveHostTags(...)         remove all tags that match this host/source
+    
     CreateDashboard(Dashboard)  creates a new dashboard
     DeleteDashboard(id)         deletes one dashboard
     GetDashboard(id)            returns one (with details, graphs, etc)
