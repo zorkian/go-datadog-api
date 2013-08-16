@@ -31,19 +31,19 @@ type Event struct {
 	Resource    string   `json:"resource"`
 }
 
-// ReqGetEvent is the container for receiving a single event.
-type ReqGetEvent struct {
+// reqGetEvent is the container for receiving a single event.
+type reqGetEvent struct {
 	Event Event `json:"event"`
 }
 
-// ReqGetEvents is for returning many events.
-type ReqGetEvents struct {
+// reqGetEvents is for returning many events.
+type reqGetEvents struct {
 	Events []Event `json:"events"`
 }
 
 // PostEvent takes as input an event and then posts it to the server.
 func (self *Client) PostEvent(event *Event) (*Event, error) {
-	out := ReqGetEvent{}
+	var out reqGetEvent
 	err := self.doJsonRequest("POST", "/v1/events", event, &out)
 	if err != nil {
 		return nil, err
@@ -53,7 +53,7 @@ func (self *Client) PostEvent(event *Event) (*Event, error) {
 
 // GetEvent gets a single event given an identifier.
 func (self *Client) GetEvent(id int) (*Event, error) {
-	out := ReqGetEvent{}
+	var out reqGetEvent
 	err := self.doJsonRequest("GET", fmt.Sprintf("/v1/events/%d", id), nil, &out)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (self *Client) GetEvents(start, end int,
 	}
 
 	// Now the request and response.
-	out := ReqGetEvents{}
+	var out reqGetEvents
 	err := self.doJsonRequest("GET",
 		fmt.Sprintf("/v1/events?%s", vals.Encode()), nil, &out)
 	if err != nil {

@@ -22,8 +22,8 @@ type Metric struct {
 	Tags   []string    `json:"tags"`
 }
 
-// ReqPostSeries from /api/v1/series
-type ReqPostSeries struct {
+// reqPostSeries from /api/v1/series
+type reqPostSeries struct {
 	Series []Metric `json:"series"`
 }
 
@@ -31,5 +31,5 @@ type ReqPostSeries struct {
 // server for posting data.
 func (self *Client) PostMetrics(series []Metric) error {
 	return self.doJsonRequest("POST", "/v1/series",
-		ReqPostSeries{Series: series}, nil)
+		reqPostSeries{Series: series}, nil)
 }
