@@ -12,27 +12,17 @@ import (
 	"fmt"
 )
 
-// GraphDefinitionRequests are the actual elements in a graph definition.
-type GraphDefinitionRequests struct {
-	Query   string `json:"q"`
-	Stacked bool   `json:"stacked"`
-}
-
-// GraphDefinition encapsulates configuration information for a graph.
-type GraphDefinition struct {
-	Viz      string                    `json:"viz"`
-	Requests []GraphDefinitionRequests `json:"requests"`
-}
-
-// GraphEvents are events that show on a graph.
-type GraphEvents struct {
-}
-
 // Graph represents a graph that might exist on a dashboard.
 type Graph struct {
-	Title      string          `json:"title"`
-	Events     []GraphEvents   `json:"events"`
-	Definition GraphDefinition `json:"definition"`
+	Title      string     `json:"title"`
+	Events     []struct{} `json:"events"`
+	Definition struct {
+		Viz      string `json:"viz"`
+		Requests []struct {
+			Query   string `json:"q"`
+			Stacked bool   `json:"stacked"`
+		} `json:"requests"`
+	} `json:"definition"`
 }
 
 // Dashboard represents a user created dashboard. This is the full dashboard
