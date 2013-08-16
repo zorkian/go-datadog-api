@@ -1,4 +1,4 @@
-datadog-api -- a Go implementation
+# datadog-api -- a Go implementation
 
 Hi!
 
@@ -7,6 +7,8 @@ implementation of a Datadog API, so I took a crack at it. It is not
 fully featured yet.
 
 The source API documentation is here: <http://docs.datadoghq.com/api/>
+
+## USAGE
 
 To use this project, include it in your code like:
 
@@ -22,28 +24,24 @@ Then, you can work with it:
     }
     log.Printf("dashboard %d: %s\n", dash.Id, dash.Title)
 
-Supported methods:
+That's all; it's pretty easy to use.
 
-    PostMetrics([]Metric)       upload timeseries data
-    
-    PostEvent(Event)            create a new event
-    GetEvent(id)                return a single event
-    GetEvents(see code)         return a list of events matching a query
-    
-    GetTags(...)                get all tags
-    GetHostTags(...)            get all host tags
-    GetHostTagsBySource(...)    get host tags, with source information
-    AddTagsToHost(...)          add new tags to a host/source
-    UpdateHostTags(...)         overwrite all tags for this host/source
-    RemoveHostTags(...)         remove all tags that match this host/source
-    
-    CreateDashboard(Dashboard)  creates a new dashboard
-    DeleteDashboard(id)         deletes one dashboard
-    GetDashboard(id)            returns one (with details, graphs, etc)
-    GetDashboards()             returns all (only title/desc/url/id)
-    UpdateDashboard(Dashboard)  persists changes to a dashboard
+## DOCUMENTATION
 
-More information to come. Please see the LICENSE file for the included
-license information.
+Please see: <http://godoc.org/github.com/xb95/datadog-api>
+
+## BUGS/PROBLEMS/CONTRIBUTING
+
+There are certainly some, but presently no known major bugs. If you do
+find something that doesn't work as expected, please file an issue on
+Github:
+
+<https://github.com/xb95/datadog-api/issues>
+
+Thanks in advance! And, as always, patches welcome!
+
+## COPYRIGHT AND LICENSE
+
+Please see the LICENSE file for the included license information.
 
 Copyright 2013 by authors and contributors.
