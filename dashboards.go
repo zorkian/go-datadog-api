@@ -94,10 +94,6 @@ func (self *Client) CreateDashboard(dash *Dashboard) (*Dashboard, error) {
 // UpdateDashboard in essence takes a Dashboard struct and persists it back to
 // the server. Use this if you've updated your local and need to push it back.
 func (self *Client) UpdateDashboard(dash *Dashboard) error {
-	err := self.doJsonRequest("PUT",
-		fmt.Sprintf("/v1/dash/%d", dash.Id), dash, nil)
-	if err != nil {
-		return err
-	}
-	return nil
+	return self.doJsonRequest("PUT", fmt.Sprintf("/v1/dash/%d", dash.Id),
+		dash, nil)
 }
