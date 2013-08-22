@@ -1,4 +1,4 @@
-# datadog-api -- a Go implementation
+# Datadog API in Go
 
 Hi!
 
@@ -12,7 +12,7 @@ The source API documentation is here: <http://docs.datadoghq.com/api/>
 
 To use this project, include it in your code like:
 
-    import "github.com/xb95/datadog-api"
+    import "github.com/xb95/go-datadog-api"
 
 Then, you can work with it:
 
@@ -28,7 +28,7 @@ That's all; it's pretty easy to use.
 
 ## DOCUMENTATION
 
-Please see: <http://godoc.org/github.com/xb95/datadog-api>
+Please see: <http://godoc.org/github.com/xb95/go-datadog-api>
 
 ## BUGS/PROBLEMS/CONTRIBUTING
 
@@ -36,7 +36,7 @@ There are certainly some, but presently no known major bugs. If you do
 find something that doesn't work as expected, please file an issue on
 Github:
 
-<https://github.com/xb95/datadog-api/issues>
+<https://github.com/xb95/go-datadog-api/issues>
 
 Thanks in advance! And, as always, patches welcome!
 
