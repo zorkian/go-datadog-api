@@ -53,7 +53,7 @@ func (self *Client) doJsonRequest(method, api string,
 	}
 
 	// Actually do the request, error back if something crazy happened.
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := self.HttpClient.Do(req)
 	if err != nil {
 		return err
 	}
