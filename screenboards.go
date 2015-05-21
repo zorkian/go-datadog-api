@@ -19,7 +19,7 @@ type Screenboard struct {
 	Id                int                `json:"id,omitempty"`
 	Title             string             `json:"board_title"`
 	Height            int                `json:"height,omitempty"`
-	Width             string             `json:"width,omitempty"`
+	Width             int                `json:"width,omitempty"`
 	Shared            bool               `json:"shared"`
 	Templated         bool               `json:"templated,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
@@ -36,7 +36,7 @@ func (s *Screenboard) UnmarshalJSON(data []byte) error {
 		Id                int                `json:"id"`
 		Title             string             `json:"board_title"`
 		Height            int                `json:"height"`
-		Width             string             `json:"width"`
+		Width             int                `json:"width"`
 		Shared            bool               `json:"shared"`
 		Templated         bool               `json:"templated"`
 		TemplateVariables []TemplateVariable `json:"template_variables"`

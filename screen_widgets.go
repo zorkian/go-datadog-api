@@ -31,7 +31,6 @@ func NewTimeseriesWidget(
 }
 
 type TimeseriesWidget struct {
-	BoardId    int      `json:"board_id,omitempty"`
 	Height     int      `json:"height"`
 	Legend     bool     `json:"legend"`
 	TileDef    TileDef  `json:"tile_def"`
@@ -130,7 +129,6 @@ type QueryValueWidget struct {
 	Timeframe           string              `json:"timeframe"`
 	TimeframeAggregator string              `json:"aggr"`
 	Aggregator          string              `json:"aggregator"`
-	BoardId             int                 `json:"board_id,omitempty"`
 	CalcFunc            string              `json:"calc_func"`
 	ConditionalFormats  []ConditionalFormat `json:"conditional_formats"`
 	Height              int                 `json:"height"`
@@ -249,18 +247,13 @@ func NewFreeTextWidget(x, y, width, height int, text string, size int, align str
 }
 
 type FreeTextWidget struct {
-	BoardId    int      `json:"board_id,omitempty"`
-	Color      string   `json:"color,omitempty"`
-	FontSize   string   `json:"font_size,omitempty"`
-	Height     int      `json:"height,omitempty"`
-	Text       string   `json:"text"`
-	TextAlign  string   `json:"text_align"`
-	Title      bool     `json:"title"`
-	TitleAlign string   `json:"title_align"`
-	TitleSize  TextSize `json:"title_size"`
-	TitleText  string   `json:"title_text"`
-	Type       string   `json:"type"`
-	Width      int      `json:"width"`
-	X          int      `json:"x"`
-	Y          int      `json:"y"`
+	Color     string `json:"color,omitempty"`
+	FontSize  string `json:"font_size,omitempty"`
+	Height    int    `json:"height,omitempty"`
+	Text      string `json:"text"`
+	TextAlign string `json:"text_align"`
+	Type      string `json:"type"`
+	Width     int    `json:"width"`
+	X         int    `json:"x"`
+	Y         int    `json:"y"`
 }
