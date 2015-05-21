@@ -40,7 +40,7 @@ type TimeseriesWidget struct {
 	TitleAlign string   `json:"string"`
 	TitleSize  TextSize `json:"title_size"`
 	TitleText  string   `json:"title_text"`
-	Type       string   `json:"string"`
+	Type       string   `json:"type"`
 	Width      int      `json:"width"`
 	X          int      `json:"x"`
 	Y          int      `json:"y"`
