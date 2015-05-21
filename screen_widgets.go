@@ -7,6 +7,29 @@ import (
 
 type Widget interface{}
 
+func NewTimeseriesWidget(
+	x, y, width, height int,
+	title bool, titleAlign string, titleSize TextSize, titleText string,
+	timeframe string,
+	requests []TimeseriesRequest) Widget {
+	return &TimeseriesWidget{
+		X:          x,
+		Y:          y,
+		Width:      width,
+		Height:     height,
+		Title:      title,
+		TitleAlign: titleAlign,
+		TitleSize:  titleSize,
+		TitleText:  titleText,
+		Timeframe:  timeframe,
+		TileDef: TileDef{
+			Viz:      "timeseries",
+			Requests: requests,
+		},
+		Type: "timeseries",
+	}
+}
+
 type TimeseriesWidget struct {
 	BoardId    int      `json:"board_id,omitempty"`
 	Height     int      `json:"height"`
@@ -51,24 +74,56 @@ func (size *TextSize) MarshalJSON() ([]byte, error) {
 }
 
 type TileDef struct {
-	Events   []TileDefEvent   `json:"events"`
-	Requests []TileDefRequest `json:"requests"`
-	Viz      string           `json:"viz"`
+	Events   []TileDefEvent      `json:"events"`
+	Requests []TimeseriesRequest `json:"requests"`
+	Viz      string              `json:"viz"`
 }
 
-type TileDefRequest struct {
-	Query              string              `json:"q"`
-	Type               string              `json:"type,omitempty"`
-	ConditionalFormats []ConditionalFormat `json:"conditional_formats,omitempty"`
-	Style              TileDefRequestStyle `json:"style,omitempty"`
+func NewTimeseriesRequest(rtype string, query string) TimeseriesRequest {
+	return TimeseriesRequest{
+		Query: query,
+		Type:  rtype,
+	}
 }
 
-type TileDefRequestStyle struct {
+type TimeseriesRequest struct {
+	Query              string                 `json:"q"`
+	Type               string                 `json:"type,omitempty"`
+	ConditionalFormats []ConditionalFormat    `json:"conditional_formats,omitempty"`
+	Style              TimeseriesRequestStyle `json:"style,omitempty"`
+}
+
+type TimeseriesRequestStyle struct {
 	Palette string `json:"palette"`
 }
 
 type TileDefEvent struct {
 	Query string `json:"q"`
+}
+
+func NewQueryValueWidget(
+	x, y, width, height int,
+	title bool, titleAlign string, titleSize TextSize, titleText,
+	textAlign string, textSize TextSize,
+	timeframe, timeframeAggregator,
+	aggregator, query string) Widget {
+	return &QueryValueWidget{
+		X:                   x,
+		Y:                   y,
+		Width:               width,
+		Height:              height,
+		Title:               title,
+		TitleAlign:          titleAlign,
+		TitleSize:           titleSize,
+		TitleText:           titleText,
+		TextAlign:           textAlign,
+		TextSize:            textSize,
+		Timeframe:           timeframe,
+		TimeframeAggregator: timeframeAggregator,
+		Aggregator:          aggregator,
+		Query:               query,
+		Type:                "query_value",
+	}
 }
 
 type QueryValueWidget struct {
@@ -105,6 +160,29 @@ type ConditionalFormat struct {
 	Value      int    `json:"value"`
 }
 
+func NewToplistWidget(
+	x, y, width, height int,
+	title bool, titleAlign string, titleSize TextSize, titleText string,
+	timeframe string,
+	request TimeseriesRequest) Widget {
+	return &ToplistWidget{
+		X:          x,
+		Y:          y,
+		Width:      width,
+		Height:     height,
+		Title:      title,
+		TitleAlign: titleAlign,
+		TitleSize:  titleSize,
+		TitleText:  titleText,
+		TileDef: TileDef{
+			Viz:      "toplist",
+			Requests: []TimeseriesRequest{request},
+		},
+		Timeframe: timeframe,
+		Type:      "toplist",
+	}
+}
+
 type ToplistWidget struct {
 	Height     int      `json:"height"`
 	Legend     bool     `json:"legend"`
@@ -114,10 +192,32 @@ type ToplistWidget struct {
 	Title      bool     `json:"title"`
 	TitleAlign string   `json:"title_align"`
 	TitleSize  TextSize `json:"title_size"`
+	TitleText  string   `json:"title_text"`
 	Type       string   `json:"type"`
 	Width      int      `json:"width"`
 	X          int      `json:"x"`
 	Y          int      `json:"y"`
+}
+
+func NewEventStreamWidget(
+	x, y, width, height int,
+	title bool, titleAlign string, titleSize TextSize, titleText string,
+	timeframe string,
+	query, eventSize string) Widget {
+	return &EventStreamWidget{
+		X:          x,
+		Y:          y,
+		Width:      width,
+		Height:     height,
+		Title:      title,
+		TitleAlign: titleAlign,
+		TitleSize:  titleSize,
+		TitleText:  titleText,
+		Timeframe:  timeframe,
+		Query:      query,
+		EventSize:  eventSize,
+		Type:       "event_stream",
+	}
 }
 
 type EventStreamWidget struct {
@@ -128,10 +228,24 @@ type EventStreamWidget struct {
 	Title      bool     `json:"title"`
 	TitleAlign string   `json:"title_align"`
 	TitleSize  TextSize `json:"title_size"`
+	TitleText  string   `json:"title_text"`
 	Type       string   `json:"type"`
 	Width      int      `json:"width"`
 	X          int      `json:"x"`
 	Y          int      `json:"y"`
+}
+
+func NewFreeTextWidget(x, y, width, height int, text string, size int, align string) Widget {
+	return &FreeTextWidget{
+		X:         x,
+		Y:         y,
+		Width:     width,
+		Height:    height,
+		Text:      text,
+		FontSize:  fmt.Sprintf("%d", size),
+		TextAlign: align,
+		Type:      "free_text",
+	}
 }
 
 type FreeTextWidget struct {
