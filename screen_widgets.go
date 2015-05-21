@@ -36,7 +36,7 @@ type TimeseriesWidget struct {
 	TileDef    TileDef  `json:"tile_def"`
 	Timeframe  string   `json:"timeframe"`
 	Title      bool     `json:"title"`
-	TitleAlign string   `json:"string"`
+	TitleAlign string   `json:"title_align"`
 	TitleSize  TextSize `json:"title_size"`
 	TitleText  string   `json:"title_text"`
 	Type       string   `json:"type"`
@@ -256,4 +256,34 @@ type FreeTextWidget struct {
 	Width     int    `json:"width"`
 	X         int    `json:"x"`
 	Y         int    `json:"y"`
+}
+
+func NewImageWidget(x, y, width, height int, sizing, url string, title bool, titleAlign string, titleSize TextSize, titleText string,
+) Widget {
+	return &ImageWidget{
+		X:          x,
+		Y:          y,
+		Width:      width,
+		Height:     height,
+		Type:       "image",
+		Title:      title,
+		TitleAlign: titleAlign,
+		TitleSize:  titleSize,
+		TitleText:  titleText,
+		Url:        url,
+	}
+}
+
+type ImageWidget struct {
+	Height     int      `json:"height"`
+	Sizing     string   `json:"sizing"`
+	Title      bool     `json:"title"`
+	TitleAlign string   `json:"title_align"`
+	TitleSize  TextSize `json:"title_size"`
+	TitleText  string   `json:"title_text"`
+	Type       string   `json:"type"`
+	Url        string   `json:"url"`
+	Width      int      `json:"width"`
+	X          int      `json:"x"`
+	Y          int      `json:"y"`
 }

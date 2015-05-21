@@ -18,8 +18,8 @@ import (
 type Screenboard struct {
 	Id                int                `json:"id,omitempty"`
 	Title             string             `json:"board_title"`
-	Height            int                `json:"height,omitempty"`
-	Width             int                `json:"width,omitempty"`
+	Height            string             `json:"height,omitempty"`
+	Width             string             `json:"width,omitempty"`
 	Shared            bool               `json:"shared"`
 	Templated         bool               `json:"templated,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
@@ -35,8 +35,8 @@ func (s *Screenboard) UnmarshalJSON(data []byte) error {
 	dest := struct {
 		Id                int                `json:"id"`
 		Title             string             `json:"board_title"`
-		Height            int                `json:"height"`
-		Width             int                `json:"width"`
+		Height            json.RawMessage    `json:"height"`
+		Width             json.RawMessage    `json:"width"`
 		Shared            bool               `json:"shared"`
 		Templated         bool               `json:"templated"`
 		TemplateVariables []TemplateVariable `json:"template_variables"`
@@ -66,8 +66,8 @@ func (s *Screenboard) UnmarshalJSON(data []byte) error {
 
 	s.Id = dest.Id
 	s.Title = dest.Title
-	s.Height = dest.Height
-	s.Width = dest.Width
+	s.Height = string(dest.Height)
+	s.Width = string(dest.Width)
 	s.Shared = dest.Shared
 	s.Templated = dest.Templated
 	s.TemplateVariables = dest.TemplateVariables
@@ -89,6 +89,8 @@ func unmarshalWidget(widgetType string, data json.RawMessage) (Widget, error) {
 		dest = &FreeTextWidget{}
 	case "toplist":
 		dest = &ToplistWidget{}
+	case "image":
+		dest = &ImageWidget{}
 	default:
 		return nil, fmt.Errorf("Could not unmarshal unknown widget type %s.", widgetType)
 	}
