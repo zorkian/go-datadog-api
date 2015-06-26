@@ -17,7 +17,7 @@ type DataPoint [2]float64
 type Metric struct {
 	Metric string      `json:"metric"`
 	Points []DataPoint `json:"points"`
-	Type   string      `json:"type"`
+	Type   string      `json:"metric_type"`
 	Host   string      `json:"host"`
 	Tags   []string    `json:"tags"`
 }
