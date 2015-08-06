@@ -15,6 +15,6 @@ type reqInviteUsers struct {
 
 // InviteUsers takes a slice of email addresses and sends invitations to them.
 func (self *Client) InviteUsers(emails []string) error {
-	return self.doJsonRequest("POST", "/v1/account/invite",
+	return self.doJsonRequest("POST", "/v1/invite_users",
 		reqInviteUsers{Emails: emails}, nil)
 }
