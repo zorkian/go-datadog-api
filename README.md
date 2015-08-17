@@ -1,3 +1,6 @@
+[![Build
+status](https://travis-ci.org/ojongerius/go-datadog-api.svg)](https://travis-ci.org/ojongerius/go-datadog-api)
+
 # Datadog API in Go
 
 Hi!

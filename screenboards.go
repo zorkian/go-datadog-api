@@ -9,7 +9,6 @@
 package datadog
 
 import (
-	"encoding/json"
 	"fmt"
 )
 
@@ -25,81 +24,18 @@ type Screenboard struct {
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
 	Widgets           []Widget           `json:"widgets"`
 }
-type TemplateVariable struct {
-	Default string `json:"default"`
-	Name    string `json:"name"`
-	Prefix  string `json:"prefix"`
-}
 
-func (s *Screenboard) UnmarshalJSON(data []byte) error {
-	dest := struct {
-		Id                int                `json:"id"`
-		Title             string             `json:"board_title"`
-		Height            json.RawMessage    `json:"height"`
-		Width             json.RawMessage    `json:"width"`
-		Shared            bool               `json:"shared"`
-		Templated         bool               `json:"templated"`
-		TemplateVariables []TemplateVariable `json:"template_variables"`
-		Widgets           []json.RawMessage  `json:"widgets"`
-	}{}
-	err := json.Unmarshal(data, &dest)
-	if err != nil {
-		return err
-	}
-
-	widgets := []Widget{}
-	for _, rawWidget := range dest.Widgets {
-		typeStruct := struct {
-			Type string `json:"type"`
-		}{}
-		if err := json.Unmarshal(rawWidget, &typeStruct); err != nil {
-			return fmt.Errorf("Could not detect widget type: %s", err)
-		}
-
-		widget, err := unmarshalWidget(typeStruct.Type, rawWidget)
-		if err != nil {
-			return fmt.Errorf("Could not unmarshal widget (type %s): %s", typeStruct.Type, err)
-		}
-
-		widgets = append(widgets, widget)
-	}
-
-	s.Id = dest.Id
-	s.Title = dest.Title
-	s.Height = string(dest.Height)
-	s.Width = string(dest.Width)
-	s.Shared = dest.Shared
-	s.Templated = dest.Templated
-	s.TemplateVariables = dest.TemplateVariables
-	s.Widgets = widgets
-
-	return nil
-}
-func unmarshalWidget(widgetType string, data json.RawMessage) (Widget, error) {
-	var dest Widget
-
-	switch widgetType {
-	case "timeseries":
-		dest = &TimeseriesWidget{}
-	case "query_value":
-		dest = &QueryValueWidget{}
-	case "event_stream":
-		dest = &EventStreamWidget{}
-	case "free_text":
-		dest = &FreeTextWidget{}
-	case "toplist":
-		dest = &ToplistWidget{}
-	case "image":
-		dest = &ImageWidget{}
-	default:
-		return nil, fmt.Errorf("Could not unmarshal unknown widget type %s.", widgetType)
-	}
-
-	if err := json.Unmarshal(data, dest); err != nil {
-		return nil, err
-	}
-
-	return dest, nil
+//type Widget struct {
+type Widget struct {
+	Default 		  string `json:"default"`
+	Name              string `json:"name"`
+	Prefix            string `json:"prefix"`
+	TimeseriesWidget  string `json:"timeseries"`
+	QueryValueWidget  string `json:"query_value"`
+	EventStreamWidget string `json:"event_stream"`
+	FreeTextWidget 	  string `json:"free_text"`
+	ToplistWidget     string `json:"toplist"`
+	ImageWidget       string `json:"image`
 }
 
 // ScreenboardLite represents a user created screenboard. This is the mini

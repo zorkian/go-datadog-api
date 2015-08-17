@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/seiffert/go-datadog-api"
+	"github.com/ojongerius/go-datadog-api"
 )
 
 var (
@@ -15,11 +15,11 @@ var (
 )
 
 func init() {
-	apiKey = os.Getenv("DD_API_KEY")
-	appKey = os.Getenv("DD_APP_KEY")
+	apiKey = os.Getenv("DATADOG_API_KEY")
+	appKey = os.Getenv("DATADOG_APP_KEY")
 
 	if apiKey == "" || appKey == "" {
-		log.Fatal("Please make sure to set the env variables 'DD_API_KEY' and 'DD_APP_KEY' before running this test")
+		log.Fatal("Please make sure to set the env variables 'DATADOG_API_KEY' and 'DATADOG_APP_KEY' before running this test")
 	}
 
 	client = datadog.NewClient(apiKey, appKey)
@@ -96,8 +96,8 @@ func TestGetScreenboards(t *testing.T) {
 func getTestScreenboard() *datadog.Screenboard {
 	return &datadog.Screenboard{
 		Title:   "___Test-Board___",
-		Height:  600,
-		Width:   800,
+		Height:  "600",
+		Width:   "800",
 		Widgets: []datadog.Widget{},
 	}
 }

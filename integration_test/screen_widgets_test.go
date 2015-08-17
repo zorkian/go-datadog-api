@@ -3,7 +3,7 @@ package integration_test
 import (
 	"testing"
 
-	"github.com/seiffert/go-datadog-api"
+	"github.com/ojongerius/go-datadog-api"
 )
 
 func TestFreeTextWidget(t *testing.T) {
