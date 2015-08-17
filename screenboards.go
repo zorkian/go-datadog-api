@@ -27,15 +27,15 @@ type Screenboard struct {
 
 //type Widget struct {
 type Widget struct {
-	Default 		  string `json:"default"`
-	Name              string `json:"name"`
-	Prefix            string `json:"prefix"`
-	TimeseriesWidget  string `json:"timeseries"`
-	QueryValueWidget  string `json:"query_value"`
-	EventStreamWidget string `json:"event_stream"`
-	FreeTextWidget 	  string `json:"free_text"`
-	ToplistWidget     string `json:"toplist"`
-	ImageWidget       string `json:"image`
+	Default 		  string 			`json:"default"`
+	Name              string 			`json:"name"`
+	Prefix            string 			`json:"prefix"`
+	TimeseriesWidget  TimeseriesWidget  `json:"timeseries"`
+	QueryValueWidget  QueryValueWidget  `json:"query_value"`
+	EventStreamWidget EventStreamWidget `json:"event_stream"`
+	FreeTextWidget 	  FreeTextWidget  	`json:"free_text"`
+	ToplistWidget     ToplistWidget 	`json:"toplist"`
+	ImageWidget       ImageWidget		`json:"image`
 }
 
 // ScreenboardLite represents a user created screenboard. This is the mini

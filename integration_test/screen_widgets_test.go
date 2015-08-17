@@ -6,14 +6,29 @@ import (
 	"github.com/ojongerius/go-datadog-api"
 )
 
+/* TODO: Add tests for:
+	* ToplistWidget
+	* EventStreamWidget
+	* ImageWidget
+*/
+
 func TestFreeTextWidget(t *testing.T) {
 	board := createTestScreenboard(t)
-	widget := datadog.NewFreeTextWidget(
-		1, 1, 10, 10, "Test", 16, "center",
-	)
-	expected := *(widget.(*datadog.FreeTextWidget))
 
-	board.Widgets = append(board.Widgets, widget)
+	expected := datadog.Widget{}.FreeTextWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Height = 10
+	expected.Width = 10
+	expected.Text = "Test"
+	expected.FontSize = "16"
+	expected.TextAlign = "center"
+
+	w := datadog.Widget{ FreeTextWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
@@ -23,10 +38,7 @@ func TestFreeTextWidget(t *testing.T) {
 		t.Fatalf("Retreiving a screenboard failed: %s", err)
 	}
 
-	actualWidget, ok := actual.Widgets[0].(*datadog.FreeTextWidget)
-	if !ok {
-		t.Fatalf("Widget type does not match: %v", actual.Widgets[0])
-	}
+	actualWidget := actual.Widgets[0].FreeTextWidget
 
 	assertEquals(t, "font-size", actualWidget.FontSize, expected.FontSize)
 	assertEquals(t, "height", actualWidget.Height, expected.Height)
@@ -42,17 +54,21 @@ func TestFreeTextWidget(t *testing.T) {
 
 func TestTimeseriesWidget(t *testing.T) {
 	board := createTestScreenboard(t)
-	widget := datadog.NewTimeseriesWidget(
-		1, 1, 20, 30,
-		true, "center", datadog.TextSize{Size: 16}, "Test",
-		"1m",
-		[]datadog.TimeseriesRequest{
-			datadog.NewTimeseriesRequest("line", "system.cpu.idle"),
-		},
-	)
-	expected := *(widget.(*datadog.TimeseriesWidget))
 
-	board.Widgets = append(board.Widgets, widget)
+	expected := datadog.Widget{}.TimeseriesWidget
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 20
+	expected.Height = 30
+	expected.Title = true
+	expected.TitleAlign = "centre"
+	expected.TitleSize = datadog.TextSize{Size: 16}
+	expected.TitleText = "Test"
+	expected.Timeframe = "1m"
+
+	w := datadog.Widget{ TimeseriesWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
@@ -62,10 +78,7 @@ func TestTimeseriesWidget(t *testing.T) {
 		t.Fatalf("Retreiving a screenboard failed: %s", err)
 	}
 
-	actualWidget, ok := actual.Widgets[0].(*datadog.TimeseriesWidget)
-	if !ok {
-		t.Fatalf("Widget type does not match: %v", actual.Widgets[0])
-	}
+	actualWidget := actual.Widgets[0].TimeseriesWidget
 
 	assertEquals(t, "height", actualWidget.Height, expected.Height)
 	assertEquals(t, "width", actualWidget.Width, expected.Width)
@@ -86,16 +99,24 @@ func TestTimeseriesWidget(t *testing.T) {
 
 func TestQueryValueWidget(t *testing.T) {
 	board := createTestScreenboard(t)
-	widget := datadog.NewQueryValueWidget(
-		1, 1, 20, 10,
-		true, "center", datadog.TextSize{Size: 16}, "Test",
-		"left", datadog.TextSize{Size: 32},
-		"1m", "sum",
-		"min", "docker.containers.running",
-	)
-	expected := *(widget.(*datadog.QueryValueWidget))
 
-	board.Widgets = append(board.Widgets, widget)
+	expected := datadog.Widget{}.QueryValueWidget
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 20
+	expected.Height = 30
+	expected.Title = true
+	expected.TitleAlign = "centre"
+	expected.TitleSize = datadog.TextSize{Size: 16}
+	expected.TitleText = "Test"
+	expected.Timeframe = "1m"
+	expected.TimeframeAggregator = "sum"
+	expected.Aggregator = "min"
+	expected.Query = "docker.containers.running"
+
+	w := datadog.Widget{ QueryValueWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
@@ -105,10 +126,7 @@ func TestQueryValueWidget(t *testing.T) {
 		t.Fatalf("Retreiving a screenboard failed: %s", err)
 	}
 
-	actualWidget, ok := actual.Widgets[0].(*datadog.QueryValueWidget)
-	if !ok {
-		t.Fatalf("Widget type does not match: %v", actual.Widgets[0])
-	}
+	actualWidget := actual.Widgets[0].QueryValueWidget
 
 	assertEquals(t, "height", actualWidget.Height, expected.Height)
 	assertEquals(t, "width", actualWidget.Width, expected.Width)

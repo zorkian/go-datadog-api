@@ -5,31 +5,6 @@ import (
 	"strconv"
 )
 
-type Widget interface{}
-
-func NewTimeseriesWidget(
-	x, y, width, height int,
-	title bool, titleAlign string, titleSize TextSize, titleText string,
-	timeframe string,
-	requests []TimeseriesRequest) Widget {
-	return &TimeseriesWidget{
-		X:          x,
-		Y:          y,
-		Width:      width,
-		Height:     height,
-		Title:      title,
-		TitleAlign: titleAlign,
-		TitleSize:  titleSize,
-		TitleText:  titleText,
-		Timeframe:  timeframe,
-		TileDef: TileDef{
-			Viz:      "timeseries",
-			Requests: requests,
-		},
-		Type: "timeseries",
-	}
-}
-
 type TimeseriesWidget struct {
 	Height     int      `json:"height"`
 	Legend     bool     `json:"legend"`
@@ -100,31 +75,6 @@ type TileDefEvent struct {
 	Query string `json:"q"`
 }
 
-func NewQueryValueWidget(
-	x, y, width, height int,
-	title bool, titleAlign string, titleSize TextSize, titleText,
-	textAlign string, textSize TextSize,
-	timeframe, timeframeAggregator,
-	aggregator, query string) Widget {
-	return &QueryValueWidget{
-		X:                   x,
-		Y:                   y,
-		Width:               width,
-		Height:              height,
-		Title:               title,
-		TitleAlign:          titleAlign,
-		TitleSize:           titleSize,
-		TitleText:           titleText,
-		TextAlign:           textAlign,
-		TextSize:            textSize,
-		Timeframe:           timeframe,
-		TimeframeAggregator: timeframeAggregator,
-		Aggregator:          aggregator,
-		Query:               query,
-		Type:                "query_value",
-	}
-}
-
 type QueryValueWidget struct {
 	Timeframe           string              `json:"timeframe"`
 	TimeframeAggregator string              `json:"aggr"`
@@ -158,29 +108,6 @@ type ConditionalFormat struct {
 	Value      int    `json:"value"`
 }
 
-func NewToplistWidget(
-	x, y, width, height int,
-	title bool, titleAlign string, titleSize TextSize, titleText string,
-	timeframe string,
-	request TimeseriesRequest) Widget {
-	return &ToplistWidget{
-		X:          x,
-		Y:          y,
-		Width:      width,
-		Height:     height,
-		Title:      title,
-		TitleAlign: titleAlign,
-		TitleSize:  titleSize,
-		TitleText:  titleText,
-		TileDef: TileDef{
-			Viz:      "toplist",
-			Requests: []TimeseriesRequest{request},
-		},
-		Timeframe: timeframe,
-		Type:      "toplist",
-	}
-}
-
 type ToplistWidget struct {
 	Height     int      `json:"height"`
 	Legend     bool     `json:"legend"`
@@ -195,27 +122,6 @@ type ToplistWidget struct {
 	Width      int      `json:"width"`
 	X          int      `json:"x"`
 	Y          int      `json:"y"`
-}
-
-func NewEventStreamWidget(
-	x, y, width, height int,
-	title bool, titleAlign string, titleSize TextSize, titleText string,
-	timeframe string,
-	query, eventSize string) Widget {
-	return &EventStreamWidget{
-		X:          x,
-		Y:          y,
-		Width:      width,
-		Height:     height,
-		Title:      title,
-		TitleAlign: titleAlign,
-		TitleSize:  titleSize,
-		TitleText:  titleText,
-		Timeframe:  timeframe,
-		Query:      query,
-		EventSize:  eventSize,
-		Type:       "event_stream",
-	}
 }
 
 type EventStreamWidget struct {
@@ -233,19 +139,6 @@ type EventStreamWidget struct {
 	Y          int      `json:"y"`
 }
 
-func NewFreeTextWidget(x, y, width, height int, text string, size int, align string) Widget {
-	return &FreeTextWidget{
-		X:         x,
-		Y:         y,
-		Width:     width,
-		Height:    height,
-		Text:      text,
-		FontSize:  fmt.Sprintf("%d", size),
-		TextAlign: align,
-		Type:      "free_text",
-	}
-}
-
 type FreeTextWidget struct {
 	Color     string `json:"color,omitempty"`
 	FontSize  string `json:"font_size,omitempty"`
@@ -256,22 +149,6 @@ type FreeTextWidget struct {
 	Width     int    `json:"width"`
 	X         int    `json:"x"`
 	Y         int    `json:"y"`
-}
-
-func NewImageWidget(x, y, width, height int, sizing, url string, title bool, titleAlign string, titleSize TextSize, titleText string,
-) Widget {
-	return &ImageWidget{
-		X:          x,
-		Y:          y,
-		Width:      width,
-		Height:     height,
-		Type:       "image",
-		Title:      title,
-		TitleAlign: titleAlign,
-		TitleSize:  titleSize,
-		TitleText:  titleText,
-		Url:        url,
-	}
 }
 
 type ImageWidget struct {
