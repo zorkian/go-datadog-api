@@ -7,10 +7,10 @@ import (
 )
 
 /* TODO: Add tests for:
-	* ToplistWidget
-	* EventStreamWidget
-	* ImageWidget
-*/
+* ToplistWidget
+* EventStreamWidget
+* ImageWidget
+ */
 
 func TestFreeTextWidget(t *testing.T) {
 	board := createTestScreenboard(t)
@@ -25,7 +25,7 @@ func TestFreeTextWidget(t *testing.T) {
 	expected.FontSize = "16"
 	expected.TextAlign = "center"
 
-	w := datadog.Widget{ FreeTextWidget: expected}
+	w := datadog.Widget{FreeTextWidget: expected}
 
 	board.Widgets = append(board.Widgets, w)
 
@@ -66,7 +66,7 @@ func TestTimeseriesWidget(t *testing.T) {
 	expected.TitleText = "Test"
 	expected.Timeframe = "1m"
 
-	w := datadog.Widget{ TimeseriesWidget: expected}
+	w := datadog.Widget{TimeseriesWidget: expected}
 
 	board.Widgets = append(board.Widgets, w)
 	if err := client.UpdateScreenboard(board); err != nil {
@@ -114,7 +114,7 @@ func TestQueryValueWidget(t *testing.T) {
 	expected.Aggregator = "min"
 	expected.Query = "docker.containers.running"
 
-	w := datadog.Widget{ QueryValueWidget: expected}
+	w := datadog.Widget{QueryValueWidget: expected}
 
 	board.Widgets = append(board.Widgets, w)
 	if err := client.UpdateScreenboard(board); err != nil {
