@@ -141,10 +141,10 @@ func assertScreenboardEquals(t *testing.T, actual, expected *datadog.Screenboard
 		t.Errorf("Screenboard title does not match: %s != %s", actual.Title, expected.Title)
 	}
 	if actual.Width != expected.Width {
-		t.Errorf("Screenboard width does not match: %d != %d", actual.Width, expected.Width)
+		t.Errorf("Screenboard width does not match: %s != %s", actual.Width, expected.Width)
 	}
 	if actual.Height != expected.Height {
-		t.Errorf("Screenboard width does not match: %d != %d", actual.Height, expected.Height)
+		t.Errorf("Screenboard width does not match: %s != %s", actual.Height, expected.Height)
 	}
 	if len(actual.Widgets) != len(expected.Widgets) {
 		t.Errorf("Number of Screenboard widgets does not match: %d != %d", len(actual.Widgets), len(expected.Widgets))

@@ -35,7 +35,7 @@ type Widget struct {
 	EventStreamWidget EventStreamWidget `json:"event_stream"`
 	FreeTextWidget    FreeTextWidget    `json:"free_text"`
 	ToplistWidget     ToplistWidget     `json:"toplist"`
-	ImageWidget       ImageWidget       `json:"image`
+	ImageWidget       ImageWidget       `json:"image"`
 }
 
 // ScreenboardLite represents a user created screenboard. This is the mini

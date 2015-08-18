@@ -82,7 +82,7 @@ type QueryValueWidget struct {
 	CalcFunc            string              `json:"calc_func"`
 	ConditionalFormats  []ConditionalFormat `json:"conditional_formats"`
 	Height              int                 `json:"height"`
-	IsValidQuery        bool                `json:is_valid_query,omitempty"`
+	IsValidQuery        bool                `json:"is_valid_query,omitempty"`
 	Metric              string              `json:"metric"`
 	MetricType          string              `json:"metric_type"`
 	Precision           int                 `json:"precision"`
