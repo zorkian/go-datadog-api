@@ -22,7 +22,7 @@ testacc:
 	TF_ACC=1 go test integration_test/* -v $(TESTARGS) -timeout 90m
 
 # testrace runs the race checker
-testrace: generate
+testrace:
 	TF_ACC= go test -race $(TEST) $(TESTARGS)
 
 cover:

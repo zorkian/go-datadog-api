@@ -1,10 +1,5 @@
 package datadog
 
-import (
-	"fmt"
-	"strconv"
-)
-
 type TimeseriesWidget struct {
 	Height     int      `json:"height"`
 	Legend     bool     `json:"legend"`
@@ -25,39 +20,10 @@ type TextSize struct {
 	Auto bool
 }
 
-func (size *TextSize) UnmarshalJSON(data []byte) error {
-	if string(data) == "\"auto\"" {
-		size.Auto = true
-		return nil
-	}
-
-	num, err := strconv.Atoi(string(data))
-	if err != nil {
-		return err
-	}
-	size.Size = num
-
-	return nil
-}
-func (size *TextSize) MarshalJSON() ([]byte, error) {
-	if size.Auto {
-		return []byte("\"auto\""), nil
-	}
-
-	return []byte(fmt.Sprintf("%d", size.Size)), nil
-}
-
 type TileDef struct {
 	Events   []TileDefEvent      `json:"events"`
 	Requests []TimeseriesRequest `json:"requests"`
 	Viz      string              `json:"viz"`
-}
-
-func NewTimeseriesRequest(rtype string, query string) TimeseriesRequest {
-	return TimeseriesRequest{
-		Query: query,
-		Type:  rtype,
-	}
 }
 
 type TimeseriesRequest struct {
