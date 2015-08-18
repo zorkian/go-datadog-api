@@ -25,14 +25,6 @@ testacc:
 testrace:
 	TF_ACC= go test -race $(TEST) $(TESTARGS)
 
-cover:
-	@go tool cover 2>/dev/null; if [ $$? -eq 3 ]; then \
-		go get -u golang.org/x/tools/cmd/cover; \
-	fi
-	go test $(TEST) -coverprofile=coverage.out
-	go tool cover -html=coverage.out
-	rm coverage.out
-
 # vet runs the Go source code static analysis tool `vet` to find
 # any common errors.
 vet:
@@ -47,4 +39,4 @@ vet:
 		exit 1; \
 	fi
 
-.PHONY: default test updatedeps vet
+.PHONY: default test testacc updatedeps vet
