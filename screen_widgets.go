@@ -121,22 +121,22 @@ type HostMapWidget struct {
 }
 
 type CheckStatusWidget struct {
-	TitleSize        int    `json:"title_size"`
-	Title            bool   `json:"title"`
-	TitleAlign       string `json:"title_align"`
-	TextAlign        string `json:"text_align"`
-	CheckStatusTitle string `json:"title_text"`
-	Height           int    `json:"height"`
-	Width            int    `json:"width"`
-	X                int    `json:"y"`
-	Y                int    `json:"x"`
-	Tags             string `json:"tags"`
-	Timeframe        string `json:"timeframe"`
-	TextSize         string `json:"text_size"`
-	CheckStatus      string `json:"type"`
-	Check            string `json:"check"`
-	Group            string `json:"group"`
-	Grouping         string `json:"grouping"`
+	TitleSize  int    `json:"title_size"`
+	Title      bool   `json:"title"`
+	TitleAlign string `json:"title_align"`
+	TextAlign  string `json:"text_align"`
+	TitleText  string `json:"title_text"`
+	Height     int    `json:"height"`
+	Width      int    `json:"width"`
+	X          int    `json:"y"`
+	Y          int    `json:"x"`
+	Tags       string `json:"tags"`
+	Timeframe  string `json:"timeframe"`
+	TextSize   string `json:"text_size"`
+	Type       string `json:"type"`
+	Check      string `json:"check"`
+	Group      string `json:"group"`
+	Grouping   string `json:"grouping"`
 }
 
 type IFrameWidget struct {
@@ -149,7 +149,7 @@ type IFrameWidget struct {
 	Width      int    `json:"width"`
 	X          int    `json:"y"`
 	Y          int    `json:"x"`
-	IFrame     string `json:"type"`
+	Type       string `json:"type"`
 }
 
 type NoteWidget struct {
@@ -169,7 +169,7 @@ type NoteWidget struct {
 	FontSize     int    `json:"font_size"`
 	Tick         bool   `json:"tick"`
 	Note         string `json:"type"`
-	With         int    `json:"width"`
+	Width        int    `json:"width"`
 	AutoRefresh  bool   `json:"auto_refresh"`
 }
 
