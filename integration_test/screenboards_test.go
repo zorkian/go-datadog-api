@@ -55,6 +55,30 @@ func TestCreateAndDeleteScreenboard(t *testing.T) {
 	cleanUpScreenboard(t, actual.Id)
 }
 
+func TestShareAndRevokeScreenboard(t *testing.T) {
+	expected := getTestScreenboard()
+	// create the screenboard
+	actual, err := client.CreateScreenboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a screenboard failed when it shouldn't: %s", err)
+	}
+
+	// share screenboard and verify it was shared
+	var response datadog.ScreenShareResponse
+	err = client.ShareScreenboard(actual.Id, &response)
+	if err != nil {
+		t.Fatalf("Failed to share screenboard: %s", err)
+	}
+
+	// revoke screenboard
+	err = client.RevokeScreenboard(actual.Id)
+	if err != nil {
+		t.Fatalf("Failed to revoke sharing of screenboard: %s", err)
+	}
+
+	cleanUpScreenboard(t, response.BoardId)
+}
+
 func TestUpdateScreenboard(t *testing.T) {
 	board := createTestScreenboard(t)
 

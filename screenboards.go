@@ -100,3 +100,18 @@ func (self *Client) CreateScreenboard(board *Screenboard) (*Screenboard, error) 
 func (self *Client) UpdateScreenboard(board *Screenboard) error {
 	return self.doJsonRequest("PUT", fmt.Sprintf("/v1/screen/%d", board.Id), board, nil)
 }
+
+type ScreenShareResponse struct {
+	BoardId   int    `json:"board_id"`
+	PublicUrl string `json:"public_url"`
+}
+
+// ShareScreenboard shares an existing screenboard, it takes and updates ScreenShareResponse
+func (self *Client) ShareScreenboard(id int, response *ScreenShareResponse) error {
+	return self.doJsonRequest("GET", fmt.Sprintf("/v1/screen/share/%d", id), nil, response)
+}
+
+// RevokeScreenboard revokes a currently shared screenboard
+func (self *Client) RevokeScreenboard(id int) error {
+	return self.doJsonRequest("DELETE", fmt.Sprintf("/v1/screen/share/%d", id), nil, nil)
+}
