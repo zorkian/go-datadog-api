@@ -6,6 +6,307 @@ import (
 	"github.com/ojongerius/go-datadog-api"
 )
 
+func TestAlertValueWidget(t *testing.T) {
+	board := createTestScreenboard(t)
+
+	expected := datadog.Widget{}.AlertValueWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 5
+	expected.Height = 5
+	expected.TitleText = "foo"
+	expected.TitleAlign = "center"
+	expected.TitleSize = 1
+	expected.Title = true
+	expected.TextSize = "auto"
+	expected.Precision = 2
+	expected.AlertId = 1
+	expected.Type = "alert_value"
+	expected.Unit = "auto"
+	expected.AddTimeframe = false
+
+	w := datadog.Widget{AlertValueWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
+	if err := client.UpdateScreenboard(board); err != nil {
+		t.Fatalf("Updating a screenboard failed: %s", err)
+	}
+
+	actual, err := client.GetScreenboard(board.Id)
+	if err != nil {
+		t.Fatalf("Retreiving a screenboard failed: %s", err)
+	}
+
+	actualWidget := actual.Widgets[0].AlertValueWidget
+
+	assertEquals(t, "x", actualWidget.X, expected.X)
+	assertEquals(t, "y", actualWidget.Y, expected.Y)
+	assertEquals(t, "height", actualWidget.Height, expected.Height)
+	assertEquals(t, "width", actualWidget.Width, expected.Width)
+	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
+	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
+	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
+	assertEquals(t, "title", actualWidget.Title, expected.Title)
+	assertEquals(t, "text_size", actualWidget.TextSize, expected.TextSize)
+	assertEquals(t, "precision", actualWidget.Precision, expected.Precision)
+	assertEquals(t, "alert_id", actualWidget.AlertId, expected.AlertId)
+	assertEquals(t, "type", actualWidget.Type, expected.Type)
+	assertEquals(t, "unit", actualWidget.Unit, expected.Unit)
+	assertEquals(t, "add_timeframe", actualWidget.AddTimeframe, expected.AddTimeframe)
+
+	cleanUpScreenboard(t, board.Id)
+}
+
+func TestChangeWidget(t *testing.T) {
+	board := createTestScreenboard(t)
+
+	expected := datadog.Widget{}.ChangeWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 5
+	expected.Height = 5
+	expected.TitleText = "foo"
+	expected.TitleAlign = "center"
+	expected.TitleSize = 1
+	expected.Title = true
+	expected.Aggregator = "min"
+	expected.TileDef = datadog.TileDef{}
+
+	w := datadog.Widget{ChangeWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
+	if err := client.UpdateScreenboard(board); err != nil {
+		t.Fatalf("Updating a screenboard failed: %s", err)
+	}
+
+	actual, err := client.GetScreenboard(board.Id)
+	if err != nil {
+		t.Fatalf("Retreiving a screenboard failed: %s", err)
+	}
+
+	actualWidget := actual.Widgets[0].ChangeWidget
+
+	assertEquals(t, "x", actualWidget.X, expected.X)
+	assertEquals(t, "y", actualWidget.Y, expected.Y)
+	assertEquals(t, "height", actualWidget.Height, expected.Height)
+	assertEquals(t, "width", actualWidget.Width, expected.Width)
+	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
+	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
+	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
+	assertEquals(t, "title", actualWidget.Title, expected.Title)
+	assertEquals(t, "aggregator", actualWidget.Aggregator, expected.Aggregator)
+	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
+
+	cleanUpScreenboard(t, board.Id)
+}
+
+func TestGraphWidget(t *testing.T) {
+	board := createTestScreenboard(t)
+
+	expected := datadog.Widget{}.GraphWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 5
+	expected.Height = 5
+	expected.TitleText = "foo"
+	expected.TitleAlign = "center"
+	expected.TitleSize = 1
+	expected.Title = true
+	expected.Timeframe = "1d"
+	expected.Type = "alert_graph"
+	expected.Legend = true
+	expected.LegendSize = 5
+	expected.TileDef = datadog.TileDef{}
+
+	w := datadog.Widget{GraphWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
+	if err := client.UpdateScreenboard(board); err != nil {
+		t.Fatalf("Updating a screenboard failed: %s", err)
+	}
+
+	actual, err := client.GetScreenboard(board.Id)
+	if err != nil {
+		t.Fatalf("Retreiving a screenboard failed: %s", err)
+	}
+
+	actualWidget := actual.Widgets[0].GraphWidget
+
+	assertEquals(t, "x", actualWidget.X, expected.X)
+	assertEquals(t, "y", actualWidget.Y, expected.Y)
+	assertEquals(t, "height", actualWidget.Height, expected.Height)
+	assertEquals(t, "width", actualWidget.Width, expected.Width)
+	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
+	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
+	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
+	assertEquals(t, "title", actualWidget.Title, expected.Title)
+	assertEquals(t, "type", actualWidget.Type, expected.Type)
+	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
+	assertEquals(t, "legend", actualWidget.Legend, expected.Legend)
+	assertEquals(t, "legend_size", actualWidget.LegendSize, expected.LegendSize)
+	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
+
+	cleanUpScreenboard(t, board.Id)
+}
+
+func TestEventTimelineWidget(t *testing.T) {
+	board := createTestScreenboard(t)
+
+	expected := datadog.Widget{}.EventTimelineWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 5
+	expected.Height = 5
+	expected.TitleText = "foo"
+	expected.TitleAlign = "center"
+	expected.TitleSize = 1
+	expected.Title = true
+	expected.Query = "avg:system.load.1{foo} by {bar}"
+	expected.Timeframe = "1d"
+	expected.Type = "alert_graph"
+
+	w := datadog.Widget{EventTimelineWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
+	if err := client.UpdateScreenboard(board); err != nil {
+		t.Fatalf("Updating a screenboard failed: %s", err)
+	}
+
+	actual, err := client.GetScreenboard(board.Id)
+	if err != nil {
+		t.Fatalf("Retreiving a screenboard failed: %s", err)
+	}
+
+	actualWidget := actual.Widgets[0].EventTimelineWidget
+
+	assertEquals(t, "x", actualWidget.X, expected.X)
+	assertEquals(t, "y", actualWidget.Y, expected.Y)
+	assertEquals(t, "height", actualWidget.Height, expected.Height)
+	assertEquals(t, "width", actualWidget.Width, expected.Width)
+	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
+	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
+	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
+	assertEquals(t, "title", actualWidget.Title, expected.Title)
+	assertEquals(t, "type", actualWidget.Type, expected.Type)
+	assertEquals(t, "query", actualWidget.Query, expected.Query)
+	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
+
+	cleanUpScreenboard(t, board.Id)
+}
+
+func TestAlertGraphWidget(t *testing.T) {
+	board := createTestScreenboard(t)
+
+	expected := datadog.Widget{}.AlertGraphWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 5
+	expected.Height = 5
+	expected.TitleText = "foo"
+	expected.TitleAlign = "center"
+	expected.TitleSize = 1
+	expected.Title = true
+	expected.VizType = ""
+	expected.Timeframe = "1d"
+	expected.AddTimeframe = false
+	expected.AlertId = 1
+	expected.Type = "alert_graph"
+
+	w := datadog.Widget{AlertGraphWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
+	if err := client.UpdateScreenboard(board); err != nil {
+		t.Fatalf("Updating a screenboard failed: %s", err)
+	}
+
+	actual, err := client.GetScreenboard(board.Id)
+	if err != nil {
+		t.Fatalf("Retreiving a screenboard failed: %s", err)
+	}
+
+	actualWidget := actual.Widgets[0].AlertGraphWidget
+
+	assertEquals(t, "x", actualWidget.X, expected.X)
+	assertEquals(t, "y", actualWidget.Y, expected.Y)
+	assertEquals(t, "height", actualWidget.Height, expected.Height)
+	assertEquals(t, "width", actualWidget.Width, expected.Width)
+	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
+	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
+	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
+	assertEquals(t, "title", actualWidget.Title, expected.Title)
+	assertEquals(t, "type", actualWidget.Type, expected.Type)
+	assertEquals(t, "viz_type", actualWidget.VizType, expected.VizType)
+	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
+	assertEquals(t, "add_timeframe", actualWidget.AddTimeframe, expected.AddTimeframe)
+	assertEquals(t, "alert_id", actualWidget.AlertId, expected.AlertId)
+
+	cleanUpScreenboard(t, board.Id)
+}
+
+func TestHostMapWidget(t *testing.T) {
+	board := createTestScreenboard(t)
+
+	expected := datadog.Widget{}.HostMapWidget
+
+	expected.X = 1
+	expected.Y = 1
+	expected.Width = 5
+	expected.Height = 5
+	expected.TitleText = "foo"
+	expected.TitleAlign = "center"
+	expected.TitleSize = 1
+	expected.Title = true
+	expected.Type = "check_status"
+	expected.Query = "avg:system.load.1{foo} by {bar}"
+	expected.Timeframe = "1d"
+	expected.Legend = true
+	expected.LegendSize = 5
+	expected.TileDef = datadog.TileDef{}
+
+	w := datadog.Widget{HostMapWidget: expected}
+
+	board.Widgets = append(board.Widgets, w)
+
+	if err := client.UpdateScreenboard(board); err != nil {
+		t.Fatalf("Updating a screenboard failed: %s", err)
+	}
+
+	actual, err := client.GetScreenboard(board.Id)
+	if err != nil {
+		t.Fatalf("Retreiving a screenboard failed: %s", err)
+	}
+
+	actualWidget := actual.Widgets[0].HostMapWidget
+
+	assertEquals(t, "x", actualWidget.X, expected.X)
+	assertEquals(t, "y", actualWidget.Y, expected.Y)
+	assertEquals(t, "height", actualWidget.Height, expected.Height)
+	assertEquals(t, "width", actualWidget.Width, expected.Width)
+	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
+	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
+	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
+	assertEquals(t, "title", actualWidget.Title, expected.Title)
+	assertEquals(t, "type", actualWidget.Type, expected.Type)
+	assertEquals(t, "query", actualWidget.Query, expected.Query)
+	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
+	assertEquals(t, "query", actualWidget.Query, expected.Query)
+	assertEquals(t, "legend", actualWidget.Legend, expected.Legend)
+	assertEquals(t, "legend_size", actualWidget.LegendSize, expected.LegendSize)
+	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
+
+	cleanUpScreenboard(t, board.Id)
+}
+
 func TestCheckStatusWidget(t *testing.T) {
 	board := createTestScreenboard(t)
 
@@ -180,7 +481,7 @@ func TestToplistWidget(t *testing.T) {
 	expected.Title = false
 	expected.Timeframe = "5m"
 	expected.Legend = false
-	expected.LegendSize = "5"
+	expected.LegendSize = 5
 
 	w := datadog.Widget{ToplistWidget: expected}
 
@@ -408,6 +709,20 @@ func TestQueryValueWidget(t *testing.T) {
 	expected.TimeframeAggregator = "sum"
 	expected.Aggregator = "min"
 	expected.Query = "docker.containers.running"
+	expected.MetricType = "standard"
+	/* TODO: add test for conditional formats
+	"conditional_formats": [{
+		"comparator": ">",
+		"color": "white_on_red",
+		"custom_bg_color": null,
+		"value": 1,
+		"invert": false,
+		"custom_fg_color": null}],
+	*/
+	expected.IsValidQuery = true
+	expected.ResultCalcFunc = "raw"
+	expected.Aggregator = "avg"
+	expected.CalcFunc = "raw"
 
 	w := datadog.Widget{QueryValueWidget: expected}
 
@@ -437,6 +752,9 @@ func TestQueryValueWidget(t *testing.T) {
 	assertEquals(t, "timeframe-aggregator", actualWidget.TimeframeAggregator, expected.TimeframeAggregator)
 	assertEquals(t, "aggregator", actualWidget.Aggregator, expected.Aggregator)
 	assertEquals(t, "query", actualWidget.Query, expected.Query)
+	assertEquals(t, "is_valid_query", actualWidget.IsValidQuery, expected.IsValidQuery)
+	assertEquals(t, "res_calc_func", actualWidget.ResultCalcFunc, expected.ResultCalcFunc)
+	assertEquals(t, "aggr", actualWidget.Aggregator, expected.Aggregator)
 
 	cleanUpScreenboard(t, board.Id)
 }

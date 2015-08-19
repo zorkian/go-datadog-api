@@ -26,6 +26,25 @@ type TileDefEvent struct {
 	Query string `json:"q"`
 }
 
+type AlertValueWidget struct {
+	TitleSize    int    `json:"title_size"`
+	Title        bool   `json:"title"`
+	TitleAlign   string `json:"title_align"`
+	TextAlign    string `json:"text_align"`
+	TitleText    string `json:"title_text"`
+	Precision    int    `json:"precision"`
+	AlertId      int    `json:"alert_id"`
+	Timeframe    string `json:"timeframe"`
+	AddTimeframe bool   `json:"add_timeframe"`
+	Y            int    `json:"y"`
+	X            int    `json:"x"`
+	TextSize     string `json:"text_size"`
+	Height       int    `json:"height"`
+	Width        int    `json:"width"`
+	Type         string `json:"type"`
+	Unit         string `json:"unit"`
+}
+
 type ChangeWidget struct {
 	TitleSize  int     `json:"title_size"`
 	Title      bool    `json:"title"`
@@ -50,7 +69,7 @@ type GraphWidget struct {
 	Y          int     `json:"x"`
 	Type       string  `json:"type"`
 	Timeframe  string  `json:"timeframe"`
-	LegendSize string  `json:"legend_size"`
+	LegendSize int     `json:"legend_size"`
 	Legend     bool    `json:"legend"`
 	TileDef    TileDef `json:"tile_def"`
 }
@@ -67,24 +86,6 @@ type EventTimelineWidget struct {
 	Type       string `json:"type"`
 	Timeframe  string `json:"timeframe"`
 	Query      string `json:"query"`
-}
-
-type AlertValueWidget struct {
-	TitleSize    int    `json:"title_size"`
-	Title        bool   `json:"title"`
-	TitleAlign   string `json:"title_align"`
-	TitleText    string `json:"title_text"`
-	Height       int    `json:"height"`
-	Width        int    `json:"width"`
-	X            int    `json:"y"`
-	Y            int    `json:"x"`
-	Precision    int    `json:"precision"`
-	AlertId      int    `json:"alert_id"`
-	Timeframe    string `json:"timeframe"`
-	Type         string `json:"type"`
-	AddTimeframe bool   `json:"add_timeframe"`
-	TextSize     string `json:"text_size"`
-	Unit         string `json:"auto"`
 }
 
 type AlertGraphWidget struct {
@@ -114,7 +115,7 @@ type HostMapWidget struct {
 	Y          int     `json:"x"`
 	Query      string  `json:"query"`
 	Timeframe  string  `json:"timeframe"`
-	LegendSize string  `json:"legend_size"`
+	LegendSize int     `json:"legend_size"`
 	Type       string  `json:"type"`
 	Legend     bool    `json:"legend"`
 	TileDef    TileDef `json:"tile_def"`
@@ -224,7 +225,7 @@ type ConditionalFormat struct {
 type ToplistWidget struct {
 	Height     int      `json:"height"`
 	Legend     bool     `json:"legend"`
-	LegendSize string   `json:"legend_size"`
+	LegendSize int      `json:"legend_size"`
 	TileDef    TileDef  `json:"tile_def"`
 	Timeframe  string   `json:"timeframe"`
 	Title      bool     `json:"title"`
