@@ -15,13 +15,13 @@ The source API documentation is here: <http://docs.datadoghq.com/api/>
 
 To use this project, include it in your code like:
 
-``` sh
+``` go
     import "github.com/zorkian/go-datadog-api"
 ```
 
 Then, you can work with it:
 
-``` sh
+``` go
     client := datadog.NewClient("api key", "application key")
     
     dash, err := client.GetDashboard(10880)
