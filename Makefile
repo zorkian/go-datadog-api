@@ -19,7 +19,8 @@ test:
 
 # testacc runs acceptance tests
 testacc:
-	TF_ACC=1 go test integration_test/* -v $(TESTARGS) -timeout 90m
+	TF_ACC=1 go test integration_test/dashboards/*.go -v $(TESTARGS) -timeout 90m
+	TF_ACC=1 go test integration_test/screenboards/*.go -v $(TESTARGS) -timeout 90m
 
 # testrace runs the race checker
 testrace:

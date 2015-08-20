@@ -39,7 +39,7 @@ type Dashboard struct {
 	Description       string             `json:"description"`
 	Title             string             `json:"title"`
 	Graphs            []Graph            `json:"graphs"`
-	TemplateVariables []TemplateVariable `json:"template_variables"`
+	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
 }
 
 // DashboardLite represents a user created dashboard. This is the mini
