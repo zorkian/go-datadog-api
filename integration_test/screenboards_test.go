@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ojongerius/go-datadog-api"
+	"github.com/zorkian/go-datadog-api"
 )
 
 var (

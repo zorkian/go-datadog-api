@@ -1,5 +1,5 @@
 [![Build
-status](https://travis-ci.org/ojongerius/go-datadog-api.svg)](https://travis-ci.org/ojongerius/go-datadog-api)
+status](https://travis-ci.org/zorkian/go-datadog-api.svg)](https://travis-ci.org/zorkian/go-datadog-api)
 
 # Datadog API in Go
 

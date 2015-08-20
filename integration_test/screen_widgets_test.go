@@ -3,7 +3,7 @@ package integration_test
 import (
 	"testing"
 
-	"github.com/ojongerius/go-datadog-api"
+	"github.com/zorkian/go-datadog-api"
 )
 
 func TestAlertValueWidget(t *testing.T) {
