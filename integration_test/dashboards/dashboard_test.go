@@ -141,7 +141,7 @@ func countDashboards() int {
 	return len(boards)
 }
 
-type GraphDefintionRequests struct {
+type TestGraphDefintionRequests struct {
 	Query   string `json:"q"`
 	Stacked bool   `json:"stacked"`
 }
@@ -150,7 +150,7 @@ func createGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
 	graphDefinition.Viz = "timeseries"
 	r := datadog.Graph{}.Definition.Requests
-	graphDefinition.Requests = append(r, GraphDefintionRequests{Query: "avg:system.mem.free{*}", Stacked: false})
+	graphDefinition.Requests = append(r, TestGraphDefintionRequests{Query: "avg:system.mem.free{*}", Stacked: false})
 	graph := datadog.Graph{Title: "Mandatory graph", Definition: graphDefinition}
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
@@ -165,9 +165,9 @@ func assertDashboardEquals(t *testing.T, actual, expected *datadog.Dashboard) {
 		t.Errorf("Dashboard description does not match: %s != %s", actual.Description, expected.Description)
 	}
 	if len(actual.Graphs) != len(expected.Graphs) {
-		t.Errorf("Numbre of Dashboard graphs does not match: %d != %d", len(actual.Graphs), len(expected.Graphs))
+		t.Errorf("Number of Dashboard graphs does not match: %d != %d", len(actual.Graphs), len(expected.Graphs))
 	}
 	if len(actual.TemplateVariables) != len(expected.TemplateVariables) {
-		t.Errorf("Number of Dashboard Template Variables does not match: %d != %d", len(actual.TemplateVariables), len(expected.TemplateVariables))
+		t.Errorf("Number of Dashboard template variables does not match: %d != %d", len(actual.TemplateVariables), len(expected.TemplateVariables))
 	}
 }
