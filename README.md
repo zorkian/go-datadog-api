@@ -1,3 +1,6 @@
+[![Build
+status](https://travis-ci.org/zorkian/go-datadog-api.svg)](https://travis-ci.org/zorkian/go-datadog-api)
+
 # Datadog API in Go
 
 Hi!
@@ -12,10 +15,13 @@ The source API documentation is here: <http://docs.datadoghq.com/api/>
 
 To use this project, include it in your code like:
 
+``` go
     import "github.com/zorkian/go-datadog-api"
+```
 
 Then, you can work with it:
 
+``` go
     client := datadog.NewClient("api key", "application key")
     
     dash, err := client.GetDashboard(10880)
@@ -23,6 +29,7 @@ Then, you can work with it:
         log.Fatalf("fatal: %s\n", err)
     }
     log.Printf("dashboard %d: %s\n", dash.Id, dash.Title)
+```
 
 That's all; it's pretty easy to use.
 
@@ -39,6 +46,18 @@ Github:
 <https://github.com/zorkian/go-datadog-api/issues>
 
 Thanks in advance! And, as always, patches welcome!
+
+## DEVELOPMENT
+
+* Get dependencies with `make updatedeps`.
+* Run tests tests with `make test`.
+* Integration tests can be run with `make testacc`.
+
+The acceptance tests require _DATADOG_API_KEY_ and _DATADOG_APP_KEY_ to be available
+in your environment variables.
+
+*Warning: the integrations tests will create and remove real resources in your Datadog
+account*
 
 ## COPYRIGHT AND LICENSE
 
