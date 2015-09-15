@@ -6,9 +6,9 @@ status](https://travis-ci.org/zorkian/go-datadog-api.svg)](https://travis-ci.org
 
 Hi!
 
-This is a very early stage project. Someone mentioned there was no Go
-implementation of a Datadog API, so I took a crack at it. It is not
-fully featured yet.
+This is a Go wrapper for the Datadog API. You should use this library if you need to interact
+with the Datadog system. You can post metrics with it if you want, but this library is probably
+mostly used for automating dashboards/alerting and retrieving data (events, etc).
 
 The source API documentation is here: <http://docs.datadoghq.com/api/>
 
@@ -32,7 +32,9 @@ Then, you can work with it:
     log.Printf("dashboard %d: %s\n", dash.Id, dash.Title)
 ```
 
-That's all; it's pretty easy to use.
+That's all; it's pretty easy to use. Check out the Godoc link for the
+available API methods and, if you can't find the one you need,
+let us know (or patches welcome)!
 
 ## DOCUMENTATION
 
