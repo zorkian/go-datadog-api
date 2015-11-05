@@ -15,17 +15,24 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 )
 
 // uriForAPI is to be called with something like "/v1/events" and it will give
 // the proper request URI to be posted to.
 func (self *Client) uriForAPI(api string) string {
+	var url = ""
+	if os.Getenv("DATADOG_HOST") != "" {
+		url = os.Getenv("DATADOG_HOST")
+	} else {
+		url = "https://app.datadoghq.com"
+	}
 	if strings.Index(api, "?") > -1 {
-		return "https://app.datadoghq.com/api" + api + "&api_key=" +
+		return url + "/api" + api + "&api_key=" +
 			self.apiKey + "&application_key=" + self.appKey
 	} else {
-		return "https://app.datadoghq.com/api" + api + "?api_key=" +
+		return url + "/api" + api + "?api_key=" +
 			self.apiKey + "&application_key=" + self.appKey
 	}
 }
