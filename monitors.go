@@ -44,11 +44,11 @@ type Monitor struct {
 // Metric Monitor cannot have default zero values for thresholds
 //notifying your team when some defined threshold is exceeded.
 type MetricMonitor struct {
-	Id      int     `json:"id"`
-	Type    string  `json:"type"`
-	Query   string  `json:"query"`
-	Name    string  `json:"name"`
-	Message string  `json:"message"`
+	Id      int           `json:"id"`
+	Type    string        `json:"type"`
+	Query   string        `json:"query"`
+	Name    string        `json:"name"`
+	Message string        `json:"message"`
 	Options MetricOptions `json:"options"`
 }
 
@@ -83,13 +83,13 @@ func (self *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 // monitor so you can pass that to Updatemonitor later if needed.
 func (self *Client) CreateMetricMonitor(monitor *MetricMonitor) (*MetricMonitor, error) {
 	var out MetricMonitor
-	fmt.Println(monitor)
 	err := self.doJsonRequest("POST", "/v1/monitor", monitor, &out)
 	if err != nil {
 		return nil, err
 	}
 	return &out, nil
 }
+
 //
 
 // Updatemonitor takes an monitor that was previously retrieved through some method
