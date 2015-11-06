@@ -16,6 +16,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+    "fmt"
 )
 
 // uriForAPI is to be called with something like "/v1/events" and it will give

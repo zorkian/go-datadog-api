@@ -41,6 +41,28 @@ type Monitor struct {
 	Options Options `json:"options"`
 }
 
+// Metric Monitor cannot have default zero values for thresholds
+//notifying your team when some defined threshold is exceeded.
+type MetricMonitor struct {
+	Id      int     `json:"id"`
+	Type    string  `json:"type"`
+	Query   string  `json:"query"`
+	Name    string  `json:"name"`
+	Message string  `json:"message"`
+	Options MetricOptions `json:"options"`
+}
+
+type MetricOptions struct {
+	NoDataTimeframe   int               `json:"no_data_timeframe"`
+	NotifyAudit       bool              `json:"notify_audit"`
+	NotifyNoData      bool              `json:"notify_no_data"`
+	Period            int               `json:"period"`
+	RenotifyInterval  int               `json:"renotify_interval"`
+	Silenced          map[string]string `json:"silenced"`
+	TimeoutH          int               `json:"timeout_h"`
+	EscalationMessage string            `json:"escalation_message"`
+}
+
 // reqMonitors receives a slice of all monitors
 type reqMonitors struct {
 	Monitors []Monitor `json:"monitors"`
@@ -57,6 +79,19 @@ func (self *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 	return &out, nil
 }
 
+// CreateMetricmonitor adds a new monitor to the system. This returns a pointer to an
+// monitor so you can pass that to Updatemonitor later if needed.
+func (self *Client) CreateMetricMonitor(monitor *MetricMonitor) (*MetricMonitor, error) {
+	var out MetricMonitor
+	fmt.Println(monitor)
+	err := self.doJsonRequest("POST", "/v1/monitor", monitor, &out)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+//
+
 // Updatemonitor takes an monitor that was previously retrieved through some method
 // and sends it back to the server.
 func (self *Client) UpdateMonitor(monitor *Monitor) error {
@@ -64,9 +99,26 @@ func (self *Client) UpdateMonitor(monitor *Monitor) error {
 		monitor, nil)
 }
 
+// UpdateMetricmonitor takes an monitor that was previously retrieved through some method
+// and sends it back to the server.
+func (self *Client) UpdateMetricMonitor(monitor *MetricMonitor) error {
+	return self.doJsonRequest("PUT", fmt.Sprintf("/v1/monitor/%d", monitor.Id),
+		monitor, nil)
+}
+
 // Getmonitor retrieves an monitor by identifier.
 func (self *Client) GetMonitor(id int) (*Monitor, error) {
 	var out Monitor
+	err := self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/%d", id), nil, &out)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
+// Getmonitor retrieves an monitor by identifier.
+func (self *Client) GetMetricMonitor(id int) (*MetricMonitor, error) {
+	var out MetricMonitor
 	err := self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/%d", id), nil, &out)
 	if err != nil {
 		return nil, err
