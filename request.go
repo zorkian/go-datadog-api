@@ -11,7 +11,7 @@ package datadog
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -65,7 +65,11 @@ func (self *Client) doJsonRequest(method, api string,
 	defer resp.Body.Close()
 
 	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		return errors.New("API error: " + resp.Status)
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+		return fmt.Errorf("API error %s: %s", resp.Status, body)
 	}
 
 	// If they don't care about the body, then we don't care to give them one,
