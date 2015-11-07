@@ -13,32 +13,32 @@ import (
 )
 
 type ThresholdCount struct {
-	Ok       int `json:"ok"`
-	Critical int `json:"critical"`
-	Warning  int `json:"warning"`
+	Ok       int `json:"ok,omitempty"`
+	Critical int `json:"critical,omitempty"`
+	Warning  int `json:"warning,omitempty"`
 }
 
 type Options struct {
-	NoDataTimeframe   int               `json:"no_data_timeframe"`
-	NotifyAudit       bool              `json:"notify_audit"`
-	NotifyNoData      bool              `json:"notify_no_data"`
-	Period            int               `json:"period"`
-	RenotifyInterval  int               `json:"renotify_interval"`
-	Silenced          map[string]string `json:"silenced"`
-	TimeoutH          int               `json:"timeout_h"`
-	EscalationMessage string            `json:"escalation_message"`
-	Thresholds        ThresholdCount    `json:"thresholds"`
+	NoDataTimeframe   int               `json:"no_data_timeframe,omitempty"`
+	NotifyAudit       bool              `json:"notify_audit,omitempty"`
+	NotifyNoData      bool              `json:"notify_no_data,omitempty"`
+	Period            int               `json:"period,omitempty"`
+	RenotifyInterval  int               `json:"renotify_interval,omitempty"`
+	Silenced          map[string]string `json:"silenced,omitempty"`
+	TimeoutH          int               `json:"timeout_h,omitempty"`
+	EscalationMessage string            `json:"escalation_message,omitempty"`
+	Thresholds        ThresholdCount    `json:"thresholds,omitempty"`
 }
 
 //Monitors allow you to watch a metric or check that you care about,
 //notifying your team when some defined threshold is exceeded.
 type Monitor struct {
-	Id      int     `json:"id"`
-	Type    string  `json:"type"`
-	Query   string  `json:"query"`
-	Name    string  `json:"name"`
-	Message string  `json:"message"`
-	Options Options `json:"options"`
+	Id      int     `json:"id,omitempty"`
+	Type    string  `json:"type,omitempty"`
+	Query   string  `json:"query,omitempty"`
+	Name    string  `json:"name,omitempty"`
+	Message string  `json:"message,omitempty"`
+	Options Options `json:"option,omitempty"`
 }
 
 // reqMonitors receives a slice of all monitors
