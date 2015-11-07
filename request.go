@@ -11,7 +11,6 @@ package datadog
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -65,7 +64,7 @@ func (self *Client) doJsonRequest(method, api string,
 		if err != nil {
 			return err
 		}
-		return errors.New(fmt.Sprintf("API error %s: %s", resp.Status, body))
+		return fmt.Errorf("API error %s: %s", resp.Status, body)
 	}
 
 	// If they don't care about the body, then we don't care to give them one,
