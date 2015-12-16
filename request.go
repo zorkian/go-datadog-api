@@ -11,12 +11,16 @@ package datadog
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
+	"time"
+
+	"github.com/cenkalti/backoff"
 )
 
 // uriForAPI is to be called with something like "/v1/events" and it will give
@@ -57,8 +61,13 @@ func (self *Client) doJsonRequest(method, api string,
 		req.Header.Add("Content-Type", "application/json")
 	}
 
-	// Actually do the request, error back if something crazy happened.
-	resp, err := self.HttpClient.Do(req)
+	// Perform the request and retry it if it's not a POST request
+	var resp *http.Response
+	if method == "POST" {
+		resp, err = self.HttpClient.Do(req)
+	} else {
+		resp, err = self.doRequestWithRetries(req, 60*time.Second)
+	}
 	if err != nil {
 		return err
 	}
@@ -94,4 +103,29 @@ func (self *Client) doJsonRequest(method, api string,
 		return err
 	}
 	return nil
+}
+
+// doRequestWithRetries performs an HTTP request repeatedly for maxTime or until
+// no error and no HTTP response code higher than 299 is returned.
+func (self *Client) doRequestWithRetries(req *http.Request, maxTime time.Duration) (*http.Response, error) {
+	var (
+		err  error
+		resp *http.Response
+		bo   = backoff.NewExponentialBackOff()
+	)
+	bo.MaxElapsedTime = maxTime
+
+	err = backoff.Retry(func() error {
+		resp, err = self.HttpClient.Do(req)
+		if err != nil {
+			return err
+		}
+
+		if resp.StatusCode < 200 || resp.StatusCode > 299 {
+			return errors.New("API error: " + resp.Status)
+		}
+		return nil
+	}, bo)
+
+	return resp, err
 }
