@@ -9,25 +9,26 @@
 package datadog
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
 type ThresholdCount struct {
-	Ok       int `json:"ok,omitempty"`
-	Critical int `json:"critical,omitempty"`
-	Warning  int `json:"warning,omitempty"`
+	Ok       json.Number `json:"ok,omitempty"`
+	Critical json.Number `json:"critical,omitempty"`
+	Warning  json.Number `json:"warning,omitempty"`
 }
 
 type Options struct {
-	NoDataTimeframe   int               `json:"no_data_timeframe,omitempty"`
-	NotifyAudit       bool              `json:"notify_audit,omitempty"`
-	NotifyNoData      bool              `json:"notify_no_data,omitempty"`
-	Period            int               `json:"period,omitempty"`
-	RenotifyInterval  int               `json:"renotify_interval,omitempty"`
-	Silenced          map[string]string `json:"silenced,omitempty"`
-	TimeoutH          int               `json:"timeout_h,omitempty"`
-	EscalationMessage string            `json:"escalation_message,omitempty"`
-	Thresholds        ThresholdCount    `json:"thresholds,omitempty"`
+	NoDataTimeframe   int            `json:"no_data_timeframe,omitempty"`
+	NotifyAudit       bool           `json:"notify_audit,omitempty"`
+	NotifyNoData      bool           `json:"notify_no_data,omitempty"`
+	Period            int            `json:"period,omitempty"`
+	RenotifyInterval  int            `json:"renotify_interval,omitempty"`
+	Silenced          map[string]int `json:"silenced,omitempty"`
+	TimeoutH          int            `json:"timeout_h,omitempty"`
+	EscalationMessage string         `json:"escalation_message,omitempty"`
+	Thresholds        ThresholdCount `json:"thresholds,omitempty"`
 }
 
 //Monitors allow you to watch a metric or check that you care about,
