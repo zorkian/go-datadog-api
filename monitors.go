@@ -38,7 +38,7 @@ type Monitor struct {
 	Query   string  `json:"query,omitempty"`
 	Name    string  `json:"name,omitempty"`
 	Message string  `json:"message,omitempty"`
-	Options Options `json:"option,omitempty"`
+	Options Options `json:"options,omitempty"`
 }
 
 // reqMonitors receives a slice of all monitors
