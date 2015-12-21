@@ -15,19 +15,19 @@ import (
 // Alert represents the data of an alert: a query that can fire and send a
 // message to the users.
 type Alert struct {
-	Id           int    `json:"id"`
-	Creator      int    `json:"creator"`
-	Query        string `json:"query"`
-	Name         string `json:"name"`
-	Message      string `json:"message"`
-	Silenced     bool   `json:"silenced"`
-	NotifyNoData bool   `json:"notify_no_data"`
-	State        string `json:"state"`
+	Id           int    `json:"id,omitempty"`
+	Creator      int    `json:"creator,omitempty"`
+	Query        string `json:"query,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Message      string `json:"message,omitempty"`
+	Silenced     bool   `json:"silenced,omitempty"`
+	NotifyNoData bool   `json:"notify_no_data,omitempty"`
+	State        string `json:"state,omitempty"`
 }
 
 // reqAlerts receives a slice of all alerts.
 type reqAlerts struct {
-	Alerts []Alert `json:"alerts"`
+	Alerts []Alert `json:"alerts,omitempty"`
 }
 
 // CreateAlert adds a new alert to the system. This returns a pointer to an

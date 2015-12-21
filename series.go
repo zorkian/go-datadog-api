@@ -39,12 +39,12 @@ type Series struct {
 
 // reqPostSeries from /api/v1/series
 type reqPostSeries struct {
-	Series []Metric `json:"series"`
+	Series []Metric `json:"series,omitempty"`
 }
 
 // reqMetrics is the container for receiving metric results.
 type reqMetrics struct {
-	Series []Series `json:"series"`
+	Series []Series `json:"series,omitempty"`
 }
 
 // PostMetrics takes as input a slice of metrics and then posts them up to the

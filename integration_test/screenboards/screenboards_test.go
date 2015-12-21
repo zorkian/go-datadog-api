@@ -49,7 +49,7 @@ func TestCreateAndDeleteScreenboard(t *testing.T) {
 	// now try to fetch it freshly and compare it again
 	actual, err = client.GetScreenboard(actual.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed when it shouldn't. (%s)", err)
+		t.Fatalf("Retrieving a screenboard failed when it shouldn't. (%s)", err)
 	}
 	assertScreenboardEquals(t, actual, expected)
 	cleanUpScreenboard(t, actual.Id)
@@ -89,7 +89,7 @@ func TestUpdateScreenboard(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving a screenboard failed when it shouldn't: %s", err)
 	}
 
 	assertScreenboardEquals(t, actual, board)
@@ -99,7 +99,7 @@ func TestUpdateScreenboard(t *testing.T) {
 func TestGetScreenboards(t *testing.T) {
 	boards, err := client.GetScreenboards()
 	if err != nil {
-		t.Fatalf("Retreiving screenboards failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving screenboards failed when it shouldn't: %s", err)
 	}
 	num := len(boards)
 
@@ -107,7 +107,7 @@ func TestGetScreenboards(t *testing.T) {
 
 	boards, err = client.GetScreenboards()
 	if err != nil {
-		t.Fatalf("Retreiving screenboards failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving screenboards failed when it shouldn't: %s", err)
 	}
 
 	if num+1 != len(boards) {
@@ -154,7 +154,7 @@ func cleanUpScreenboard(t *testing.T, id int) {
 func countScreenboards() int {
 	boards, err := client.GetScreenboards()
 	if err != nil {
-		log.Fatalf("Error retreiving screenboards: %s", err)
+		log.Fatalf("Error retrieving screenboards: %s", err)
 	}
 
 	return len(boards)

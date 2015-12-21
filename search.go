@@ -11,8 +11,8 @@ package datadog
 // reqSearch is the container for receiving search results.
 type reqSearch struct {
 	Results struct {
-		Hosts   []string `json:"hosts"`
-		Metrics []string `json:"metrics"`
+		Hosts   []string `json:"hosts,omitempty"`
+		Metrics []string `json:"metrics,omitempty"`
 	} `json:"results"`
 }
 

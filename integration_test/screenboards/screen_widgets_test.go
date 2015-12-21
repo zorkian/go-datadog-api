@@ -36,7 +36,7 @@ func TestAlertValueWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].AlertValueWidget
@@ -85,7 +85,7 @@ func TestChangeWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].ChangeWidget
@@ -133,7 +133,7 @@ func TestGraphWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].GraphWidget
@@ -182,7 +182,7 @@ func TestEventTimelineWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].EventTimelineWidget
@@ -231,7 +231,7 @@ func TestAlertGraphWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].AlertGraphWidget
@@ -283,7 +283,7 @@ func TestHostMapWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].HostMapWidget
@@ -338,7 +338,7 @@ func TestCheckStatusWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].CheckStatusWidget
@@ -387,7 +387,7 @@ func TestIFrameWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].IFrameWidget
@@ -439,7 +439,7 @@ func TestNoteWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].NoteWidget
@@ -493,7 +493,7 @@ func TestToplistWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].ToplistWidget
@@ -539,7 +539,7 @@ func TestEventSteamWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].EventStreamWidget
@@ -588,7 +588,7 @@ func TestImageWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].ImageWidget
@@ -631,7 +631,7 @@ func TestFreeTextWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].FreeTextWidget
@@ -671,7 +671,7 @@ func TestTimeseriesWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].TimeseriesWidget
@@ -733,7 +733,7 @@ func TestQueryValueWidget(t *testing.T) {
 
 	actual, err := client.GetScreenboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a screenboard failed: %s", err)
+		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
 	actualWidget := actual.Widgets[0].QueryValueWidget
