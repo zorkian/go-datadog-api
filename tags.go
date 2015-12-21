@@ -13,12 +13,12 @@ type TagMap map[string][]string
 
 // reqGetTags is the container for receiving tags.
 type reqGetTags struct {
-	Tags TagMap `json:"tags"`
+	Tags TagMap `json:"tags,omitempty"`
 }
 
 // regGetHostTags is for receiving a slice of tags.
 type reqGetHostTags struct {
-	Tags []string `json:"tags"`
+	Tags []string `json:"tags,omitempty"`
 }
 
 // GetTags returns a map of tags.

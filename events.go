@@ -17,28 +17,28 @@ import (
 // Event is a single event. If this is being used to post an event, then not
 // all fields will be filled out.
 type Event struct {
-	Id          int      `json:"id"`
-	Title       string   `json:"title"`
-	Text        string   `json:"text"`
-	Time        int      `json:"date_happened"` // UNIX time.
-	Priority    string   `json:"priority"`
-	AlertType   string   `json:"alert_type"`
-	Host        string   `json:"host"`
-	Aggregation string   `json:"aggregation_key"`
-	SourceType  string   `json:"source_type"`
-	Tags        []string `json:"tags"`
-	Url         string   `json:"url"`
-	Resource    string   `json:"resource"`
+	Id          int      `json:"id,omitempty"`
+	Title       string   `json:"title,omitempty"`
+	Text        string   `json:"text,omitempty"`
+	Time        int      `json:"date_happened,omitempty"` // UNIX time.
+	Priority    string   `json:"priority,omitempty"`
+	AlertType   string   `json:"alert_type,omitempty"`
+	Host        string   `json:"host,omitempty"`
+	Aggregation string   `json:"aggregation_key,omitempty"`
+	SourceType  string   `json:"source_type,omitempty"`
+	Tags        []string `json:"tags,omitempty"`
+	Url         string   `json:"url,omitempty"`
+	Resource    string   `json:"resource,omitempty"`
 }
 
 // reqGetEvent is the container for receiving a single event.
 type reqGetEvent struct {
-	Event Event `json:"event"`
+	Event Event `json:"event,omitempty"`
 }
 
 // reqGetEvents is for returning many events.
 type reqGetEvents struct {
-	Events []Event `json:"events"`
+	Events []Event `json:"events,omitempty"`
 }
 
 // PostEvent takes as input an event and then posts it to the server.

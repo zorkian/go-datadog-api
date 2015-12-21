@@ -9,18 +9,18 @@
 package datadog
 
 type User struct {
-	Handle   string `json:"handle"`
-	Email    string `json:"email"`
-	Name     string `json:"name"`
-	Role     string `json:"role"`
-	IsAdmin  bool   `json:"is_admin"`
-	Verified bool   `json:"verified"`
-	Disabled bool   `json:"disabled"`
+	Handle   string `json:"handle,omitempty"`
+	Email    string `json:"email,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Role     string `json:"role,omitempty"`
+	IsAdmin  bool   `json:"is_admin,omitempty"`
+	Verified bool   `json:"verified,omitempty"`
+	Disabled bool   `json:"disabled,omitempty"`
 }
 
 // reqInviteUsers contains email addresses to send invitations to.
 type reqInviteUsers struct {
-	Emails []string `json:"emails"`
+	Emails []string `json:"emails,omitempty"`
 }
 
 // InviteUsers takes a slice of email addresses and sends invitations to them.

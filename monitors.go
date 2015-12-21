@@ -43,7 +43,7 @@ type Monitor struct {
 
 // reqMonitors receives a slice of all monitors
 type reqMonitors struct {
-	Monitors []Monitor `json:"monitors"`
+	Monitors []Monitor `json:"monitors,omitempty"`
 }
 
 // Createmonitor adds a new monitor to the system. This returns a pointer to an

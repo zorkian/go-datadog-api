@@ -16,43 +16,43 @@ import (
 // struct when we load a screenboard in detail.
 type Screenboard struct {
 	Id                int                `json:"id,omitempty"`
-	Title             string             `json:"board_title"`
+	Title             string             `json:"board_title,omitempty"`
 	Height            string             `json:"height,omitempty"`
 	Width             string             `json:"width,omitempty"`
-	Shared            bool               `json:"shared"`
+	Shared            bool               `json:"shared,omitempty"`
 	Templated         bool               `json:"templated,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
-	Widgets           []Widget           `json:"widgets"`
+	Widgets           []Widget           `json:"widgets,omitempty"`
 }
 
 //type Widget struct {
 type Widget struct {
-	Default             string              `json:"default"`
-	Name                string              `json:"name"`
-	Prefix              string              `json:"prefix"`
-	TimeseriesWidget    TimeseriesWidget    `json:"timeseries"`
-	QueryValueWidget    QueryValueWidget    `json:"query_value"`
-	EventStreamWidget   EventStreamWidget   `json:"event_stream"`
-	FreeTextWidget      FreeTextWidget      `json:"free_text"`
-	ToplistWidget       ToplistWidget       `json:"toplist"`
-	ImageWidget         ImageWidget         `json:"image"`
-	ChangeWidget        ChangeWidget        `json:"change"`
-	GraphWidget         GraphWidget         `json:"graph"`
-	EventTimelineWidget EventTimelineWidget `json:"event_timeline"`
-	AlertValueWidget    AlertValueWidget    `json:"alert_value"`
-	AlertGraphWidget    AlertGraphWidget    `json:"alert_graph"`
-	HostMapWidget       HostMapWidget       `json:"hostmap"`
-	CheckStatusWidget   CheckStatusWidget   `json:"check_status"`
-	IFrameWidget        IFrameWidget        `json:"iframe"`
-	NoteWidget          NoteWidget          `json:"frame"`
+	Default             string              `json:"default,omitempty"`
+	Name                string              `json:"name,omitempty"`
+	Prefix              string              `json:"prefix,omitempty"`
+	TimeseriesWidget    TimeseriesWidget    `json:"timeseries,omitempty"`
+	QueryValueWidget    QueryValueWidget    `json:"query_value,omitempty"`
+	EventStreamWidget   EventStreamWidget   `json:"event_stream,omitempty"`
+	FreeTextWidget      FreeTextWidget      `json:"free_text,omitempty"`
+	ToplistWidget       ToplistWidget       `json:"toplist,omitempty"`
+	ImageWidget         ImageWidget         `json:"image,omitempty"`
+	ChangeWidget        ChangeWidget        `json:"change,omitempty"`
+	GraphWidget         GraphWidget         `json:"graph,omitempty"`
+	EventTimelineWidget EventTimelineWidget `json:"event_timeline,omitempty"`
+	AlertValueWidget    AlertValueWidget    `json:"alert_value,omitempty"`
+	AlertGraphWidget    AlertGraphWidget    `json:"alert_graph,omitempty"`
+	HostMapWidget       HostMapWidget       `json:"hostmap,omitempty"`
+	CheckStatusWidget   CheckStatusWidget   `json:"check_status,omitempty"`
+	IFrameWidget        IFrameWidget        `json:"iframe,omitempty"`
+	NoteWidget          NoteWidget          `json:"frame,omitempty"`
 }
 
 // ScreenboardLite represents a user created screenboard. This is the mini
 // struct when we load the summaries.
 type ScreenboardLite struct {
-	Id       int    `json:"id"`
-	Resource string `json:"resource"`
-	Title    string `json:"title"`
+	Id       int    `json:"id,omitempty"`
+	Resource string `json:"resource,omitempty"`
+	Title    string `json:"title,omitempty"`
 }
 
 // reqGetScreenboards from /api/v1/screen
