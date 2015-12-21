@@ -49,7 +49,7 @@ func TestCreateAndDeleteDashboard(t *testing.T) {
 	// now try to fetch it freshly and compare it again
 	actual, err = client.GetDashboard(actual.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a dashboard failed when it shouldn't. (%s)", err)
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
 	assertDashboardEquals(t, actual, expected)
 	cleanUpDashboard(t, actual.Id)
@@ -70,7 +70,7 @@ func TestUpdateDashboard(t *testing.T) {
 
 	actual, err := client.GetDashboard(board.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a dashboard failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't: %s", err)
 	}
 
 	assertDashboardEquals(t, actual, board)
@@ -80,7 +80,7 @@ func TestUpdateDashboard(t *testing.T) {
 func TestGetDashboards(t *testing.T) {
 	boards, err := client.GetDashboards()
 	if err != nil {
-		t.Fatalf("Retreiving dashboards failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving dashboards failed when it shouldn't: %s", err)
 	}
 	num := len(boards)
 
@@ -88,7 +88,7 @@ func TestGetDashboards(t *testing.T) {
 
 	boards, err = client.GetDashboards()
 	if err != nil {
-		t.Fatalf("Retreiving dashboards failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving dashboards failed when it shouldn't: %s", err)
 	}
 
 	if num+1 != len(boards) {
@@ -135,7 +135,7 @@ func cleanUpDashboard(t *testing.T, id int) {
 func countDashboards() int {
 	boards, err := client.GetDashboards()
 	if err != nil {
-		log.Fatalf("Error retreiving dashboards: %s", err)
+		log.Fatalf("Error retrieving dashboards: %s", err)
 	}
 
 	return len(boards)
