@@ -1,40 +1,12 @@
-package integration_test
+package integration
 
 import (
-	"log"
-	"os"
-	"testing"
-
 	"github.com/zorkian/go-datadog-api"
-)
-
-var (
-	apiKey string
-	appKey string
-	client *datadog.Client
+	"testing"
 )
 
 func init() {
-	apiKey = os.Getenv("DATADOG_API_KEY")
-	appKey = os.Getenv("DATADOG_APP_KEY")
-
-	if apiKey == "" || appKey == "" {
-		log.Fatal("Please make sure to set the env variables 'DATADOG_API_KEY' and 'DATADOG_APP_KEY' before running this test")
-	}
-
-	client = datadog.NewClient(apiKey, appKey)
-}
-
-func TestMain(m *testing.M) {
-	num := countScreenboards()
-
-	result := m.Run()
-
-	if num != countScreenboards() {
-		log.Fatal("Tests didn't clean-up all created screenboards. Manual clean-up required.")
-	}
-
-	os.Exit(result)
+	client = initTest()
 }
 
 func TestCreateAndDeleteScreenboard(t *testing.T) {
@@ -44,6 +16,9 @@ func TestCreateAndDeleteScreenboard(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Creating a screenboard failed when it shouldn't. (%s)", err)
 	}
+
+	defer cleanUpScreenboard(t, actual.Id)
+
 	assertScreenboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
@@ -51,8 +26,9 @@ func TestCreateAndDeleteScreenboard(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed when it shouldn't. (%s)", err)
 	}
+
 	assertScreenboardEquals(t, actual, expected)
-	cleanUpScreenboard(t, actual.Id)
+
 }
 
 func TestShareAndRevokeScreenboard(t *testing.T) {
@@ -62,6 +38,8 @@ func TestShareAndRevokeScreenboard(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Creating a screenboard failed when it shouldn't: %s", err)
 	}
+
+	defer cleanUpScreenboard(t, actual.Id)
 
 	// share screenboard and verify it was shared
 	var response datadog.ScreenShareResponse
@@ -75,12 +53,11 @@ func TestShareAndRevokeScreenboard(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to revoke sharing of screenboard: %s", err)
 	}
-
-	cleanUpScreenboard(t, response.BoardId)
 }
 
 func TestUpdateScreenboard(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	board.Title = "___New-Test-Board___"
 	if err := client.UpdateScreenboard(board); err != nil {
@@ -93,7 +70,7 @@ func TestUpdateScreenboard(t *testing.T) {
 	}
 
 	assertScreenboardEquals(t, actual, board)
-	cleanUpScreenboard(t, actual.Id)
+
 }
 
 func TestGetScreenboards(t *testing.T) {
@@ -104,6 +81,7 @@ func TestGetScreenboards(t *testing.T) {
 	num := len(boards)
 
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	boards, err = client.GetScreenboards()
 	if err != nil {
@@ -113,8 +91,6 @@ func TestGetScreenboards(t *testing.T) {
 	if num+1 != len(boards) {
 		t.Fatalf("Number of screenboards didn't match expected: %d != %d", len(boards), num+1)
 	}
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func getTestScreenboard() *datadog.Screenboard {
@@ -138,26 +114,17 @@ func createTestScreenboard(t *testing.T) *datadog.Screenboard {
 
 func cleanUpScreenboard(t *testing.T, id int) {
 	if err := client.DeleteScreenboard(id); err != nil {
-		t.Fatalf("Deleting a screenboard failed when it shouldn't. (%s)", err)
+		t.Fatalf("Deleting a screenboard failed when it shouldn't. Manual cleanup needed. (%s)", err)
 	}
 
 	deletedBoard, err := client.GetScreenboard(id)
 	if deletedBoard != nil {
-		t.Fatal("Screenboard hasn't been deleted when it should have been.")
+		t.Fatal("Screenboard hasn't been deleted when it should have been. Manual cleanup needed.")
 	}
 
 	if err == nil {
-		t.Fatal("Fetching deleted screenboard didn't lead to an error.")
+		t.Fatal("Fetching deleted screenboard didn't lead to an error. Manual cleanup needed.")
 	}
-}
-
-func countScreenboards() int {
-	boards, err := client.GetScreenboards()
-	if err != nil {
-		log.Fatalf("Error retrieving screenboards: %s", err)
-	}
-
-	return len(boards)
 }
 
 func assertScreenboardEquals(t *testing.T, actual, expected *datadog.Screenboard) {
