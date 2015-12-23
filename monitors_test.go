@@ -18,17 +18,15 @@ func TestCreateAndDeleteMonitor(t *testing.T) {
 	actual := createTestMonitor(t)
 	defer cleanUpMonitor(t, actual.Id)
 
-	// the ID of our original struct will be zero. To prevent having to loop through
-	// all other values, set the ID of expected to what we created
+	// Set ID of our original struct to zero we we can easily compare the results
 	expected.Id = actual.Id
-	assert.Equal(t, actual, expected)
+	assert.Equal(t, expected, actual)
 
-	// now try to fetch it freshly and compare it again
 	actual, err := client.GetMonitor(actual.Id)
 	if err != nil {
-		t.Fatalf("Retrieving a monitor failed when it shouldn't. Manual needed (%s)", err)
+		t.Fatalf("Retrieving a monitor failed when it shouldn't: (%s)", err)
 	}
-	assert.Equal(t, actual, expected)
+	assert.Equal(t, expected, actual)
 }
 
 func TestUpdateMonitor(t *testing.T) {
@@ -43,17 +41,17 @@ func TestUpdateMonitor(t *testing.T) {
 
 	actual, err := client.GetMonitor(monitor.Id)
 	if err != nil {
-		t.Fatalf("Retreiving a monitor failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving a monitor failed when it shouldn't: %s", err)
 	}
 
-	assert.Equal(t, actual, monitor)
+	assert.Equal(t, monitor, actual)
 
 }
 
 func TestGetMonitor(t *testing.T) {
 	monitors, err := client.GetMonitors()
 	if err != nil {
-		t.Fatalf("Retreiving monitors failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
 	}
 	num := len(monitors)
 
@@ -62,7 +60,7 @@ func TestGetMonitor(t *testing.T) {
 
 	monitors, err = client.GetMonitors()
 	if err != nil {
-		t.Fatalf("Retreiving monitors failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
 	}
 
 	if num+1 != len(monitors) {
@@ -70,12 +68,47 @@ func TestGetMonitor(t *testing.T) {
 	}
 }
 
+func TestMuteUnmuteMonitor(t *testing.T) {
+	monitor := createTestMonitor(t)
+	defer cleanUpMonitor(t, monitor.Id)
+
+	// Mute
+	err := client.MuteMonitor(monitor.Id)
+	if err != nil {
+		t.Fatalf("Failed to mute monitor")
+
+	}
+
+	monitor, err = client.GetMonitor(monitor.Id)
+	if err != nil {
+		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
+	}
+
+	// Mute without options will result in monitor.Options.Silenced
+	// to have a key of "*" with value 0
+	assert.Equal(t, 0, monitor.Options.Silenced["*"])
+
+	// Unmute
+	err = client.UnmuteMonitor(monitor.Id)
+	if err != nil {
+		t.Fatalf("Failed to unmute monitor")
+	}
+
+	// Update remote state
+	monitor, err = client.GetMonitor(monitor.Id)
+	if err != nil {
+		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
+	}
+
+	// Assert this map is empty
+	assert.Equal(t, 0, len(monitor.Options.Silenced))
+}
+
 /*
-	TODO: add
-	MuteMonitors
-	UnmuteMonitors
-	MuteMonitor
-	UnmuteMonitor
+	Testing of global mute and unmuting has not been added for following reasons:
+	* Disabling and enabling of global monitoring does an @all mention which is noisy
+	* It exposes risk to users that run integration tests in their main account
+	* There is no endpoint to verify success
 */
 
 func getTestMonitor() *datadog.Monitor {
@@ -83,7 +116,7 @@ func getTestMonitor() *datadog.Monitor {
 	o := datadog.Options{
 		NotifyNoData:    true,
 		NoDataTimeframe: 60,
-		Silenced:        map[string]int{}, // TODO can we make it so that the library inits this by default?
+		Silenced:        map[string]int{},
 	}
 
 	return &datadog.Monitor{
@@ -111,7 +144,6 @@ func cleanUpMonitor(t *testing.T, id int) {
 	}
 
 	deletedMonitor, err := client.GetMonitor(id)
-	// TODO check if it's a 404, handle a non 404 a bit differently
 	if deletedMonitor != nil {
 		t.Fatal("Monitor hasn't been deleted when it should have been. Manual cleanup needed.")
 	}
