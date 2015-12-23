@@ -14,17 +14,16 @@ updatedeps:
 
 # test runs the unit tests and vets the code
 test:
-	TF_ACC= go test . $(TESTARGS) -timeout=30s -parallel=4
+	go test . $(TESTARGS) -v -timeout=30s -parallel=4
 	@$(MAKE) vet
 
 # testacc runs acceptance tests
 testacc:
-	TF_ACC=1 go test integration_test/dashboards/*.go -v $(TESTARGS) -timeout 90m
-	TF_ACC=1 go test integration_test/screenboards/*.go -v $(TESTARGS) -timeout 90m
+	go test integration/* -v $(TESTARGS) -timeout 90m
 
 # testrace runs the race checker
 testrace:
-	TF_ACC= go test -race $(TEST) $(TESTARGS)
+	go test -race $(TEST) $(TESTARGS)
 
 # vet runs the Go source code static analysis tool `vet` to find
 # any common errors.

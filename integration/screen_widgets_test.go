@@ -1,4 +1,4 @@
-package integration_test
+package integration
 
 import (
 	"testing"
@@ -8,6 +8,7 @@ import (
 
 func TestAlertValueWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.AlertValueWidget
 
@@ -55,12 +56,11 @@ func TestAlertValueWidget(t *testing.T) {
 	assertEquals(t, "type", actualWidget.Type, expected.Type)
 	assertEquals(t, "unit", actualWidget.Unit, expected.Unit)
 	assertEquals(t, "add_timeframe", actualWidget.AddTimeframe, expected.AddTimeframe)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestChangeWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.ChangeWidget
 
@@ -100,12 +100,11 @@ func TestChangeWidget(t *testing.T) {
 	assertEquals(t, "title", actualWidget.Title, expected.Title)
 	assertEquals(t, "aggregator", actualWidget.Aggregator, expected.Aggregator)
 	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestGraphWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.GraphWidget
 
@@ -151,12 +150,11 @@ func TestGraphWidget(t *testing.T) {
 	assertEquals(t, "legend", actualWidget.Legend, expected.Legend)
 	assertEquals(t, "legend_size", actualWidget.LegendSize, expected.LegendSize)
 	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestEventTimelineWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.EventTimelineWidget
 
@@ -198,12 +196,11 @@ func TestEventTimelineWidget(t *testing.T) {
 	assertEquals(t, "type", actualWidget.Type, expected.Type)
 	assertEquals(t, "query", actualWidget.Query, expected.Query)
 	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestAlertGraphWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.AlertGraphWidget
 
@@ -249,12 +246,11 @@ func TestAlertGraphWidget(t *testing.T) {
 	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
 	assertEquals(t, "add_timeframe", actualWidget.AddTimeframe, expected.AddTimeframe)
 	assertEquals(t, "alert_id", actualWidget.AlertId, expected.AlertId)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestHostMapWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.HostMapWidget
 
@@ -303,12 +299,11 @@ func TestHostMapWidget(t *testing.T) {
 	assertEquals(t, "legend", actualWidget.Legend, expected.Legend)
 	assertEquals(t, "legend_size", actualWidget.LegendSize, expected.LegendSize)
 	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestCheckStatusWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.CheckStatusWidget
 
@@ -357,12 +352,11 @@ func TestCheckStatusWidget(t *testing.T) {
 	assertEquals(t, "check", actualWidget.Check, expected.Check)
 	assertEquals(t, "group", actualWidget.Group, expected.Group)
 	assertEquals(t, "grouping", actualWidget.Grouping, expected.Grouping)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestIFrameWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.IFrameWidget
 
@@ -402,12 +396,11 @@ func TestIFrameWidget(t *testing.T) {
 	assertEquals(t, "title", actualWidget.Title, expected.Title)
 	assertEquals(t, "url", actualWidget.Url, expected.Url)
 	assertEquals(t, "type", actualWidget.Type, expected.Type)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestNoteWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.NoteWidget
 
@@ -461,12 +454,11 @@ func TestNoteWidget(t *testing.T) {
 	assertEquals(t, "html", actualWidget.Html, expected.Html)
 	assertEquals(t, "note", actualWidget.Note, expected.Note)
 	assertEquals(t, "auto_refresh", actualWidget.AutoRefresh, expected.AutoRefresh)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestToplistWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.ToplistWidget
 	expected.X = 1
@@ -507,12 +499,11 @@ func TestToplistWidget(t *testing.T) {
 	assertEquals(t, "title_align", actualWidget.TitleAlign, expected.TitleAlign)
 	assertEquals(t, "legend", actualWidget.Legend, expected.Legend)
 	assertEquals(t, "legend_size", actualWidget.LegendSize, expected.LegendSize)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestEventSteamWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.EventStreamWidget
 	expected.EventSize = "1"
@@ -556,12 +547,11 @@ func TestEventSteamWidget(t *testing.T) {
 	assertEquals(t, "title_size", actualWidget.TitleSize, expected.TitleSize)
 	assertEquals(t, "title_text", actualWidget.TitleText, expected.TitleText)
 	assertEquals(t, "type", actualWidget.Type, expected.Type)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestImageWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.ImageWidget
 
@@ -604,12 +594,11 @@ func TestImageWidget(t *testing.T) {
 	assertEquals(t, "type", actualWidget.Type, expected.Type)
 	assertEquals(t, "url", actualWidget.Url, expected.Url)
 	assertEquals(t, "sizing", actualWidget.Sizing, expected.Sizing)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestFreeTextWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.FreeTextWidget
 
@@ -644,12 +633,11 @@ func TestFreeTextWidget(t *testing.T) {
 	assertEquals(t, "text", actualWidget.Text, expected.Text)
 	assertEquals(t, "text-align", actualWidget.TextAlign, expected.TextAlign)
 	assertEquals(t, "type", actualWidget.Type, expected.Type)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestTimeseriesWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.TimeseriesWidget
 	expected.X = 1
@@ -689,12 +677,11 @@ func TestTimeseriesWidget(t *testing.T) {
 	assertEquals(t, "timeframe", actualWidget.Timeframe, expected.Timeframe)
 	assertEquals(t, "legend", actualWidget.Legend, expected.Legend)
 	assertTileDefEquals(t, actualWidget.TileDef, expected.TileDef)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func TestQueryValueWidget(t *testing.T) {
 	board := createTestScreenboard(t)
+	defer cleanUpScreenboard(t, board.Id)
 
 	expected := datadog.Widget{}.QueryValueWidget
 	expected.X = 1
@@ -755,8 +742,6 @@ func TestQueryValueWidget(t *testing.T) {
 	assertEquals(t, "is_valid_query", actualWidget.IsValidQuery, expected.IsValidQuery)
 	assertEquals(t, "res_calc_func", actualWidget.ResultCalcFunc, expected.ResultCalcFunc)
 	assertEquals(t, "aggr", actualWidget.Aggregator, expected.Aggregator)
-
-	cleanUpScreenboard(t, board.Id)
 }
 
 func assertTileDefEquals(t *testing.T, actual datadog.TileDef, expected datadog.TileDef) {
