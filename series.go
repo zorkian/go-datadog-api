@@ -32,6 +32,7 @@ type Series struct {
 	Start       float64     `json:"start,omitempty"`
 	End         float64     `json:"end,omitempty"`
 	Interval    int         `json:"interval,omitempty"`
+	Aggr        string      `json:"aggr,omitempty"`
 	Length      int         `json:"length,omitempty"`
 	Scope       string      `json:"scope,omitempty"`
 	Expression  string      `json:"expression,omitempty"`
