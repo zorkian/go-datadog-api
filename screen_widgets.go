@@ -7,6 +7,7 @@ type TextSize struct {
 
 type TileDef struct {
 	Events   []TileDefEvent      `json:"events,omitempty"`
+	Markers  []TimeseriesMarker  `json:"markers,omitempty"`
 	Requests []TimeseriesRequest `json:"requests,omitempty"`
 	Viz      string              `json:"viz,omitempty"`
 }
@@ -20,6 +21,12 @@ type TimeseriesRequest struct {
 
 type TimeseriesRequestStyle struct {
 	Palette string `json:"palette,omitempty"`
+}
+
+type TimeseriesMarker struct {
+	Label string `json:"label,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type TileDefEvent struct {
