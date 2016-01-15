@@ -21,15 +21,15 @@ type Recurrence struct {
 }
 
 type Downtime struct {
-	Active     bool       `json:"active,omitempty"`
-	Canceled   int        `json:"canceled,omitempty"`
-	Disabled   bool       `json:"disabled,omitempty"`
-	End        int        `json:"end,omitempty"`
-	Id         int        `json:"id,omitempty"`
-	Message    string     `json:"message,omitempty"`
-	Recurrence Recurrence `json:"recurrence,omitempty"`
-	Scope      []string   `json:"scope,omitempty"`
-	Start      int        `json:"start,omitempty"`
+	Active     bool        `json:"active,omitempty"`
+	Canceled   int         `json:"canceled,omitempty"`
+	Disabled   bool        `json:"disabled,omitempty"`
+	End        int         `json:"end,omitempty"`
+	Id         int         `json:"id,omitempty"`
+	Message    string      `json:"message,omitempty"`
+	Recurrence *Recurrence `json:"recurrence,omitempty"`
+	Scope      []string    `json:"scope,omitempty"`
+	Start      int         `json:"start,omitempty"`
 }
 
 // reqDowntimes retrieves a slice of all Downtimes.
