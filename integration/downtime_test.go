@@ -69,7 +69,7 @@ func TestGetDowntime(t *testing.T) {
 
 func getTestDowntime() *datadog.Downtime {
 
-	r := datadog.Recurrence{
+	r := &datadog.Recurrence{
 		Type:     "weeks",
 		Period:   1,
 		WeekDays: []string{"Mon", "Tue", "Wed", "Thu", "Fri"},
