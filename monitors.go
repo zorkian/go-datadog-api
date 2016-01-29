@@ -23,7 +23,6 @@ type Options struct {
 	NoDataTimeframe   int            `json:"no_data_timeframe,omitempty"`
 	NotifyAudit       bool           `json:"notify_audit,omitempty"`
 	NotifyNoData      bool           `json:"notify_no_data,omitempty"`
-	Period            int            `json:"period,omitempty"`
 	RenotifyInterval  int            `json:"renotify_interval,omitempty"`
 	Silenced          map[string]int `json:"silenced,omitempty"`
 	TimeoutH          int            `json:"timeout_h,omitempty"`
