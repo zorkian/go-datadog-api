@@ -29,6 +29,7 @@ type Options struct {
 	TimeoutH          int            `json:"timeout_h,omitempty"`
 	EscalationMessage string         `json:"escalation_message,omitempty"`
 	Thresholds        ThresholdCount `json:"thresholds,omitempty"`
+	IncludeTags       bool           `json:"include_tags,omitempty"`
 }
 
 //Monitors allow you to watch a metric or check that you care about,
