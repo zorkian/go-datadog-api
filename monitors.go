@@ -23,23 +23,24 @@ type Options struct {
 	NoDataTimeframe   int            `json:"no_data_timeframe,omitempty"`
 	NotifyAudit       bool           `json:"notify_audit,omitempty"`
 	NotifyNoData      bool           `json:"notify_no_data,omitempty"`
-	Period            int            `json:"period,omitempty"`
 	RenotifyInterval  int            `json:"renotify_interval,omitempty"`
 	Silenced          map[string]int `json:"silenced,omitempty"`
 	TimeoutH          int            `json:"timeout_h,omitempty"`
 	EscalationMessage string         `json:"escalation_message,omitempty"`
 	Thresholds        ThresholdCount `json:"thresholds,omitempty"`
+	IncludeTags       bool           `json:"include_tags,omitempty"`
 }
 
 //Monitors allow you to watch a metric or check that you care about,
 //notifying your team when some defined threshold is exceeded.
 type Monitor struct {
-	Id      int     `json:"id,omitempty"`
-	Type    string  `json:"type,omitempty"`
-	Query   string  `json:"query,omitempty"`
-	Name    string  `json:"name,omitempty"`
-	Message string  `json:"message,omitempty"`
-	Options Options `json:"options,omitempty"`
+	Id      int      `json:"id,omitempty"`
+	Type    string   `json:"type,omitempty"`
+	Query   string   `json:"query,omitempty"`
+	Name    string   `json:"name,omitempty"`
+	Message string   `json:"message,omitempty"`
+	Tags    []string `json:"tags,omitempty"`
+	Options Options  `json:"options,omitempty"`
 }
 
 // reqMonitors receives a slice of all monitors
