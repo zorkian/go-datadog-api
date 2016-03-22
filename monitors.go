@@ -34,7 +34,7 @@ type Options struct {
 //Monitors allow you to watch a metric or check that you care about,
 //notifying your team when some defined threshold is exceeded.
 type Monitor struct {
-	Creator creator  `json:"creator"`
+	Creator Creator  `json:"creator,omitempty"`
 	Id      int      `json:"id,omitempty"`
 	Type    string   `json:"type,omitempty"`
 	Query   string   `json:"query,omitempty"`
@@ -44,12 +44,12 @@ type Monitor struct {
 	Options Options  `json:"options,omitempty"`
 }
 
-// creator is the creator of the monitor
-type creator struct {
-	Email  string
-	Handle string
-	ID     int
-	Name   string
+// Creator is the creator of the monitor
+type Creator struct {
+	Email  string `json:"email,omitempty"`
+	Handle string `json:"handle,omitempty"`
+	ID     int    `json:"id,omitempty"`
+	Name   string `json:"name,omitempty"`
 }
 
 // reqMonitors receives a slice of all monitors
