@@ -48,7 +48,7 @@ type Monitor struct {
 type Creator struct {
 	Email  string `json:"email,omitempty"`
 	Handle string `json:"handle,omitempty"`
-	ID     int    `json:"id,omitempty"`
+	Id     int    `json:"id,omitempty"`
 	Name   string `json:"name,omitempty"`
 }
 
