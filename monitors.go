@@ -33,8 +33,8 @@ type Options struct {
 	Locked            bool           `json:"locked,omitempty"`
 }
 
-//Monitors allow you to watch a metric or check that you care about,
-//notifying your team when some defined threshold is exceeded.
+// Monitor allow you to watch a metric or check that you care about,
+// notifying your team when some defined threshold is exceeded
 type Monitor struct {
 	Creator Creator  `json:"creator,omitempty"`
 	Id      int      `json:"id,omitempty"`
@@ -59,8 +59,8 @@ type reqMonitors struct {
 	Monitors []Monitor `json:"monitors,omitempty"`
 }
 
-// Createmonitor adds a new monitor to the system. This returns a pointer to an
-// monitor so you can pass that to Updatemonitor later if needed.
+// CreateMonitor adds a new monitor to the system. This returns a pointer to an
+// monitor so you can pass that to Updatemonitor later if needed
 func (self *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 	var out Monitor
 	err := self.doJsonRequest("POST", "/v1/monitor", monitor, &out)
@@ -70,14 +70,14 @@ func (self *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 	return &out, nil
 }
 
-// UpdateMonitor takes an monitor that was previously retrieved through some method
-// and sends it back to the server.
+// UpdateMonitor takes a monitor that was previously retrieved through some method
+// and sends it back to the server
 func (self *Client) UpdateMonitor(monitor *Monitor) error {
 	return self.doJsonRequest("PUT", fmt.Sprintf("/v1/monitor/%d", monitor.Id),
 		monitor, nil)
 }
 
-// GetMonitor retrieves an monitor by identifier.
+// GetMonitor retrieves a monitor by identifier
 func (self *Client) GetMonitor(id int) (*Monitor, error) {
 	var out Monitor
 	err := self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/%d", id), nil, &out)
@@ -87,13 +87,13 @@ func (self *Client) GetMonitor(id int) (*Monitor, error) {
 	return &out, nil
 }
 
-// DeleteMonitor removes an monitor from the system.
+// DeleteMonitor removes a monitor from the system
 func (self *Client) DeleteMonitor(id int) error {
 	return self.doJsonRequest("DELETE", fmt.Sprintf("/v1/monitor/%d", id),
 		nil, nil)
 }
 
-// GetMonitors returns a slice of all monitors.
+// GetMonitors returns a slice of all monitors
 func (self *Client) GetMonitors() ([]Monitor, error) {
 	var out reqMonitors
 	err := self.doJsonRequest("GET", "/v1/monitor", nil, &out.Monitors)
@@ -103,22 +103,22 @@ func (self *Client) GetMonitors() ([]Monitor, error) {
 	return out.Monitors, nil
 }
 
-// MuteMonitors turns off monitoring notifications.
+// MuteMonitors turns off monitoring notifications
 func (self *Client) MuteMonitors() error {
 	return self.doJsonRequest("POST", "/v1/monitor/mute_all", nil, nil)
 }
 
-// UnmuteMonitors turns on monitoring notifications.
+// UnmuteMonitors turns on monitoring notifications
 func (self *Client) UnmuteMonitors() error {
 	return self.doJsonRequest("POST", "/v1/monitor/unmute_all", nil, nil)
 }
 
-// MuteMonitor turns off monitoring notifications for a monitor.
+// MuteMonitor turns off monitoring notifications for a monitor
 func (self *Client) MuteMonitor(id int) error {
 	return self.doJsonRequest("POST", fmt.Sprintf("/v1/monitor/%d/mute", id), nil, nil)
 }
 
-// UnmuteMonitor turns on monitoring notifications for a monitor.
+// UnmuteMonitor turns on monitoring notifications for a monitor
 func (self *Client) UnmuteMonitor(id int) error {
 	return self.doJsonRequest("POST", fmt.Sprintf("/v1/monitor/%d/unmute", id), nil, nil)
 }
