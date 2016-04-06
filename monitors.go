@@ -33,7 +33,7 @@ type Options struct {
 	Locked            bool           `json:"locked,omitempty"`
 }
 
-// Monitor allow you to watch a metric or check that you care about,
+// Monitor allows watching a metric or check that you care about,
 // notifying your team when some defined threshold is exceeded
 type Monitor struct {
 	Creator Creator  `json:"creator,omitempty"`
@@ -46,7 +46,7 @@ type Monitor struct {
 	Options Options  `json:"options,omitempty"`
 }
 
-// Creator is the creator of the monitor
+// Creator contains the creator of the monitor
 type Creator struct {
 	Email  string `json:"email,omitempty"`
 	Handle string `json:"handle,omitempty"`
@@ -59,8 +59,8 @@ type reqMonitors struct {
 	Monitors []Monitor `json:"monitors,omitempty"`
 }
 
-// CreateMonitor adds a new monitor to the system. This returns a pointer to an
-// monitor so you can pass that to Updatemonitor later if needed
+// CreateMonitor adds a new monitor to the system. This returns a pointer to a
+// monitor so you can pass that to UpdateMonitor later if needed
 func (self *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 	var out Monitor
 	err := self.doJsonRequest("POST", "/v1/monitor", monitor, &out)
