@@ -70,14 +70,14 @@ func (self *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 	return &out, nil
 }
 
-// Updatemonitor takes an monitor that was previously retrieved through some method
+// UpdateMonitor takes an monitor that was previously retrieved through some method
 // and sends it back to the server.
 func (self *Client) UpdateMonitor(monitor *Monitor) error {
 	return self.doJsonRequest("PUT", fmt.Sprintf("/v1/monitor/%d", monitor.Id),
 		monitor, nil)
 }
 
-// Getmonitor retrieves an monitor by identifier.
+// GetMonitor retrieves an monitor by identifier.
 func (self *Client) GetMonitor(id int) (*Monitor, error) {
 	var out Monitor
 	err := self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/%d", id), nil, &out)
@@ -87,7 +87,7 @@ func (self *Client) GetMonitor(id int) (*Monitor, error) {
 	return &out, nil
 }
 
-// Deletemonitor removes an monitor from the system.
+// DeleteMonitor removes an monitor from the system.
 func (self *Client) DeleteMonitor(id int) error {
 	return self.doJsonRequest("DELETE", fmt.Sprintf("/v1/monitor/%d", id),
 		nil, nil)
