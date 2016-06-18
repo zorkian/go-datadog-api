@@ -19,18 +19,28 @@ type ThresholdCount struct {
 	Warning  json.Number `json:"warning,omitempty"`
 }
 
+type NoDataTimeframe int
+
+func (tf *NoDataTimeframe) UnmarshalJSON(data []byte) error {
+	asString := string(data)
+	if asString == "false" {
+		*tf = 0
+	}
+	return nil
+}
+
 type Options struct {
-	NoDataTimeframe   int            `json:"no_data_timeframe,omitempty"`
-	NotifyAudit       bool           `json:"notify_audit,omitempty"`
-	NotifyNoData      bool           `json:"notify_no_data,omitempty"`
-	RenotifyInterval  int            `json:"renotify_interval,omitempty"`
-	Silenced          map[string]int `json:"silenced,omitempty"`
-	TimeoutH          int            `json:"timeout_h,omitempty"`
-	EscalationMessage string         `json:"escalation_message,omitempty"`
-	Thresholds        ThresholdCount `json:"thresholds,omitempty"`
-	IncludeTags       bool           `json:"include_tags,omitempty"`
-	RequireFullWindow bool           `json:"require_full_window,omitempty"`
-	Locked            bool           `json:"locked,omitempty"`
+	NoDataTimeframe   NoDataTimeframe `json:"no_data_timeframe,omitempty"`
+	NotifyAudit       bool            `json:"notify_audit,omitempty"`
+	NotifyNoData      bool            `json:"notify_no_data,omitempty"`
+	RenotifyInterval  int             `json:"renotify_interval,omitempty"`
+	Silenced          map[string]int  `json:"silenced,omitempty"`
+	TimeoutH          int             `json:"timeout_h,omitempty"`
+	EscalationMessage string          `json:"escalation_message,omitempty"`
+	Thresholds        ThresholdCount  `json:"thresholds,omitempty"`
+	IncludeTags       bool            `json:"include_tags,omitempty"`
+	RequireFullWindow bool            `json:"require_full_window,omitempty"`
+	Locked            bool            `json:"locked,omitempty"`
 }
 
 // Monitor allows watching a metric or check that you care about,
