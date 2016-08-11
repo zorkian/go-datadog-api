@@ -19,8 +19,10 @@ type Graph struct {
 	Definition struct {
 		Viz      string `json:"viz"`
 		Requests []struct {
-			Query   string `json:"q"`
-			Stacked bool   `json:"stacked"`
+			Query      string `json:"q"`
+			Stacked    bool   `json:"stacked"`
+			Aggregator string `json:"aggregator"`
+			Type       string `json:"type"`
 		} `json:"requests"`
 	} `json:"definition"`
 }
