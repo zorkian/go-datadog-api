@@ -127,8 +127,8 @@ func cleanUpDashboard(t *testing.T, id int) {
 }
 
 type TestGraphDefintionRequests struct {
-	Query   string `json:"q"`
-	Stacked bool   `json:"stacked"`
+	Query              string `json:"q"`
+	Stacked            bool   `json:"stacked"`
 	Aggregator         string
 	ConditionalFormats []datadog.DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 }
@@ -149,8 +149,8 @@ func createCustomGraph() []datadog.Graph {
 	graphDefinition.Viz = "query_value"
 	r := datadog.Graph{}.Definition.Requests
 	graphDefinition.Requests = append(r, TestGraphDefintionRequests{
-		Query:   "( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100",
-		Stacked: false,
+		Query:      "( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100",
+		Stacked:    false,
 		Aggregator: "avg",
 		ConditionalFormats: []datadog.DashboardConditionalFormat{
 			{
