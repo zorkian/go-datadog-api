@@ -80,7 +80,7 @@ func TestCreateDashboardWithCustomGraph(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	//defer cleanUpDashboard(t, actual.Id)
+	defer cleanUpDashboard(t, actual.Id)
 
 	assertDashboardEquals(t, actual, expected)
 
