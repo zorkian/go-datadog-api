@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 )
 
 type ThresholdCount struct {
@@ -22,9 +23,15 @@ type ThresholdCount struct {
 type NoDataTimeframe int
 
 func (tf *NoDataTimeframe) UnmarshalJSON(data []byte) error {
-	asString := string(data)
-	if asString == "false" {
+	s := string(data)
+	if s == "false" {
 		*tf = 0
+	} else {
+		i, err := strconv.ParseInt(s, 10, 32)
+		if err != nil {
+			return err
+		}
+		*tf = NoDataTimeframe(i)
 	}
 	return nil
 }
