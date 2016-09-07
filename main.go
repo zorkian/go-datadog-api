@@ -28,3 +28,9 @@ func NewClient(apiKey, appKey string) *Client {
 		HttpClient: http.DefaultClient,
 	}
 }
+
+// SetKeys changes the value of apiKey and appKey.
+func (c *Client) SetKeys(apiKey, appKey string) {
+	c.apiKey = apiKey
+	c.appKey = appKey
+}
