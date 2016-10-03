@@ -126,18 +126,11 @@ func cleanUpDashboard(t *testing.T, id int) {
 	}
 }
 
-type TestGraphDefintionRequests struct {
-	Query              string `json:"q"`
-	Stacked            bool   `json:"stacked"`
-	Aggregator         string
-	ConditionalFormats []datadog.DashboardConditionalFormat `json:"conditional_formats,omitempty"`
-}
-
 func createGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
 	graphDefinition.Viz = "timeseries"
 	r := datadog.Graph{}.Definition.Requests
-	graphDefinition.Requests = append(r, TestGraphDefintionRequests{Query: "avg:system.mem.free{*}", Stacked: false})
+	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{Query: "avg:system.mem.free{*}", Stacked: false})
 	graph := datadog.Graph{Title: "Mandatory graph", Definition: graphDefinition}
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
@@ -148,7 +141,7 @@ func createCustomGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
 	graphDefinition.Viz = "query_value"
 	r := datadog.Graph{}.Definition.Requests
-	graphDefinition.Requests = append(r, TestGraphDefintionRequests{
+	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{
 		Query:      "( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100",
 		Stacked:    false,
 		Aggregator: "avg",
