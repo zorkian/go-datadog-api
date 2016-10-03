@@ -18,6 +18,10 @@ type GraphDefinitionRequest struct {
 	Stacked            bool   `json:"stacked"`
 	Aggregator         string
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
+	Type               string                       `json:"type,omitempty"`
+	Style              struct {
+		Palette string `json:"palette,omitempty"`
+	} `json:"style,omitempty"`
 }
 
 // Graph represents a graph that might exist on a dashboard.
