@@ -9,6 +9,7 @@
 package datadog
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -33,12 +34,12 @@ type GraphDefinitionRequest struct {
 }
 
 type GraphDefinitionMarker struct {
-	Type  string  `json:"type"`
-	Value string  `json:"value"`
-	Label string  `json:"label,omitempty"`
-	Val   float64 `json:"val,omitempty"`
-	Min   float64 `json:"min,omitempty"`
-	Max   float64 `json:"max,omitempty"`
+	Type  string      `json:"type"`
+	Value string      `json:"value"`
+	Label string      `json:"label,omitempty"`
+	Val   json.Number `json:"val,omitempty"`
+	Min   json.Number `json:"min,omitempty"`
+	Max   json.Number `json:"max,omitempty"`
 }
 
 // Graph represents a graph that might exist on a dashboard.
@@ -117,12 +118,12 @@ type reqGetDashboard struct {
 }
 
 type DashboardConditionalFormat struct {
-	Palette       string  `json:"palette,omitempty"`
-	Comparator    string  `json:"comparator,omitempty"`
-	CustomBgColor string  `json:"custom_bg_color,omitempty"`
-	Value         float64 `json:"value,omitempty"`
-	Inverted      bool    `json:"invert,omitempty"`
-	CustomFgColor string  `json:"custom_fg_color,omitempty"`
+	Palette       string      `json:"palette,omitempty"`
+	Comparator    string      `json:"comparator,omitempty"`
+	CustomBgColor string      `json:"custom_bg_color,omitempty"`
+	Value         json.Number `json:"value,omitempty"`
+	Inverted      bool        `json:"invert,omitempty"`
+	CustomFgColor string      `json:"custom_fg_color,omitempty"`
 }
 
 // GetDashboard returns a single dashboard created on this account.
