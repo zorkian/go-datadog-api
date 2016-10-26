@@ -55,9 +55,9 @@ type Graph struct {
 
 		// For timeseries type graphs
 		Yaxis struct {
-			Min   float64 `json:"min,omitempty"`
-			Max   float64 `json:"max,omitempty"`
-			Scale string  `json:"scale,omitempty"`
+			Min   *float64 `json:"min,omitempty"`
+			Max   *float64 `json:"max,omitempty"`
+			Scale *string  `json:"scale,omitempty"`
 		} `json:"yaxis,omitempty"`
 
 		// For query value type graphs
