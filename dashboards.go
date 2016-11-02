@@ -20,8 +20,8 @@ type GraphDefinitionRequest struct {
 	Aggregator         string
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 	Type               string                       `json:"type,omitempty"`
-	Style              struct {
-		Palette string `json:"palette,omitempty"`
+	Style              *struct {
+		Palette *string `json:"palette,omitempty"`
 	} `json:"style,omitempty"`
 
 	// For change type graphs
@@ -67,9 +67,9 @@ type Graph struct {
 		CustomUnit string `json:"custom_unit,omitempty"`
 
 		// For hostnamp type graphs
-		Style struct {
-			Palette     string `json:"palette,omitempty"`
-			PaletteFlip bool   `json:"paletteFlip,omitempty"`
+		Style *struct {
+			Palette     *string `json:"palette,omitempty"`
+			PaletteFlip *bool   `json:"paletteFlip,omitempty"`
 		}
 		Groups                []string `json:"group,omitempty"`
 		IncludeNoMetricHosts  bool     `json:"noMetricHosts,omitempty"`
