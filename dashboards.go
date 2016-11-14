@@ -9,6 +9,7 @@
 package datadog
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -19,8 +20,8 @@ type GraphDefinitionRequest struct {
 	Aggregator         string
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 	Type               string                       `json:"type,omitempty"`
-	Style              struct {
-		Palette string `json:"palette,omitempty"`
+	Style              *struct {
+		Palette *string `json:"palette,omitempty"`
 	} `json:"style,omitempty"`
 
 	// For change type graphs
@@ -33,12 +34,12 @@ type GraphDefinitionRequest struct {
 }
 
 type GraphDefinitionMarker struct {
-	Type  string  `json:"type"`
-	Value string  `json:"value"`
-	Label string  `json:"label,omitempty"`
-	Val   float64 `json:"val,omitempty"`
-	Min   float64 `json:"min,omitempty"`
-	Max   float64 `json:"max,omitempty"`
+	Type  string      `json:"type"`
+	Value string      `json:"value"`
+	Label string      `json:"label,omitempty"`
+	Val   json.Number `json:"val,omitempty"`
+	Min   json.Number `json:"min,omitempty"`
+	Max   json.Number `json:"max,omitempty"`
 }
 
 // Graph represents a graph that might exist on a dashboard.
@@ -54,9 +55,9 @@ type Graph struct {
 
 		// For timeseries type graphs
 		Yaxis struct {
-			Min   float64 `json:"min,omitempty"`
-			Max   float64 `json:"max,omitempty"`
-			Scale string  `json:"scale,omitempty"`
+			Min   *float64 `json:"min,omitempty"`
+			Max   *float64 `json:"max,omitempty"`
+			Scale *string  `json:"scale,omitempty"`
 		} `json:"yaxis,omitempty"`
 
 		// For query value type graphs
@@ -66,9 +67,9 @@ type Graph struct {
 		CustomUnit string `json:"custom_unit,omitempty"`
 
 		// For hostnamp type graphs
-		Style struct {
-			Palette     string `json:"palette,omitempty"`
-			PaletteFlip bool   `json:"paletteFlip,omitempty"`
+		Style *struct {
+			Palette     *string `json:"palette,omitempty"`
+			PaletteFlip *bool   `json:"paletteFlip,omitempty"`
 		}
 		Groups                []string `json:"group,omitempty"`
 		IncludeNoMetricHosts  bool     `json:"noMetricHosts,omitempty"`
@@ -117,12 +118,12 @@ type reqGetDashboard struct {
 }
 
 type DashboardConditionalFormat struct {
-	Palette       string  `json:"palette,omitempty"`
-	Comparator    string  `json:"comparator,omitempty"`
-	CustomBgColor string  `json:"custom_bg_color,omitempty"`
-	Value         float64 `json:"value,omitempty"`
-	Inverted      bool    `json:"invert,omitempty"`
-	CustomFgColor string  `json:"custom_fg_color,omitempty"`
+	Palette       string      `json:"palette,omitempty"`
+	Comparator    string      `json:"comparator,omitempty"`
+	CustomBgColor string      `json:"custom_bg_color,omitempty"`
+	Value         json.Number `json:"value,omitempty"`
+	Inverted      bool        `json:"invert,omitempty"`
+	CustomFgColor string      `json:"custom_fg_color,omitempty"`
 }
 
 // GetDashboard returns a single dashboard created on this account.
