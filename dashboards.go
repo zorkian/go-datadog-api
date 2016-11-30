@@ -17,7 +17,7 @@ import (
 type GraphDefinitionRequest struct {
 	Query              string `json:"q"`
 	Stacked            bool   `json:"stacked"`
-	Aggregator         string
+	Aggregator         string `json:"aggregator"`
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 	Type               string                       `json:"type,omitempty"`
 	Style              *struct {
