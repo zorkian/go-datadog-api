@@ -22,6 +22,8 @@ type GraphDefinitionRequest struct {
 	Type               string                       `json:"type,omitempty"`
 	Style              *struct {
 		Palette *string `json:"palette,omitempty"`
+		Width   *string `json:"width,omitempty"`
+		Type    *string `json:"type,omitempty"`
 	} `json:"style,omitempty"`
 
 	// For change type graphs
