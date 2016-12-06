@@ -2,7 +2,7 @@ TEST?=$$(go list ./... | grep -v '/go-datadog-api/vendor/')
 VETARGS?=-asmdecl -atomic -bool -buildtags -copylocks -methods -nilfunc -printf -rangeloops -shift -structtags -unsafeptr
 GOFMT_FILES?=$$(find . -name '*.go' | grep -v vendor)
 
-default: test
+default: test fmt
 
 # test runs the unit tests and vets the code
 test:
