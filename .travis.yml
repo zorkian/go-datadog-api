@@ -10,11 +10,10 @@ env:
 script:
   - go get -u github.com/golang/lint/golint
   - golint ./...
-  - test `gofmt -l . | wc -l` = 0
-  - make test
+  - make
 
 install:
-  - go get -v -t . && make updatedeps
+  - go get -v -t .
 
 matrix:
     allow_failures:
