@@ -66,7 +66,7 @@ func (client *Client) doJsonRequest(method, api string,
 	if method == "POST" {
 		resp, err = client.HttpClient.Do(req)
 	} else {
-		resp, err = client.doRequestWithRetries(req, 60*time.Second)
+		resp, err = client.doRequestWithRetries(req, client.RetryTimeout)
 	}
 	if err != nil {
 		return err
