@@ -13,6 +13,13 @@ import (
 	"fmt"
 )
 
+// GraphDefinitionRequestStyle represents the graph style attributes
+type GraphDefinitionRequestStyle struct {
+	Palette *string `json:"palette,omitempty"`
+	Width   *string `json:"width,omitempty"`
+	Type    *string `json:"type,omitempty"`
+}
+
 // GraphDefinitionRequest represents the requests passed into each graph.
 type GraphDefinitionRequest struct {
 	Query              string `json:"q"`
@@ -20,11 +27,7 @@ type GraphDefinitionRequest struct {
 	Aggregator         string
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 	Type               string                       `json:"type,omitempty"`
-	Style              *struct {
-		Palette *string `json:"palette,omitempty"`
-		Width   *string `json:"width,omitempty"`
-		Type    *string `json:"type,omitempty"`
-	} `json:"style,omitempty"`
+	Style              *GraphDefinitionRequestStyle `json:"style,omitempty"`
 
 	// For change type graphs
 	ChangeType     string `json:"change_type,omitempty"`

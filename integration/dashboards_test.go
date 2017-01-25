@@ -1,6 +1,7 @@
 package integration
 
 import (
+	"encoding/json"
 	"testing"
 
 	"github.com/zorkian/go-datadog-api"
@@ -163,14 +164,13 @@ func createAdvancedTimeseriesGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
 	graphDefinition.Viz = "timeseries"
 	r := datadog.Graph{}.Definition.Requests
-	s := datadog.GraphDefinitionRequest{}.Style
-	s.Palette = "warm"
+	pallette := "warm"
 
 	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{
 		Query:   "avg:system.mem.free{*}",
 		Stacked: false,
 		Type:    "bars",
-		Style:   s,
+		Style:   &datadog.GraphDefinitionRequestStyle{Palette: &pallette},
 	})
 	graph := datadog.Graph{Title: "Custom type and style graph", Definition: graphDefinition}
 	graphs := []datadog.Graph{}
@@ -189,15 +189,15 @@ func createCustomGraph() []datadog.Graph {
 		ConditionalFormats: []datadog.DashboardConditionalFormat{
 			{
 				Comparator: ">",
-				Value:      99.9,
+				Value:      json.Number("99.9"),
 				Palette:    "white_on_green"},
 			{
 				Comparator: ">=",
-				Value:      99,
+				Value:      json.Number("99"),
 				Palette:    "white_on_yellow"},
 			{
 				Comparator: "<",
-				Value:      99,
+				Value:      json.Number("99"),
 				Palette:    "white_on_red"}}})
 	graph := datadog.Graph{Title: "Mandatory graph 2", Definition: graphDefinition}
 	graphs := []datadog.Graph{}
