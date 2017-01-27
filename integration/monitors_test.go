@@ -14,13 +14,13 @@ func TestCreateAndDeleteMonitor(t *testing.T) {
 	expected := getTestMonitor()
 	// create the monitor and compare it
 	actual := createTestMonitor(t)
-	defer cleanUpMonitor(t, actual.Id)
+	defer cleanUpMonitor(t, *actual.Id)
 
 	// Set ID of our original struct to zero we we can easily compare the results
 	expected.Id = actual.Id
 	assert.Equal(t, expected, actual)
 
-	actual, err := client.GetMonitor(actual.Id)
+	actual, err := client.GetMonitor(*actual.Id)
 	if err != nil {
 		t.Fatalf("Retrieving a monitor failed when it shouldn't: (%s)", err)
 	}
@@ -30,14 +30,14 @@ func TestCreateAndDeleteMonitor(t *testing.T) {
 func TestUpdateMonitor(t *testing.T) {
 
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, monitor.Id)
+	defer cleanUpMonitor(t, *monitor.Id)
 
-	monitor.Name = "___New-Test-Monitor___"
+	monitor.Name = datadog.String("___New-Test-Monitor___")
 	if err := client.UpdateMonitor(monitor); err != nil {
 		t.Fatalf("Updating a monitor failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetMonitor(monitor.Id)
+	actual, err := client.GetMonitor(*monitor.Id)
 	if err != nil {
 		t.Fatalf("Retrieving a monitor failed when it shouldn't: %s", err)
 	}
@@ -54,7 +54,7 @@ func TestGetMonitor(t *testing.T) {
 	num := len(monitors)
 
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, monitor.Id)
+	defer cleanUpMonitor(t, *monitor.Id)
 
 	monitors, err = client.GetMonitors()
 	if err != nil {
@@ -68,16 +68,16 @@ func TestGetMonitor(t *testing.T) {
 
 func TestMuteUnmuteMonitor(t *testing.T) {
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, monitor.Id)
+	defer cleanUpMonitor(t, *monitor.Id)
 
 	// Mute
-	err := client.MuteMonitor(monitor.Id)
+	err := client.MuteMonitor(*monitor.Id)
 	if err != nil {
 		t.Fatalf("Failed to mute monitor")
 
 	}
 
-	monitor, err = client.GetMonitor(monitor.Id)
+	monitor, err = client.GetMonitor(*monitor.Id)
 	if err != nil {
 		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
 	}
@@ -87,13 +87,13 @@ func TestMuteUnmuteMonitor(t *testing.T) {
 	assert.Equal(t, 0, monitor.Options.Silenced["*"])
 
 	// Unmute
-	err = client.UnmuteMonitor(monitor.Id)
+	err = client.UnmuteMonitor(*monitor.Id)
 	if err != nil {
 		t.Fatalf("Failed to unmute monitor")
 	}
 
 	// Update remote state
-	monitor, err = client.GetMonitor(monitor.Id)
+	monitor, err = client.GetMonitor(*monitor.Id)
 	if err != nil {
 		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
 	}
@@ -111,18 +111,18 @@ func TestMuteUnmuteMonitor(t *testing.T) {
 
 func getTestMonitor() *datadog.Monitor {
 
-	o := datadog.Options{
-		NotifyNoData:    true,
+	o := &datadog.Options{
+		NotifyNoData:    datadog.Bool(true),
 		NoDataTimeframe: 60,
 		Silenced:        map[string]int{},
 	}
 
 	return &datadog.Monitor{
-		Message: "Test message",
-		Query:   "avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8",
-		Name:    "Test monitor",
+		Message: datadog.String("Test message"),
+		Query:   datadog.String("avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8"),
+		Name:    datadog.String("Test monitor"),
 		Options: o,
-		Type:    "metric alert",
+		Type:    datadog.String("metric alert"),
 	}
 }
 

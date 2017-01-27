@@ -19,12 +19,12 @@ func TestCreateAndDeleteDashboard(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, actual.Id)
+	defer cleanUpDashboard(t, *actual.Id)
 
 	assertDashboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(actual.Id)
+	actual, err = client.GetDashboard(*actual.Id)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
@@ -40,12 +40,12 @@ func TestCreateAndDeleteAdvancesTimeseriesDashboard(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, actual.Id)
+	defer cleanUpDashboard(t, *actual.Id)
 
 	assertDashboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(actual.Id)
+	actual, err = client.GetDashboard(*actual.Id)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
@@ -60,14 +60,14 @@ func TestUpdateDashboard(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, board.Id)
-	board.Title = "___New-Test-Board___"
+	defer cleanUpDashboard(t, *board.Id)
+	board.Title = datadog.String("___New-Test-Board___")
 
 	if err := client.UpdateDashboard(board); err != nil {
 		t.Fatalf("Updating a dashboard failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetDashboard(board.Id)
+	actual, err := client.GetDashboard(*board.Id)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't: %s", err)
 	}
@@ -83,7 +83,7 @@ func TestGetDashboards(t *testing.T) {
 
 	num := len(boards)
 	board := createTestDashboard(t)
-	defer cleanUpDashboard(t, board.Id)
+	defer cleanUpDashboard(t, *board.Id)
 
 	boards, err = client.GetDashboards()
 	if err != nil {
@@ -103,12 +103,12 @@ func TestCreateDashboardWithCustomGraph(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, actual.Id)
+	defer cleanUpDashboard(t, *actual.Id)
 
 	assertDashboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(actual.Id)
+	actual, err = client.GetDashboard(*actual.Id)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
@@ -117,8 +117,8 @@ func TestCreateDashboardWithCustomGraph(t *testing.T) {
 
 func getTestDashboard(createGraph func() []datadog.Graph) *datadog.Dashboard {
 	return &datadog.Dashboard{
-		Title:             "___Test-Board___",
-		Description:       "Testboard description",
+		Title:             datadog.String("___Test-Board___"),
+		Description:       datadog.String("Testboard description"),
 		TemplateVariables: []datadog.TemplateVariable{},
 		Graphs:            createGraph(),
 	}
@@ -151,10 +151,10 @@ func cleanUpDashboard(t *testing.T, id int) {
 
 func createGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
-	graphDefinition.Viz = "timeseries"
+	graphDefinition.Viz = datadog.String("timeseries")
 	r := datadog.Graph{}.Definition.Requests
-	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{Query: "avg:system.mem.free{*}", Stacked: false})
-	graph := datadog.Graph{Title: "Mandatory graph", Definition: graphDefinition}
+	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{Query: datadog.String("avg:system.mem.free{*}"), Stacked: datadog.Bool(false)})
+	graph := datadog.Graph{Title: datadog.String("Mandatory graph"), Definition: graphDefinition}
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
 	return graphs
@@ -162,17 +162,16 @@ func createGraph() []datadog.Graph {
 
 func createAdvancedTimeseriesGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
-	graphDefinition.Viz = "timeseries"
+	graphDefinition.Viz = datadog.String("timeseries")
 	r := datadog.Graph{}.Definition.Requests
-	pallette := "warm"
 
 	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{
-		Query:   "avg:system.mem.free{*}",
-		Stacked: false,
-		Type:    "bars",
-		Style:   &datadog.GraphDefinitionRequestStyle{Palette: &pallette},
+		Query:   datadog.String("avg:system.mem.free{*}"),
+		Stacked: datadog.Bool(false),
+		Type:    datadog.String("bars"),
+		Style:   &datadog.GraphDefinitionRequestStyle{Palette: datadog.String("warm")},
 	})
-	graph := datadog.Graph{Title: "Custom type and style graph", Definition: graphDefinition}
+	graph := datadog.Graph{Title: datadog.String("Custom type and style graph"), Definition: graphDefinition}
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
 	return graphs
@@ -180,37 +179,37 @@ func createAdvancedTimeseriesGraph() []datadog.Graph {
 
 func createCustomGraph() []datadog.Graph {
 	graphDefinition := datadog.Graph{}.Definition
-	graphDefinition.Viz = "query_value"
+	graphDefinition.Viz = datadog.String("query_value")
 	r := datadog.Graph{}.Definition.Requests
 	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{
-		Query:      "( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100",
-		Stacked:    false,
-		Aggregator: "avg",
+		Query:      datadog.String("( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100"),
+		Stacked:    datadog.Bool(false),
+		Aggregator: datadog.String("avg"),
 		ConditionalFormats: []datadog.DashboardConditionalFormat{
 			{
-				Comparator: ">",
-				Value:      json.Number("99.9"),
-				Palette:    "white_on_green"},
+				Comparator: datadog.String(">"),
+				Value:      datadog.JsonNumber(json.Number("99.9")),
+				Palette:    datadog.String("white_on_green")},
 			{
-				Comparator: ">=",
-				Value:      json.Number("99"),
-				Palette:    "white_on_yellow"},
+				Comparator: datadog.String(">="),
+				Value:      datadog.JsonNumber(json.Number("99")),
+				Palette:    datadog.String("white_on_yellow")},
 			{
-				Comparator: "<",
-				Value:      json.Number("99"),
-				Palette:    "white_on_red"}}})
-	graph := datadog.Graph{Title: "Mandatory graph 2", Definition: graphDefinition}
+				Comparator: datadog.String("<"),
+				Value:      datadog.JsonNumber(json.Number("99")),
+				Palette:    datadog.String("white_on_red")}}})
+	graph := datadog.Graph{Title: datadog.String("Mandatory graph 2"), Definition: graphDefinition}
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
 	return graphs
 }
 
 func assertDashboardEquals(t *testing.T, actual, expected *datadog.Dashboard) {
-	if actual.Title != expected.Title {
-		t.Errorf("Dashboard title does not match: %s != %s", actual.Title, expected.Title)
+	if *actual.Title != *expected.Title {
+		t.Errorf("Dashboard title does not match: %s != %s", *actual.Title, *expected.Title)
 	}
-	if actual.Description != expected.Description {
-		t.Errorf("Dashboard description does not match: %s != %s", actual.Description, expected.Description)
+	if *actual.Description != *expected.Description {
+		t.Errorf("Dashboard description does not match: %s != %s", *actual.Description, *expected.Description)
 	}
 	if len(actual.Graphs) != len(expected.Graphs) {
 		t.Errorf("Number of Dashboard graphs does not match: %d != %d", len(actual.Graphs), len(expected.Graphs))
