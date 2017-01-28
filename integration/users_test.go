@@ -12,7 +12,7 @@ func init() {
 	client = initTest()
 }
 
-func TestCreateAndDeleteUser(t *testing.T) {
+func TestUserCreateAndDelete(t *testing.T) {
 	handle := "test@example.com"
 	name := "tester"
 
@@ -30,8 +30,6 @@ func TestCreateAndDeleteUser(t *testing.T) {
 			t.Fatalf("Failed to delete user: %s", err)
 		}
 	}()
-
-	fmt.Print(user.Handle, handle)
 
 	assert.Equal(t, *user.Handle, handle)
 	assert.Equal(t, *user.Name, name)
