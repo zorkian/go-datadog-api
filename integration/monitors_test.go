@@ -16,8 +16,11 @@ func TestCreateAndDeleteMonitor(t *testing.T) {
 	actual := createTestMonitor(t)
 	defer cleanUpMonitor(t, *actual.Id)
 
-	// Set ID of our original struct to zero we we can easily compare the results
+	// Set ID of our original struct to zero so we can easily compare the results
 	expected.Id = actual.Id
+	// Set Creator to the original struct as we can't predict defails of the creator
+	expected.Creator = actual.Creator
+
 	assert.Equal(t, expected, actual)
 
 	actual, err := client.GetMonitor(*actual.Id)
@@ -113,6 +116,8 @@ func getTestMonitor() *datadog.Monitor {
 
 	o := &datadog.Options{
 		NotifyNoData:    datadog.Bool(true),
+		NotifyAudit:     datadog.Bool(false),
+		Locked:          datadog.Bool(false),
 		NoDataTimeframe: 60,
 		Silenced:        map[string]int{},
 	}
@@ -123,6 +128,7 @@ func getTestMonitor() *datadog.Monitor {
 		Name:    datadog.String("Test monitor"),
 		Options: o,
 		Type:    datadog.String("metric alert"),
+		Tags:    make([]string, 0),
 	}
 }
 

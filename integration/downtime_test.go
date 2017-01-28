@@ -16,8 +16,9 @@ func TestCreateAndDeleteDowntime(t *testing.T) {
 	actual := createTestDowntime(t)
 	defer cleanUpDowntime(t, *actual.Id)
 
-	// Set ID of our original struct to zero we we can easily compare the results
+	// Set ID of our original struct to zero so we can easily compare the results
 	expected.Id = actual.Id
+
 	assert.Equal(t, expected, actual)
 
 	actual, err := client.GetDowntime(*actual.Id)
@@ -76,6 +77,8 @@ func getTestDowntime() *datadog.Downtime {
 	}
 
 	return &datadog.Downtime{
+		Active:     datadog.Bool(false),
+		Disabled:   datadog.Bool(false),
 		Message:    datadog.String("Test downtime message"),
 		Scope:      []string{"env:downtime_test"},
 		Start:      datadog.Int(1577836800),
