@@ -9,7 +9,7 @@ func init() {
 	client = initTest()
 }
 
-func TestCreateAndDeleteScreenboard(t *testing.T) {
+func TestScreenboardCreateAndDelete(t *testing.T) {
 	expected := getTestScreenboard()
 	// create the screenboard and compare it
 	actual, err := client.CreateScreenboard(expected)
@@ -31,7 +31,7 @@ func TestCreateAndDeleteScreenboard(t *testing.T) {
 
 }
 
-func TestShareAndRevokeScreenboard(t *testing.T) {
+func TestScreenboardShareAndRevoke(t *testing.T) {
 	expected := getTestScreenboard()
 	// create the screenboard
 	actual, err := client.CreateScreenboard(expected)
@@ -55,7 +55,7 @@ func TestShareAndRevokeScreenboard(t *testing.T) {
 	}
 }
 
-func TestUpdateScreenboard(t *testing.T) {
+func TestScreenboardUpdate(t *testing.T) {
 	board := createTestScreenboard(t)
 	defer cleanUpScreenboard(t, *board.Id)
 
@@ -73,7 +73,7 @@ func TestUpdateScreenboard(t *testing.T) {
 
 }
 
-func TestGetScreenboards(t *testing.T) {
+func TestScreenboardGet(t *testing.T) {
 	boards, err := client.GetScreenboards()
 	if err != nil {
 		t.Fatalf("Retrieving screenboards failed when it shouldn't: %s", err)

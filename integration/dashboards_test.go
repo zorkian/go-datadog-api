@@ -11,7 +11,7 @@ func init() {
 	client = initTest()
 }
 
-func TestCreateAndDeleteDashboard(t *testing.T) {
+func TestDashboardCreateAndDelete(t *testing.T) {
 	expected := getTestDashboard(createGraph)
 	// create the dashboard and compare it
 	actual, err := client.CreateDashboard(expected)
@@ -32,7 +32,7 @@ func TestCreateAndDeleteDashboard(t *testing.T) {
 
 }
 
-func TestCreateAndDeleteAdvancesTimeseriesDashboard(t *testing.T) {
+func TestDashboardCreateAndDeleteAdvancesTimeseries(t *testing.T) {
 	expected := getTestDashboard(createAdvancedTimeseriesGraph)
 	// create the dashboard and compare it
 	actual, err := client.CreateDashboard(expected)
@@ -53,7 +53,7 @@ func TestCreateAndDeleteAdvancesTimeseriesDashboard(t *testing.T) {
 
 }
 
-func TestUpdateDashboard(t *testing.T) {
+func TestDashboardUpdate(t *testing.T) {
 	expected := getTestDashboard(createGraph)
 	board, err := client.CreateDashboard(expected)
 	if err != nil {
@@ -75,7 +75,7 @@ func TestUpdateDashboard(t *testing.T) {
 	assertDashboardEquals(t, actual, board)
 }
 
-func TestGetDashboards(t *testing.T) {
+func TestDashboardGet(t *testing.T) {
 	boards, err := client.GetDashboards()
 	if err != nil {
 		t.Fatalf("Retrieving dashboards failed when it shouldn't: %s", err)
@@ -95,7 +95,7 @@ func TestGetDashboards(t *testing.T) {
 	}
 }
 
-func TestCreateDashboardWithCustomGraph(t *testing.T) {
+func TestDashboardCreateWithCustomGraph(t *testing.T) {
 	expected := getTestDashboard(createCustomGraph)
 	// create the dashboard and compare it
 	actual, err := client.CreateDashboard(expected)

@@ -10,7 +10,7 @@ func init() {
 	client = initTest()
 }
 
-func TestCreateAndDeleteMonitor(t *testing.T) {
+func TestMonitorCreateAndDelete(t *testing.T) {
 	expected := getTestMonitor()
 	// create the monitor and compare it
 	actual := createTestMonitor(t)
@@ -30,7 +30,7 @@ func TestCreateAndDeleteMonitor(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
-func TestUpdateMonitor(t *testing.T) {
+func TestMonitorUpdate(t *testing.T) {
 
 	monitor := createTestMonitor(t)
 	defer cleanUpMonitor(t, *monitor.Id)
@@ -49,7 +49,7 @@ func TestUpdateMonitor(t *testing.T) {
 
 }
 
-func TestGetMonitor(t *testing.T) {
+func TestMonitorGet(t *testing.T) {
 	monitors, err := client.GetMonitors()
 	if err != nil {
 		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
@@ -69,7 +69,7 @@ func TestGetMonitor(t *testing.T) {
 	}
 }
 
-func TestMuteUnmuteMonitor(t *testing.T) {
+func TestMonitorMuteUnmute(t *testing.T) {
 	monitor := createTestMonitor(t)
 	defer cleanUpMonitor(t, *monitor.Id)
 

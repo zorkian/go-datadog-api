@@ -10,7 +10,7 @@ func init() {
 	client = initTest()
 }
 
-func TestCreateAndDeleteDowntime(t *testing.T) {
+func TestDowntimeCreateAndDelete(t *testing.T) {
 	expected := getTestDowntime()
 	// create the downtime and compare it
 	actual := createTestDowntime(t)
@@ -28,7 +28,7 @@ func TestCreateAndDeleteDowntime(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
-func TestUpdateDowntime(t *testing.T) {
+func TestDowntimeUpdate(t *testing.T) {
 
 	downtime := createTestDowntime(t)
 
@@ -48,7 +48,7 @@ func TestUpdateDowntime(t *testing.T) {
 
 }
 
-func TestGetDowntime(t *testing.T) {
+func TestDowntimeGet(t *testing.T) {
 	downtimes, err := client.GetDowntimes()
 	if err != nil {
 		t.Fatalf("Retrieving downtimes failed when it shouldn't: %s", err)
