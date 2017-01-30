@@ -18,6 +18,8 @@ func TestCreateAndDeleteMonitor(t *testing.T) {
 
 	// Set ID of our original struct to zero we we can easily compare the results
 	expected.Id = actual.Id
+	// Set Creator to the original struct as we can't predict defails of the creator
+	expected.Creator = actual.Creator
 	assert.Equal(t, expected, actual)
 
 	actual, err := client.GetMonitor(actual.Id)
@@ -123,6 +125,7 @@ func getTestMonitor() *datadog.Monitor {
 		Name:    "Test monitor",
 		Options: o,
 		Type:    "metric alert",
+		Tags:    make([]string, 0),
 	}
 }
 
