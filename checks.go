@@ -1,9 +1,9 @@
 package datadog
 
 type Check struct {
-	Check     *string  `json:"check"`
-	HostName  *string  `json:"host_name"`
-	Status    *Status  `json:"status"`
+	Check     *string  `json:"check,omitempty"`
+	HostName  *string  `json:"host_name,omitempty"`
+	Status    *Status  `json:"status,omitempty"`
 	Timestamp *string  `json:"timestamp,omitempty"`
 	Message   *string  `json:"message,omitempty"`
 	Tags      []string `json:"tags,omitempty"`

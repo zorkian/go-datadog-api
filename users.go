@@ -50,7 +50,7 @@ func (self *Client) CreateUser(handle, name *string) (*User, error) {
 
 // internal type to retrieve users from the api
 type usersData struct {
-	Users []User `json:"users"`
+	Users []User `json:"users,omitempty"`
 }
 
 // GetUsers returns all user, or an error if not found

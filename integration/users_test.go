@@ -3,7 +3,6 @@ package integration
 import (
 	"testing"
 
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
 )

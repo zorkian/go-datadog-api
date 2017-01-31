@@ -14,17 +14,17 @@ import (
 
 // Comment is a special form of event that appears in a stream.
 type Comment struct {
-	Id        *int    `json:"id"`
-	RelatedId *int    `json:"related_event_id"`
-	Handle    *string `json:"handle"`
-	Message   *string `json:"message"`
-	Resource  *string `json:"resource"`
-	Url       *string `json:"url"`
+	Id        *int    `json:"id,omitempty"`
+	RelatedId *int    `json:"related_event_id,omitempty"`
+	Handle    *string `json:"handle,omitempty"`
+	Message   *string `json:"message,omitempty"`
+	Resource  *string `json:"resource,omitempty"`
+	Url       *string `json:"url,omitempty"`
 }
 
 // reqComment is the container for receiving commenst.
 type reqComment struct {
-	Comment *Comment `json:"comment"`
+	Comment *Comment `json:"comment,omitempty"`
 }
 
 // CreateComment adds a new comment to the system.

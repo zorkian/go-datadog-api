@@ -58,7 +58,7 @@ type ScreenboardLite struct {
 
 // reqGetScreenboards from /api/v1/screen
 type reqGetScreenboards struct {
-	Screenboards []*ScreenboardLite `json:"screenboards"`
+	Screenboards []*ScreenboardLite `json:"screenboards,omitempty"`
 }
 
 // GetScreenboard returns a single screenboard created on this account.

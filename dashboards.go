@@ -22,8 +22,8 @@ type GraphDefinitionRequestStyle struct {
 
 // GraphDefinitionRequest represents the requests passed into each graph.
 type GraphDefinitionRequest struct {
-	Query              *string `json:"q"`
-	Stacked            *bool   `json:"stacked"`
+	Query              *string `json:"q,omitempty"`
+	Stacked            *bool   `json:"stacked,omitempty"`
 	Aggregator         *string
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 	Type               *string                      `json:"type,omitempty"`
@@ -39,8 +39,8 @@ type GraphDefinitionRequest struct {
 }
 
 type GraphDefinitionMarker struct {
-	Type  *string      `json:"type"`
-	Value *string      `json:"value"`
+	Type  *string      `json:"type,omitempty"`
+	Value *string      `json:"value,omitempty"`
 	Label *string      `json:"label,omitempty"`
 	Val   *json.Number `json:"val,omitempty"`
 	Min   *json.Number `json:"min,omitempty"`
@@ -49,13 +49,13 @@ type GraphDefinitionMarker struct {
 
 // Graph represents a graph that might exist on a dashboard.
 type Graph struct {
-	Title      *string `json:"title"`
+	Title      *string `json:"title,omitempty"`
 	Definition struct {
-		Viz      *string                  `json:"viz"`
-		Requests []GraphDefinitionRequest `json:"requests"`
+		Viz      *string                  `json:"viz,omitempty"`
+		Requests []GraphDefinitionRequest `json:"requests,omitempty"`
 		Events   []struct {
-			Query *string `json:"q"`
-		} `json:"events"`
+			Query *string `json:"q,omitempty"`
+		} `json:"events,omitempty"`
 		Markers []GraphDefinitionMarker `json:"markers,omitempty"`
 
 		// For timeseries type graphs
@@ -85,41 +85,41 @@ type Graph struct {
 
 // Template variable represents a template variable that might exist on a dashboard
 type TemplateVariable struct {
-	Name    *string `json:"name"`
-	Prefix  *string `json:"prefix"`
-	Default *string `json:"default"`
+	Name    *string `json:"name,omitempty"`
+	Prefix  *string `json:"prefix,omitempty"`
+	Default *string `json:"default,omitempty"`
 }
 
 // Dashboard represents a user created dashboard. This is the full dashboard
 // struct when we load a dashboard in detail.
 type Dashboard struct {
-	Id                *int               `json:"id"`
-	Description       *string            `json:"description"`
-	Title             *string            `json:"title"`
-	Graphs            []Graph            `json:"graphs"`
+	Id                *int               `json:"id,omitempty"`
+	Description       *string            `json:"description,omitempty"`
+	Title             *string            `json:"title,omitempty"`
+	Graphs            []Graph            `json:"graphs,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
-	ReadOnly          *bool              `json:"read_only"`
+	ReadOnly          *bool              `json:"read_only,omitempty"`
 }
 
 // DashboardLite represents a user created dashboard. This is the mini
 // struct when we load the summaries.
 type DashboardLite struct {
-	Id          *int    `json:"id,string"` // TODO: Remove ',string'.
-	Resource    *string `json:"resource"`
-	Description *string `json:"description"`
-	Title       *string `json:"title"`
+	Id          *int    `json:"id,string,omitempty"` // TODO: Remove ',string'.
+	Resource    *string `json:"resource,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Title       *string `json:"title,omitempty"`
 }
 
 // reqGetDashboards from /api/v1/dash
 type reqGetDashboards struct {
-	Dashboards []DashboardLite `json:"dashes"`
+	Dashboards []DashboardLite `json:"dashes,omitempty"`
 }
 
 // reqGetDashboard from /api/v1/dash/:dashboard_id
 type reqGetDashboard struct {
-	Resource  *string    `json:"resource"`
-	Url       *string    `json:"url"`
-	Dashboard *Dashboard `json:"dash"`
+	Resource  *string    `json:"resource,omitempty"`
+	Url       *string    `json:"url,omitempty"`
+	Dashboard *Dashboard `json:"dash,omitempty"`
 }
 
 type DashboardConditionalFormat struct {
