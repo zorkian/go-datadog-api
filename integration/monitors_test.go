@@ -1,9 +1,10 @@
 package integration
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
-	"testing"
 )
 
 func init() {
@@ -116,6 +117,7 @@ func getTestMonitor() *datadog.Monitor {
 	o := datadog.Options{
 		NotifyNoData:    true,
 		NoDataTimeframe: 60,
+		NewHostDelay:    datadog.Int(600),
 		Silenced:        map[string]int{},
 	}
 
