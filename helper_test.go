@@ -3,7 +3,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2016 by authors and contributors.
+ * Copyright 2017 by authors and contributors.
  */
 
 package datadog_test
@@ -15,10 +15,6 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
 )
-
-func TestBool(t *testing.T) {
-
-}
 
 func TestHelperGetBoolSet(t *testing.T) {
 	// Assert that we were able to get the boolean from a pointer field
