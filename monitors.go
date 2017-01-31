@@ -43,6 +43,7 @@ type Options struct {
 	NotifyAudit       *bool           `json:"notify_audit,omitempty"`
 	NotifyNoData      *bool           `json:"notify_no_data,omitempty"`
 	RenotifyInterval  *int            `json:"renotify_interval,omitempty"`
+	NewHostDelay      *int            `json:"new_host_delay,omitempty"`
 	Silenced          map[string]int  `json:"silenced,omitempty"`
 	TimeoutH          *int            `json:"timeout_h,omitempty"`
 	EscalationMessage *string         `json:"escalation_message,omitempty"`
