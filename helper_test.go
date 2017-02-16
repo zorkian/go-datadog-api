@@ -37,7 +37,7 @@ func TestHelperStringSet(t *testing.T) {
 	// Assert that we were able to get the string from a pointer field
 	m := getTestMonitor()
 
-	if attr, ok := datadog.GetString(m.Name); ok {
+	if attr, ok := datadog.GetStringOk(m.Name); ok {
 		assert.Equal(t, "Test monitor", attr)
 	}
 }
@@ -46,7 +46,7 @@ func TestHelperStringNotSet(t *testing.T) {
 	// Assert GetString returned false for an unset value
 	m := getTestMonitor()
 
-	_, ok := datadog.GetString(m.Message)
+	_, ok := datadog.GetStringOk(m.Message)
 	assert.Equal(t, false, ok)
 }
 
@@ -54,7 +54,7 @@ func TestHelperIntSet(t *testing.T) {
 	// Assert that we were able to get the integer from a pointer field
 	m := getTestMonitor()
 
-	if attr, ok := datadog.GetInt(m.Id); ok {
+	if attr, ok := datadog.GetIntOk(m.Id); ok {
 		assert.Equal(t, 1, attr)
 	}
 }
@@ -63,7 +63,7 @@ func TestHelperIntNotSet(t *testing.T) {
 	// Assert GetInt returned false for an unset value
 	m := getTestMonitor()
 
-	_, ok := datadog.GetInt(m.Options.RenotifyInterval)
+	_, ok := datadog.GetIntOk(m.Options.RenotifyInterval)
 	assert.Equal(t, false, ok)
 }
 
@@ -71,7 +71,7 @@ func TestHelperGetJsonNumberSet(t *testing.T) {
 	// Assert that we were able to get a JSON Number from a pointer field
 	m := getTestMonitor()
 
-	if attr, ok := datadog.GetJsonNumber(m.Options.Thresholds.Ok); ok {
+	if attr, ok := datadog.GetJsonNumberOk(m.Options.Thresholds.Ok); ok {
 		assert.Equal(t, json.Number(2), attr)
 	}
 }
@@ -80,7 +80,7 @@ func TestHelperGetJsonNumberNotSet(t *testing.T) {
 	// Assert GetJsonNumber returned false for an unset value
 	m := getTestMonitor()
 
-	_, ok := datadog.GetJsonNumber(m.Options.Thresholds.Warning)
+	_, ok := datadog.GetJsonNumberOk(m.Options.Thresholds.Warning)
 
 	assert.Equal(t, false, ok)
 }

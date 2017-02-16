@@ -403,10 +403,10 @@ func TestWidgetEventSteam(t *testing.T) {
 			Size: datadog.Int(1),
 			Auto: datadog.Bool(true),
 		},
-		Title:      datadog.Bool(true),
-		Timeframe:  datadog.String("5m"),
-		Query:      datadog.String("foo"),
-		Type:       datadog.String("baz"),
+		Title:     datadog.Bool(true),
+		Timeframe: datadog.String("5m"),
+		Query:     datadog.String("foo"),
+		Type:      datadog.String("baz"),
 	}
 
 	w := datadog.Widget{EventStreamWidget: expected}

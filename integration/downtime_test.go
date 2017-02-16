@@ -17,7 +17,7 @@ func TestDowntimeCreateAndDelete(t *testing.T) {
 	defer cleanUpDowntime(t, *actual.Id)
 
 	// Set ID of our original struct to zero so we can easily compare the results
-	expected.Id = actual.Id
+	expected.SetId(actual.GetId())
 
 	assert.Equal(t, expected, actual)
 

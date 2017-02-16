@@ -15,12 +15,12 @@ func TestMonitorCreateAndDelete(t *testing.T) {
 	expected := getTestMonitor()
 	// create the monitor and compare it
 	actual := createTestMonitor(t)
-	defer cleanUpMonitor(t, *actual.Id)
+	defer cleanUpMonitor(t, actual.GetId())
 
 	// Set ID of our original struct to zero so we can easily compare the results
-	expected.Id = actual.Id
-	// Set Creator to the original struct as we can't predict defails of the creator
-	expected.Creator = actual.Creator
+	expected.SetId(actual.GetId())
+	// Set Creator to the original struct as we can't predict details of the creator
+	expected.SetCreator(actual.GetCreator())
 
 	assert.Equal(t, expected, actual)
 
@@ -36,7 +36,7 @@ func TestMonitorUpdate(t *testing.T) {
 	monitor := createTestMonitor(t)
 	defer cleanUpMonitor(t, *monitor.Id)
 
-	monitor.Name = datadog.String("___New-Test-Monitor___")
+	monitor.SetName("___New-Test-Monitor___")
 	if err := client.UpdateMonitor(monitor); err != nil {
 		t.Fatalf("Updating a monitor failed when it shouldn't: %s", err)
 	}

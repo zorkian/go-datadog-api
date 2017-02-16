@@ -10,6 +10,8 @@ package datadog
 
 import "encoding/json"
 
+//go:generate go run cmd/tools/create-accessors.go -v
+
 // Bool is a helper routine that allocates a new bool value
 // to store v and returns a pointer to it.
 func Bool(v bool) *bool { return &v }
@@ -30,7 +32,7 @@ func Int(v int) *int { return &v }
 
 // GetInt is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
-func GetInt(v *int) (int, bool) {
+func GetIntOk(v *int) (int, bool) {
 	if v != nil {
 		return *v, true
 	}
@@ -44,7 +46,7 @@ func String(v string) *string { return &v }
 
 // GetString is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
-func GetString(v *string) (string, bool) {
+func GetStringOk(v *string) (string, bool) {
 	if v != nil {
 		return *v, true
 	}
@@ -58,7 +60,7 @@ func JsonNumber(v json.Number) *json.Number { return &v }
 
 // GetJsonNumber is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
-func GetJsonNumber(v *json.Number) (json.Number, bool) {
+func GetJsonNumberOk(v *json.Number) (json.Number, bool) {
 	if v != nil {
 		return *v, true
 	}
