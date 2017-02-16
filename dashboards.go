@@ -22,9 +22,9 @@ type GraphDefinitionRequestStyle struct {
 
 // GraphDefinitionRequest represents the requests passed into each graph.
 type GraphDefinitionRequest struct {
-	Query              *string `json:"q,omitempty"`
-	Stacked            *bool   `json:"stacked,omitempty"`
-	Aggregator         *string `json:"aggregator,omitempty"`
+	Query              *string                      `json:"q,omitempty"`
+	Stacked            *bool                        `json:"stacked,omitempty"`
+	Aggregator         *string                      `json:"aggregator,omitempty"`
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
 	Type               *string                      `json:"type,omitempty"`
 	Style              *GraphDefinitionRequestStyle `json:"style,omitempty"`
