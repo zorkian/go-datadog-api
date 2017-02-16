@@ -285,6 +285,7 @@ type accessor struct {
 
 // some helpers to sort
 type byName []*accessor
+
 func (b byName) Len() int           { return len(b) }
 func (b byName) Less(i, j int) bool { return b[i].sortVal < b[j].sortVal }
 func (b byName) Swap(i, j int)      { b[i], b[j] = b[j], b[i] }
