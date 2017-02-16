@@ -10,8 +10,6 @@ package datadog
 
 import "encoding/json"
 
-//go:generate go run cmd/tools/create-accessors.go -v
-
 // Bool is a helper routine that allocates a new bool value
 // to store v and returns a pointer to it.
 func Bool(v bool) *bool { return &v }

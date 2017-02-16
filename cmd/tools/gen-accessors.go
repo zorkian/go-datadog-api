@@ -1,3 +1,5 @@
+//+build ignore
+
 /*
  * Datadog API for Go
  *
