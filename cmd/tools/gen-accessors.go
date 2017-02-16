@@ -318,7 +318,7 @@ func ({{.ReceiverVar}} *{{.ReceiverType}}) Get{{.FieldName}}() {{.FieldType}} {
 }
 
 // GetOk{{.FieldName}} returns a tuple with the {{.FieldName}} field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set
+// and a boolean to check if the value has been set.
 func ({{.ReceiverVar}} *{{.ReceiverType}}) Get{{.FieldName}}Ok() ({{.FieldType}}, bool){
   if {{.ReceiverVar}} == nil || {{.ReceiverVar}}.{{.FieldName}} == nil {
     return {{.ZeroValue}}, false
