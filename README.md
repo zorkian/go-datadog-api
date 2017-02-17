@@ -103,7 +103,7 @@ in your environment variables.
 *Warning: the integrations tests will create and remove real resources in your Datadog account.*
 
 ### Regenerating code
-Accessors `HasXx`, `GetXx`, `GetOkXx` and `SetXx` are generated for each struct field that contains pointers.
+Accessors `HasXx`, `GetXx`, `GetOkXx` and `SetXx` are generated for each struct field type type that contains pointers.
 When structs are updated a contributor has to regenerate these using `go generate` and commit these changes.
 Optionally there is a make target for the generation:
 

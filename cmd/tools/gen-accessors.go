@@ -7,7 +7,7 @@
  *
  * Copyright 2017 by authors and contributors.
 
- create-accessors generates GetXx, GetXxOk, HasXx and SetXx methods for structs with pointer fields.
+ gen-accessors generates GetXx, GetXxOk, HasXx and SetXx methods for struct field types with pointers.
 
  It should be run by the go-datadog-api authors to ge-generate methods before pushing changes to GitHub.
 */
