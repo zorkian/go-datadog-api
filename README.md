@@ -62,15 +62,14 @@ An example using the SetXx, HasXx, GetXx and GetXxOk accessors:
 	m.SetName("Monitor all the things")
 	m.SetMessage("Electromagnetic energy loss")
 
-	// Use HasMessage(), to verify we want to use GetMessage().
-	// Using GetMessage() is safe as it returns value, or default value if never set, we use HasMessage() to see
-	// if are interested in the value:
+	// Use HasMessage(), to verify we have interest in the message.
+	// Using GetMessage() always safe as it returns the actual or, if never set, default value for that type.
 	if m.HasMessage() {
 		fmt.Printf("Found message %s\n", m.GetMessage())
 	}
 
-	// Alternatively, use GetMessageOk(), which returns a tuple with both the (default) value and a boolean expressing
-	// if it was set:
+	// Alternatively, use GetMessageOk(), it returns a tuple with the (default) value and a boolean expressing
+	// if it was set at all:
 	if v, ok := m.GetMessageOk(); ok {
 		fmt.Printf("Found message %s\n", v)
 	}
@@ -104,9 +103,9 @@ in your environment variables.
 *Warning: the integrations tests will create and remove real resources in your Datadog account.*
 
 ### Regenerating code
-Accessors `GetXx`, `HasXx`, `SetXx` and `GetOkXx` are generated for each struct field that contains pointers.
-When structs are updated a contributor has to regenerate these using `go generate`. And commit these changes.
-Optionally there is a make target for this:
+Accessors `HasXx`, `GetXx`, `GetOkXx` and `SetXx` are generated for each struct field that contains pointers.
+When structs are updated a contributor has to regenerate these using `go generate` and commit these changes.
+Optionally there is a make target for the generation:
 
 ```bash
 make generate
