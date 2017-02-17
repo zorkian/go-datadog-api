@@ -13,21 +13,29 @@ mostly used for automating dashboards/alerting and retrieving data (events, etc)
 
 The source API documentation is here: <http://docs.datadoghq.com/api/>
 
-## USAGE
-
+## Installation
 To use the default branch, include it in your code like:
-
 ```go
     import "github.com/zorkian/go-datadog-api"
 ```
 
 Or, if you need to control which version to use, import using [gopkg.in](http://labix.org/gopkg.in). Like so:
-
-``` go
-    import "gopkg.in/zorkian/go-datadog.v2"
+```go
+    import "gopkg.in/github.com/zorkian/go-datadog-api.v2"
 ```
 
-``` go
+Using go get:
+```bash
+go get gopkg.in/zorkian/go-datadog-api.v2
+```
+
+## USAGE
+This library uses pointers to be able to verify if values are set or not (vs the default value for the type). Like
+ protobuf there are helpers to enhance the API. You can decide to not use them, but you'll have to be careful handling
+ nil pointers.
+
+Using the client:
+```go
     client := datadog.NewClient("api key", "application key")
 
     dash, err := client.GetDashboard(10880)
@@ -38,12 +46,7 @@ Or, if you need to control which version to use, import using [gopkg.in](http://
     log.Printf("dashboard %d: %s\n", dash.GetId(), dash.GetTitle())
 ```
 
-This library uses pointers to be able to verify if values are set or not (vs the default value for the type). Like
- protobuf there are helpers to enhance the API. You can decide to not use them, but you'll have to be careful handling
- nil pointers.
-
 An example using datadog.String(), which allocates a pointer for you:
-
 ```go
 	m := datadog.Monitor{
 		Name: datadog.String("Monitor other things"),
@@ -54,7 +57,6 @@ An example using datadog.String(), which allocates a pointer for you:
 ```
 
 An example using the SetXx, HasXx, GetXx and GetXxOk accessors:
-
 ```go
 	m := datadog.Monitor{}
 	m.SetName("Monitor all the things")
@@ -74,7 +76,6 @@ An example using the SetXx, HasXx, GetXx and GetXxOk accessors:
 	}
 ```
 
-
 Check out the Godoc link for the available API methods and, if you can't find the one you need,
 let us know (or patches welcome)!
 
@@ -93,7 +94,7 @@ Github:
 Thanks in advance! And, as always, patches welcome!
 
 ## DEVELOPMENT
-
+### Running tests
 * Run tests tests with `make test`.
 * Integration tests can be run with `make testacc`. Run specific integration tests with `make testacc TESTARGS='-run=TestCreateAndDeleteMonitor'`
 
@@ -101,6 +102,15 @@ The acceptance tests require _DATADOG_API_KEY_ and _DATADOG_APP_KEY_ to be avail
 in your environment variables.
 
 *Warning: the integrations tests will create and remove real resources in your Datadog account.*
+
+### Regenerating code
+Accessors `GetXx`, `HasXx`, `SetXx` and `GetOkXx` are generated for each struct field that contains pointers.
+When structs are updated a contributor has to regenerate these using `go generate`. And commit these changes.
+Optionally there is a make target for this:
+
+```bash
+make generate
+```
 
 ## COPYRIGHT AND LICENSE
 
