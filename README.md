@@ -38,7 +38,7 @@ Using the client:
 ```go
     client := datadog.NewClient("api key", "application key")
 
-    dash, err := client.GetDashboard(10880)
+    dash, err := client.GetDashboard(datadog.Int(10880))
     if err != nil {
         log.Fatalf("fatal: %s\n", err)
     }
