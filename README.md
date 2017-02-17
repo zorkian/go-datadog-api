@@ -4,24 +4,28 @@ status](https://travis-ci.org/zorkian/go-datadog-api.svg)](https://travis-ci.org
 
 # Datadog API in Go
 
-Hi!
+**This is the v2.0 version of the API, and has breaking changes. Use the main or v1.0 branch if you need
+legacy code to be supported.**
 
-This is a Go wrapper for the Datadog API. You should use this library if you need to interact
+A Go wrapper for the Datadog API. Use this library if you need to interact
 with the Datadog system. You can post metrics with it if you want, but this library is probably
 mostly used for automating dashboards/alerting and retrieving data (events, etc).
 
 The source API documentation is here: <http://docs.datadoghq.com/api/>
 
-
 ## USAGE
 
-To use this project, include it in your code like:
+To use the default branch, include it in your code like:
 
-``` go
+```go
     import "github.com/zorkian/go-datadog-api"
 ```
 
-Then, you can work with it:
+Or, if you need to control which version to use, import using [gopkg.in](http://labix.org/gopkg.in). Like so:
+
+``` go
+    import "gopkg.in/zorkian/go-datadog.v2"
+```
 
 ``` go
     client := datadog.NewClient("api key", "application key")
@@ -30,11 +34,48 @@ Then, you can work with it:
     if err != nil {
         log.Fatalf("fatal: %s\n", err)
     }
-    log.Printf("dashboard %d: %s\n", dash.Id, dash.Title)
+    
+    log.Printf("dashboard %d: %s\n", dash.GetId(), dash.GetTitle())
 ```
 
-That's all; it's pretty easy to use. Check out the Godoc link for the
-available API methods and, if you can't find the one you need,
+This library uses pointers to be able to verify if values are set or not (vs the default value for the type). Like
+ protobuf there are helpers to enhance the API. You can decide to not use them, but you'll have to be careful handling
+ nil pointers.
+
+An example using datadog.String(), which allocates a pointer for you:
+
+```go
+	m := datadog.Monitor{
+		Name: datadog.String("Monitor other things"),
+		Creator: &datadog.Creator{
+			Name: datadog.String("Joe Creator"),
+		},
+	}
+```
+
+An example using the SetXx, HasXx, GetXx and GetXxOk accessors:
+
+```go
+	m := datadog.Monitor{}
+	m.SetName("Monitor all the things")
+	m.SetMessage("Electromagnetic energy loss")
+
+	// Use HasMessage(), to verify we want to use GetMessage().
+	// Using GetMessage() is safe as it returns value, or default value if never set, we use HasMessage() to see
+	// if are interested in the value:
+	if m.HasMessage() {
+		fmt.Printf("Found message %s\n", m.GetMessage())
+	}
+
+	// Alternatively, use GetMessageOk(), which returns a tuple with both the (default) value and a boolean expressing
+	// if it was set:
+	if v, ok := m.GetMessageOk(); ok {
+		fmt.Printf("Found message %s\n", v)
+	}
+```
+
+
+Check out the Godoc link for the available API methods and, if you can't find the one you need,
 let us know (or patches welcome)!
 
 ## DOCUMENTATION
@@ -65,4 +106,4 @@ in your environment variables.
 
 Please see the LICENSE file for the included license information.
 
-Copyright 2013 by authors and contributors.
+Copyright 2017 by authors and contributors.
