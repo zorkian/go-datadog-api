@@ -9,13 +9,13 @@ with it if you want, but this library is probably mostly used for automating das
 (events, etc).
 
 The master branch contains the v1 version of this library. If you are going to use this library for the first time you
-should switch to the v2 branch. If you are a v2 user, please upgrade to the v2 branch. This version is currently soaking,
+should switch to the v2 branch. If you are a v1 user, please upgrade to the v2 branch. This version is currently soaking,
 and should you find any issues now is the time to raise an issue or PR.
 
 The source API documentation is here: <http://docs.datadoghq.com/api/>
 
 ## Installation
-### v1
+### v1 (deprecated)
  To use the default branch, include it in your code like so:
 ```go
     import "github.com/zorkian/go-datadog-api"
@@ -82,4 +82,4 @@ in your environment variables.
 
 Please see the LICENSE file for the included license information.
 
-Copyright 2017 by authors and contributors.
+Copyright 2013-2017 by authors and contributors.
