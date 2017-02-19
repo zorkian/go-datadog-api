@@ -128,7 +128,7 @@ func (client *Client) doRequestWithRetries(req *http.Request, maxTime time.Durat
 			return nil
 		}
 
-		return fmt.Errorf("Received HTTP status code %d\n", resp.StatusCode)
+		return fmt.Errorf("Received HTTP status code %d", resp.StatusCode)
 	}
 
 	err = backoff.Retry(operation, bo)
