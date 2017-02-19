@@ -11,7 +11,6 @@ package datadog
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -105,26 +104,34 @@ func (client *Client) doJsonRequest(method, api string,
 }
 
 // doRequestWithRetries performs an HTTP request repeatedly for maxTime or until
-// no error and no HTTP response code higher than 299 is returned.
+// no error and no acceptable HTTP response code was returned.
 func (client *Client) doRequestWithRetries(req *http.Request, maxTime time.Duration) (*http.Response, error) {
 	var (
 		err  error
 		resp *http.Response
 		bo   = backoff.NewExponentialBackOff()
 	)
+
 	bo.MaxElapsedTime = maxTime
 
-	err = backoff.Retry(func() error {
+	operation := func() error {
 		resp, err = client.HttpClient.Do(req)
 		if err != nil {
 			return err
 		}
 
-		if resp.StatusCode < 200 || resp.StatusCode > 299 {
-			return errors.New("API error: " + resp.Status)
+		if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+			// 2xx all done
+			return nil
+		} else if resp.StatusCode >= 400 && resp.StatusCode < 500 {
+			// 4xx are not retryable
+			return nil
 		}
-		return nil
-	}, bo)
+
+		return fmt.Errorf("Received HTTP status code %d", resp.StatusCode)
+	}
+
+	err = backoff.Retry(operation, bo)
 
 	return resp, err
 }
