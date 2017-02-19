@@ -22,7 +22,7 @@ The source API documentation is here: <http://docs.datadoghq.com/api/>
 ```
 To be able to use v1 after the default branch switched to version 2; import using [gopkg.in](http://labix.org/gopkg.in):
 ```go
-    import "gopkg.in/github.com/zorkian/go-datadog-api.v1"
+    import "gopkg.in/zorkian/go-datadog-api.v1"
 ```
 
 Using `go get`:
@@ -32,7 +32,7 @@ go get gopkg.in/zorkian/go-datadog-api.v1
 ### v2
 Import:
 ```go
-    import "gopkg.in/github.com/zorkian/go-datadog-api.v2"
+    import "gopkg.in/zorkian/go-datadog-api.v2"
 ```
 
 Or `go get`:
