@@ -1,4 +1,4 @@
-[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/zorkian/go-datadog-api)
+[![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2)
 [![Build
 status](https://travis-ci.org/zorkian/go-datadog-api.svg)](https://travis-ci.org/zorkian/go-datadog-api)
 
@@ -21,7 +21,7 @@ To use the default branch, include it in your code like:
 
 Or, if you need to control which version to use, import using [gopkg.in](http://labix.org/gopkg.in). Like so:
 ```go
-    import "gopkg.in/github.com/zorkian/go-datadog-api.v2"
+    import "gopkg.in/zorkian/go-datadog-api.v2"
 ```
 
 Using go get:
@@ -80,7 +80,7 @@ let us know (or patches welcome)!
 
 ## DOCUMENTATION
 
-Please see: <http://godoc.org/github.com/zorkian/go-datadog-api>
+Please see: <https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2>
 
 ## BUGS/PROBLEMS/CONTRIBUTING
 
