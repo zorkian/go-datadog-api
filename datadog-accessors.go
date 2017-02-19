@@ -6833,6 +6833,37 @@ func (m *Metric) SetType(v string) {
 	m.Type = &v
 }
 
+// GetUnit returns the Unit field if non-nil, zero value otherwise.
+func (m *Metric) GetUnit() string {
+	if m == nil || m.Unit == nil {
+		return ""
+	}
+	return *m.Unit
+}
+
+// GetOkUnit returns a tuple with the Unit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *Metric) GetUnitOk() (string, bool) {
+	if m == nil || m.Unit == nil {
+		return "", false
+	}
+	return *m.Unit, true
+}
+
+// HasUnit returns a boolean if a field has been set.
+func (m *Metric) HasUnit() bool {
+	if m != nil && m.Unit != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetUnit allocates a new m.Unit and returns the pointer to it.
+func (m *Metric) SetUnit(v string) {
+	m.Unit = &v
+}
+
 // GetCreator returns the Creator field if non-nil, zero value otherwise.
 func (m *Monitor) GetCreator() Creator {
 	if m == nil || m.Creator == nil {
