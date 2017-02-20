@@ -150,38 +150,49 @@ func cleanUpDashboard(t *testing.T, id int) {
 }
 
 func createGraph() []datadog.Graph {
-	graphDefinition := datadog.Graph{}.Definition
-	graphDefinition.Viz = datadog.String("timeseries")
-	r := datadog.Graph{}.Definition.Requests
-	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{Query: datadog.String("avg:system.mem.free{*}"), Stacked: datadog.Bool(false)})
-	graph := datadog.Graph{Title: datadog.String("Mandatory graph"), Definition: graphDefinition}
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Query:   datadog.String("avg:system.mem.free{*}"),
+		Stacked: datadog.Bool(false),
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph"),
+		Definition: gd,
+	}
+
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
 	return graphs
 }
 
 func createAdvancedTimeseriesGraph() []datadog.Graph {
-	graphDefinition := datadog.Graph{}.Definition
-	graphDefinition.Viz = datadog.String("timeseries")
-	r := datadog.Graph{}.Definition.Requests
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
 
-	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
 		Query:   datadog.String("avg:system.mem.free{*}"),
 		Stacked: datadog.Bool(false),
 		Type:    datadog.String("bars"),
 		Style:   &datadog.GraphDefinitionRequestStyle{Palette: datadog.String("warm")},
 	})
-	graph := datadog.Graph{Title: datadog.String("Custom type and style graph"), Definition: graphDefinition}
+	graph := datadog.Graph{Title: datadog.String("Custom type and style graph"), Definition: gd}
+
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
 	return graphs
 }
 
 func createCustomGraph() []datadog.Graph {
-	graphDefinition := datadog.Graph{}.Definition
-	graphDefinition.Viz = datadog.String("query_value")
-	r := datadog.Graph{}.Definition.Requests
-	graphDefinition.Requests = append(r, datadog.GraphDefinitionRequest{
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("query_value")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
 		Query:      datadog.String("( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100"),
 		Stacked:    datadog.Bool(false),
 		Aggregator: datadog.String("avg"),
@@ -198,7 +209,12 @@ func createCustomGraph() []datadog.Graph {
 				Comparator: datadog.String("<"),
 				Value:      datadog.JsonNumber(json.Number("99")),
 				Palette:    datadog.String("white_on_red")}}})
-	graph := datadog.Graph{Title: datadog.String("Mandatory graph 2"), Definition: graphDefinition}
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 2"),
+		Definition: gd,
+	}
+
 	graphs := []datadog.Graph{}
 	graphs = append(graphs, graph)
 	return graphs
