@@ -5252,6 +5252,37 @@ func (g *GraphDefinitionRequestStyle) SetWidth(v string) {
 	g.Width = &v
 }
 
+// GetQuery returns the Query field if non-nil, zero value otherwise.
+func (g *GraphEvent) GetQuery() string {
+	if g == nil || g.Query == nil {
+		return ""
+	}
+	return *g.Query
+}
+
+// GetOkQuery returns a tuple with the Query field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphEvent) GetQueryOk() (string, bool) {
+	if g == nil || g.Query == nil {
+		return "", false
+	}
+	return *g.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (g *GraphEvent) HasQuery() bool {
+	if g != nil && g.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetQuery allocates a new g.Query and returns the pointer to it.
+func (g *GraphEvent) SetQuery(v string) {
+	g.Query = &v
+}
+
 // GetHeight returns the Height field if non-nil, zero value otherwise.
 func (g *GraphWidget) GetHeight() int {
 	if g == nil || g.Height == nil {
@@ -9530,6 +9561,68 @@ func (s *Series) SetStart(v float64) {
 	s.Start = &v
 }
 
+// GetPalette returns the Palette field if non-nil, zero value otherwise.
+func (s *Style) GetPalette() string {
+	if s == nil || s.Palette == nil {
+		return ""
+	}
+	return *s.Palette
+}
+
+// GetOkPalette returns a tuple with the Palette field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Style) GetPaletteOk() (string, bool) {
+	if s == nil || s.Palette == nil {
+		return "", false
+	}
+	return *s.Palette, true
+}
+
+// HasPalette returns a boolean if a field has been set.
+func (s *Style) HasPalette() bool {
+	if s != nil && s.Palette != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetPalette allocates a new s.Palette and returns the pointer to it.
+func (s *Style) SetPalette(v string) {
+	s.Palette = &v
+}
+
+// GetPaletteFlip returns the PaletteFlip field if non-nil, zero value otherwise.
+func (s *Style) GetPaletteFlip() bool {
+	if s == nil || s.PaletteFlip == nil {
+		return false
+	}
+	return *s.PaletteFlip
+}
+
+// GetOkPaletteFlip returns a tuple with the PaletteFlip field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Style) GetPaletteFlipOk() (bool, bool) {
+	if s == nil || s.PaletteFlip == nil {
+		return false, false
+	}
+	return *s.PaletteFlip, true
+}
+
+// HasPaletteFlip returns a boolean if a field has been set.
+func (s *Style) HasPaletteFlip() bool {
+	if s != nil && s.PaletteFlip != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetPaletteFlip allocates a new s.PaletteFlip and returns the pointer to it.
+func (s *Style) SetPaletteFlip(v bool) {
+	s.PaletteFlip = &v
+}
+
 // GetDefault returns the Default field if non-nil, zero value otherwise.
 func (t *TemplateVariable) GetDefault() string {
 	if t == nil || t.Default == nil {
@@ -11605,4 +11698,97 @@ func (w *Widget) HasToplistWidget() bool {
 // GetToplistWidget allocates a new w.ToplistWidget and returns the pointer to it.
 func (w *Widget) SetToplistWidget(v ToplistWidget) {
 	w.ToplistWidget = &v
+}
+
+// GetMax returns the Max field if non-nil, zero value otherwise.
+func (y *Yaxis) GetMax() float64 {
+	if y == nil || y.Max == nil {
+		return 0
+	}
+	return *y.Max
+}
+
+// GetOkMax returns a tuple with the Max field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (y *Yaxis) GetMaxOk() (float64, bool) {
+	if y == nil || y.Max == nil {
+		return 0, false
+	}
+	return *y.Max, true
+}
+
+// HasMax returns a boolean if a field has been set.
+func (y *Yaxis) HasMax() bool {
+	if y != nil && y.Max != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetMax allocates a new y.Max and returns the pointer to it.
+func (y *Yaxis) SetMax(v float64) {
+	y.Max = &v
+}
+
+// GetMin returns the Min field if non-nil, zero value otherwise.
+func (y *Yaxis) GetMin() float64 {
+	if y == nil || y.Min == nil {
+		return 0
+	}
+	return *y.Min
+}
+
+// GetOkMin returns a tuple with the Min field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (y *Yaxis) GetMinOk() (float64, bool) {
+	if y == nil || y.Min == nil {
+		return 0, false
+	}
+	return *y.Min, true
+}
+
+// HasMin returns a boolean if a field has been set.
+func (y *Yaxis) HasMin() bool {
+	if y != nil && y.Min != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetMin allocates a new y.Min and returns the pointer to it.
+func (y *Yaxis) SetMin(v float64) {
+	y.Min = &v
+}
+
+// GetScale returns the Scale field if non-nil, zero value otherwise.
+func (y *Yaxis) GetScale() string {
+	if y == nil || y.Scale == nil {
+		return ""
+	}
+	return *y.Scale
+}
+
+// GetOkScale returns a tuple with the Scale field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (y *Yaxis) GetScaleOk() (string, bool) {
+	if y == nil || y.Scale == nil {
+		return "", false
+	}
+	return *y.Scale, true
+}
+
+// HasScale returns a boolean if a field has been set.
+func (y *Yaxis) HasScale() bool {
+	if y != nil && y.Scale != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetScale allocates a new y.Scale and returns the pointer to it.
+func (y *Yaxis) SetScale(v string) {
+	y.Scale = &v
 }

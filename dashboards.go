@@ -47,23 +47,32 @@ type GraphDefinitionMarker struct {
 	Max   *json.Number `json:"max,omitempty"`
 }
 
+type GraphEvent struct {
+	Query *string `json:"q,omitempty"`
+}
+
+type Yaxis struct {
+	Min   *float64 `json:"min,omitempty"`
+	Max   *float64 `json:"max,omitempty"`
+	Scale *string  `json:"scale,omitempty"`
+}
+
+type Style struct {
+	Palette     *string `json:"palette,omitempty"`
+	PaletteFlip *bool   `json:"paletteFlip,omitempty"`
+}
+
 // Graph represents a graph that might exist on a dashboard.
 type Graph struct {
 	Title      *string `json:"title,omitempty"`
 	Definition struct {
 		Viz      *string                  `json:"viz,omitempty"`
 		Requests []GraphDefinitionRequest `json:"requests,omitempty"`
-		Events   []struct {
-			Query *string `json:"q,omitempty"`
-		} `json:"events,omitempty"`
-		Markers []GraphDefinitionMarker `json:"markers,omitempty"`
+		Events   []GraphEvent             `json:"events,omitempty"`
+		Markers  []GraphDefinitionMarker  `json:"markers,omitempty"`
 
 		// For timeseries type graphs
-		Yaxis struct {
-			Min   *float64 `json:"min,omitempty"`
-			Max   *float64 `json:"max,omitempty"`
-			Scale *string  `json:"scale,omitempty"`
-		} `json:"yaxis,omitempty"`
+		Yaxis Yaxis `json:"yaxis,omitempty"`
 
 		// For query value type graphs
 		Autoscale  *bool   `json:"austoscale,omitempty"`
@@ -72,10 +81,8 @@ type Graph struct {
 		CustomUnit *string `json:"custom_unit,omitempty"`
 
 		// For hostname type graphs
-		Style *struct {
-			Palette     *string `json:"palette,omitempty"`
-			PaletteFlip *bool   `json:"paletteFlip,omitempty"`
-		}
+		Style *Style `json:"Style,omitempty"`
+
 		Groups                []string `json:"group,omitempty"`
 		IncludeNoMetricHosts  *bool    `json:"noMetricHosts,omitempty"`
 		Scopes                []string `json:"scope,omitempty"`
