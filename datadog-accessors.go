@@ -7949,6 +7949,37 @@ func (n *NoteWidget) SetY(v int) {
 	n.Y = &v
 }
 
+// GetAuto returns the Auto field if non-nil, zero value otherwise.
+func (o *OptionalFloat64) GetAuto() bool {
+	if o == nil || o.Auto == nil {
+		return false
+	}
+	return *o.Auto
+}
+
+// GetOkAuto returns a tuple with the Auto field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OptionalFloat64) GetAutoOk() (bool, bool) {
+	if o == nil || o.Auto == nil {
+		return false, false
+	}
+	return *o.Auto, true
+}
+
+// HasAuto returns a boolean if a field has been set.
+func (o *OptionalFloat64) HasAuto() bool {
+	if o != nil && o.Auto != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetAuto allocates a new o.Auto and returns the pointer to it.
+func (o *OptionalFloat64) SetAuto(v bool) {
+	o.Auto = &v
+}
+
 // GetValue returns the Value field if non-nil, zero value otherwise.
 func (o *OptionalFloat64) GetValue() float64 {
 	if o == nil || o.Value == nil {

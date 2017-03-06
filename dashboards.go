@@ -54,13 +54,14 @@ type GraphEvent struct {
 
 type OptionalFloat64 struct {
 	Value *float64
-	Auto  bool
+	Auto  *bool
 }
 
 func (of *OptionalFloat64) UnmarshalJSON(data []byte) error {
 	s := string(data)
 	if s == "\"auto\"" {
-		of.Auto = true
+		b := true
+		of.Auto = &b
 		of.Value = nil
 	} else if s == "false" {
 		of = nil
@@ -69,8 +70,9 @@ func (of *OptionalFloat64) UnmarshalJSON(data []byte) error {
 		if err != nil {
 			return err
 		}
+		b := false
+		of.Auto = &b
 		of.Value = &f
-		of.Auto = false
 	}
 	return nil
 }
