@@ -11979,12 +11979,28 @@ func (w *Widget) SetToplistWidget(v ToplistWidget) {
 	w.ToplistWidget = &v
 }
 
+// getVal returns the value of an OptionalFloat64 if non-nil and not auto,
+// zero otherwise.
+func (of *OptionalFloat64) getVal() float64 {
+	if of == nil || of.Value == nil || of.Auto == true {
+		return 0
+	}
+	return *of.Value
+}
+
+func (of *OptionalFloat64) getValOk() (float64, bool) {
+	if of == nil || of.Value == nil || of.Auto == true {
+		return 0, false
+	}
+	return *of.Value, true
+}
+
 // GetMax returns the Max field if non-nil, zero value otherwise.
 func (y *Yaxis) GetMax() float64 {
 	if y == nil || y.Max == nil {
 		return 0
 	}
-	return *y.Max
+	return y.Max.getVal()
 }
 
 // GetOkMax returns a tuple with the Max field if it's non-nil, zero value otherwise
@@ -11993,12 +12009,12 @@ func (y *Yaxis) GetMaxOk() (float64, bool) {
 	if y == nil || y.Max == nil {
 		return 0, false
 	}
-	return *y.Max, true
+	return y.Max.getValOk()
 }
 
 // HasMax returns a boolean if a field has been set.
 func (y *Yaxis) HasMax() bool {
-	if y != nil && y.Max != nil {
+	if y != nil && y.Max != nil && y.Max.Value != nil && y.Max.Auto == false {
 		return true
 	}
 
@@ -12007,7 +12023,20 @@ func (y *Yaxis) HasMax() bool {
 
 // GetMax allocates a new y.Max and returns the pointer to it.
 func (y *Yaxis) SetMax(v float64) {
-	y.Max = &v
+	y.Max = &OptionalFloat64{&v, false}
+}
+
+// IsMaxAuto returns a boolean if the Yaxis Max is explicitly set to auto.
+func (y *Yaxis) IsMaxAuto() bool {
+	if y != nil && y.Max != nil && y.Max.Auto == true {
+		return true
+	}
+	return false
+}
+
+// SetMaxAuto explicitly sets the Yaxis Max to auto, which is the default.
+func (y *Yaxis) SetMaxAuto() {
+	y.Max = &OptionalFloat64{nil, true}
 }
 
 // GetMin returns the Min field if non-nil, zero value otherwise.
@@ -12015,7 +12044,7 @@ func (y *Yaxis) GetMin() float64 {
 	if y == nil || y.Min == nil {
 		return 0
 	}
-	return *y.Min
+	return y.Min.getVal()
 }
 
 // GetOkMin returns a tuple with the Min field if it's non-nil, zero value otherwise
@@ -12024,12 +12053,12 @@ func (y *Yaxis) GetMinOk() (float64, bool) {
 	if y == nil || y.Min == nil {
 		return 0, false
 	}
-	return *y.Min, true
+	return y.Max.getValOk()
 }
 
 // HasMin returns a boolean if a field has been set.
 func (y *Yaxis) HasMin() bool {
-	if y != nil && y.Min != nil {
+	if y != nil && y.Min != nil && y.Min.Value != nil && y.Min.Auto == false {
 		return true
 	}
 
@@ -12038,7 +12067,20 @@ func (y *Yaxis) HasMin() bool {
 
 // GetMin allocates a new y.Min and returns the pointer to it.
 func (y *Yaxis) SetMin(v float64) {
-	y.Min = &v
+	y.Min = &OptionalFloat64{&v, false}
+}
+
+// IsMinAuto returns a boolean if the Yaxis Min is explicitly set to auto.
+func (y *Yaxis) IsMinAuto() bool {
+	if y != nil && y.Min != nil && y.Min.Auto == true {
+		return true
+	}
+	return false
+}
+
+// SetMinAuto explicitly sets the Yaxis Min to auto, which is the default.
+func (y *Yaxis) SetMinAuto() {
+	y.Min = &OptionalFloat64{nil, true}
 }
 
 // GetScale returns the Scale field if non-nil, zero value otherwise.

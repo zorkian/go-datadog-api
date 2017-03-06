@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 )
 
 // GraphDefinitionRequestStyle represents the graph style attributes
@@ -51,10 +52,33 @@ type GraphEvent struct {
 	Query *string `json:"q,omitempty"`
 }
 
+type OptionalFloat64 struct {
+	Value *float64
+	Auto  bool
+}
+
+func (of *OptionalFloat64) UnmarshalJSON(data []byte) error {
+	s := string(data)
+	if s == "auto" {
+		of.Auto = true
+		of.Value = nil
+	} else if s == "false" {
+		of = nil
+	} else {
+		f, err := strconv.ParseFloat(s, 64)
+		if err != nil {
+			return err
+		}
+		of.Value = &f
+		of.Auto = false
+	}
+	return nil
+}
+
 type Yaxis struct {
-	Min   *float64 `json:"min,omitempty"`
-	Max   *float64 `json:"max,omitempty"`
-	Scale *string  `json:"scale,omitempty"`
+	Min   *OptionalFloat64 `json:"min,omitempty"`
+	Max   *OptionalFloat64 `json:"max,omitempty"`
+	Scale *string          `json:"scale,omitempty"`
 }
 
 type Style struct {
