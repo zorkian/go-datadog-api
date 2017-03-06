@@ -59,7 +59,7 @@ type OptionalFloat64 struct {
 
 func (of *OptionalFloat64) UnmarshalJSON(data []byte) error {
 	s := string(data)
-	if s == "auto" {
+	if s == "\"auto\"" {
 		of.Auto = true
 		of.Value = nil
 	} else if s == "false" {
