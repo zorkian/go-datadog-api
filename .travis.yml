@@ -12,6 +12,7 @@ script:
   - go get -u github.com/golang/lint/golint
   - golint ./...
   - make
+  - scripts/check-code-generation-ran.sh
 
 install:
   - go get -v -t .
