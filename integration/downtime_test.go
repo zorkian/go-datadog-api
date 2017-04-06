@@ -42,7 +42,6 @@ func TestDowntimeLinkedToMonitorCreateAndDelete(t *testing.T) {
 		t.Fatalf("Creating a downtime failed when it shouldn't: %s", err)
 	}
 
-	// Set ID of our original struct to zero so we can easily compare the results
 	expected.SetId(downtime.GetId())
 
 	assert.Equal(t, expected, downtime)
