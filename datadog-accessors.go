@@ -3175,6 +3175,37 @@ func (d *Downtime) SetMessage(v string) {
 	d.Message = &v
 }
 
+// GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
+func (d *Downtime) GetMonitorId() int {
+	if d == nil || d.MonitorId == nil {
+		return 0
+	}
+	return *d.MonitorId
+}
+
+// GetOkMonitorId returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Downtime) GetMonitorIdOk() (int, bool) {
+	if d == nil || d.MonitorId == nil {
+		return 0, false
+	}
+	return *d.MonitorId, true
+}
+
+// HasMonitorId returns a boolean if a field has been set.
+func (d *Downtime) HasMonitorId() bool {
+	if d != nil && d.MonitorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// GetMonitorId allocates a new d.MonitorId and returns the pointer to it.
+func (d *Downtime) SetMonitorId(v int) {
+	d.MonitorId = &v
+}
+
 // GetRecurrence returns the Recurrence field if non-nil, zero value otherwise.
 func (d *Downtime) GetRecurrence() Recurrence {
 	if d == nil || d.Recurrence == nil {
