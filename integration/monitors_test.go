@@ -116,12 +116,13 @@ func TestMonitorMuteUnmute(t *testing.T) {
 func getTestMonitor() *datadog.Monitor {
 
 	o := &datadog.Options{
-		NotifyNoData:    datadog.Bool(true),
-		NotifyAudit:     datadog.Bool(false),
-		Locked:          datadog.Bool(false),
-		NoDataTimeframe: 60,
-		NewHostDelay:    datadog.Int(600),
-		Silenced:        map[string]int{},
+		NotifyNoData:      datadog.Bool(true),
+		NotifyAudit:       datadog.Bool(false),
+		Locked:            datadog.Bool(false),
+		NoDataTimeframe:   60,
+		NewHostDelay:      datadog.Int(600),
+		RequireFullWindow: datadog.Bool(true),
+		Silenced:          map[string]int{},
 	}
 
 	return &datadog.Monitor{
