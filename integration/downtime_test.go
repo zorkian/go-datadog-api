@@ -1,9 +1,10 @@
 package integration
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
-	"testing"
 )
 
 func init() {
@@ -22,6 +23,30 @@ func TestDowntimeCreateAndDelete(t *testing.T) {
 	assert.Equal(t, expected, actual)
 
 	actual, err := client.GetDowntime(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a downtime failed when it shouldn't: (%s)", err)
+	}
+	assert.Equal(t, expected, actual)
+}
+
+func TestDowntimeLinkedToMonitorCreateAndDelete(t *testing.T) {
+	monitor := createTestMonitor(t)
+	defer cleanUpMonitor(t, monitor.GetId())
+
+	expected := getTestDowntime()
+	expected.SetMonitorId(monitor.GetId())
+
+	downtime, err := client.CreateDowntime(expected)
+	defer cleanUpDowntime(t, downtime.GetId())
+	if err != nil {
+		t.Fatalf("Creating a downtime failed when it shouldn't: %s", err)
+	}
+
+	expected.SetId(downtime.GetId())
+
+	assert.Equal(t, expected, downtime)
+
+	actual, err := client.GetDowntime(downtime.GetId())
 	if err != nil {
 		t.Fatalf("Retrieving a downtime failed when it shouldn't: (%s)", err)
 	}
