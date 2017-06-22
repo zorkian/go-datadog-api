@@ -15,12 +15,14 @@ import (
 )
 
 // Snapshot creates an image from a graph and returns the URL of the image.
-func (client *Client) Snapshot(query string, start, end time.Time, eventQuery string) (string, error) {
+func (client *Client) Snapshot(options map[string]string, start, end time.Time) (string, error) {
 	v := url.Values{}
 	v.Add("start", fmt.Sprintf("%d", start.Unix()))
 	v.Add("end", fmt.Sprintf("%d", end.Unix()))
-	v.Add("metric_query", query)
-	v.Add("event_query", eventQuery)
+
+	for opt, val := range options {
+		v.Add(opt, val)
+	}
 
 	out := struct {
 		SnapshotURL string `json:"snapshot_url,omitempty"`
