@@ -8198,20 +8198,20 @@ func (o *Options) SetEscalationMessage(v string) {
 }
 
 // GetEvaluationDelay returns the EvaluationDelay field if non-nil, zero value otherwise.
-func (o *Options) GetEvaluationDelay() EvaluationDelay {
+func (o *Options) GetEvaluationDelay() int {
 	if o == nil || o.EvaluationDelay == nil {
-		return EvaluationDelay(0)
+		return 0
 	}
-	return *o.EvaluationDelay
+	return int(*o.EvaluationDelay)
 }
 
 // GetOkEvaluationDelay returns a tuple with the EvaluationDelay field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Options) GetEvaluationDelayOk() (EvaluationDelay, bool) {
+func (o *Options) GetEvaluationDelayOk() (int, bool) {
 	if o == nil || o.EvaluationDelay == nil {
-		return EvaluationDelay(0), false
+		return 0, false
 	}
-	return *o.EvaluationDelay, true
+	return int(*o.EvaluationDelay), true
 }
 
 // HasEvaluationDelay returns a boolean if a field has been set.
@@ -8224,8 +8224,9 @@ func (o *Options) HasEvaluationDelay() bool {
 }
 
 // GetEvaluationDelay allocates a new o.EvaluationDelay and returns the pointer to it.
-func (o *Options) SetEvaluationDelay(v EvaluationDelay) {
-	o.EvaluationDelay = &v
+func (o *Options) SetEvaluationDelay(v int) {
+	val := IntOrString(v)
+	o.EvaluationDelay = &val
 }
 
 // GetIncludeTags returns the IncludeTags field if non-nil, zero value otherwise.
