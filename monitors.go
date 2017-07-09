@@ -38,20 +38,47 @@ func (tf *NoDataTimeframe) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type EvaluationDelay int
+
+func (ed *EvaluationDelay) UnmarshalJSON(data []byte) error {
+	var err error
+
+	s := string(data)
+
+	if len(s) > 0 && s[0] == '"' {
+		s, err = strconv.Unquote(string(data))
+		if err != nil {
+			return err
+		}
+	}
+
+	if s == "" {
+		s = "0"
+	}
+
+	i, err := strconv.ParseInt(s, 10, 32)
+	if err != nil {
+		return err
+	}
+	*ed = EvaluationDelay(i)
+
+	return nil
+}
+
 type Options struct {
-	NoDataTimeframe   NoDataTimeframe `json:"no_data_timeframe,omitempty"`
-	NotifyAudit       *bool           `json:"notify_audit,omitempty"`
-	NotifyNoData      *bool           `json:"notify_no_data,omitempty"`
-	RenotifyInterval  *int            `json:"renotify_interval,omitempty"`
-	NewHostDelay      *int            `json:"new_host_delay,omitempty"`
-	EvaluationDelay   *int            `json:"evaluation_delay,omitempty"`
-	Silenced          map[string]int  `json:"silenced,omitempty"`
-	TimeoutH          *int            `json:"timeout_h,omitempty"`
-	EscalationMessage *string         `json:"escalation_message,omitempty"`
-	Thresholds        *ThresholdCount `json:"thresholds,omitempty"`
-	IncludeTags       *bool           `json:"include_tags,omitempty"`
-	RequireFullWindow *bool           `json:"require_full_window,omitempty"`
-	Locked            *bool           `json:"locked,omitempty"`
+	NoDataTimeframe   NoDataTimeframe  `json:"no_data_timeframe,omitempty"`
+	NotifyAudit       *bool            `json:"notify_audit,omitempty"`
+	NotifyNoData      *bool            `json:"notify_no_data,omitempty"`
+	RenotifyInterval  *int             `json:"renotify_interval,omitempty"`
+	NewHostDelay      *int             `json:"new_host_delay,omitempty"`
+	EvaluationDelay   *EvaluationDelay `json:"evaluation_delay,omitempty"`
+	Silenced          map[string]int   `json:"silenced,omitempty"`
+	TimeoutH          *int             `json:"timeout_h,omitempty"`
+	EscalationMessage *string          `json:"escalation_message,omitempty"`
+	Thresholds        *ThresholdCount  `json:"thresholds,omitempty"`
+	IncludeTags       *bool            `json:"include_tags,omitempty"`
+	RequireFullWindow *bool            `json:"require_full_window,omitempty"`
+	Locked            *bool            `json:"locked,omitempty"`
 }
 
 // Monitor allows watching a metric or check that you care about,
