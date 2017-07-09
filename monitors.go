@@ -38,13 +38,40 @@ func (tf *NoDataTimeframe) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+type IntOrString int
+
+func (val *IntOrString) UnmarshalJSON(data []byte) error {
+	var err error
+
+	s := string(data)
+
+	if len(s) > 0 && s[0] == '"' {
+		s, err = strconv.Unquote(string(data))
+		if err != nil {
+			return err
+		}
+	}
+
+	if s == "" {
+		s = "0"
+	}
+
+	i, err := strconv.ParseInt(s, 10, 32)
+	if err != nil {
+		return err
+	}
+	*val = IntOrString(i)
+
+	return nil
+}
+
 type Options struct {
 	NoDataTimeframe   NoDataTimeframe `json:"no_data_timeframe,omitempty"`
 	NotifyAudit       *bool           `json:"notify_audit,omitempty"`
 	NotifyNoData      *bool           `json:"notify_no_data,omitempty"`
 	RenotifyInterval  *int            `json:"renotify_interval,omitempty"`
 	NewHostDelay      *int            `json:"new_host_delay,omitempty"`
-	EvaluationDelay   *int            `json:"evaluation_delay,omitempty"`
+	EvaluationDelay   *IntOrString    `json:"evaluation_delay,omitempty"`
 	Silenced          map[string]int  `json:"silenced,omitempty"`
 	TimeoutH          *int            `json:"timeout_h,omitempty"`
 	EscalationMessage *string         `json:"escalation_message,omitempty"`

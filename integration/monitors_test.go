@@ -37,6 +37,8 @@ func TestMonitorUpdate(t *testing.T) {
 	defer cleanUpMonitor(t, *monitor.Id)
 
 	monitor.SetName("___New-Test-Monitor___")
+	monitor.Options.SetEvaluationDelay(60)
+
 	if err := client.UpdateMonitor(monitor); err != nil {
 		t.Fatalf("Updating a monitor failed when it shouldn't: %s", err)
 	}
@@ -47,7 +49,8 @@ func TestMonitorUpdate(t *testing.T) {
 	}
 
 	assert.Equal(t, monitor, actual)
-
+	assert.Equal(t, "___New-Test-Monitor___", actual.GetName())
+	assert.Equal(t, 60, monitor.Options.GetEvaluationDelay())
 }
 
 func TestMonitorGet(t *testing.T) {
