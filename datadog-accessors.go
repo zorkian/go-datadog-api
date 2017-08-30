@@ -7299,18 +7299,18 @@ func (m *MetricMetadata) SetShortName(v string) {
 }
 
 // GetStatsdInterval returns the StatsdInterval field if non-nil, zero value otherwise.
-func (m *MetricMetadata) GetStatsdInterval() string {
+func (m *MetricMetadata) GetStatsdInterval() int {
 	if m == nil || m.StatsdInterval == nil {
-		return ""
+		return 0
 	}
 	return *m.StatsdInterval
 }
 
 // GetOkStatsdInterval returns a tuple with the StatsdInterval field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (m *MetricMetadata) GetStatsdIntervalOk() (string, bool) {
+func (m *MetricMetadata) GetStatsdIntervalOk() (int, bool) {
 	if m == nil || m.StatsdInterval == nil {
-		return "", false
+		return 0, false
 	}
 	return *m.StatsdInterval, true
 }
@@ -7325,7 +7325,7 @@ func (m *MetricMetadata) HasStatsdInterval() bool {
 }
 
 // GetStatsdInterval allocates a new m.StatsdInterval and returns the pointer to it.
-func (m *MetricMetadata) SetStatsdInterval(v string) {
+func (m *MetricMetadata) SetStatsdInterval(v int) {
 	m.StatsdInterval = &v
 }
 
