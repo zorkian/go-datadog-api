@@ -17,7 +17,7 @@ type MetricMetadata struct {
 	ShortName      *string `json:"short_name,omitempty"`
 	Unit           *string `json:"unit,omitempty"`
 	PerUnit        *string `json:"per_unit,omitempty"`
-	StatsdInterval *string `json:"statsd_interval,omitempty"`
+	StatsdInterval *int    `json:"statsd_interval,omitempty"`
 }
 
 // ViewMetricMetadata allows you to get metadata about a specific metric.
