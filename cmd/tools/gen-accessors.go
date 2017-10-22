@@ -335,7 +335,7 @@ func ({{.ReceiverVar}} *{{.ReceiverType}}) Has{{.FieldName}}() bool {
    return false
 }
 
-// Get{{.FieldName}} allocates a new {{.ReceiverVar}}.{{.FieldName}} and returns the pointer to it.
+// Set{{.FieldName}} allocates a new {{.ReceiverVar}}.{{.FieldName}} and returns the pointer to it.
 func ({{.ReceiverVar}} *{{.ReceiverType}}) Set{{.FieldName}}(v {{.FieldType}}) {
   {{.ReceiverVar}}.{{.FieldName}} = &v
 }
