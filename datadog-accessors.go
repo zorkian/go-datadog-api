@@ -2772,6 +2772,37 @@ func (d *DashboardConditionalFormat) SetCustomFgColor(v string) {
 	d.CustomFgColor = &v
 }
 
+// GetCustomImageUrl returns the CustomImageUrl field if non-nil, zero value otherwise.
+func (d *DashboardConditionalFormat) GetCustomImageUrl() string {
+	if d == nil || d.CustomImageUrl == nil {
+		return ""
+	}
+	return *d.CustomImageUrl
+}
+
+// GetOkCustomImageUrl returns a tuple with the CustomImageUrl field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardConditionalFormat) GetCustomImageUrlOk() (string, bool) {
+	if d == nil || d.CustomImageUrl == nil {
+		return "", false
+	}
+	return *d.CustomImageUrl, true
+}
+
+// HasCustomImageUrl returns a boolean if a field has been set.
+func (d *DashboardConditionalFormat) HasCustomImageUrl() bool {
+	if d != nil && d.CustomImageUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomImageUrl allocates a new d.CustomImageUrl and returns the pointer to it.
+func (d *DashboardConditionalFormat) SetCustomImageUrl(v string) {
+	d.CustomImageUrl = &v
+}
+
 // GetInverted returns the Inverted field if non-nil, zero value otherwise.
 func (d *DashboardConditionalFormat) GetInverted() bool {
 	if d == nil || d.Inverted == nil {
