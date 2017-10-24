@@ -11576,6 +11576,37 @@ func (t *ToplistWidget) SetY(v int) {
 	t.Y = &v
 }
 
+// GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
+func (u *User) GetAccessRole() string {
+	if u == nil || u.AccessRole == nil {
+		return ""
+	}
+	return *u.AccessRole
+}
+
+// GetOkAccessRole returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (u *User) GetAccessRoleOk() (string, bool) {
+	if u == nil || u.AccessRole == nil {
+		return "", false
+	}
+	return *u.AccessRole, true
+}
+
+// HasAccessRole returns a boolean if a field has been set.
+func (u *User) HasAccessRole() bool {
+	if u != nil && u.AccessRole != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessRole allocates a new u.AccessRole and returns the pointer to it.
+func (u *User) SetAccessRole(v string) {
+	u.AccessRole = &v
+}
+
 // GetDisabled returns the Disabled field if non-nil, zero value otherwise.
 func (u *User) GetDisabled() bool {
 	if u == nil || u.Disabled == nil {
@@ -11667,37 +11698,6 @@ func (u *User) HasHandle() bool {
 // SetHandle allocates a new u.Handle and returns the pointer to it.
 func (u *User) SetHandle(v string) {
 	u.Handle = &v
-}
-
-// GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
-func (u *User) GetIsAdmin() bool {
-	if u == nil || u.IsAdmin == nil {
-		return false
-	}
-	return *u.IsAdmin
-}
-
-// GetOkIsAdmin returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (u *User) GetIsAdminOk() (bool, bool) {
-	if u == nil || u.IsAdmin == nil {
-		return false, false
-	}
-	return *u.IsAdmin, true
-}
-
-// HasIsAdmin returns a boolean if a field has been set.
-func (u *User) HasIsAdmin() bool {
-	if u != nil && u.IsAdmin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIsAdmin allocates a new u.IsAdmin and returns the pointer to it.
-func (u *User) SetIsAdmin(v bool) {
-	u.IsAdmin = &v
 }
 
 // GetName returns the Name field if non-nil, zero value otherwise.

@@ -9,13 +9,13 @@
 package datadog
 
 type User struct {
-	Handle   *string `json:"handle,omitempty"`
-	Email    *string `json:"email,omitempty"`
-	Name     *string `json:"name,omitempty"`
-	Role     *string `json:"role,omitempty"`
-	IsAdmin  *bool   `json:"is_admin,omitempty"`
-	Verified *bool   `json:"verified,omitempty"`
-	Disabled *bool   `json:"disabled,omitempty"`
+	Handle     *string `json:"handle,omitempty"`
+	Email      *string `json:"email,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	Role       *string `json:"role,omitempty"`
+	AccessRole *string `json:"access_role,omitempty"`
+	Verified   *bool   `json:"verified,omitempty"`
+	Disabled   *bool   `json:"disabled,omitempty"`
 }
 
 // reqInviteUsers contains email addresses to send invitations to.
