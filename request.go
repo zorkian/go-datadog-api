@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/cenkalti/backoff"
@@ -40,14 +41,43 @@ func (client *Client) uriForAPI(api string) (string, error) {
 	return apiBase.String(), nil
 }
 
-// doJsonRequest is the simplest type of request: a method on a URI that returns
-// some JSON result which we unmarshal into the passed interface.
+// redactError removes api and application keys from error strings
+func (client *Client) redactError(err error) error {
+	if err == nil {
+		return nil
+	}
+	errString := strings.Replace(err.Error(), client.apiKey, "redacted", -1)
+	errString = strings.Replace(errString, client.appKey, "redacted", -1)
+
+	// Return original error if no replacements were made to keep the original,
+	// possibly more useful error type information.
+	if errString == err.Error() {
+		return err
+	}
+	return fmt.Errorf("%s", errString)
+}
+
+// doJsonRequest is the simplest type of request: a method on a URI that
+// returns some JSON result which we unmarshal into the passed interface. It
+// wraps doJsonRequestUnredacted to redact api and application keys from
+// errors.
 func (client *Client) doJsonRequest(method, api string,
+	reqbody, out interface{}) error {
+	if err := client.doJsonRequestUnredacted(method, api, reqbody, out); err != nil {
+		return client.redactError(err)
+	}
+	return nil
+}
+
+// doJsonRequestUnredacted is the simplest type of request: a method on a URI that returns
+// some JSON result which we unmarshal into the passed interface.
+func (client *Client) doJsonRequestUnredacted(method, api string,
 	reqbody, out interface{}) error {
 	req, err := client.createRequest(method, api, reqbody)
 	if err != nil {
 		return err
 	}
+
 	// Perform the request and retry it if it's not a POST or PUT request
 	var resp *http.Response
 	if method == "POST" || method == "PUT" {
