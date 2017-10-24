@@ -6027,6 +6027,99 @@ func (g *GraphWidget) SetY(v int) {
 	g.Y = &v
 }
 
+// GetEndTime returns the EndTime field if non-nil, zero value otherwise.
+func (h *HostActionMute) GetEndTime() string {
+	if h == nil || h.EndTime == nil {
+		return ""
+	}
+	return *h.EndTime
+}
+
+// GetOkEndTime returns a tuple with the EndTime field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostActionMute) GetEndTimeOk() (string, bool) {
+	if h == nil || h.EndTime == nil {
+		return "", false
+	}
+	return *h.EndTime, true
+}
+
+// HasEndTime returns a boolean if a field has been set.
+func (h *HostActionMute) HasEndTime() bool {
+	if h != nil && h.EndTime != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEndTime allocates a new h.EndTime and returns the pointer to it.
+func (h *HostActionMute) SetEndTime(v string) {
+	h.EndTime = &v
+}
+
+// GetMessage returns the Message field if non-nil, zero value otherwise.
+func (h *HostActionMute) GetMessage() string {
+	if h == nil || h.Message == nil {
+		return ""
+	}
+	return *h.Message
+}
+
+// GetOkMessage returns a tuple with the Message field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostActionMute) GetMessageOk() (string, bool) {
+	if h == nil || h.Message == nil {
+		return "", false
+	}
+	return *h.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (h *HostActionMute) HasMessage() bool {
+	if h != nil && h.Message != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage allocates a new h.Message and returns the pointer to it.
+func (h *HostActionMute) SetMessage(v string) {
+	h.Message = &v
+}
+
+// GetOverride returns the Override field if non-nil, zero value otherwise.
+func (h *HostActionMute) GetOverride() bool {
+	if h == nil || h.Override == nil {
+		return false
+	}
+	return *h.Override
+}
+
+// GetOkOverride returns a tuple with the Override field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostActionMute) GetOverrideOk() (bool, bool) {
+	if h == nil || h.Override == nil {
+		return false, false
+	}
+	return *h.Override, true
+}
+
+// HasOverride returns a boolean if a field has been set.
+func (h *HostActionMute) HasOverride() bool {
+	if h != nil && h.Override != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverride allocates a new h.Override and returns the pointer to it.
+func (h *HostActionMute) SetOverride(v bool) {
+	h.Override = &v
+}
+
 // GetHeight returns the Height field if non-nil, zero value otherwise.
 func (h *HostMapWidget) GetHeight() int {
 	if h == nil || h.Height == nil {
