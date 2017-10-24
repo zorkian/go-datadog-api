@@ -46,11 +46,17 @@ func (client *Client) redactError(err error) error {
 	if err == nil {
 		return nil
 	}
-	errString := strings.Replace(err.Error(), client.apiKey, "redacted", -1)
-	errString = strings.Replace(errString, client.appKey, "redacted", -1)
+	errString := err.Error()
+
+	if len(client.apiKey) > 0 {
+		errString = strings.Replace(errString, client.apiKey, "redacted", -1)
+	}
+	if len(client.appKey) > 0 {
+		errString = strings.Replace(errString, client.appKey, "redacted", -1)
+	}
 
 	// Return original error if no replacements were made to keep the original,
-	// possibly more useful error type information.
+	// probably more useful error type information.
 	if errString == err.Error() {
 		return err
 	}
