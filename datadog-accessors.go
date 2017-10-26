@@ -11700,6 +11700,37 @@ func (u *User) SetHandle(v string) {
 	u.Handle = &v
 }
 
+// GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+func (u *User) GetIsAdmin() bool {
+	if u == nil || u.IsAdmin == nil {
+		return false
+	}
+	return *u.IsAdmin
+}
+
+// GetOkIsAdmin returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (u *User) GetIsAdminOk() (bool, bool) {
+	if u == nil || u.IsAdmin == nil {
+		return false, false
+	}
+	return *u.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (u *User) HasIsAdmin() bool {
+	if u != nil && u.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin allocates a new u.IsAdmin and returns the pointer to it.
+func (u *User) SetIsAdmin(v bool) {
+	u.IsAdmin = &v
+}
+
 // GetName returns the Name field if non-nil, zero value otherwise.
 func (u *User) GetName() string {
 	if u == nil || u.Name == nil {
