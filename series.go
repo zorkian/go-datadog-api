@@ -17,12 +17,13 @@ type DataPoint [2]float64
 // Metric represents a collection of data points that we might send or receive
 // on one single metric line.
 type Metric struct {
-	Metric string      `json:"metric,omitempty"`
-	Points []DataPoint `json:"points,omitempty"`
-	Type   string      `json:"type,omitempty"`
-	Host   string      `json:"host,omitempty"`
-	Tags   []string    `json:"tags,omitempty"`
-	Unit   string	   `json:"unit,omitempty"`
+	Metric         string      `json:"metric,omitempty"`
+	Points         []DataPoint `json:"points,omitempty"`
+	Type           string      `json:"type,omitempty"`
+	Host           string      `json:"host,omitempty"`
+	Tags           []string    `json:"tags,omitempty"`
+	Unit           string      `json:"unit,omitempty"`
+	SourceTypeName string      `json:"source_type_name,omitempty"`
 }
 
 // Series represents a collection of data points we get when we query for timeseries data
