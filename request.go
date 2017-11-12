@@ -89,6 +89,8 @@ func (client *Client) doJsonRequest(method, api string,
 	// If they don't care about the body, then we don't care to give them one,
 	// so bail out because we're done.
 	if out == nil {
+		// read the response body so http conn can be reused immediately
+		io.Copy(ioutil.Discard, resp.Body)
 		return nil
 	}
 
