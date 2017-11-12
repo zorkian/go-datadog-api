@@ -1,6 +1,7 @@
 [![GoDoc](http://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/gopkg.in/zorkian/go-datadog-api.v2)
 [![Build
 status](https://travis-ci.org/zorkian/go-datadog-api.svg)](https://travis-ci.org/zorkian/go-datadog-api)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zorkian/go-datadog-api)](https://goreportcard.com/report/github.com/zorkian/go-datadog-api)
 
 # Datadog API in Go
 
