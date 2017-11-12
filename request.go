@@ -29,7 +29,7 @@ func (client *Client) uriForAPI(api string) (string, error) {
 	if baseUrl == "" {
 		baseUrl = "https://app.datadoghq.com"
 	}
-	apiBase , err := url.Parse(baseUrl + "/api" + api)
+	apiBase, err := url.Parse(baseUrl + "/api" + api)
 	if err != nil {
 		return "", err
 	}
@@ -44,28 +44,10 @@ func (client *Client) uriForAPI(api string) (string, error) {
 // some JSON result which we unmarshal into the passed interface.
 func (client *Client) doJsonRequest(method, api string,
 	reqbody, out interface{}) error {
-	// Handle the body if they gave us one.
-	var bodyreader io.Reader
-	if method != "GET" && reqbody != nil {
-		bjson, err := json.Marshal(reqbody)
-		if err != nil {
-			return err
-		}
-		bodyreader = bytes.NewReader(bjson)
-	}
-
-	apiUrlStr, err := client.uriForAPI(api)
+	req, err := client.createRequest(method, api, reqbody)
 	if err != nil {
 		return err
 	}
-	req, err := http.NewRequest(method, apiUrlStr, bodyreader)
-	if err != nil {
-		return err
-	}
-	if bodyreader != nil {
-		req.Header.Add("Content-Type", "application/json")
-	}
-
 	// Perform the request and retry it if it's not a POST or PUT request
 	var resp *http.Response
 	if method == "POST" || method == "PUT" {
@@ -103,10 +85,7 @@ func (client *Client) doJsonRequest(method, api string,
 		body = []byte{'{', '}'}
 	}
 
-	if err := json.Unmarshal(body, &out); err != nil {
-		return err
-	}
-	return nil
+	return json.Unmarshal(body, &out)
 }
 
 // doRequestWithRetries performs an HTTP request repeatedly for maxTime or until
@@ -154,4 +133,29 @@ func (client *Client) doRequestWithRetries(req *http.Request, maxTime time.Durat
 	err = backoff.Retry(operation, bo)
 
 	return resp, err
+}
+
+func (client *Client) createRequest(method, api string, reqbody interface{}) (*http.Request, error) {
+	// Handle the body if they gave us one.
+	var bodyReader io.Reader
+	if method != "GET" && reqbody != nil {
+		bjson, err := json.Marshal(reqbody)
+		if err != nil {
+			return nil, err
+		}
+		bodyReader = bytes.NewReader(bjson)
+	}
+
+	apiUrlStr, err := client.uriForAPI(api)
+	if err != nil {
+		return nil, err
+	}
+	req, err := http.NewRequest(method, apiUrlStr, bodyReader)
+	if err != nil {
+		return nil, err
+	}
+	if bodyReader != nil {
+		req.Header.Add("Content-Type", "application/json")
+	}
+	return req, nil
 }
