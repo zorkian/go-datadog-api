@@ -70,6 +70,26 @@ func TestMonitorGet(t *testing.T) {
 	}
 }
 
+func TestMonitorGetWithoutNoDataTimeframe(t *testing.T) {
+	monitors, err := client.GetMonitors()
+	if err != nil {
+		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
+	}
+	num := len(monitors)
+
+	monitor := createTestMonitorWithoutNoDataTimeframe(t)
+	defer cleanUpMonitor(t, *monitor.Id)
+
+	monitors, err = client.GetMonitors()
+	if err != nil {
+		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
+	}
+
+	if num+1 != len(monitors) {
+		t.Fatalf("Number of monitors didn't match expected: %d != %d", len(monitors), num+1)
+	}
+}
+
 func TestMonitorMuteUnmute(t *testing.T) {
 	monitor := createTestMonitor(t)
 	defer cleanUpMonitor(t, *monitor.Id)
@@ -135,8 +155,39 @@ func getTestMonitor() *datadog.Monitor {
 	}
 }
 
+func getTestMonitorWithoutNoDataTimeframe() *datadog.Monitor {
+
+	o := &datadog.Options{
+		NotifyNoData:      datadog.Bool(false),
+		NotifyAudit:       datadog.Bool(false),
+		Locked:            datadog.Bool(false),
+		NewHostDelay:      datadog.Int(600),
+		RequireFullWindow: datadog.Bool(true),
+		Silenced:          map[string]int{},
+	}
+
+	return &datadog.Monitor{
+		Message: datadog.String("Test message"),
+		Query:   datadog.String("avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8"),
+		Name:    datadog.String("Test monitor"),
+		Options: o,
+		Type:    datadog.String("metric alert"),
+		Tags:    make([]string, 0),
+	}
+}
+
 func createTestMonitor(t *testing.T) *datadog.Monitor {
 	monitor := getTestMonitor()
+	monitor, err := client.CreateMonitor(monitor)
+	if err != nil {
+		t.Fatalf("Creating a monitor failed when it shouldn't: %s", err)
+	}
+
+	return monitor
+}
+
+func createTestMonitorWithoutNoDataTimeframe(t *testing.T) *datadog.Monitor {
+	monitor := getTestMonitorWithoutNoDataTimeframe()
 	monitor, err := client.CreateMonitor(monitor)
 	if err != nil {
 		t.Fatalf("Creating a monitor failed when it shouldn't: %s", err)
