@@ -15,14 +15,14 @@ func TestDowntimeCreateAndDelete(t *testing.T) {
 	expected := getTestDowntime()
 	// create the downtime and compare it
 	actual := createTestDowntime(t)
-	defer cleanUpDowntime(t, *actual.Id)
+	defer cleanUpDowntime(t, *actual.ID)
 
 	// Set ID of our original struct to zero so we can easily compare the results
-	expected.SetId(actual.GetId())
+	expected.SetID(actual.GetID())
 
 	assert.Equal(t, expected, actual)
 
-	actual, err := client.GetDowntime(*actual.Id)
+	actual, err := client.GetDowntime(*actual.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a downtime failed when it shouldn't: (%s)", err)
 	}
@@ -31,22 +31,22 @@ func TestDowntimeCreateAndDelete(t *testing.T) {
 
 func TestDowntimeLinkedToMonitorCreateAndDelete(t *testing.T) {
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, monitor.GetId())
+	defer cleanUpMonitor(t, monitor.GetID())
 
 	expected := getTestDowntime()
-	expected.SetMonitorId(monitor.GetId())
+	expected.SetMonitorID(monitor.GetID())
 
 	downtime, err := client.CreateDowntime(expected)
-	defer cleanUpDowntime(t, downtime.GetId())
+	defer cleanUpDowntime(t, downtime.GetID())
 	if err != nil {
 		t.Fatalf("Creating a downtime failed when it shouldn't: %s", err)
 	}
 
-	expected.SetId(downtime.GetId())
+	expected.SetID(downtime.GetID())
 
 	assert.Equal(t, expected, downtime)
 
-	actual, err := client.GetDowntime(downtime.GetId())
+	actual, err := client.GetDowntime(downtime.GetID())
 	if err != nil {
 		t.Fatalf("Retrieving a downtime failed when it shouldn't: (%s)", err)
 	}
@@ -58,13 +58,13 @@ func TestDowntimeUpdate(t *testing.T) {
 	downtime := createTestDowntime(t)
 
 	downtime.Scope = []string{"env:downtime_test", "env:downtime_test2"}
-	defer cleanUpDowntime(t, *downtime.Id)
+	defer cleanUpDowntime(t, *downtime.ID)
 
 	if err := client.UpdateDowntime(downtime); err != nil {
 		t.Fatalf("Updating a downtime failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetDowntime(*downtime.Id)
+	actual, err := client.GetDowntime(*downtime.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a downtime failed when it shouldn't: %s", err)
 	}
@@ -81,7 +81,7 @@ func TestDowntimeGet(t *testing.T) {
 	num := len(downtimes)
 
 	downtime := createTestDowntime(t)
-	defer cleanUpDowntime(t, *downtime.Id)
+	defer cleanUpDowntime(t, *downtime.ID)
 
 	downtimes, err = client.GetDowntimes()
 	if err != nil {

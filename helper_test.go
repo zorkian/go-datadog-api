@@ -54,7 +54,7 @@ func TestHelperIntSet(t *testing.T) {
 	// Assert that we were able to get the integer from a pointer field
 	m := getTestMonitor()
 
-	if attr, ok := datadog.GetIntOk(m.Id); ok {
+	if attr, ok := datadog.GetIntOk(m.ID); ok {
 		assert.Equal(t, 1, attr)
 	}
 }
@@ -71,7 +71,7 @@ func TestHelperGetJsonNumberSet(t *testing.T) {
 	// Assert that we were able to get a JSON Number from a pointer field
 	m := getTestMonitor()
 
-	if attr, ok := datadog.GetJsonNumberOk(m.Options.Thresholds.Ok); ok {
+	if attr, ok := datadog.GetJSONNumberOk(m.Options.Thresholds.Ok); ok {
 		assert.Equal(t, json.Number(2), attr)
 	}
 }
@@ -80,7 +80,7 @@ func TestHelperGetJsonNumberNotSet(t *testing.T) {
 	// Assert GetJsonNumber returned false for an unset value
 	m := getTestMonitor()
 
-	_, ok := datadog.GetJsonNumberOk(m.Options.Thresholds.Warning)
+	_, ok := datadog.GetJSONNumberOk(m.Options.Thresholds.Warning)
 
 	assert.Equal(t, false, ok)
 }
@@ -93,14 +93,14 @@ func getTestMonitor() *datadog.Monitor {
 		NoDataTimeframe: 60,
 		Silenced:        map[string]int{},
 		Thresholds: &datadog.ThresholdCount{
-			Ok: datadog.JsonNumber(json.Number(2)),
+			Ok: datadog.JSONNumber(json.Number(2)),
 		},
 	}
 
 	return &datadog.Monitor{
 		Query:   datadog.String("avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8"),
 		Name:    datadog.String("Test monitor"),
-		Id:      datadog.Int(1),
+		ID:      datadog.Int(1),
 		Options: o,
 		Type:    datadog.String("metric alert"),
 		Tags:    make([]string, 0),

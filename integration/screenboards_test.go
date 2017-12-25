@@ -17,12 +17,12 @@ func TestScreenboardCreateAndDelete(t *testing.T) {
 		t.Fatalf("Creating a screenboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpScreenboard(t, *actual.Id)
+	defer cleanUpScreenboard(t, *actual.ID)
 
 	assertScreenboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetScreenboard(*actual.Id)
+	actual, err = client.GetScreenboard(*actual.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed when it shouldn't. (%s)", err)
 	}
@@ -39,17 +39,17 @@ func TestScreenboardShareAndRevoke(t *testing.T) {
 		t.Fatalf("Creating a screenboard failed when it shouldn't: %s", err)
 	}
 
-	defer cleanUpScreenboard(t, *actual.Id)
+	defer cleanUpScreenboard(t, *actual.ID)
 
 	// share screenboard and verify it was shared
 	var response datadog.ScreenShareResponse
-	err = client.ShareScreenboard(*actual.Id, &response)
+	err = client.ShareScreenboard(*actual.ID, &response)
 	if err != nil {
 		t.Fatalf("Failed to share screenboard: %s", err)
 	}
 
 	// revoke screenboard
-	err = client.RevokeScreenboard(*actual.Id)
+	err = client.RevokeScreenboard(*actual.ID)
 	if err != nil {
 		t.Fatalf("Failed to revoke sharing of screenboard: %s", err)
 	}
@@ -57,14 +57,14 @@ func TestScreenboardShareAndRevoke(t *testing.T) {
 
 func TestScreenboardUpdate(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	board.Title = datadog.String("___New-Test-Board___")
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed when it shouldn't: %s", err)
 	}
@@ -81,7 +81,7 @@ func TestScreenboardGet(t *testing.T) {
 	num := len(boards)
 
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	boards, err = client.GetScreenboards()
 	if err != nil {

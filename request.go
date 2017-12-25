@@ -26,11 +26,11 @@ import (
 // uriForAPI is to be called with something like "/v1/events" and it will give
 // the proper request URI to be posted to.
 func (client *Client) uriForAPI(api string) (string, error) {
-	baseUrl := os.Getenv("DATADOG_HOST")
-	if baseUrl == "" {
-		baseUrl = "https://app.datadoghq.com"
+	baseURL := os.Getenv("DATADOG_HOST")
+	if baseURL == "" {
+		baseURL = "https://app.datadoghq.com"
 	}
-	apiBase, err := url.Parse(baseUrl + "/api" + api)
+	apiBase, err := url.Parse(baseURL + "/api" + api)
 	if err != nil {
 		return "", err
 	}
@@ -63,21 +63,21 @@ func (client *Client) redactError(err error) error {
 	return fmt.Errorf("%s", errString)
 }
 
-// doJsonRequest is the simplest type of request: a method on a URI that
+// doJSONRequest is the simplest type of request: a method on a URI that
 // returns some JSON result which we unmarshal into the passed interface. It
-// wraps doJsonRequestUnredacted to redact api and application keys from
+// wraps doJSONRequestUnredacted to redact api and application keys from
 // errors.
-func (client *Client) doJsonRequest(method, api string,
+func (client *Client) doJSONRequest(method, api string,
 	reqbody, out interface{}) error {
-	if err := client.doJsonRequestUnredacted(method, api, reqbody, out); err != nil {
+	if err := client.doJSONRequestUnredacted(method, api, reqbody, out); err != nil {
 		return client.redactError(err)
 	}
 	return nil
 }
 
-// doJsonRequestUnredacted is the simplest type of request: a method on a URI that returns
+// doJSONRequestUnredacted is the simplest type of request: a method on a URI that returns
 // some JSON result which we unmarshal into the passed interface.
-func (client *Client) doJsonRequestUnredacted(method, api string,
+func (client *Client) doJSONRequestUnredacted(method, api string,
 	reqbody, out interface{}) error {
 	req, err := client.createRequest(method, api, reqbody)
 	if err != nil {
@@ -87,7 +87,7 @@ func (client *Client) doJsonRequestUnredacted(method, api string,
 	// Perform the request and retry it if it's not a POST or PUT request
 	var resp *http.Response
 	if method == "POST" || method == "PUT" {
-		resp, err = client.HttpClient.Do(req)
+		resp, err = client.HTTPClient.Do(req)
 	} else {
 		resp, err = client.doRequestWithRetries(req, client.RetryTimeout)
 	}
@@ -152,7 +152,7 @@ func (client *Client) doRequestWithRetries(req *http.Request, maxTime time.Durat
 			req.Body = ioutil.NopCloser(r)
 		}
 
-		resp, err = client.HttpClient.Do(req)
+		resp, err = client.HTTPClient.Do(req)
 		if err != nil {
 			return err
 		}
@@ -184,11 +184,11 @@ func (client *Client) createRequest(method, api string, reqbody interface{}) (*h
 		bodyReader = bytes.NewReader(bjson)
 	}
 
-	apiUrlStr, err := client.uriForAPI(api)
+	apiURLStr, err := client.uriForAPI(api)
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequest(method, apiUrlStr, bodyReader)
+	req, err := http.NewRequest(method, apiURLStr, bodyReader)
 	if err != nil {
 		return nil, err
 	}

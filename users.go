@@ -8,6 +8,7 @@
 
 package datadog
 
+// User represents the credentials of a user
 type User struct {
 	Handle   *string `json:"handle,omitempty"`
 	Email    *string `json:"email,omitempty"`
@@ -25,12 +26,12 @@ type reqInviteUsers struct {
 
 // InviteUsers takes a slice of email addresses and sends invitations to them.
 func (client *Client) InviteUsers(emails []string) error {
-	return client.doJsonRequest("POST", "/v1/invite_users",
+	return client.doJSONRequest("POST", "/v1/invite_users",
 		reqInviteUsers{Emails: emails}, nil)
 }
 
 // CreateUser creates an user account for an email address
-func (self *Client) CreateUser(handle, name *string) (*User, error) {
+func (client *Client) CreateUser(handle, name *string) (*User, error) {
 	in := struct {
 		Handle *string `json:"handle"`
 		Name   *string `json:"name"`
@@ -42,7 +43,7 @@ func (self *Client) CreateUser(handle, name *string) (*User, error) {
 	out := struct {
 		*User `json:"user"`
 	}{}
-	if err := self.doJsonRequest("POST", "/v1/user", in, &out); err != nil {
+	if err := client.doJSONRequest("POST", "/v1/user", in, &out); err != nil {
 		return nil, err
 	}
 	return out.User, nil
@@ -57,7 +58,7 @@ type usersData struct {
 func (client *Client) GetUsers() (users []User, err error) {
 	var udata usersData
 	uri := "/v1/user"
-	err = client.doJsonRequest("GET", uri, nil, &udata)
+	err = client.doJSONRequest("GET", uri, nil, &udata)
 	users = udata.Users
 	return
 }
@@ -71,7 +72,7 @@ type userData struct {
 func (client *Client) GetUser(handle string) (user User, err error) {
 	var udata userData
 	uri := "/v1/user/" + handle
-	err = client.doJsonRequest("GET", uri, nil, &udata)
+	err = client.doJSONRequest("GET", uri, nil, &udata)
 	user = udata.User
 	return
 }
@@ -80,11 +81,11 @@ func (client *Client) GetUser(handle string) (user User, err error) {
 // and returns an error if the update failed
 func (client *Client) UpdateUser(user User) error {
 	uri := "/v1/user/" + *user.Handle
-	return client.doJsonRequest("PUT", uri, user, nil)
+	return client.doJSONRequest("PUT", uri, user, nil)
 }
 
 // DeleteUser deletes a user and returns an error if deletion failed
 func (client *Client) DeleteUser(handle string) error {
 	uri := "/v1/user/" + handle
-	return client.doJsonRequest("DELETE", uri, nil, nil)
+	return client.doJSONRequest("DELETE", uri, nil, nil)
 }

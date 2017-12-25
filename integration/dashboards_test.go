@@ -19,12 +19,12 @@ func TestDashboardCreateAndDelete(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, *actual.Id)
+	defer cleanUpDashboard(t, *actual.ID)
 
 	assertDashboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(*actual.Id)
+	actual, err = client.GetDashboard(*actual.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
@@ -40,12 +40,12 @@ func TestDashboardCreateAndDeleteAdvancesTimeseries(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, *actual.Id)
+	defer cleanUpDashboard(t, *actual.ID)
 
 	assertDashboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(*actual.Id)
+	actual, err = client.GetDashboard(*actual.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
@@ -60,14 +60,14 @@ func TestDashboardUpdate(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, *board.Id)
+	defer cleanUpDashboard(t, *board.ID)
 	board.Title = datadog.String("___New-Test-Board___")
 
 	if err := client.UpdateDashboard(board); err != nil {
 		t.Fatalf("Updating a dashboard failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetDashboard(*board.Id)
+	actual, err := client.GetDashboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't: %s", err)
 	}
@@ -83,7 +83,7 @@ func TestDashboardGet(t *testing.T) {
 
 	num := len(boards)
 	board := createTestDashboard(t)
-	defer cleanUpDashboard(t, *board.Id)
+	defer cleanUpDashboard(t, *board.ID)
 
 	boards, err = client.GetDashboards()
 	if err != nil {
@@ -103,12 +103,12 @@ func TestDashboardCreateWithCustomGraph(t *testing.T) {
 		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
 	}
 
-	defer cleanUpDashboard(t, *actual.Id)
+	defer cleanUpDashboard(t, *actual.ID)
 
 	assertDashboardEquals(t, actual, expected)
 
 	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(*actual.Id)
+	actual, err = client.GetDashboard(*actual.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
@@ -199,15 +199,15 @@ func createCustomGraph() []datadog.Graph {
 		ConditionalFormats: []datadog.DashboardConditionalFormat{
 			{
 				Comparator: datadog.String(">"),
-				Value:      datadog.JsonNumber(json.Number("99.9")),
+				Value:      datadog.JSONNumber(json.Number("99.9")),
 				Palette:    datadog.String("white_on_green")},
 			{
 				Comparator: datadog.String(">="),
-				Value:      datadog.JsonNumber(json.Number("99")),
+				Value:      datadog.JSONNumber(json.Number("99")),
 				Palette:    datadog.String("white_on_yellow")},
 			{
 				Comparator: datadog.String("<"),
-				Value:      datadog.JsonNumber(json.Number("99")),
+				Value:      datadog.JSONNumber(json.Number("99")),
 				Palette:    datadog.String("white_on_red")}}})
 
 	graph := datadog.Graph{

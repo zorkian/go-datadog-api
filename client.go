@@ -23,7 +23,7 @@ type Client struct {
 	apiKey, appKey string
 
 	//The Http Client that is used to make requests
-	HttpClient   *http.Client
+	HTTPClient   *http.Client
 	RetryTimeout time.Duration
 }
 
@@ -39,7 +39,7 @@ func NewClient(apiKey, appKey string) *Client {
 	return &Client{
 		apiKey:       apiKey,
 		appKey:       appKey,
-		HttpClient:   http.DefaultClient,
+		HTTPClient:   http.DefaultClient,
 		RetryTimeout: time.Duration(60 * time.Second),
 	}
 }
@@ -51,10 +51,10 @@ func (c *Client) SetKeys(apiKey, appKey string) {
 }
 
 // Validate checks if the API and application keys are valid.
-func (client *Client) Validate() (bool, error) {
+func (c *Client) Validate() (bool, error) {
 	var bodyreader io.Reader
 	var out valid
-	uri, err := client.uriForAPI("/v1/validate")
+	uri, err := c.uriForAPI("/v1/validate")
 	if err != nil {
 		return false, err
 	}
@@ -68,7 +68,7 @@ func (client *Client) Validate() (bool, error) {
 	}
 
 	var resp *http.Response
-	resp, err = client.HttpClient.Do(req)
+	resp, err = c.HTTPClient.Do(req)
 	if err != nil {
 		return false, err
 	}

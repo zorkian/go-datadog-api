@@ -28,7 +28,7 @@ func GetBool(v *bool) (bool, bool) {
 // to store v and returns a pointer to it.
 func Int(v int) *int { return &v }
 
-// GetInt is a helper routine that returns a boolean representing
+// GetIntOk is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
 func GetIntOk(v *int) (int, bool) {
 	if v != nil {
@@ -42,7 +42,7 @@ func GetIntOk(v *int) (int, bool) {
 // to store v and returns a pointer to it.
 func String(v string) *string { return &v }
 
-// GetString is a helper routine that returns a boolean representing
+// GetStringOk is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
 func GetStringOk(v *string) (string, bool) {
 	if v != nil {
@@ -52,13 +52,13 @@ func GetStringOk(v *string) (string, bool) {
 	return "", false
 }
 
-// JsonNumber is a helper routine that allocates a new string value
+// JSONNumber is a helper routine that allocates a new string value
 // to store v and returns a pointer to it.
-func JsonNumber(v json.Number) *json.Number { return &v }
+func JSONNumber(v json.Number) *json.Number { return &v }
 
-// GetJsonNumber is a helper routine that returns a boolean representing
+// GetJSONNumberOk is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
-func GetJsonNumberOk(v *json.Number) (json.Number, bool) {
+func GetJSONNumberOk(v *json.Number) (json.Number, bool) {
 	if v != nil {
 		return *v, true
 	}

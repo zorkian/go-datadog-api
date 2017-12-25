@@ -8,11 +8,11 @@ import (
 )
 
 func Jsonify(v interface{}) (string, error) {
-	if b, err := json.MarshalIndent(v, "", " "); err != nil {
+	b, err := json.MarshalIndent(v, "", " ")
+	if err != nil {
 		return "", err
-	} else {
-		return string(b), nil
 	}
+	return string(b), nil
 }
 
 func init() {
@@ -24,11 +24,11 @@ func TestSnapshot(t *testing.T) {
 	end := time.Now().Unix()
 	start := end - 3600
 
-	query_s := "avg:system.mem.used{*}"
-	url, err := client.Snapshot(query_s, time.Unix(start, 0), time.Unix(end, 0), "")
+	q := "avg:system.mem.used{*}"
+	url, err := client.Snapshot(q, time.Unix(start, 0), time.Unix(end, 0), "")
 
 	if err != nil {
-		t.Fatalf("Couldn't create snapshot for query(%s): %s", query_s, err)
+		t.Fatalf("Couldn't create snapshot for query(%s): %s", q, err)
 	}
 
 	fmt.Printf("query snapshot url: %s\n", url)
@@ -42,17 +42,17 @@ func TestSnapshotGeneric(t *testing.T) {
 	// create new graph def
 	graphs := createCustomGraph()
 
-	graph_def, err := Jsonify(graphs[0].Definition)
+	g, err := Jsonify(graphs[0].Definition)
 	if err != nil {
-		t.Fatalf("Couldn't create graph_def: %s", err)
+		t.Fatalf("Couldn't create graphDef: %s", err)
 	}
 
-	options := map[string]string{"graph_def": graph_def}
+	options := map[string]string{"graphDef": g}
 
 	url, err := client.SnapshotGeneric(options, time.Unix(start, 0), time.Unix(end, 0))
 
 	if err != nil {
-		t.Fatalf("Couldn't create snapshot from graph_def(%s): %s", graph_def, err)
+		t.Fatalf("Couldn't create snapshot from graphDef(%s): %s", g, err)
 	}
 
 	fmt.Printf("Graph def snapshot url: %s\n", url)
