@@ -15,16 +15,16 @@ func TestMonitorCreateAndDelete(t *testing.T) {
 	expected := getTestMonitor()
 	// create the monitor and compare it
 	actual := createTestMonitor(t)
-	defer cleanUpMonitor(t, actual.GetId())
+	defer cleanUpMonitor(t, actual.GetID())
 
 	// Set ID of our original struct to zero so we can easily compare the results
-	expected.SetId(actual.GetId())
+	expected.SetID(actual.GetID())
 	// Set Creator to the original struct as we can't predict details of the creator
 	expected.SetCreator(actual.GetCreator())
 
 	assert.Equal(t, expected, actual)
 
-	actual, err := client.GetMonitor(*actual.Id)
+	actual, err := client.GetMonitor(*actual.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a monitor failed when it shouldn't: (%s)", err)
 	}
@@ -34,14 +34,14 @@ func TestMonitorCreateAndDelete(t *testing.T) {
 func TestMonitorUpdate(t *testing.T) {
 
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, *monitor.Id)
+	defer cleanUpMonitor(t, *monitor.ID)
 
 	monitor.SetName("___New-Test-Monitor___")
 	if err := client.UpdateMonitor(monitor); err != nil {
 		t.Fatalf("Updating a monitor failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetMonitor(*monitor.Id)
+	actual, err := client.GetMonitor(*monitor.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a monitor failed when it shouldn't: %s", err)
 	}
@@ -77,7 +77,7 @@ func TestMonitorGet(t *testing.T) {
 	num := len(monitors)
 
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, *monitor.Id)
+	defer cleanUpMonitor(t, *monitor.ID)
 
 	monitors, err = client.GetMonitors()
 	if err != nil {
@@ -97,7 +97,7 @@ func TestMonitorGetWithoutNoDataTimeframe(t *testing.T) {
 	num := len(monitors)
 
 	monitor := createTestMonitorWithoutNoDataTimeframe(t)
-	defer cleanUpMonitor(t, *monitor.Id)
+	defer cleanUpMonitor(t, *monitor.ID)
 
 	monitors, err = client.GetMonitors()
 	if err != nil {
@@ -111,16 +111,16 @@ func TestMonitorGetWithoutNoDataTimeframe(t *testing.T) {
 
 func TestMonitorMuteUnmute(t *testing.T) {
 	monitor := createTestMonitor(t)
-	defer cleanUpMonitor(t, *monitor.Id)
+	defer cleanUpMonitor(t, *monitor.ID)
 
 	// Mute
-	err := client.MuteMonitor(*monitor.Id)
+	err := client.MuteMonitor(*monitor.ID)
 	if err != nil {
 		t.Fatalf("Failed to mute monitor")
 
 	}
 
-	monitor, err = client.GetMonitor(*monitor.Id)
+	monitor, err = client.GetMonitor(*monitor.ID)
 	if err != nil {
 		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
 	}
@@ -130,13 +130,13 @@ func TestMonitorMuteUnmute(t *testing.T) {
 	assert.Equal(t, 0, monitor.Options.Silenced["*"])
 
 	// Unmute
-	err = client.UnmuteMonitor(*monitor.Id)
+	err = client.UnmuteMonitor(*monitor.ID)
 	if err != nil {
 		t.Fatalf("Failed to unmute monitor")
 	}
 
 	// Update remote state
-	monitor, err = client.GetMonitor(*monitor.Id)
+	monitor, err = client.GetMonitor(*monitor.ID)
 	if err != nil {
 		t.Fatalf("Retrieving monitors failed when it shouldn't: %s", err)
 	}

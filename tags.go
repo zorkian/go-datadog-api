@@ -28,7 +28,7 @@ func (client *Client) GetTags(source string) (TagMap, error) {
 	if source != "" {
 		uri += "?source=" + source
 	}
-	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
+	if err := client.doJSONRequest("GET", uri, nil, &out); err != nil {
 		return nil, err
 	}
 	return *out.Tags, nil
@@ -41,7 +41,7 @@ func (client *Client) GetHostTags(host, source string) ([]string, error) {
 	if source != "" {
 		uri += "?source=" + source
 	}
-	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
+	if err := client.doJSONRequest("GET", uri, nil, &out); err != nil {
 		return nil, err
 	}
 	return out.Tags, nil
@@ -55,7 +55,7 @@ func (client *Client) GetHostTagsBySource(host, source string) (TagMap, error) {
 	if source != "" {
 		uri += "&source=" + source
 	}
-	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
+	if err := client.doJSONRequest("GET", uri, nil, &out); err != nil {
 		return nil, err
 	}
 	return *out.Tags, nil
@@ -69,7 +69,7 @@ func (client *Client) AddTagsToHost(host, source string, tags []string) error {
 	if source != "" {
 		uri += "?source=" + source
 	}
-	return client.doJsonRequest("POST", uri, reqGetHostTags{Tags: tags}, nil)
+	return client.doJSONRequest("POST", uri, reqGetHostTags{Tags: tags}, nil)
 }
 
 // UpdateHostTags overwrites existing tags for a host, allowing you to specify
@@ -79,7 +79,7 @@ func (client *Client) UpdateHostTags(host, source string, tags []string) error {
 	if source != "" {
 		uri += "?source=" + source
 	}
-	return client.doJsonRequest("PUT", uri, reqGetHostTags{Tags: tags}, nil)
+	return client.doJSONRequest("PUT", uri, reqGetHostTags{Tags: tags}, nil)
 }
 
 // RemoveHostTags removes all tags from a host for the given source. If none is
@@ -89,5 +89,5 @@ func (client *Client) RemoveHostTags(host, source string) error {
 	if source != "" {
 		uri += "?source=" + source
 	}
-	return client.doJsonRequest("DELETE", uri, nil, nil)
+	return client.doJSONRequest("DELETE", uri, nil, nil)
 }

@@ -22,7 +22,7 @@ type Client struct {
 	apiKey, appKey, baseUrl string
 
 	//The Http Client that is used to make requests
-	HttpClient   *http.Client
+	HTTPClient   *http.Client
 	RetryTimeout time.Duration
 }
 

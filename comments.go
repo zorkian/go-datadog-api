@@ -14,12 +14,12 @@ import (
 
 // Comment is a special form of event that appears in a stream.
 type Comment struct {
-	Id        *int    `json:"id,omitempty"`
-	RelatedId *int    `json:"related_event_id,omitempty"`
+	ID        *int    `json:"id,omitempty"`
+	RelatedID *int    `json:"related_event_id,omitempty"`
 	Handle    *string `json:"handle,omitempty"`
 	Message   *string `json:"message,omitempty"`
 	Resource  *string `json:"resource,omitempty"`
-	Url       *string `json:"url,omitempty"`
+	URL       *string `json:"url,omitempty"`
 }
 
 // reqComment is the container for receiving commenst.
@@ -67,6 +67,6 @@ func (client *Client) EditComment(id int, handle, message string) error {
 
 // DeleteComment does exactly what you expect.
 func (client *Client) DeleteComment(id int) error {
-	return client.doJsonRequest("DELETE", fmt.Sprintf("/v1/comments/%d", id),
+	return client.doJSONRequest("DELETE", fmt.Sprintf("/v1/comments/%d", id),
 		nil, nil)
 }

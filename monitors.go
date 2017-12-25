@@ -16,6 +16,7 @@ import (
 	"strings"
 )
 
+// ThresholdCount represents an object of various threshold settings applicable to metric alerts.
 type ThresholdCount struct {
 	Ok               *json.Number `json:"ok,omitempty"`
 	Critical         *json.Number `json:"critical,omitempty"`
@@ -25,8 +26,10 @@ type ThresholdCount struct {
 	WarningRecovery  *json.Number `json:"warning_recovery,omitempty"`
 }
 
+// NoDataTimeframe refers to the number of minutes before a monitor will notify when data stops reporting.
 type NoDataTimeframe int
 
+// UnmarshalJSON unmarshals the JSON object into the NoDataTimeframe type.
 func (tf *NoDataTimeframe) UnmarshalJSON(data []byte) error {
 	s := string(data)
 	if s == "false" || s == "null" {
@@ -41,6 +44,7 @@ func (tf *NoDataTimeframe) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// Options represents a dictionary of settings for the monitor.
 type Options struct {
 	NoDataTimeframe   NoDataTimeframe `json:"no_data_timeframe,omitempty"`
 	NotifyAudit       *bool           `json:"notify_audit,omitempty"`
@@ -61,7 +65,7 @@ type Options struct {
 // notifying your team when some defined threshold is exceeded
 type Monitor struct {
 	Creator *Creator `json:"creator,omitempty"`
-	Id      *int     `json:"id,omitempty"`
+	ID      *int     `json:"id,omitempty"`
 	Type    *string  `json:"type,omitempty"`
 	Query   *string  `json:"query,omitempty"`
 	Name    *string  `json:"name,omitempty"`
@@ -74,7 +78,7 @@ type Monitor struct {
 type Creator struct {
 	Email  *string `json:"email,omitempty"`
 	Handle *string `json:"handle,omitempty"`
-	Id     *int    `json:"id,omitempty"`
+	ID     *int    `json:"id,omitempty"`
 	Name   *string `json:"name,omitempty"`
 }
 
@@ -88,7 +92,7 @@ type reqMonitors struct {
 func (client *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 	var out Monitor
 	// TODO: is this more pretty of frowned upon?
-	if err := client.doJsonRequest("POST", "/v1/monitor", monitor, &out); err != nil {
+	if err := client.doJSONRequest("POST", "/v1/monitor", monitor, &out); err != nil {
 		return nil, err
 	}
 	return &out, nil
@@ -97,43 +101,43 @@ func (client *Client) CreateMonitor(monitor *Monitor) (*Monitor, error) {
 // UpdateMonitor takes a monitor that was previously retrieved through some method
 // and sends it back to the server
 func (client *Client) UpdateMonitor(monitor *Monitor) error {
-	return client.doJsonRequest("PUT", fmt.Sprintf("/v1/monitor/%d", *monitor.Id),
+	return client.doJSONRequest("PUT", fmt.Sprintf("/v1/monitor/%d", *monitor.ID),
 		monitor, nil)
 }
 
 // GetMonitor retrieves a monitor by identifier
 func (client *Client) GetMonitor(id int) (*Monitor, error) {
 	var out Monitor
-	if err := client.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/%d", id), nil, &out); err != nil {
+	if err := client.doJSONRequest("GET", fmt.Sprintf("/v1/monitor/%d", id), nil, &out); err != nil {
 		return nil, err
 	}
 	return &out, nil
 }
 
-// GetMonitor retrieves monitors by name
-func (self *Client) GetMonitorsByName(name string) ([]Monitor, error) {
+// GetMonitorsByName retrieves monitors by name
+func (client *Client) GetMonitorsByName(name string) ([]Monitor, error) {
 	var out reqMonitors
 	query, err := url.ParseQuery(fmt.Sprintf("name=%v", name))
 	if err != nil {
 		return nil, err
 	}
 
-	err = self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
+	err = client.doJSONRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
 	if err != nil {
 		return nil, err
 	}
 	return out.Monitors, nil
 }
 
-// GetMonitor retrieves monitors by a slice of tags
-func (self *Client) GetMonitorsByTags(tags []string) ([]Monitor, error) {
+// GetMonitorsByTags retrieves monitors by a slice of tags
+func (client *Client) GetMonitorsByTags(tags []string) ([]Monitor, error) {
 	var out reqMonitors
 	query, err := url.ParseQuery(fmt.Sprintf("monitor_tags=%v", strings.Join(tags, ",")))
 	if err != nil {
 		return nil, err
 	}
 
-	err = self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
+	err = client.doJSONRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
 	if err != nil {
 		return nil, err
 	}
@@ -142,14 +146,14 @@ func (self *Client) GetMonitorsByTags(tags []string) ([]Monitor, error) {
 
 // DeleteMonitor removes a monitor from the system
 func (client *Client) DeleteMonitor(id int) error {
-	return client.doJsonRequest("DELETE", fmt.Sprintf("/v1/monitor/%d", id),
+	return client.doJSONRequest("DELETE", fmt.Sprintf("/v1/monitor/%d", id),
 		nil, nil)
 }
 
 // GetMonitors returns a slice of all monitors
 func (client *Client) GetMonitors() ([]Monitor, error) {
 	var out reqMonitors
-	if err := client.doJsonRequest("GET", "/v1/monitor", nil, &out.Monitors); err != nil {
+	if err := client.doJSONRequest("GET", "/v1/monitor", nil, &out.Monitors); err != nil {
 		return nil, err
 	}
 	return out.Monitors, nil
@@ -157,20 +161,20 @@ func (client *Client) GetMonitors() ([]Monitor, error) {
 
 // MuteMonitors turns off monitoring notifications
 func (client *Client) MuteMonitors() error {
-	return client.doJsonRequest("POST", "/v1/monitor/mute_all", nil, nil)
+	return client.doJSONRequest("POST", "/v1/monitor/mute_all", nil, nil)
 }
 
 // UnmuteMonitors turns on monitoring notifications
 func (client *Client) UnmuteMonitors() error {
-	return client.doJsonRequest("POST", "/v1/monitor/unmute_all", nil, nil)
+	return client.doJSONRequest("POST", "/v1/monitor/unmute_all", nil, nil)
 }
 
 // MuteMonitor turns off monitoring notifications for a monitor
 func (client *Client) MuteMonitor(id int) error {
-	return client.doJsonRequest("POST", fmt.Sprintf("/v1/monitor/%d/mute", id), nil, nil)
+	return client.doJSONRequest("POST", fmt.Sprintf("/v1/monitor/%d/mute", id), nil, nil)
 }
 
 // UnmuteMonitor turns on monitoring notifications for a monitor
 func (client *Client) UnmuteMonitor(id int) error {
-	return client.doJsonRequest("POST", fmt.Sprintf("/v1/monitor/%d/unmute", id), nil, nil)
+	return client.doJSONRequest("POST", fmt.Sprintf("/v1/monitor/%d/unmute", id), nil, nil)
 }

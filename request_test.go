@@ -54,7 +54,7 @@ func TestRedactError(t *testing.T) {
 		}
 	})
 	t.Run("Nil error returns nil", func(t *testing.T) {
-		var harmlessErr error = nil
+		var harmlessErr error
 		var redactedErr = c.redactError(harmlessErr)
 
 		assert.Nil(t, redactedErr)

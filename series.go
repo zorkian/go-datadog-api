@@ -70,7 +70,7 @@ type reqMetrics struct {
 // PostMetrics takes as input a slice of metrics and then posts them up to the
 // server for posting data.
 func (client *Client) PostMetrics(series []Metric) error {
-	return client.doJsonRequest("POST", "/v1/series",
+	return client.doJSONRequest("POST", "/v1/series",
 		reqPostSeries{Series: series}, nil)
 }
 
@@ -83,7 +83,7 @@ func (client *Client) QueryMetrics(from, to int64, query string) ([]Series, erro
 	v.Add("query", query)
 
 	var out reqMetrics
-	err := client.doJsonRequest("GET", "/v1/query?"+v.Encode(), nil, &out)
+	err := client.doJSONRequest("GET", "/v1/query?"+v.Encode(), nil, &out)
 	if err != nil {
 		return nil, err
 	}

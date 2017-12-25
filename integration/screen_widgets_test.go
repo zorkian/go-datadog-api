@@ -9,7 +9,7 @@ import (
 
 func TestWidgetAlertValue(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.AlertValueWidget{
 		X:            datadog.Int(1),
@@ -22,7 +22,7 @@ func TestWidgetAlertValue(t *testing.T) {
 		Title:        datadog.Bool(true),
 		TextSize:     datadog.String("auto"),
 		Precision:    datadog.Int(2),
-		AlertId:      datadog.Int(1),
+		AlertID:      datadog.Int(1),
 		Type:         datadog.String("alert_value"),
 		Unit:         datadog.String("auto"),
 		AddTimeframe: datadog.Bool(false),
@@ -36,7 +36,7 @@ func TestWidgetAlertValue(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -48,7 +48,7 @@ func TestWidgetAlertValue(t *testing.T) {
 
 func TestWidgetChange(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.ChangeWidget{
 		X:          datadog.Int(1),
@@ -71,7 +71,7 @@ func TestWidgetChange(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -83,7 +83,7 @@ func TestWidgetChange(t *testing.T) {
 
 func TestWidgetGraph(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.GraphWidget{
 		X:          datadog.Int(1),
@@ -109,7 +109,7 @@ func TestWidgetGraph(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -121,7 +121,7 @@ func TestWidgetGraph(t *testing.T) {
 
 func TestWidgetEventTimeline(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.EventTimelineWidget{
 		X:          datadog.Int(1),
@@ -145,7 +145,7 @@ func TestWidgetEventTimeline(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -157,7 +157,7 @@ func TestWidgetEventTimeline(t *testing.T) {
 
 func TestAlertWidgetGraph(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.AlertGraphWidget{
 		X:            datadog.Int(1),
@@ -171,7 +171,7 @@ func TestAlertWidgetGraph(t *testing.T) {
 		VizType:      datadog.String(""),
 		Timeframe:    datadog.String("1d"),
 		AddTimeframe: datadog.Bool(false),
-		AlertId:      datadog.Int(1),
+		AlertID:      datadog.Int(1),
 		Type:         datadog.String("alert_graph"),
 	}
 
@@ -183,7 +183,7 @@ func TestAlertWidgetGraph(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -195,7 +195,7 @@ func TestAlertWidgetGraph(t *testing.T) {
 
 func TestWidgetHostMap(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.HostMapWidget{
 		X:          datadog.Int(1),
@@ -222,7 +222,7 @@ func TestWidgetHostMap(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -234,7 +234,7 @@ func TestWidgetHostMap(t *testing.T) {
 
 func TestWidgetCheckStatus(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.CheckStatusWidget{
 		X:          datadog.Int(1),
@@ -261,7 +261,7 @@ func TestWidgetCheckStatus(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -273,7 +273,7 @@ func TestWidgetCheckStatus(t *testing.T) {
 
 func TestWidgetIFrame(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.IFrameWidget{
 		X:          datadog.Int(1),
@@ -284,7 +284,7 @@ func TestWidgetIFrame(t *testing.T) {
 		TitleAlign: datadog.String("center"),
 		TitleSize:  datadog.Int(1),
 		Title:      datadog.Bool(true),
-		Url:        datadog.String("http://www.example.com"),
+		URL:        datadog.String("http://www.example.com"),
 		Type:       datadog.String("iframe"),
 	}
 
@@ -296,7 +296,7 @@ func TestWidgetIFrame(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -308,7 +308,7 @@ func TestWidgetIFrame(t *testing.T) {
 
 func TestWidgetNote(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.NoteWidget{
 		X:            datadog.Int(1),
@@ -324,7 +324,7 @@ func TestWidgetNote(t *testing.T) {
 		RefreshEvery: datadog.Int(60),
 		TickPos:      datadog.String("foo"),
 		TickEdge:     datadog.String("bar"),
-		Html:         datadog.String("<strong>baz</strong>"),
+		HTML:         datadog.String("<strong>baz</strong>"),
 		Tick:         datadog.Bool(false),
 		Note:         datadog.String("quz"),
 		AutoRefresh:  datadog.Bool(false),
@@ -338,7 +338,7 @@ func TestWidgetNote(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -350,7 +350,7 @@ func TestWidgetNote(t *testing.T) {
 
 func TestWidgetToplist(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.ToplistWidget{
 		X:          datadog.Int(1),
@@ -377,7 +377,7 @@ func TestWidgetToplist(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -389,7 +389,7 @@ func TestWidgetToplist(t *testing.T) {
 
 func TestWidgetEventSteam(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.EventStreamWidget{
 		EventSize:  datadog.String("1"),
@@ -417,7 +417,7 @@ func TestWidgetEventSteam(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -429,7 +429,7 @@ func TestWidgetEventSteam(t *testing.T) {
 
 func TestWidgetImage(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.ImageWidget{
 		X:          datadog.Int(1),
@@ -444,7 +444,7 @@ func TestWidgetImage(t *testing.T) {
 		},
 		TitleText: datadog.String("bar"),
 		Type:      datadog.String("baz"),
-		Url:       datadog.String("qux"),
+		URL:       datadog.String("qux"),
 		Sizing:    datadog.String("quuz"),
 	}
 
@@ -456,7 +456,7 @@ func TestWidgetImage(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -468,7 +468,7 @@ func TestWidgetImage(t *testing.T) {
 
 func TestWidgetFreeText(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.FreeTextWidget{
 		X:         datadog.Int(1),
@@ -489,7 +489,7 @@ func TestWidgetFreeText(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -501,7 +501,7 @@ func TestWidgetFreeText(t *testing.T) {
 
 func TestWidgetTimeseries(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.TimeseriesWidget{
 		X:          datadog.Int(1),
@@ -526,7 +526,7 @@ func TestWidgetTimeseries(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
@@ -538,7 +538,7 @@ func TestWidgetTimeseries(t *testing.T) {
 
 func TestWidgetQueryValue(t *testing.T) {
 	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
+	defer cleanUpScreenboard(t, *board.ID)
 
 	expected := &datadog.QueryValueWidget{
 		X:                   datadog.Int(1),
@@ -575,7 +575,7 @@ func TestWidgetQueryValue(t *testing.T) {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
 
-	actual, err := client.GetScreenboard(*board.Id)
+	actual, err := client.GetScreenboard(*board.ID)
 	if err != nil {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
