@@ -4,7 +4,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2017 by authors and contributors.
+ * Copyright 2018 by authors and contributors.
 */
 
 package datadog
@@ -11636,6 +11636,37 @@ func (t *ToplistWidget) HasY() bool {
 // SetY allocates a new t.Y and returns the pointer to it.
 func (t *ToplistWidget) SetY(v int) {
 	t.Y = &v
+}
+
+// GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
+func (u *User) GetAccessRole() string {
+	if u == nil || u.AccessRole == nil {
+		return ""
+	}
+	return *u.AccessRole
+}
+
+// GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (u *User) GetAccessRoleOk() (string, bool) {
+	if u == nil || u.AccessRole == nil {
+		return "", false
+	}
+	return *u.AccessRole, true
+}
+
+// HasAccessRole returns a boolean if a field has been set.
+func (u *User) HasAccessRole() bool {
+	if u != nil && u.AccessRole != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessRole allocates a new u.AccessRole and returns the pointer to it.
+func (u *User) SetAccessRole(v string) {
+	u.AccessRole = &v
 }
 
 // GetDisabled returns the Disabled field if non-nil, zero value otherwise.
