@@ -10522,6 +10522,37 @@ func (t *ThresholdCount) SetOk(v json.Number) {
 	t.Ok = &v
 }
 
+// GetUnknown returns the Unknown field if non-nil, zero value otherwise.
+func (t *ThresholdCount) GetUnknown() json.Number {
+	if t == nil || t.Unknown == nil {
+		return ""
+	}
+	return *t.Unknown
+}
+
+// GetOkUnknown returns a tuple with the Unknown field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *ThresholdCount) GetUnknownOk() (json.Number, bool) {
+	if t == nil || t.Unknown == nil {
+		return "", false
+	}
+	return *t.Unknown, true
+}
+
+// HasUnknown returns a boolean if a field has been set.
+func (t *ThresholdCount) HasUnknown() bool {
+	if t != nil && t.Unknown != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUnknown allocates a new t.Unknown and returns the pointer to it.
+func (t *ThresholdCount) SetUnknown(v json.Number) {
+	t.Unknown = &v
+}
+
 // GetWarning returns the Warning field if non-nil, zero value otherwise.
 func (t *ThresholdCount) GetWarning() json.Number {
 	if t == nil || t.Warning == nil {
