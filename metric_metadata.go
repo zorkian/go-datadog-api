@@ -23,7 +23,7 @@ type MetricMetadata struct {
 // ViewMetricMetadata allows you to get metadata about a specific metric.
 func (client *Client) ViewMetricMetadata(mn string) (*MetricMetadata, error) {
 	var out MetricMetadata
-	if err := client.doJsonRequest("GET", fmt.Sprintf("/v1/metrics/%s", mn), nil, &out); err != nil {
+	if err := client.doJSONRequest("GET", fmt.Sprintf("/v1/metrics/%s", mn), nil, &out); err != nil {
 		return nil, err
 	}
 	return &out, nil
@@ -32,7 +32,7 @@ func (client *Client) ViewMetricMetadata(mn string) (*MetricMetadata, error) {
 // EditMetricMetadata edits the metadata for the given metric.
 func (client *Client) EditMetricMetadata(mn string, mm *MetricMetadata) (*MetricMetadata, error) {
 	var out MetricMetadata
-	if err := client.doJsonRequest("PUT", fmt.Sprintf("/v1/metrics/%s", mn), mm, &out); err != nil {
+	if err := client.doJSONRequest("PUT", fmt.Sprintf("/v1/metrics/%s", mn), mm, &out); err != nil {
 		return nil, err
 	}
 	return &out, nil

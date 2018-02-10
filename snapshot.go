@@ -18,7 +18,7 @@ func (client *Client) doSnapshotRequest(values url.Values) (string, error) {
 	out := struct {
 		SnapshotURL string `json:"snapshot_url,omitempty"`
 	}{}
-	if err := client.doJsonRequest("GET", "/v1/graph/snapshot?"+values.Encode(), nil, &out); err != nil {
+	if err := client.doJSONRequest("GET", "/v1/graph/snapshot?"+values.Encode(), nil, &out); err != nil {
 		return "", err
 	}
 	return out.SnapshotURL, nil
@@ -31,7 +31,7 @@ func (client *Client) Snapshot(query string, start, end time.Time, eventQuery st
 	return client.SnapshotGeneric(options, start, end)
 }
 
-// Generic function for snapshots, use map[string]string to create url.Values() instead of pre-defined params
+// SnapshotGeneric is a generic function for snapshots, use map[string]string to create url.Values() instead of pre-defined params
 func (client *Client) SnapshotGeneric(options map[string]string, start, end time.Time) (string, error) {
 	v := url.Values{}
 	v.Add("start", fmt.Sprintf("%d", start.Unix()))
