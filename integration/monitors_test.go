@@ -50,6 +50,25 @@ func TestMonitorUpdate(t *testing.T) {
 
 }
 
+func TestMonitorUpdateRemovingTags(t *testing.T) {
+
+	monitor := createTestMonitorWithTags(t)
+	defer cleanUpMonitor(t, *monitor.Id)
+
+	monitor.Tags = make([]string, 0)
+	if err := client.UpdateMonitor(monitor); err != nil {
+		t.Fatalf("Updating a monitor failed when it shouldn't: %s", err)
+	}
+
+	actual, err := client.GetMonitor(*monitor.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a monitor failed when it shouldn't: %s", err)
+	}
+
+	assert.Equal(t, monitor, actual)
+
+}
+
 func TestMonitorGet(t *testing.T) {
 	monitors, err := client.GetMonitors()
 	if err != nil {
@@ -155,6 +174,28 @@ func getTestMonitor() *datadog.Monitor {
 	}
 }
 
+func getTestMonitorWithTags() *datadog.Monitor {
+
+	o := &datadog.Options{
+		NotifyNoData:      datadog.Bool(true),
+		NotifyAudit:       datadog.Bool(false),
+		Locked:            datadog.Bool(false),
+		NoDataTimeframe:   60,
+		NewHostDelay:      datadog.Int(600),
+		RequireFullWindow: datadog.Bool(true),
+		Silenced:          map[string]int{},
+	}
+
+	return &datadog.Monitor{
+		Message: datadog.String("Test message"),
+		Query:   datadog.String("avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8"),
+		Name:    datadog.String("Test monitor"),
+		Options: o,
+		Type:    datadog.String("metric alert"),
+		Tags:    []string {"foo:bar", "bar:baz"},
+	}
+}
+
 func getTestMonitorWithoutNoDataTimeframe() *datadog.Monitor {
 
 	o := &datadog.Options{
@@ -178,6 +219,16 @@ func getTestMonitorWithoutNoDataTimeframe() *datadog.Monitor {
 
 func createTestMonitor(t *testing.T) *datadog.Monitor {
 	monitor := getTestMonitor()
+	monitor, err := client.CreateMonitor(monitor)
+	if err != nil {
+		t.Fatalf("Creating a monitor failed when it shouldn't: %s", err)
+	}
+
+	return monitor
+}
+
+func createTestMonitorWithTags(t *testing.T) *datadog.Monitor {
+	monitor := getTestMonitorWithTags()
 	monitor, err := client.CreateMonitor(monitor)
 	if err != nil {
 		t.Fatalf("Creating a monitor failed when it shouldn't: %s", err)
