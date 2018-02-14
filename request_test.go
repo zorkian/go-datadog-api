@@ -12,6 +12,7 @@ func TestUriForApi(t *testing.T) {
 	c := Client{
 		apiKey:       "sample_api_key",
 		appKey:       "sample_app_key",
+		baseUrl:      "https://app.datadoghq.com",
 		HttpClient:   &http.Client{},
 		RetryTimeout: 1000,
 	}
@@ -32,6 +33,7 @@ func TestRedactError(t *testing.T) {
 	c := Client{
 		apiKey:       "sample_api_key",
 		appKey:       "sample_app_key",
+		baseUrl:      "https://app.datadoghq.com",
 		HttpClient:   &http.Client{},
 		RetryTimeout: 1000,
 	}
