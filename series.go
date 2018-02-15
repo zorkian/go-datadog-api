@@ -31,6 +31,7 @@ type Metric struct {
 // Unit represents a unit definition that we might receive when query for timeseries data.
 // A metric is characterized by 2 units as: x per y
 // One or both could be missing
+type UnitPair *[2]*Unit
 type Unit struct {
 	Family string       `json:"family"`
 	ScaleFactor float32 `json:"scale_factor"`
@@ -52,7 +53,7 @@ type Series struct {
 	Length      *int        `json:"length,omitempty"`
 	Scope       *string     `json:"scope,omitempty"`
 	Expression  *string     `json:"expression,omitempty"`
-	Units       *[2]*Unit   `json:"unit"`
+	Units       UnitPair    `json:"unit"`
 }
 
 // reqPostSeries from /api/v1/series
