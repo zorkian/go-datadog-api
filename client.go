@@ -52,7 +52,7 @@ func NewClient(apiKey, appKey string) *Client {
 }
 
 // SetKeys changes the value of apiKey and appKey.
-func (c *Client) SetKeys(apiKey string, appKey string) {
+func (c *Client) SetKeys(apiKey, appKey string) {
 	c.apiKey = apiKey
 	c.appKey = appKey
 }
@@ -60,6 +60,11 @@ func (c *Client) SetKeys(apiKey string, appKey string) {
 // SetBaseUrl changes the value of baseUrl.
 func (c *Client) SetBaseUrl(baseUrl string) {
 	c.baseUrl = baseUrl
+}
+
+// GetBaseUrl returns the baseUrl.
+func (c *Client) GetBaseUrl() string {
+	return c.baseUrl
 }
 
 // Validate checks if the API and application keys are valid.

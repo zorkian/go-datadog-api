@@ -1,6 +1,7 @@
 package integration
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -31,4 +32,27 @@ func TestValidAuth(t *testing.T) {
 	}
 
 	assert.Equal(t, valid, true)
+}
+
+func TestBaseUrl(t *testing.T) {
+	t.Run("Base url defaults to https://app.datadoghq.com", func(t *testing.T) {
+		assert.Empty(t, os.Getenv("DATADOG_HOST"))
+
+		client = datadog.NewClient("abc", "def")
+		assert.Equal(t, "https://app.datadoghq.com", client.GetBaseUrl())
+	})
+
+	t.Run("Base url defaults DATADOG_HOST environment variable if set", func(t *testing.T) {
+		os.Setenv("DATADOG_HOST", "https://custom.datadoghq.com")
+		defer os.Unsetenv("DATADOG_HOST")
+
+		client = datadog.NewClient("abc", "def")
+		assert.Equal(t, "https://custom.datadoghq.com", client.GetBaseUrl())
+	})
+
+	t.Run("Base url can be set through the attribute setter", func(t *testing.T) {
+		client = datadog.NewClient("abc", "def")
+		client.SetBaseUrl("https://another.datadoghq.com")
+		assert.Equal(t, "https://another.datadoghq.com", client.GetBaseUrl())
+	})
 }
