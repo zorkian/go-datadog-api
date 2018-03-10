@@ -28,7 +28,7 @@ type ServicePDRequest struct {
 type IntegrationPDRequest struct {
 	Services  []ServicePDRequest `json:"services,omitempty"`
 	Subdomain *string            `json:"subdomain,omitempty"`
-	Schedules []*string          `json:"schedules,omitempty"`
+	Schedules []string           `json:"schedules,omitempty"`
 	APIToken  *string            `json:"api_token,omitempty"`
 	RunCheck  *bool              `json:"run_check,omitempty"`
 }
