@@ -7205,6 +7205,161 @@ func (i *ImageWidget) SetY(v int) {
 	i.Y = &v
 }
 
+// GetAPIToken returns the APIToken field if non-nil, zero value otherwise.
+func (i *integrationPD) GetAPIToken() string {
+	if i == nil || i.APIToken == nil {
+		return ""
+	}
+	return *i.APIToken
+}
+
+// GetOkAPIToken returns a tuple with the APIToken field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *integrationPD) GetAPITokenOk() (string, bool) {
+	if i == nil || i.APIToken == nil {
+		return "", false
+	}
+	return *i.APIToken, true
+}
+
+// HasAPIToken returns a boolean if a field has been set.
+func (i *integrationPD) HasAPIToken() bool {
+	if i != nil && i.APIToken != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPIToken allocates a new i.APIToken and returns the pointer to it.
+func (i *integrationPD) SetAPIToken(v string) {
+	i.APIToken = &v
+}
+
+// GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+func (i *integrationPD) GetSubdomain() string {
+	if i == nil || i.Subdomain == nil {
+		return ""
+	}
+	return *i.Subdomain
+}
+
+// GetOkSubdomain returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *integrationPD) GetSubdomainOk() (string, bool) {
+	if i == nil || i.Subdomain == nil {
+		return "", false
+	}
+	return *i.Subdomain, true
+}
+
+// HasSubdomain returns a boolean if a field has been set.
+func (i *integrationPD) HasSubdomain() bool {
+	if i != nil && i.Subdomain != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubdomain allocates a new i.Subdomain and returns the pointer to it.
+func (i *integrationPD) SetSubdomain(v string) {
+	i.Subdomain = &v
+}
+
+// GetAPIToken returns the APIToken field if non-nil, zero value otherwise.
+func (i *IntegrationPDRequest) GetAPIToken() string {
+	if i == nil || i.APIToken == nil {
+		return ""
+	}
+	return *i.APIToken
+}
+
+// GetOkAPIToken returns a tuple with the APIToken field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationPDRequest) GetAPITokenOk() (string, bool) {
+	if i == nil || i.APIToken == nil {
+		return "", false
+	}
+	return *i.APIToken, true
+}
+
+// HasAPIToken returns a boolean if a field has been set.
+func (i *IntegrationPDRequest) HasAPIToken() bool {
+	if i != nil && i.APIToken != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPIToken allocates a new i.APIToken and returns the pointer to it.
+func (i *IntegrationPDRequest) SetAPIToken(v string) {
+	i.APIToken = &v
+}
+
+// GetRunCheck returns the RunCheck field if non-nil, zero value otherwise.
+func (i *IntegrationPDRequest) GetRunCheck() bool {
+	if i == nil || i.RunCheck == nil {
+		return false
+	}
+	return *i.RunCheck
+}
+
+// GetOkRunCheck returns a tuple with the RunCheck field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationPDRequest) GetRunCheckOk() (bool, bool) {
+	if i == nil || i.RunCheck == nil {
+		return false, false
+	}
+	return *i.RunCheck, true
+}
+
+// HasRunCheck returns a boolean if a field has been set.
+func (i *IntegrationPDRequest) HasRunCheck() bool {
+	if i != nil && i.RunCheck != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRunCheck allocates a new i.RunCheck and returns the pointer to it.
+func (i *IntegrationPDRequest) SetRunCheck(v bool) {
+	i.RunCheck = &v
+}
+
+// GetSubdomain returns the Subdomain field if non-nil, zero value otherwise.
+func (i *IntegrationPDRequest) GetSubdomain() string {
+	if i == nil || i.Subdomain == nil {
+		return ""
+	}
+	return *i.Subdomain
+}
+
+// GetOkSubdomain returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationPDRequest) GetSubdomainOk() (string, bool) {
+	if i == nil || i.Subdomain == nil {
+		return "", false
+	}
+	return *i.Subdomain, true
+}
+
+// HasSubdomain returns a boolean if a field has been set.
+func (i *IntegrationPDRequest) HasSubdomain() bool {
+	if i != nil && i.Subdomain != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubdomain allocates a new i.Subdomain and returns the pointer to it.
+func (i *IntegrationPDRequest) SetSubdomain(v string) {
+	i.Subdomain = &v
+}
+
 // GetHost returns the Host field if non-nil, zero value otherwise.
 func (m *Metric) GetHost() string {
 	if m == nil || m.Host == nil {
@@ -10210,6 +10365,130 @@ func (s *Series) HasStart() bool {
 // SetStart allocates a new s.Start and returns the pointer to it.
 func (s *Series) SetStart(v float64) {
 	s.Start = &v
+}
+
+// GetServiceKey returns the ServiceKey field if non-nil, zero value otherwise.
+func (s *servicePD) GetServiceKey() string {
+	if s == nil || s.ServiceKey == nil {
+		return ""
+	}
+	return *s.ServiceKey
+}
+
+// GetOkServiceKey returns a tuple with the ServiceKey field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *servicePD) GetServiceKeyOk() (string, bool) {
+	if s == nil || s.ServiceKey == nil {
+		return "", false
+	}
+	return *s.ServiceKey, true
+}
+
+// HasServiceKey returns a boolean if a field has been set.
+func (s *servicePD) HasServiceKey() bool {
+	if s != nil && s.ServiceKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceKey allocates a new s.ServiceKey and returns the pointer to it.
+func (s *servicePD) SetServiceKey(v string) {
+	s.ServiceKey = &v
+}
+
+// GetServiceName returns the ServiceName field if non-nil, zero value otherwise.
+func (s *servicePD) GetServiceName() string {
+	if s == nil || s.ServiceName == nil {
+		return ""
+	}
+	return *s.ServiceName
+}
+
+// GetOkServiceName returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *servicePD) GetServiceNameOk() (string, bool) {
+	if s == nil || s.ServiceName == nil {
+		return "", false
+	}
+	return *s.ServiceName, true
+}
+
+// HasServiceName returns a boolean if a field has been set.
+func (s *servicePD) HasServiceName() bool {
+	if s != nil && s.ServiceName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceName allocates a new s.ServiceName and returns the pointer to it.
+func (s *servicePD) SetServiceName(v string) {
+	s.ServiceName = &v
+}
+
+// GetServiceKey returns the ServiceKey field if non-nil, zero value otherwise.
+func (s *ServicePDRequest) GetServiceKey() string {
+	if s == nil || s.ServiceKey == nil {
+		return ""
+	}
+	return *s.ServiceKey
+}
+
+// GetOkServiceKey returns a tuple with the ServiceKey field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServicePDRequest) GetServiceKeyOk() (string, bool) {
+	if s == nil || s.ServiceKey == nil {
+		return "", false
+	}
+	return *s.ServiceKey, true
+}
+
+// HasServiceKey returns a boolean if a field has been set.
+func (s *ServicePDRequest) HasServiceKey() bool {
+	if s != nil && s.ServiceKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceKey allocates a new s.ServiceKey and returns the pointer to it.
+func (s *ServicePDRequest) SetServiceKey(v string) {
+	s.ServiceKey = &v
+}
+
+// GetServiceName returns the ServiceName field if non-nil, zero value otherwise.
+func (s *ServicePDRequest) GetServiceName() string {
+	if s == nil || s.ServiceName == nil {
+		return ""
+	}
+	return *s.ServiceName
+}
+
+// GetOkServiceName returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServicePDRequest) GetServiceNameOk() (string, bool) {
+	if s == nil || s.ServiceName == nil {
+		return "", false
+	}
+	return *s.ServiceName, true
+}
+
+// HasServiceName returns a boolean if a field has been set.
+func (s *ServicePDRequest) HasServiceName() bool {
+	if s != nil && s.ServiceName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceName allocates a new s.ServiceName and returns the pointer to it.
+func (s *ServicePDRequest) SetServiceName(v string) {
+	s.ServiceName = &v
 }
 
 // GetPalette returns the Palette field if non-nil, zero value otherwise.
