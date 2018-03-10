@@ -8,45 +8,45 @@
 
 package datadog
 
-type reqServicePD struct {
-	ServiceName string `json:"service"`
-	ServiceKey  string `json:"key"`
+type servicePD struct {
+	ServiceName *string `json:"service"`
+	ServiceKey  *string `json:"key"`
 }
 
-type reqIntegrationPD struct {
-	Services  []reqServicePD `json:"services"`
-	Subdomain string         `json:"subdomain"`
-	Schedules []string       `json:"schedules"`
-	APIToken  string         `json:"api_token"`
+type integrationPD struct {
+	Services  []servicePD `json:"services"`
+	Subdomain *string     `json:"subdomain"`
+	Schedules []string    `json:"schedules"`
+	APIToken  *string     `json:"api_token"`
 }
 
-type ServicePD struct {
-	ServiceName string `json:"service_name"`
-	ServiceKey  string `json:"service_key"`
+type ServicePDRequest struct {
+	ServiceName *string `json:"service_name"`
+	ServiceKey  *string `json:"service_key"`
 }
 
-type IntegrationPD struct {
-	Services  []ServicePD `json:"services,omitempty"`
-	Subdomain string      `json:"subdomain,omitempty"`
-	Schedules []string    `json:"schedules,omitempty"`
-	APIToken  string      `json:"api_token,omitempty"`
-	RunCheck  bool        `json:"run_check,omitempty"`
+type IntegrationPDRequest struct {
+	Services  []ServicePDRequest `json:"services,omitempty"`
+	Subdomain *string            `json:"subdomain,omitempty"`
+	Schedules []*string          `json:"schedules,omitempty"`
+	APIToken  *string            `json:"api_token,omitempty"`
+	RunCheck  *bool              `json:"run_check,omitempty"`
 }
 
 // CreateIntegrationPD creates new Pagerduty Integrations.
-func (client *Client) CreateIntegrationPD(pdIntegration *IntegrationPD) error {
+func (client *Client) CreateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
 	return client.doJsonRequest("POST", "/v1/integration/pagerduty", pdIntegration, nil)
 }
 
 // UpdateIntegrationPD updates the Pagerduty Integration.
 // This will replace the existing values with the new values
-func (client *Client) UpdateIntegrationPD(pdIntegration *IntegrationPD) error {
+func (client *Client) UpdateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
 	return client.doJsonRequest("PUT", "/v1/integration/pagerduty", pdIntegration, nil)
 }
 
 // GetIntegrationPD gets all the Pagerduty Integrations from the system.
-func (client *Client) GetIntegrationPD() (*reqIntegrationPD, error) {
-	var out reqIntegrationPD
+func (client *Client) GetIntegrationPD() (*integrationPD, error) {
+	var out integrationPD
 	if err := client.doJsonRequest("GET", "/v1/integration/pagerduty", nil, &out); err != nil {
 		return nil, err
 	}

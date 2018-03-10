@@ -11,21 +11,21 @@ func init() {
 	client = initTest()
 }
 
-func TestIntegrationsPDCreateAndDelete(t *testing.T) {
-	expected := createTestPDIntegration(t)
-	defer cleanUpPDIntegration(t)
+func TestIntegrationPDCreateAndDelete(t *testing.T) {
+	expected := createTestIntegrationPD(t)
+	defer cleanUpIntegrationPD(t)
 
-	actual, err := client.GetPDIntegration()
+	actual, err := client.GetIntegrationPD()
 	if err != nil {
 		t.Fatalf("Retrieving a pagerduty integration failed when it shouldn't: (%s)", err)
 	}
 
-	expectedServiceNames := make([]string, len(expected.Services))
+	expectedServiceNames := make([]*string, len(expected.Services))
 	for _, service := range expected.Services {
 		expectedServiceNames = append(expectedServiceNames, service.ServiceName)
 	}
 
-	actualServiceNames := make([]string, len(actual.Services))
+	actualServiceNames := make([]*string, len(actual.Services))
 	for _, service := range actual.Services {
 		actualServiceNames = append(actualServiceNames, service.ServiceName)
 	}
@@ -33,30 +33,30 @@ func TestIntegrationsPDCreateAndDelete(t *testing.T) {
 	assert.Equal(t, expectedServiceNames, actualServiceNames)
 }
 
-func TestIntegrationsPDUpdate(t *testing.T) {
-	pdIntegration := createTestPDIntegration(t)
-	defer cleanUpPDIntegration(t)
+func TestIntegrationPDUpdate(t *testing.T) {
+	pdIntegration := createTestIntegrationPD(t)
+	defer cleanUpIntegrationPD(t)
 
-	pdIntegration.Services = append(pdIntegration.Services, datadog.PDService{
-		ServiceName: "test-pd-update",
-		ServiceKey:  "test-pd-update-key",
+	pdIntegration.Services = append(pdIntegration.Services, datadog.ServicePDRequest{
+		ServiceName: datadog.String("test-pd-update"),
+		ServiceKey:  datadog.String("test-pd-update-key"),
 	})
 
-	if err := client.UpdatePDIntegration(pdIntegration); err != nil {
+	if err := client.UpdateIntegrationPD(pdIntegration); err != nil {
 		t.Fatalf("Updating a pagerduty integration failed when it shouldn't: %s", err)
 	}
 
-	actual, err := client.GetPDIntegration()
+	actual, err := client.GetIntegrationPD()
 	if err != nil {
 		t.Fatalf("Retrieving a pagerduty integration failed when it shouldn't: %s", err)
 	}
 
-	expectedServiceNames := make([]string, len(pdIntegration.Services))
+	expectedServiceNames := make([]*string, len(pdIntegration.Services))
 	for _, service := range pdIntegration.Services {
 		expectedServiceNames = append(expectedServiceNames, service.ServiceName)
 	}
 
-	actualServiceNames := make([]string, len(actual.Services))
+	actualServiceNames := make([]*string, len(actual.Services))
 	for _, service := range actual.Services {
 		actualServiceNames = append(actualServiceNames, service.ServiceName)
 	}
@@ -64,21 +64,21 @@ func TestIntegrationsPDUpdate(t *testing.T) {
 	assert.Equal(t, expectedServiceNames, actualServiceNames)
 }
 
-func TestIntegrationsPDGet(t *testing.T) {
-	pdIntegration := createTestPDIntegration(t)
-	defer cleanUpPDIntegration(t)
+func TestIntegrationPDGet(t *testing.T) {
+	pdIntegration := createTestIntegrationPD(t)
+	defer cleanUpIntegrationPD(t)
 
-	actual, err := client.GetPDIntegration()
+	actual, err := client.GetIntegrationPD()
 	if err != nil {
 		t.Fatalf("Retrieving pdIntegration failed when it shouldn't: %s", err)
 	}
 
-	expectedServiceNames := make([]string, len(pdIntegration.Services))
+	expectedServiceNames := make([]*string, len(pdIntegration.Services))
 	for _, service := range pdIntegration.Services {
 		expectedServiceNames = append(expectedServiceNames, service.ServiceName)
 	}
 
-	actualServiceNames := make([]string, len(actual.Services))
+	actualServiceNames := make([]*string, len(actual.Services))
 	for _, service := range actual.Services {
 		actualServiceNames = append(actualServiceNames, service.ServiceName)
 	}
@@ -86,39 +86,38 @@ func TestIntegrationsPDGet(t *testing.T) {
 	assert.Equal(t, expectedServiceNames, actualServiceNames)
 }
 
-func getTestPDIntegration() *datadog.PDIntegration {
-	return &datadog.PDIntegration{
-		Services: []datadog.PDService{
+func getTestIntegrationPD() *datadog.IntegrationPDRequest {
+	return &datadog.IntegrationPDRequest{
+		Services: []datadog.ServicePDRequest{
 			{
-				ServiceName: "testPDServiceName",
-				ServiceKey:  "testPDServiceKey",
+				ServiceName: datadog.String("testPDServiceName"),
+				ServiceKey:  datadog.String("testPDServiceKey"),
 			},
 		},
-		Subdomain: "testdomain",
+		Subdomain: datadog.String("testdomain"),
 		// Datadog will actually validate this value
 		// so we're leaving it blank for tests
-		Schedules: []string{},
-		APIToken:  "abc123",
-		RunCheck:  false,
+		Schedules: []*string{},
+		APIToken:  datadog.String("abc123"),
 	}
 }
 
-func createTestPDIntegration(t *testing.T) *datadog.PDIntegration {
-	pdIntegration := getTestPDIntegration()
-	err := client.CreatePDIntegration(pdIntegration)
+func createTestIntegrationPD(t *testing.T) *datadog.IntegrationPDRequest {
+	pdIntegration := getTestIntegrationPD()
+	err := client.CreateIntegrationPD(pdIntegration)
 	if err != nil {
-		t.Fatalf("Creating a pdIntegration failed when it shouldn't: %s", err)
+		t.Fatalf("Creating a pagerduty integration failed when it shouldn't: %s", err)
 	}
 
 	return pdIntegration
 }
 
-func cleanUpPDIntegration(t *testing.T) {
-	if err := client.DeletePDIntegration(); err != nil {
+func cleanUpIntegrationPD(t *testing.T) {
+	if err := client.DeleteIntegrationPD(); err != nil {
 		t.Fatalf("Deleting the pagerduty integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
 	}
 
-	pdIntegration, err := client.GetPDIntegration()
+	pdIntegration, err := client.GetIntegrationPD()
 	if pdIntegration != nil {
 		t.Fatal("PagerDuty Integration hasn't been deleted when it should have been. Manual cleanup needed.")
 	}
