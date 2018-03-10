@@ -97,7 +97,7 @@ func getTestIntegrationPD() *datadog.IntegrationPDRequest {
 		Subdomain: datadog.String("testdomain"),
 		// Datadog will actually validate this value
 		// so we're leaving it blank for tests
-		Schedules: []*string{},
+		Schedules: []string{},
 		APIToken:  datadog.String("abc123"),
 	}
 }
