@@ -3,7 +3,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2013 by authors and contributors.
+ * Copyright 2018 by authors and contributors.
  */
 
 package datadog
@@ -20,11 +20,14 @@ type integrationPD struct {
 	APIToken  *string     `json:"api_token"`
 }
 
+// ServicePDRequest defines the Services struct that is part of the IntegrationPDRequest.
 type ServicePDRequest struct {
 	ServiceName *string `json:"service_name"`
 	ServiceKey  *string `json:"service_key"`
 }
 
+// IntegrationPDRequest defines the request payload for
+// creating & updating Datadog-Pagerduty integration.
 type IntegrationPDRequest struct {
 	Services  []ServicePDRequest `json:"services,omitempty"`
 	Subdomain *string            `json:"subdomain,omitempty"`
@@ -34,12 +37,14 @@ type IntegrationPDRequest struct {
 }
 
 // CreateIntegrationPD creates new Pagerduty Integrations.
+// Use this if you want to setup the integration for the first time
+// or to add more services/schdules.
 func (client *Client) CreateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
 	return client.doJsonRequest("POST", "/v1/integration/pagerduty", pdIntegration, nil)
 }
 
 // UpdateIntegrationPD updates the Pagerduty Integration.
-// This will replace the existing values with the new values
+// This will replace the existing values with the new values.
 func (client *Client) UpdateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
 	return client.doJsonRequest("PUT", "/v1/integration/pagerduty", pdIntegration, nil)
 }
@@ -54,7 +59,7 @@ func (client *Client) GetIntegrationPD() (*integrationPD, error) {
 	return &out, nil
 }
 
-// DeleteIntegrationPD remove the PD Integration from the system.
+// DeleteIntegrationPD removes the PD Integration from the system.
 func (client *Client) DeleteIntegrationPD() error {
 	return client.doJsonRequest("DELETE", "/v1/integration/pagerduty", nil, nil)
 }
