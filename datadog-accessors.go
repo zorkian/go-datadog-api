@@ -10212,6 +10212,37 @@ func (s *Series) SetStart(v float64) {
 	s.Start = &v
 }
 
+// GetUnits returns the Units field if non-nil, zero value otherwise.
+func (s *Series) GetUnits() UnitPair {
+	if s == nil || s.Units == nil {
+		return UnitPair{}
+	}
+	return *s.Units
+}
+
+// GetOkUnits returns a tuple with the Units field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Series) GetUnitsOk() (UnitPair, bool) {
+	if s == nil || s.Units == nil {
+		return UnitPair{}, false
+	}
+	return *s.Units, true
+}
+
+// HasUnits returns a boolean if a field has been set.
+func (s *Series) HasUnits() bool {
+	if s != nil && s.Units != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUnits allocates a new s.Units and returns the pointer to it.
+func (s *Series) SetUnits(v UnitPair) {
+	s.Units = &v
+}
+
 // GetPalette returns the Palette field if non-nil, zero value otherwise.
 func (s *Style) GetPalette() string {
 	if s == nil || s.Palette == nil {
