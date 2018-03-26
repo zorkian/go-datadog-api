@@ -52,9 +52,9 @@ type GraphEvent struct {
 }
 
 type Yaxis struct {
-	Min   *float64 `json:"min,omitempty"`
-	Max   *float64 `json:"max,omitempty"`
-	Scale *string  `json:"scale,omitempty"`
+	Min   *string `json:"min,omitempty"`
+	Max   *string `json:"max,omitempty"`
+	Scale *string `json:"scale,omitempty"`
 }
 
 type Style struct {

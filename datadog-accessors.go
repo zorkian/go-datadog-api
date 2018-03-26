@@ -12786,18 +12786,18 @@ func (w *Widget) SetToplistWidget(v ToplistWidget) {
 }
 
 // GetMax returns the Max field if non-nil, zero value otherwise.
-func (y *Yaxis) GetMax() float64 {
+func (y *Yaxis) GetMax() string {
 	if y == nil || y.Max == nil {
-		return 0
+		return ""
 	}
 	return *y.Max
 }
 
 // GetOkMax returns a tuple with the Max field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (y *Yaxis) GetMaxOk() (float64, bool) {
+func (y *Yaxis) GetMaxOk() (string, bool) {
 	if y == nil || y.Max == nil {
-		return 0, false
+		return "", false
 	}
 	return *y.Max, true
 }
@@ -12812,23 +12812,23 @@ func (y *Yaxis) HasMax() bool {
 }
 
 // SetMax allocates a new y.Max and returns the pointer to it.
-func (y *Yaxis) SetMax(v float64) {
+func (y *Yaxis) SetMax(v string) {
 	y.Max = &v
 }
 
 // GetMin returns the Min field if non-nil, zero value otherwise.
-func (y *Yaxis) GetMin() float64 {
+func (y *Yaxis) GetMin() string {
 	if y == nil || y.Min == nil {
-		return 0
+		return ""
 	}
 	return *y.Min
 }
 
 // GetOkMin returns a tuple with the Min field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (y *Yaxis) GetMinOk() (float64, bool) {
+func (y *Yaxis) GetMinOk() (string, bool) {
 	if y == nil || y.Min == nil {
-		return 0, false
+		return "", false
 	}
 	return *y.Min, true
 }
@@ -12843,7 +12843,7 @@ func (y *Yaxis) HasMin() bool {
 }
 
 // SetMin allocates a new y.Min and returns the pointer to it.
-func (y *Yaxis) SetMin(v float64) {
+func (y *Yaxis) SetMin(v string) {
 	y.Min = &v
 }
 
