@@ -24,6 +24,7 @@ type Metric struct {
 	Tags           []string    `json:"tags,omitempty"`
 	Unit           string      `json:"unit,omitempty"`
 	SourceTypeName string      `json:"source_type_name,omitempty"`
+	Interval       int         `json:"interval,omitempty"`
 }
 
 // Series represents a collection of data points we get when we query for timeseries data
