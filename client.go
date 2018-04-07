@@ -13,9 +13,11 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"os"
 	"net/http"
+	"os"
 	"time"
+
+	"github.com/cenkalti/backoff"
 )
 
 // Client is the object that handles talking to the Datadog API. This maintains
@@ -69,8 +71,12 @@ func (c *Client) GetBaseUrl() string {
 
 // Validate checks if the API and application keys are valid.
 func (client *Client) Validate() (bool, error) {
+	var bo = backoff.NewExponentialBackOff()
 	var bodyreader io.Reader
 	var out valid
+
+	bo.MaxElapsedTime = time.Duration(60 * time.Second)
+
 	uri, err := client.uriForAPI("/v1/validate")
 	if err != nil {
 		return false, err
@@ -85,20 +91,24 @@ func (client *Client) Validate() (bool, error) {
 	}
 
 	var resp *http.Response
-	resp, err = client.HttpClient.Do(req)
-	if err != nil {
-		return false, err
+
+	operation := func() error {
+		resp, err = client.HttpClient.Do(req)
+		if err != nil {
+			return err
+		}
+
+		if resp.StatusCode >= 200 && resp.StatusCode <= 300 {
+			return nil
+		} else if resp.StatusCode >= 400 && resp.StatusCode < 500 {
+			return nil
+		}
+
+		return fmt.Errorf("Received HTTP status code %d", resp.StatusCode)
 	}
 
-	defer resp.Body.Close()
-
-	// Only care about 200 OK or 403 which we'll unmarshal into struct valid. Everything else is of no interest to us.
-	if resp.StatusCode != 200 && resp.StatusCode != 403 {
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			return false, err
-		}
-		return false, fmt.Errorf("API error %s: %s", resp.Status, body)
+	if err := backoff.Retry(operation, bo); err != nil {
+		return false, err
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
