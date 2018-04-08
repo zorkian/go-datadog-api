@@ -1470,6 +1470,99 @@ func (c *ChangeWidget) SetY(v int) {
 	c.Y = &v
 }
 
+// GetAccount returns the Account field if non-nil, zero value otherwise.
+func (c *ChannelSlackRequest) GetAccount() string {
+	if c == nil || c.Account == nil {
+		return ""
+	}
+	return *c.Account
+}
+
+// GetOkAccount returns a tuple with the Account field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *ChannelSlackRequest) GetAccountOk() (string, bool) {
+	if c == nil || c.Account == nil {
+		return "", false
+	}
+	return *c.Account, true
+}
+
+// HasAccount returns a boolean if a field has been set.
+func (c *ChannelSlackRequest) HasAccount() bool {
+	if c != nil && c.Account != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccount allocates a new c.Account and returns the pointer to it.
+func (c *ChannelSlackRequest) SetAccount(v string) {
+	c.Account = &v
+}
+
+// GetChannelName returns the ChannelName field if non-nil, zero value otherwise.
+func (c *ChannelSlackRequest) GetChannelName() string {
+	if c == nil || c.ChannelName == nil {
+		return ""
+	}
+	return *c.ChannelName
+}
+
+// GetOkChannelName returns a tuple with the ChannelName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *ChannelSlackRequest) GetChannelNameOk() (string, bool) {
+	if c == nil || c.ChannelName == nil {
+		return "", false
+	}
+	return *c.ChannelName, true
+}
+
+// HasChannelName returns a boolean if a field has been set.
+func (c *ChannelSlackRequest) HasChannelName() bool {
+	if c != nil && c.ChannelName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetChannelName allocates a new c.ChannelName and returns the pointer to it.
+func (c *ChannelSlackRequest) SetChannelName(v string) {
+	c.ChannelName = &v
+}
+
+// GetTransferAllUserComments returns the TransferAllUserComments field if non-nil, zero value otherwise.
+func (c *ChannelSlackRequest) GetTransferAllUserComments() bool {
+	if c == nil || c.TransferAllUserComments == nil {
+		return false
+	}
+	return *c.TransferAllUserComments
+}
+
+// GetOkTransferAllUserComments returns a tuple with the TransferAllUserComments field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *ChannelSlackRequest) GetTransferAllUserCommentsOk() (bool, bool) {
+	if c == nil || c.TransferAllUserComments == nil {
+		return false, false
+	}
+	return *c.TransferAllUserComments, true
+}
+
+// HasTransferAllUserComments returns a boolean if a field has been set.
+func (c *ChannelSlackRequest) HasTransferAllUserComments() bool {
+	if c != nil && c.TransferAllUserComments != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTransferAllUserComments allocates a new c.TransferAllUserComments and returns the pointer to it.
+func (c *ChannelSlackRequest) SetTransferAllUserComments(v bool) {
+	c.TransferAllUserComments = &v
+}
+
 // GetCheck returns the Check field if non-nil, zero value otherwise.
 func (c *Check) GetCheck() string {
 	if c == nil || c.Check == nil {
@@ -7360,6 +7453,37 @@ func (i *IntegrationPDRequest) SetSubdomain(v string) {
 	i.Subdomain = &v
 }
 
+// GetRunCheck returns the RunCheck field if non-nil, zero value otherwise.
+func (i *IntegrationSlackRequest) GetRunCheck() bool {
+	if i == nil || i.RunCheck == nil {
+		return false
+	}
+	return *i.RunCheck
+}
+
+// GetOkRunCheck returns a tuple with the RunCheck field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationSlackRequest) GetRunCheckOk() (bool, bool) {
+	if i == nil || i.RunCheck == nil {
+		return false, false
+	}
+	return *i.RunCheck, true
+}
+
+// HasRunCheck returns a boolean if a field has been set.
+func (i *IntegrationSlackRequest) HasRunCheck() bool {
+	if i != nil && i.RunCheck != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRunCheck allocates a new i.RunCheck and returns the pointer to it.
+func (i *IntegrationSlackRequest) SetRunCheck(v bool) {
+	i.RunCheck = &v
+}
+
 // GetHost returns the Host field if non-nil, zero value otherwise.
 func (m *Metric) GetHost() string {
 	if m == nil || m.Host == nil {
@@ -10396,6 +10520,68 @@ func (s *Series) HasUnits() bool {
 // SetUnits allocates a new s.Units and returns the pointer to it.
 func (s *Series) SetUnits(v UnitPair) {
 	s.Units = &v
+}
+
+// GetAccount returns the Account field if non-nil, zero value otherwise.
+func (s *ServiceHookSlackRequest) GetAccount() string {
+	if s == nil || s.Account == nil {
+		return ""
+	}
+	return *s.Account
+}
+
+// GetOkAccount returns a tuple with the Account field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceHookSlackRequest) GetAccountOk() (string, bool) {
+	if s == nil || s.Account == nil {
+		return "", false
+	}
+	return *s.Account, true
+}
+
+// HasAccount returns a boolean if a field has been set.
+func (s *ServiceHookSlackRequest) HasAccount() bool {
+	if s != nil && s.Account != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccount allocates a new s.Account and returns the pointer to it.
+func (s *ServiceHookSlackRequest) SetAccount(v string) {
+	s.Account = &v
+}
+
+// GetUrl returns the Url field if non-nil, zero value otherwise.
+func (s *ServiceHookSlackRequest) GetUrl() string {
+	if s == nil || s.Url == nil {
+		return ""
+	}
+	return *s.Url
+}
+
+// GetOkUrl returns a tuple with the Url field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceHookSlackRequest) GetUrlOk() (string, bool) {
+	if s == nil || s.Url == nil {
+		return "", false
+	}
+	return *s.Url, true
+}
+
+// HasUrl returns a boolean if a field has been set.
+func (s *ServiceHookSlackRequest) HasUrl() bool {
+	if s != nil && s.Url != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl allocates a new s.Url and returns the pointer to it.
+func (s *ServiceHookSlackRequest) SetUrl(v string) {
+	s.Url = &v
 }
 
 // GetServiceKey returns the ServiceKey field if non-nil, zero value otherwise.
