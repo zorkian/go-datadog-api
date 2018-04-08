@@ -31,7 +31,7 @@ type ServicePDRequest struct {
 }
 
 // IntegrationPDRequest defines the request payload for
-// creating & updating Datadog-Pagerduty integration.
+// creating & updating Datadog-PagerDuty integration.
 type IntegrationPDRequest struct {
 	Services  []ServicePDRequest `json:"services,omitempty"`
 	Subdomain *string            `json:"subdomain,omitempty"`
@@ -40,20 +40,20 @@ type IntegrationPDRequest struct {
 	RunCheck  *bool              `json:"run_check,omitempty"`
 }
 
-// CreateIntegrationPD creates new Pagerduty Integrations.
+// CreateIntegrationPD creates new PagerDuty Integrations.
 // Use this if you want to setup the integration for the first time
 // or to add more services/schedules.
 func (client *Client) CreateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
 	return client.doJsonRequest("POST", "/v1/integration/pagerduty", pdIntegration, nil)
 }
 
-// UpdateIntegrationPD updates the Pagerduty Integration.
+// UpdateIntegrationPD updates the PagerDuty Integration.
 // This will replace the existing values with the new values.
 func (client *Client) UpdateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
 	return client.doJsonRequest("PUT", "/v1/integration/pagerduty", pdIntegration, nil)
 }
 
-// GetIntegrationPD gets all the Pagerduty Integrations from the system.
+// GetIntegrationPD gets all the PagerDuty Integrations from the system.
 func (client *Client) GetIntegrationPD() (*integrationPD, error) {
 	var out integrationPD
 	if err := client.doJsonRequest("GET", "/v1/integration/pagerduty", nil, &out); err != nil {
@@ -63,7 +63,7 @@ func (client *Client) GetIntegrationPD() (*integrationPD, error) {
 	return &out, nil
 }
 
-// DeleteIntegrationPD removes the PD Integration from the system.
+// DeleteIntegrationPD removes the PagerDuty Integration from the system.
 func (client *Client) DeleteIntegrationPD() error {
 	return client.doJsonRequest("DELETE", "/v1/integration/pagerduty", nil, nil)
 }
@@ -116,7 +116,7 @@ func (client *Client) GetIntegrationSlack() (*IntegrationSlackRequest, error) {
 	return &out, nil
 }
 
-// DeleteIntegrationSlack removes the PD Integration from the system.
+// DeleteIntegrationSlack removes the Slack Integration from the system.
 func (client *Client) DeleteIntegrationSlack() error {
 	return client.doJsonRequest("DELETE", "/v1/integration/slack", nil, nil)
 }
