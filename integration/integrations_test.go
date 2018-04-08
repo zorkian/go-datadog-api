@@ -21,7 +21,7 @@ func TestIntegrationPDCreateAndDelete(t *testing.T) {
 
 	actual, err := client.GetIntegrationPD()
 	if err != nil {
-		t.Fatalf("Retrieving a pagerduty integration failed when it shouldn't: (%s)", err)
+		t.Fatalf("Retrieving a PagerDuty integration failed when it shouldn't: (%s)", err)
 	}
 
 	expectedServiceNames := make([]*string, len(expected.Services))
@@ -47,12 +47,12 @@ func TestIntegrationPDUpdate(t *testing.T) {
 	})
 
 	if err := client.UpdateIntegrationPD(pdIntegration); err != nil {
-		t.Fatalf("Updating a pagerduty integration failed when it shouldn't: %s", err)
+		t.Fatalf("Updating a PagerDuty integration failed when it shouldn't: %s", err)
 	}
 
 	actual, err := client.GetIntegrationPD()
 	if err != nil {
-		t.Fatalf("Retrieving a pagerduty integration failed when it shouldn't: %s", err)
+		t.Fatalf("Retrieving a PagerDuty integration failed when it shouldn't: %s", err)
 	}
 
 	expectedServiceNames := make([]*string, len(pdIntegration.Services))
@@ -110,7 +110,7 @@ func createTestIntegrationPD(t *testing.T) *datadog.IntegrationPDRequest {
 	pdIntegration := getTestIntegrationPD()
 	err := client.CreateIntegrationPD(pdIntegration)
 	if err != nil {
-		t.Fatalf("Creating a pagerduty integration failed when it shouldn't: %s", err)
+		t.Fatalf("Creating a PagerDuty integration failed when it shouldn't: %s", err)
 	}
 
 	return pdIntegration
@@ -118,7 +118,7 @@ func createTestIntegrationPD(t *testing.T) *datadog.IntegrationPDRequest {
 
 func cleanUpIntegrationPD(t *testing.T) {
 	if err := client.DeleteIntegrationPD(); err != nil {
-		t.Fatalf("Deleting the pagerduty integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
+		t.Fatalf("Deleting the PagerDuty integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
 	}
 
 	pdIntegration, err := client.GetIntegrationPD()
@@ -127,7 +127,7 @@ func cleanUpIntegrationPD(t *testing.T) {
 	}
 
 	if err == nil {
-		t.Fatal("Fetching deleted pagerduty integration didn't lead to an error.")
+		t.Fatal("Fetching deleted PagerDuty integration didn't lead to an error.")
 	}
 }
 
