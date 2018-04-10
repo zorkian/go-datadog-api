@@ -111,6 +111,8 @@ func (client *Client) Validate() (bool, error) {
 		return false, err
 	}
 
+	defer resp.Body.Close()
+
 	body, err := ioutil.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &out)
 	if err != nil {
