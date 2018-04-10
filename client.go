@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
