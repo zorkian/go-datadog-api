@@ -71,47 +71,23 @@ func (c *Client) GetBaseUrl() string {
 
 // Validate checks if the API and application keys are valid.
 func (client *Client) Validate() (bool, error) {
-	var bo = backoff.NewExponentialBackOff()
-	var bodyreader io.Reader
 	var out valid
+	var resp *http.Response
+	var maxTime time.Duration
 
-	bo.MaxElapsedTime = time.Duration(60 * time.Second)
+	maxTime = time.Duration(60 * time.Second)
 
 	uri, err := client.uriForAPI("/v1/validate")
 	if err != nil {
 		return false, err
 	}
-	req, err := http.NewRequest("GET", uri, bodyreader)
 
+	req, err := http.NewRequest("GET", uri, nil)
+
+	resp, err = client.doRequestWithRetries(req, maxTime)
 	if err != nil {
 		return false, err
 	}
-	if bodyreader != nil {
-		req.Header.Add("Content-Type", "application/json")
-	}
-
-	var resp *http.Response
-
-	operation := func() error {
-		resp, err = client.HttpClient.Do(req)
-		if err != nil {
-			return err
-		}
-
-		if resp.StatusCode >= 200 && resp.StatusCode <= 300 {
-			return nil
-		} else if resp.StatusCode >= 400 && resp.StatusCode < 500 {
-			return nil
-		}
-
-		return fmt.Errorf("Received HTTP status code %d", resp.StatusCode)
-	}
-
-	if err := backoff.Retry(operation, bo); err != nil {
-		return false, err
-	}
-
-	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	err = json.Unmarshal(body, &out)
