@@ -10,14 +10,11 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
-
-	"github.com/cenkalti/backoff"
 )
 
 // Client is the object that handles talking to the Datadog API. This maintains
