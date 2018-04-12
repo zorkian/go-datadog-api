@@ -39,6 +39,7 @@ type Series struct {
 	Length      int         `json:"length,omitempty"`
 	Scope       string      `json:"scope,omitempty"`
 	Expression  string      `json:"expression,omitempty"`
+	QueryIndex  int         `json:"query_index,omitempty"`
 }
 
 // reqPostSeries from /api/v1/series
