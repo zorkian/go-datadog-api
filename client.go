@@ -69,27 +69,26 @@ func (c *Client) GetBaseUrl() string {
 func (client *Client) Validate() (bool, error) {
 	var out valid
 	var resp *http.Response
-	var maxTime time.Duration
 
-	maxTime = time.Duration(60 * time.Second)
-
-	uri, err := client.uriForAPI("/v1/validate")
-	if err != nil {
+	if uri, err := client.uriForAPI("/v1/validate"); err != nil {
 		return false, err
 	}
 
 	req, err := http.NewRequest("GET", uri, nil)
 
-	resp, err = client.doRequestWithRetries(req, maxTime)
+	resp, err = client.doRequestWithRetries(req, client.RetryTimeout)
 	if err != nil {
 		return false, err
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
-	err = json.Unmarshal(body, &out)
-	if err != nil {
+	if body, err := ioutil.ReadAll(resp.Body); err != nil {
 		return false, err
 	}
 
+	if err = json.Unmarshal(body, &out); err != nil {
+		return false, err
+	}
+
+	defer resp.Body.Close()
 	return out.IsValid, nil
 }
