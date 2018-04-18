@@ -10,11 +10,9 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"io/ioutil"
-	"os"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -69,41 +67,32 @@ func (c *Client) GetBaseUrl() string {
 
 // Validate checks if the API and application keys are valid.
 func (client *Client) Validate() (bool, error) {
-	var bodyreader io.Reader
 	var out valid
+	var resp *http.Response
+
 	uri, err := client.uriForAPI("/v1/validate")
 	if err != nil {
 		return false, err
 	}
-	req, err := http.NewRequest("GET", uri, bodyreader)
 
+	req, err := http.NewRequest("GET", uri, nil)
 	if err != nil {
 		return false, err
 	}
-	if bodyreader != nil {
-		req.Header.Add("Content-Type", "application/json")
-	}
 
-	var resp *http.Response
-	resp, err = client.HttpClient.Do(req)
+	resp, err = client.doRequestWithRetries(req, client.RetryTimeout)
 	if err != nil {
 		return false, err
 	}
 
 	defer resp.Body.Close()
 
-	// Only care about 200 OK or 403 which we'll unmarshal into struct valid. Everything else is of no interest to us.
-	if resp.StatusCode != 200 && resp.StatusCode != 403 {
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			return false, err
-		}
-		return false, fmt.Errorf("API error %s: %s", resp.Status, body)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return false, err
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
-	err = json.Unmarshal(body, &out)
-	if err != nil {
+	if err = json.Unmarshal(body, &out); err != nil {
 		return false, err
 	}
 
