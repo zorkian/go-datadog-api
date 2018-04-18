@@ -70,7 +70,8 @@ func (client *Client) Validate() (bool, error) {
 	var out valid
 	var resp *http.Response
 
-	if uri, err := client.uriForAPI("/v1/validate"); err != nil {
+	uri, err := client.uriForAPI("/v1/validate")
+	if err != nil {
 		return false, err
 	}
 
