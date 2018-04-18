@@ -76,6 +76,9 @@ func (client *Client) Validate() (bool, error) {
 	}
 
 	req, err := http.NewRequest("GET", uri, nil)
+	if err != nil {
+		return false, err
+	}
 
 	resp, err = client.doRequestWithRetries(req, client.RetryTimeout)
 	if err != nil {
