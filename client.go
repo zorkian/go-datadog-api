@@ -81,7 +81,10 @@ func (client *Client) Validate() (bool, error) {
 		return false, err
 	}
 
-	if body, err := ioutil.ReadAll(resp.Body); err != nil {
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
 		return false, err
 	}
 
@@ -89,6 +92,5 @@ func (client *Client) Validate() (bool, error) {
 		return false, err
 	}
 
-	defer resp.Body.Close()
 	return out.IsValid, nil
 }
