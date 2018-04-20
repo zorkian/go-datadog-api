@@ -44,7 +44,7 @@ func NewClient(apiKey, appKey string) *Client {
 		apiKey:       apiKey,
 		appKey:       appKey,
 		baseUrl:      baseUrl,
-		HttpClient:   http.DefaultClient,
+		HTTPClient:   http.DefaultClient,
 		RetryTimeout: time.Duration(60 * time.Second),
 	}
 }

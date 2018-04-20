@@ -34,7 +34,7 @@ func (client *Client) CreateComment(handle, message string) (*Comment, error) {
 	if len(handle) > 0 {
 		comment.Handle = String(handle)
 	}
-	if err := client.doJsonRequest("POST", "/v1/comments", &comment, &out); err != nil {
+	if err := client.doJSONRequest("POST", "/v1/comments", &comment, &out); err != nil {
 		return nil, err
 	}
 	return out.Comment, nil
@@ -45,11 +45,11 @@ func (client *Client) CreateComment(handle, message string) (*Comment, error) {
 func (client *Client) CreateRelatedComment(handle, message string,
 	relid int) (*Comment, error) {
 	var out reqComment
-	comment := Comment{Message: String(message), RelatedId: Int(relid)}
+	comment := Comment{Message: String(message), RelatedID: Int(relid)}
 	if len(handle) > 0 {
 		comment.Handle = String(handle)
 	}
-	if err := client.doJsonRequest("POST", "/v1/comments", &comment, &out); err != nil {
+	if err := client.doJSONRequest("POST", "/v1/comments", &comment, &out); err != nil {
 		return nil, err
 	}
 	return out.Comment, nil
@@ -61,7 +61,7 @@ func (client *Client) EditComment(id int, handle, message string) error {
 	if len(handle) > 0 {
 		comment.Handle = String(handle)
 	}
-	return client.doJsonRequest("PUT", fmt.Sprintf("/v1/comments/%d", id),
+	return client.doJSONRequest("PUT", fmt.Sprintf("/v1/comments/%d", id),
 		&comment, nil)
 }
 

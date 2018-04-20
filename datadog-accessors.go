@@ -1478,7 +1478,7 @@ func (c *ChannelSlackRequest) GetAccount() string {
 	return *c.Account
 }
 
-// GetOkAccount returns a tuple with the Account field if it's non-nil, zero value otherwise
+// GetAccountOk returns a tuple with the Account field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (c *ChannelSlackRequest) GetAccountOk() (string, bool) {
 	if c == nil || c.Account == nil {
@@ -1509,7 +1509,7 @@ func (c *ChannelSlackRequest) GetChannelName() string {
 	return *c.ChannelName
 }
 
-// GetOkChannelName returns a tuple with the ChannelName field if it's non-nil, zero value otherwise
+// GetChannelNameOk returns a tuple with the ChannelName field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (c *ChannelSlackRequest) GetChannelNameOk() (string, bool) {
 	if c == nil || c.ChannelName == nil {
@@ -1540,7 +1540,7 @@ func (c *ChannelSlackRequest) GetTransferAllUserComments() bool {
 	return *c.TransferAllUserComments
 }
 
-// GetOkTransferAllUserComments returns a tuple with the TransferAllUserComments field if it's non-nil, zero value otherwise
+// GetTransferAllUserCommentsOk returns a tuple with the TransferAllUserComments field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (c *ChannelSlackRequest) GetTransferAllUserCommentsOk() (bool, bool) {
 	if c == nil || c.TransferAllUserComments == nil {
@@ -7306,7 +7306,7 @@ func (i *integrationPD) GetAPIToken() string {
 	return *i.APIToken
 }
 
-// GetOkAPIToken returns a tuple with the APIToken field if it's non-nil, zero value otherwise
+// GetAPITokenOk returns a tuple with the APIToken field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (i *integrationPD) GetAPITokenOk() (string, bool) {
 	if i == nil || i.APIToken == nil {
@@ -7337,7 +7337,7 @@ func (i *integrationPD) GetSubdomain() string {
 	return *i.Subdomain
 }
 
-// GetOkSubdomain returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+// GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (i *integrationPD) GetSubdomainOk() (string, bool) {
 	if i == nil || i.Subdomain == nil {
@@ -7368,7 +7368,7 @@ func (i *IntegrationPDRequest) GetAPIToken() string {
 	return *i.APIToken
 }
 
-// GetOkAPIToken returns a tuple with the APIToken field if it's non-nil, zero value otherwise
+// GetAPITokenOk returns a tuple with the APIToken field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (i *IntegrationPDRequest) GetAPITokenOk() (string, bool) {
 	if i == nil || i.APIToken == nil {
@@ -7399,7 +7399,7 @@ func (i *IntegrationPDRequest) GetRunCheck() bool {
 	return *i.RunCheck
 }
 
-// GetOkRunCheck returns a tuple with the RunCheck field if it's non-nil, zero value otherwise
+// GetRunCheckOk returns a tuple with the RunCheck field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (i *IntegrationPDRequest) GetRunCheckOk() (bool, bool) {
 	if i == nil || i.RunCheck == nil {
@@ -7430,7 +7430,7 @@ func (i *IntegrationPDRequest) GetSubdomain() string {
 	return *i.Subdomain
 }
 
-// GetOkSubdomain returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
+// GetSubdomainOk returns a tuple with the Subdomain field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (i *IntegrationPDRequest) GetSubdomainOk() (string, bool) {
 	if i == nil || i.Subdomain == nil {
@@ -7461,7 +7461,7 @@ func (i *IntegrationSlackRequest) GetRunCheck() bool {
 	return *i.RunCheck
 }
 
-// GetOkRunCheck returns a tuple with the RunCheck field if it's non-nil, zero value otherwise
+// GetRunCheckOk returns a tuple with the RunCheck field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (i *IntegrationSlackRequest) GetRunCheckOk() (bool, bool) {
 	if i == nil || i.RunCheck == nil {
@@ -10499,7 +10499,7 @@ func (s *Series) GetUnits() UnitPair {
 	return *s.Units
 }
 
-// GetOkUnits returns a tuple with the Units field if it's non-nil, zero value otherwise
+// GetUnitsOk returns a tuple with the Units field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *Series) GetUnitsOk() (UnitPair, bool) {
 	if s == nil || s.Units == nil {
@@ -10530,7 +10530,7 @@ func (s *ServiceHookSlackRequest) GetAccount() string {
 	return *s.Account
 }
 
-// GetOkAccount returns a tuple with the Account field if it's non-nil, zero value otherwise
+// GetAccountOk returns a tuple with the Account field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *ServiceHookSlackRequest) GetAccountOk() (string, bool) {
 	if s == nil || s.Account == nil {
@@ -10561,7 +10561,7 @@ func (s *ServiceHookSlackRequest) GetUrl() string {
 	return *s.Url
 }
 
-// GetOkUrl returns a tuple with the Url field if it's non-nil, zero value otherwise
+// GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *ServiceHookSlackRequest) GetUrlOk() (string, bool) {
 	if s == nil || s.Url == nil {
@@ -10592,7 +10592,7 @@ func (s *servicePD) GetServiceKey() string {
 	return *s.ServiceKey
 }
 
-// GetOkServiceKey returns a tuple with the ServiceKey field if it's non-nil, zero value otherwise
+// GetServiceKeyOk returns a tuple with the ServiceKey field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *servicePD) GetServiceKeyOk() (string, bool) {
 	if s == nil || s.ServiceKey == nil {
@@ -10623,7 +10623,7 @@ func (s *servicePD) GetServiceName() string {
 	return *s.ServiceName
 }
 
-// GetOkServiceName returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
+// GetServiceNameOk returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *servicePD) GetServiceNameOk() (string, bool) {
 	if s == nil || s.ServiceName == nil {
@@ -10654,7 +10654,7 @@ func (s *ServicePDRequest) GetServiceKey() string {
 	return *s.ServiceKey
 }
 
-// GetOkServiceKey returns a tuple with the ServiceKey field if it's non-nil, zero value otherwise
+// GetServiceKeyOk returns a tuple with the ServiceKey field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *ServicePDRequest) GetServiceKeyOk() (string, bool) {
 	if s == nil || s.ServiceKey == nil {
@@ -10685,7 +10685,7 @@ func (s *ServicePDRequest) GetServiceName() string {
 	return *s.ServiceName
 }
 
-// GetOkServiceName returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
+// GetServiceNameOk returns a tuple with the ServiceName field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (s *ServicePDRequest) GetServiceNameOk() (string, bool) {
 	if s == nil || s.ServiceName == nil {
@@ -11026,7 +11026,7 @@ func (t *ThresholdCount) GetUnknown() json.Number {
 	return *t.Unknown
 }
 
-// GetOkUnknown returns a tuple with the Unknown field if it's non-nil, zero value otherwise
+// GetUnknownOk returns a tuple with the Unknown field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (t *ThresholdCount) GetUnknownOk() (json.Number, bool) {
 	if t == nil || t.Unknown == nil {
@@ -12173,7 +12173,7 @@ func (u *User) GetAccessRole() string {
 	return *u.AccessRole
 }
 
-// GetOkAccessRole returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
+// GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (u *User) GetAccessRoleOk() (string, bool) {
 	if u == nil || u.AccessRole == nil {
