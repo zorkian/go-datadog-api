@@ -13,7 +13,7 @@ func TestUriForApi(t *testing.T) {
 		apiKey:       "sample_api_key",
 		appKey:       "sample_app_key",
 		baseUrl:      "https://base.datadoghq.com",
-		HttpClient:   &http.Client{},
+		HTTPClient:   &http.Client{},
 		RetryTimeout: 1000,
 	}
 	t.Run("Get Uri for api string with query string", func(t *testing.T) {
@@ -34,7 +34,7 @@ func TestRedactError(t *testing.T) {
 		apiKey:       "sample_api_key",
 		appKey:       "sample_app_key",
 		baseUrl:      "https://base.datadoghq.com",
-		HttpClient:   &http.Client{},
+		HTTPClient:   &http.Client{},
 		RetryTimeout: 1000,
 	}
 	t.Run("Error containing api key in string is correctly redacted", func(t *testing.T) {
