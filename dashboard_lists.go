@@ -21,13 +21,13 @@ const (
 )
 
 // DashboardList represents a dashboard list.
-// struct when we load the summaries.
 type DashboardList struct {
 	Id             *int    `json:"id,omitempty"`
 	Name           *string `json:"name,omitempty"`
 	DashboardCount *int    `json:"dashboard_count,omitempty"`
 }
 
+// DashboardListItem represents a single dashboard in a dashboard list.
 type DashboardListItem struct {
 	Id   *int    `json:"id,omitempty"`
 	Type *string `json:"type,omitempty"`
