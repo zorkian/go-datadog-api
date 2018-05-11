@@ -2989,6 +2989,192 @@ func (d *DashboardConditionalFormat) SetValue(v json.Number) {
 	d.Value = &v
 }
 
+// GetDashboardCount returns the DashboardCount field if non-nil, zero value otherwise.
+func (d *DashboardList) GetDashboardCount() int {
+	if d == nil || d.DashboardCount == nil {
+		return 0
+	}
+	return *d.DashboardCount
+}
+
+// GetOkDashboardCount returns a tuple with the DashboardCount field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardList) GetDashboardCountOk() (int, bool) {
+	if d == nil || d.DashboardCount == nil {
+		return 0, false
+	}
+	return *d.DashboardCount, true
+}
+
+// HasDashboardCount returns a boolean if a field has been set.
+func (d *DashboardList) HasDashboardCount() bool {
+	if d != nil && d.DashboardCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDashboardCount allocates a new d.DashboardCount and returns the pointer to it.
+func (d *DashboardList) SetDashboardCount(v int) {
+	d.DashboardCount = &v
+}
+
+// GetId returns the Id field if non-nil, zero value otherwise.
+func (d *DashboardList) GetId() int {
+	if d == nil || d.Id == nil {
+		return 0
+	}
+	return *d.Id
+}
+
+// GetOkId returns a tuple with the Id field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardList) GetIdOk() (int, bool) {
+	if d == nil || d.Id == nil {
+		return 0, false
+	}
+	return *d.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (d *DashboardList) HasId() bool {
+	if d != nil && d.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId allocates a new d.Id and returns the pointer to it.
+func (d *DashboardList) SetId(v int) {
+	d.Id = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (d *DashboardList) GetName() string {
+	if d == nil || d.Name == nil {
+		return ""
+	}
+	return *d.Name
+}
+
+// GetOkName returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardList) GetNameOk() (string, bool) {
+	if d == nil || d.Name == nil {
+		return "", false
+	}
+	return *d.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (d *DashboardList) HasName() bool {
+	if d != nil && d.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new d.Name and returns the pointer to it.
+func (d *DashboardList) SetName(v string) {
+	d.Name = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (d *DashboardList) GetType() string {
+	if d == nil || d.Type == nil {
+		return ""
+	}
+	return *d.Type
+}
+
+// GetOkType returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardList) GetTypeOk() (string, bool) {
+	if d == nil || d.Type == nil {
+		return "", false
+	}
+	return *d.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (d *DashboardList) HasType() bool {
+	if d != nil && d.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new d.Type and returns the pointer to it.
+func (d *DashboardList) SetType(v string) {
+	d.Type = &v
+}
+
+// GetId returns the Id field if non-nil, zero value otherwise.
+func (d *DashboardListItem) GetId() int {
+	if d == nil || d.Id == nil {
+		return 0
+	}
+	return *d.Id
+}
+
+// GetOkId returns a tuple with the Id field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardListItem) GetIdOk() (int, bool) {
+	if d == nil || d.Id == nil {
+		return 0, false
+	}
+	return *d.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (d *DashboardListItem) HasId() bool {
+	if d != nil && d.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId allocates a new d.Id and returns the pointer to it.
+func (d *DashboardListItem) SetId(v int) {
+	d.Id = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (d *DashboardListItem) GetType() string {
+	if d == nil || d.Type == nil {
+		return ""
+	}
+	return *d.Type
+}
+
+// GetOkType returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardListItem) GetTypeOk() (string, bool) {
+	if d == nil || d.Type == nil {
+		return "", false
+	}
+	return *d.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (d *DashboardListItem) HasType() bool {
+	if d != nil && d.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new d.Type and returns the pointer to it.
+func (d *DashboardListItem) SetType(v string) {
+	d.Type = &v
+}
+
 // GetDescription returns the Description field if non-nil, zero value otherwise.
 func (d *DashboardLite) GetDescription() string {
 	if d == nil || d.Description == nil {
