@@ -12,12 +12,19 @@ import (
 	"fmt"
 )
 
+const (
+	DashboardListItemCustomTimeboard        = "custom_timeboard"
+	DashboardListItemCustomScreenboard      = "custom_screenboard"
+	DashboardListItemIntegerationTimeboard  = "integration_timeboard"
+	DashboardListItemIntegrationScreenboard = "integration_screenboard"
+	DashboardListItemHostTimeboard          = "host_timeboard"
+)
+
 // DashboardList represents a dashboard list.
 // struct when we load the summaries.
 type DashboardList struct {
 	Id             *int    `json:"id,omitempty"`
 	Name           *string `json:"name,omitempty"`
-	Type           *string `json:"type,omitempty"`
 	DashboardCount *int    `json:"dashboard_count,omitempty"`
 }
 
@@ -42,7 +49,7 @@ type reqUpdateDashboardList struct {
 	Name string `json:"name,omitempty"`
 }
 
-type reqGetAllDashboardLists struct {
+type reqGetDashboardLists struct {
 	DashboardLists []DashboardList `json:"dashboard_lists,omitempty"`
 }
 
@@ -55,9 +62,9 @@ func (client *Client) GetDashboardList(id int) (*DashboardList, error) {
 	return &out, nil
 }
 
-// GetAllDashboardLists returns a list of all dashboard lists created on this account.
-func (client *Client) GetAllDashboardLists() ([]DashboardList, error) {
-	var out reqGetAllDashboardLists
+// GetDashboardLists returns a list of all dashboard lists created on this account.
+func (client *Client) GetDashboardLists() ([]DashboardList, error) {
+	var out reqGetDashboardLists
 	if err := client.doJsonRequest("GET", "/v1/dashboard/lists/manual", nil, &out); err != nil {
 		return nil, err
 	}
