@@ -354,35 +354,35 @@ func (a *AlertGraphWidget) SetHeight(v int) {
 	a.Height = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (a *AlertGraphWidget) GetTimeframe() string {
-	if a == nil || a.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (a *AlertGraphWidget) GetTime() Time {
+	if a == nil || a.Time == nil {
+		return Time{}
 	}
-	return *a.Timeframe
+	return *a.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (a *AlertGraphWidget) GetTimeframeOk() (string, bool) {
-	if a == nil || a.Timeframe == nil {
-		return "", false
+func (a *AlertGraphWidget) GetTimeOk() (Time, bool) {
+	if a == nil || a.Time == nil {
+		return Time{}, false
 	}
-	return *a.Timeframe, true
+	return *a.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (a *AlertGraphWidget) HasTimeframe() bool {
-	if a != nil && a.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (a *AlertGraphWidget) HasTime() bool {
+	if a != nil && a.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new a.Timeframe and returns the pointer to it.
-func (a *AlertGraphWidget) SetTimeframe(v string) {
-	a.Timeframe = &v
+// SetTime allocates a new a.Time and returns the pointer to it.
+func (a *AlertGraphWidget) SetTime(v Time) {
+	a.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -850,35 +850,35 @@ func (a *AlertValueWidget) SetTextSize(v string) {
 	a.TextSize = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (a *AlertValueWidget) GetTimeframe() string {
-	if a == nil || a.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (a *AlertValueWidget) GetTime() Time {
+	if a == nil || a.Time == nil {
+		return Time{}
 	}
-	return *a.Timeframe
+	return *a.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (a *AlertValueWidget) GetTimeframeOk() (string, bool) {
-	if a == nil || a.Timeframe == nil {
-		return "", false
+func (a *AlertValueWidget) GetTimeOk() (Time, bool) {
+	if a == nil || a.Time == nil {
+		return Time{}, false
 	}
-	return *a.Timeframe, true
+	return *a.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (a *AlertValueWidget) HasTimeframe() bool {
-	if a != nil && a.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (a *AlertValueWidget) HasTime() bool {
+	if a != nil && a.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new a.Timeframe and returns the pointer to it.
-func (a *AlertValueWidget) SetTimeframe(v string) {
-	a.Timeframe = &v
+// SetTime allocates a new a.Time and returns the pointer to it.
+func (a *AlertValueWidget) SetTime(v Time) {
+	a.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -1935,35 +1935,35 @@ func (c *CheckStatusWidget) SetTextSize(v string) {
 	c.TextSize = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (c *CheckStatusWidget) GetTimeframe() string {
-	if c == nil || c.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (c *CheckStatusWidget) GetTime() Time {
+	if c == nil || c.Time == nil {
+		return Time{}
 	}
-	return *c.Timeframe
+	return *c.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (c *CheckStatusWidget) GetTimeframeOk() (string, bool) {
-	if c == nil || c.Timeframe == nil {
-		return "", false
+func (c *CheckStatusWidget) GetTimeOk() (Time, bool) {
+	if c == nil || c.Time == nil {
+		return Time{}, false
 	}
-	return *c.Timeframe, true
+	return *c.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (c *CheckStatusWidget) HasTimeframe() bool {
-	if c != nil && c.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (c *CheckStatusWidget) HasTime() bool {
+	if c != nil && c.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new c.Timeframe and returns the pointer to it.
-func (c *CheckStatusWidget) SetTimeframe(v string) {
-	c.Timeframe = &v
+// SetTime allocates a new c.Time and returns the pointer to it.
+func (c *CheckStatusWidget) SetTime(v Time) {
+	c.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -4012,35 +4012,35 @@ func (e *EventStreamWidget) SetQuery(v string) {
 	e.Query = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (e *EventStreamWidget) GetTimeframe() string {
-	if e == nil || e.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (e *EventStreamWidget) GetTime() Time {
+	if e == nil || e.Time == nil {
+		return Time{}
 	}
-	return *e.Timeframe
+	return *e.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (e *EventStreamWidget) GetTimeframeOk() (string, bool) {
-	if e == nil || e.Timeframe == nil {
-		return "", false
+func (e *EventStreamWidget) GetTimeOk() (Time, bool) {
+	if e == nil || e.Time == nil {
+		return Time{}, false
 	}
-	return *e.Timeframe, true
+	return *e.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (e *EventStreamWidget) HasTimeframe() bool {
-	if e != nil && e.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (e *EventStreamWidget) HasTime() bool {
+	if e != nil && e.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new e.Timeframe and returns the pointer to it.
-func (e *EventStreamWidget) SetTimeframe(v string) {
-	e.Timeframe = &v
+// SetTime allocates a new e.Time and returns the pointer to it.
+func (e *EventStreamWidget) SetTime(v Time) {
+	e.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -4353,35 +4353,35 @@ func (e *EventTimelineWidget) SetQuery(v string) {
 	e.Query = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (e *EventTimelineWidget) GetTimeframe() string {
-	if e == nil || e.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (e *EventTimelineWidget) GetTime() Time {
+	if e == nil || e.Time == nil {
+		return Time{}
 	}
-	return *e.Timeframe
+	return *e.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (e *EventTimelineWidget) GetTimeframeOk() (string, bool) {
-	if e == nil || e.Timeframe == nil {
-		return "", false
+func (e *EventTimelineWidget) GetTimeOk() (Time, bool) {
+	if e == nil || e.Time == nil {
+		return Time{}, false
 	}
-	return *e.Timeframe, true
+	return *e.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (e *EventTimelineWidget) HasTimeframe() bool {
-	if e != nil && e.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (e *EventTimelineWidget) HasTime() bool {
+	if e != nil && e.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new e.Timeframe and returns the pointer to it.
-func (e *EventTimelineWidget) SetTimeframe(v string) {
-	e.Timeframe = &v
+// SetTime allocates a new e.Time and returns the pointer to it.
+func (e *EventTimelineWidget) SetTime(v Time) {
+	e.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -5996,35 +5996,35 @@ func (g *GraphWidget) SetTileDef(v TileDef) {
 	g.TileDef = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (g *GraphWidget) GetTimeframe() string {
-	if g == nil || g.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (g *GraphWidget) GetTime() Time {
+	if g == nil || g.Time == nil {
+		return Time{}
 	}
-	return *g.Timeframe
+	return *g.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (g *GraphWidget) GetTimeframeOk() (string, bool) {
-	if g == nil || g.Timeframe == nil {
-		return "", false
+func (g *GraphWidget) GetTimeOk() (Time, bool) {
+	if g == nil || g.Time == nil {
+		return Time{}, false
 	}
-	return *g.Timeframe, true
+	return *g.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (g *GraphWidget) HasTimeframe() bool {
-	if g != nil && g.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (g *GraphWidget) HasTime() bool {
+	if g != nil && g.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new g.Timeframe and returns the pointer to it.
-func (g *GraphWidget) SetTimeframe(v string) {
-	g.Timeframe = &v
+// SetTime allocates a new g.Time and returns the pointer to it.
+func (g *GraphWidget) SetTime(v Time) {
+	g.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -6523,35 +6523,35 @@ func (h *HostMapWidget) SetTileDef(v TileDef) {
 	h.TileDef = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (h *HostMapWidget) GetTimeframe() string {
-	if h == nil || h.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (h *HostMapWidget) GetTime() Time {
+	if h == nil || h.Time == nil {
+		return Time{}
 	}
-	return *h.Timeframe
+	return *h.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (h *HostMapWidget) GetTimeframeOk() (string, bool) {
-	if h == nil || h.Timeframe == nil {
-		return "", false
+func (h *HostMapWidget) GetTimeOk() (Time, bool) {
+	if h == nil || h.Time == nil {
+		return Time{}, false
 	}
-	return *h.Timeframe, true
+	return *h.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (h *HostMapWidget) HasTimeframe() bool {
-	if h != nil && h.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (h *HostMapWidget) HasTime() bool {
+	if h != nil && h.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new h.Timeframe and returns the pointer to it.
-func (h *HostMapWidget) SetTimeframe(v string) {
-	h.Timeframe = &v
+// SetTime allocates a new h.Time and returns the pointer to it.
+func (h *HostMapWidget) SetTime(v Time) {
+	h.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -9406,35 +9406,35 @@ func (q *QueryValueWidget) SetTextSize(v TextSize) {
 	q.TextSize = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (q *QueryValueWidget) GetTimeframe() string {
-	if q == nil || q.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (q *QueryValueWidget) GetTime() Time {
+	if q == nil || q.Time == nil {
+		return Time{}
 	}
-	return *q.Timeframe
+	return *q.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (q *QueryValueWidget) GetTimeframeOk() (string, bool) {
-	if q == nil || q.Timeframe == nil {
-		return "", false
+func (q *QueryValueWidget) GetTimeOk() (Time, bool) {
+	if q == nil || q.Time == nil {
+		return Time{}, false
 	}
-	return *q.Timeframe, true
+	return *q.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (q *QueryValueWidget) HasTimeframe() bool {
-	if q != nil && q.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (q *QueryValueWidget) HasTime() bool {
+	if q != nil && q.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new q.Timeframe and returns the pointer to it.
-func (q *QueryValueWidget) SetTimeframe(v string) {
-	q.Timeframe = &v
+// SetTime allocates a new q.Time and returns the pointer to it.
+func (q *QueryValueWidget) SetTime(v Time) {
+	q.Time = &v
 }
 
 // GetTimeframeAggregator returns the TimeframeAggregator field if non-nil, zero value otherwise.
@@ -11328,6 +11328,37 @@ func (t *TileDefEvent) SetQuery(v string) {
 	t.Query = &v
 }
 
+// GetLiveSpan returns the LiveSpan field if non-nil, zero value otherwise.
+func (t *Time) GetLiveSpan() string {
+	if t == nil || t.LiveSpan == nil {
+		return ""
+	}
+	return *t.LiveSpan
+}
+
+// GetOkLiveSpan returns a tuple with the LiveSpan field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *Time) GetLiveSpanOk() (string, bool) {
+	if t == nil || t.LiveSpan == nil {
+		return "", false
+	}
+	return *t.LiveSpan, true
+}
+
+// HasLiveSpan returns a boolean if a field has been set.
+func (t *Time) HasLiveSpan() bool {
+	if t != nil && t.LiveSpan != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLiveSpan allocates a new t.LiveSpan and returns the pointer to it.
+func (t *Time) SetLiveSpan(v string) {
+	t.LiveSpan = &v
+}
+
 // GetLabel returns the Label field if non-nil, zero value otherwise.
 func (t *TimeseriesMarker) GetLabel() string {
 	if t == nil || t.Label == nil {
@@ -11638,35 +11669,35 @@ func (t *TimeseriesWidget) SetTileDef(v TileDef) {
 	t.TileDef = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (t *TimeseriesWidget) GetTimeframe() string {
-	if t == nil || t.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (t *TimeseriesWidget) GetTime() Time {
+	if t == nil || t.Time == nil {
+		return Time{}
 	}
-	return *t.Timeframe
+	return *t.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TimeseriesWidget) GetTimeframeOk() (string, bool) {
-	if t == nil || t.Timeframe == nil {
-		return "", false
+func (t *TimeseriesWidget) GetTimeOk() (Time, bool) {
+	if t == nil || t.Time == nil {
+		return Time{}, false
 	}
-	return *t.Timeframe, true
+	return *t.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (t *TimeseriesWidget) HasTimeframe() bool {
-	if t != nil && t.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (t *TimeseriesWidget) HasTime() bool {
+	if t != nil && t.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new t.Timeframe and returns the pointer to it.
-func (t *TimeseriesWidget) SetTimeframe(v string) {
-	t.Timeframe = &v
+// SetTime allocates a new t.Time and returns the pointer to it.
+func (t *TimeseriesWidget) SetTime(v Time) {
+	t.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -12041,35 +12072,35 @@ func (t *ToplistWidget) SetTileDef(v TileDef) {
 	t.TileDef = &v
 }
 
-// GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
-func (t *ToplistWidget) GetTimeframe() string {
-	if t == nil || t.Timeframe == nil {
-		return ""
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (t *ToplistWidget) GetTime() Time {
+	if t == nil || t.Time == nil {
+		return Time{}
 	}
-	return *t.Timeframe
+	return *t.Time
 }
 
-// GetOkTimeframe returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
+// GetOkTime returns a tuple with the Time field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *ToplistWidget) GetTimeframeOk() (string, bool) {
-	if t == nil || t.Timeframe == nil {
-		return "", false
+func (t *ToplistWidget) GetTimeOk() (Time, bool) {
+	if t == nil || t.Time == nil {
+		return Time{}, false
 	}
-	return *t.Timeframe, true
+	return *t.Time, true
 }
 
-// HasTimeframe returns a boolean if a field has been set.
-func (t *ToplistWidget) HasTimeframe() bool {
-	if t != nil && t.Timeframe != nil {
+// HasTime returns a boolean if a field has been set.
+func (t *ToplistWidget) HasTime() bool {
+	if t != nil && t.Time != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTimeframe allocates a new t.Timeframe and returns the pointer to it.
-func (t *ToplistWidget) SetTimeframe(v string) {
-	t.Timeframe = &v
+// SetTime allocates a new t.Time and returns the pointer to it.
+func (t *ToplistWidget) SetTime(v Time) {
+	t.Time = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -12566,564 +12597,6 @@ func (u *User) HasVerified() bool {
 // SetVerified allocates a new u.Verified and returns the pointer to it.
 func (u *User) SetVerified(v bool) {
 	u.Verified = &v
-}
-
-// GetAlertGraphWidget returns the AlertGraphWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetAlertGraphWidget() AlertGraphWidget {
-	if w == nil || w.AlertGraphWidget == nil {
-		return AlertGraphWidget{}
-	}
-	return *w.AlertGraphWidget
-}
-
-// GetOkAlertGraphWidget returns a tuple with the AlertGraphWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetAlertGraphWidgetOk() (AlertGraphWidget, bool) {
-	if w == nil || w.AlertGraphWidget == nil {
-		return AlertGraphWidget{}, false
-	}
-	return *w.AlertGraphWidget, true
-}
-
-// HasAlertGraphWidget returns a boolean if a field has been set.
-func (w *Widget) HasAlertGraphWidget() bool {
-	if w != nil && w.AlertGraphWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAlertGraphWidget allocates a new w.AlertGraphWidget and returns the pointer to it.
-func (w *Widget) SetAlertGraphWidget(v AlertGraphWidget) {
-	w.AlertGraphWidget = &v
-}
-
-// GetAlertValueWidget returns the AlertValueWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetAlertValueWidget() AlertValueWidget {
-	if w == nil || w.AlertValueWidget == nil {
-		return AlertValueWidget{}
-	}
-	return *w.AlertValueWidget
-}
-
-// GetOkAlertValueWidget returns a tuple with the AlertValueWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetAlertValueWidgetOk() (AlertValueWidget, bool) {
-	if w == nil || w.AlertValueWidget == nil {
-		return AlertValueWidget{}, false
-	}
-	return *w.AlertValueWidget, true
-}
-
-// HasAlertValueWidget returns a boolean if a field has been set.
-func (w *Widget) HasAlertValueWidget() bool {
-	if w != nil && w.AlertValueWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAlertValueWidget allocates a new w.AlertValueWidget and returns the pointer to it.
-func (w *Widget) SetAlertValueWidget(v AlertValueWidget) {
-	w.AlertValueWidget = &v
-}
-
-// GetChangeWidget returns the ChangeWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetChangeWidget() ChangeWidget {
-	if w == nil || w.ChangeWidget == nil {
-		return ChangeWidget{}
-	}
-	return *w.ChangeWidget
-}
-
-// GetOkChangeWidget returns a tuple with the ChangeWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetChangeWidgetOk() (ChangeWidget, bool) {
-	if w == nil || w.ChangeWidget == nil {
-		return ChangeWidget{}, false
-	}
-	return *w.ChangeWidget, true
-}
-
-// HasChangeWidget returns a boolean if a field has been set.
-func (w *Widget) HasChangeWidget() bool {
-	if w != nil && w.ChangeWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetChangeWidget allocates a new w.ChangeWidget and returns the pointer to it.
-func (w *Widget) SetChangeWidget(v ChangeWidget) {
-	w.ChangeWidget = &v
-}
-
-// GetCheckStatusWidget returns the CheckStatusWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetCheckStatusWidget() CheckStatusWidget {
-	if w == nil || w.CheckStatusWidget == nil {
-		return CheckStatusWidget{}
-	}
-	return *w.CheckStatusWidget
-}
-
-// GetOkCheckStatusWidget returns a tuple with the CheckStatusWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetCheckStatusWidgetOk() (CheckStatusWidget, bool) {
-	if w == nil || w.CheckStatusWidget == nil {
-		return CheckStatusWidget{}, false
-	}
-	return *w.CheckStatusWidget, true
-}
-
-// HasCheckStatusWidget returns a boolean if a field has been set.
-func (w *Widget) HasCheckStatusWidget() bool {
-	if w != nil && w.CheckStatusWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCheckStatusWidget allocates a new w.CheckStatusWidget and returns the pointer to it.
-func (w *Widget) SetCheckStatusWidget(v CheckStatusWidget) {
-	w.CheckStatusWidget = &v
-}
-
-// GetDefault returns the Default field if non-nil, zero value otherwise.
-func (w *Widget) GetDefault() string {
-	if w == nil || w.Default == nil {
-		return ""
-	}
-	return *w.Default
-}
-
-// GetOkDefault returns a tuple with the Default field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetDefaultOk() (string, bool) {
-	if w == nil || w.Default == nil {
-		return "", false
-	}
-	return *w.Default, true
-}
-
-// HasDefault returns a boolean if a field has been set.
-func (w *Widget) HasDefault() bool {
-	if w != nil && w.Default != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDefault allocates a new w.Default and returns the pointer to it.
-func (w *Widget) SetDefault(v string) {
-	w.Default = &v
-}
-
-// GetEventStreamWidget returns the EventStreamWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetEventStreamWidget() EventStreamWidget {
-	if w == nil || w.EventStreamWidget == nil {
-		return EventStreamWidget{}
-	}
-	return *w.EventStreamWidget
-}
-
-// GetOkEventStreamWidget returns a tuple with the EventStreamWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetEventStreamWidgetOk() (EventStreamWidget, bool) {
-	if w == nil || w.EventStreamWidget == nil {
-		return EventStreamWidget{}, false
-	}
-	return *w.EventStreamWidget, true
-}
-
-// HasEventStreamWidget returns a boolean if a field has been set.
-func (w *Widget) HasEventStreamWidget() bool {
-	if w != nil && w.EventStreamWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEventStreamWidget allocates a new w.EventStreamWidget and returns the pointer to it.
-func (w *Widget) SetEventStreamWidget(v EventStreamWidget) {
-	w.EventStreamWidget = &v
-}
-
-// GetEventTimelineWidget returns the EventTimelineWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetEventTimelineWidget() EventTimelineWidget {
-	if w == nil || w.EventTimelineWidget == nil {
-		return EventTimelineWidget{}
-	}
-	return *w.EventTimelineWidget
-}
-
-// GetOkEventTimelineWidget returns a tuple with the EventTimelineWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetEventTimelineWidgetOk() (EventTimelineWidget, bool) {
-	if w == nil || w.EventTimelineWidget == nil {
-		return EventTimelineWidget{}, false
-	}
-	return *w.EventTimelineWidget, true
-}
-
-// HasEventTimelineWidget returns a boolean if a field has been set.
-func (w *Widget) HasEventTimelineWidget() bool {
-	if w != nil && w.EventTimelineWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEventTimelineWidget allocates a new w.EventTimelineWidget and returns the pointer to it.
-func (w *Widget) SetEventTimelineWidget(v EventTimelineWidget) {
-	w.EventTimelineWidget = &v
-}
-
-// GetFreeTextWidget returns the FreeTextWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetFreeTextWidget() FreeTextWidget {
-	if w == nil || w.FreeTextWidget == nil {
-		return FreeTextWidget{}
-	}
-	return *w.FreeTextWidget
-}
-
-// GetOkFreeTextWidget returns a tuple with the FreeTextWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetFreeTextWidgetOk() (FreeTextWidget, bool) {
-	if w == nil || w.FreeTextWidget == nil {
-		return FreeTextWidget{}, false
-	}
-	return *w.FreeTextWidget, true
-}
-
-// HasFreeTextWidget returns a boolean if a field has been set.
-func (w *Widget) HasFreeTextWidget() bool {
-	if w != nil && w.FreeTextWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFreeTextWidget allocates a new w.FreeTextWidget and returns the pointer to it.
-func (w *Widget) SetFreeTextWidget(v FreeTextWidget) {
-	w.FreeTextWidget = &v
-}
-
-// GetGraphWidget returns the GraphWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetGraphWidget() GraphWidget {
-	if w == nil || w.GraphWidget == nil {
-		return GraphWidget{}
-	}
-	return *w.GraphWidget
-}
-
-// GetOkGraphWidget returns a tuple with the GraphWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetGraphWidgetOk() (GraphWidget, bool) {
-	if w == nil || w.GraphWidget == nil {
-		return GraphWidget{}, false
-	}
-	return *w.GraphWidget, true
-}
-
-// HasGraphWidget returns a boolean if a field has been set.
-func (w *Widget) HasGraphWidget() bool {
-	if w != nil && w.GraphWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetGraphWidget allocates a new w.GraphWidget and returns the pointer to it.
-func (w *Widget) SetGraphWidget(v GraphWidget) {
-	w.GraphWidget = &v
-}
-
-// GetHostMapWidget returns the HostMapWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetHostMapWidget() HostMapWidget {
-	if w == nil || w.HostMapWidget == nil {
-		return HostMapWidget{}
-	}
-	return *w.HostMapWidget
-}
-
-// GetOkHostMapWidget returns a tuple with the HostMapWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetHostMapWidgetOk() (HostMapWidget, bool) {
-	if w == nil || w.HostMapWidget == nil {
-		return HostMapWidget{}, false
-	}
-	return *w.HostMapWidget, true
-}
-
-// HasHostMapWidget returns a boolean if a field has been set.
-func (w *Widget) HasHostMapWidget() bool {
-	if w != nil && w.HostMapWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHostMapWidget allocates a new w.HostMapWidget and returns the pointer to it.
-func (w *Widget) SetHostMapWidget(v HostMapWidget) {
-	w.HostMapWidget = &v
-}
-
-// GetIFrameWidget returns the IFrameWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetIFrameWidget() IFrameWidget {
-	if w == nil || w.IFrameWidget == nil {
-		return IFrameWidget{}
-	}
-	return *w.IFrameWidget
-}
-
-// GetOkIFrameWidget returns a tuple with the IFrameWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetIFrameWidgetOk() (IFrameWidget, bool) {
-	if w == nil || w.IFrameWidget == nil {
-		return IFrameWidget{}, false
-	}
-	return *w.IFrameWidget, true
-}
-
-// HasIFrameWidget returns a boolean if a field has been set.
-func (w *Widget) HasIFrameWidget() bool {
-	if w != nil && w.IFrameWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIFrameWidget allocates a new w.IFrameWidget and returns the pointer to it.
-func (w *Widget) SetIFrameWidget(v IFrameWidget) {
-	w.IFrameWidget = &v
-}
-
-// GetImageWidget returns the ImageWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetImageWidget() ImageWidget {
-	if w == nil || w.ImageWidget == nil {
-		return ImageWidget{}
-	}
-	return *w.ImageWidget
-}
-
-// GetOkImageWidget returns a tuple with the ImageWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetImageWidgetOk() (ImageWidget, bool) {
-	if w == nil || w.ImageWidget == nil {
-		return ImageWidget{}, false
-	}
-	return *w.ImageWidget, true
-}
-
-// HasImageWidget returns a boolean if a field has been set.
-func (w *Widget) HasImageWidget() bool {
-	if w != nil && w.ImageWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetImageWidget allocates a new w.ImageWidget and returns the pointer to it.
-func (w *Widget) SetImageWidget(v ImageWidget) {
-	w.ImageWidget = &v
-}
-
-// GetName returns the Name field if non-nil, zero value otherwise.
-func (w *Widget) GetName() string {
-	if w == nil || w.Name == nil {
-		return ""
-	}
-	return *w.Name
-}
-
-// GetOkName returns a tuple with the Name field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetNameOk() (string, bool) {
-	if w == nil || w.Name == nil {
-		return "", false
-	}
-	return *w.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (w *Widget) HasName() bool {
-	if w != nil && w.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName allocates a new w.Name and returns the pointer to it.
-func (w *Widget) SetName(v string) {
-	w.Name = &v
-}
-
-// GetNoteWidget returns the NoteWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetNoteWidget() NoteWidget {
-	if w == nil || w.NoteWidget == nil {
-		return NoteWidget{}
-	}
-	return *w.NoteWidget
-}
-
-// GetOkNoteWidget returns a tuple with the NoteWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetNoteWidgetOk() (NoteWidget, bool) {
-	if w == nil || w.NoteWidget == nil {
-		return NoteWidget{}, false
-	}
-	return *w.NoteWidget, true
-}
-
-// HasNoteWidget returns a boolean if a field has been set.
-func (w *Widget) HasNoteWidget() bool {
-	if w != nil && w.NoteWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetNoteWidget allocates a new w.NoteWidget and returns the pointer to it.
-func (w *Widget) SetNoteWidget(v NoteWidget) {
-	w.NoteWidget = &v
-}
-
-// GetPrefix returns the Prefix field if non-nil, zero value otherwise.
-func (w *Widget) GetPrefix() string {
-	if w == nil || w.Prefix == nil {
-		return ""
-	}
-	return *w.Prefix
-}
-
-// GetOkPrefix returns a tuple with the Prefix field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetPrefixOk() (string, bool) {
-	if w == nil || w.Prefix == nil {
-		return "", false
-	}
-	return *w.Prefix, true
-}
-
-// HasPrefix returns a boolean if a field has been set.
-func (w *Widget) HasPrefix() bool {
-	if w != nil && w.Prefix != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPrefix allocates a new w.Prefix and returns the pointer to it.
-func (w *Widget) SetPrefix(v string) {
-	w.Prefix = &v
-}
-
-// GetQueryValueWidget returns the QueryValueWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetQueryValueWidget() QueryValueWidget {
-	if w == nil || w.QueryValueWidget == nil {
-		return QueryValueWidget{}
-	}
-	return *w.QueryValueWidget
-}
-
-// GetOkQueryValueWidget returns a tuple with the QueryValueWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetQueryValueWidgetOk() (QueryValueWidget, bool) {
-	if w == nil || w.QueryValueWidget == nil {
-		return QueryValueWidget{}, false
-	}
-	return *w.QueryValueWidget, true
-}
-
-// HasQueryValueWidget returns a boolean if a field has been set.
-func (w *Widget) HasQueryValueWidget() bool {
-	if w != nil && w.QueryValueWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetQueryValueWidget allocates a new w.QueryValueWidget and returns the pointer to it.
-func (w *Widget) SetQueryValueWidget(v QueryValueWidget) {
-	w.QueryValueWidget = &v
-}
-
-// GetTimeseriesWidget returns the TimeseriesWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetTimeseriesWidget() TimeseriesWidget {
-	if w == nil || w.TimeseriesWidget == nil {
-		return TimeseriesWidget{}
-	}
-	return *w.TimeseriesWidget
-}
-
-// GetOkTimeseriesWidget returns a tuple with the TimeseriesWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetTimeseriesWidgetOk() (TimeseriesWidget, bool) {
-	if w == nil || w.TimeseriesWidget == nil {
-		return TimeseriesWidget{}, false
-	}
-	return *w.TimeseriesWidget, true
-}
-
-// HasTimeseriesWidget returns a boolean if a field has been set.
-func (w *Widget) HasTimeseriesWidget() bool {
-	if w != nil && w.TimeseriesWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimeseriesWidget allocates a new w.TimeseriesWidget and returns the pointer to it.
-func (w *Widget) SetTimeseriesWidget(v TimeseriesWidget) {
-	w.TimeseriesWidget = &v
-}
-
-// GetToplistWidget returns the ToplistWidget field if non-nil, zero value otherwise.
-func (w *Widget) GetToplistWidget() ToplistWidget {
-	if w == nil || w.ToplistWidget == nil {
-		return ToplistWidget{}
-	}
-	return *w.ToplistWidget
-}
-
-// GetOkToplistWidget returns a tuple with the ToplistWidget field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (w *Widget) GetToplistWidgetOk() (ToplistWidget, bool) {
-	if w == nil || w.ToplistWidget == nil {
-		return ToplistWidget{}, false
-	}
-	return *w.ToplistWidget, true
-}
-
-// HasToplistWidget returns a boolean if a field has been set.
-func (w *Widget) HasToplistWidget() bool {
-	if w != nil && w.ToplistWidget != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetToplistWidget allocates a new w.ToplistWidget and returns the pointer to it.
-func (w *Widget) SetToplistWidget(v ToplistWidget) {
-	w.ToplistWidget = &v
 }
 
 // GetMax returns the Max field if non-nil, zero value otherwise.

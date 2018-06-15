@@ -5,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
+	"github.com/mitchellh/mapstructure"
 )
 
 func TestWidgetAlertValue(t *testing.T) {
@@ -28,9 +29,7 @@ func TestWidgetAlertValue(t *testing.T) {
 		AddTimeframe: datadog.Bool(false),
 	}
 
-	w := datadog.Widget{AlertValueWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -41,9 +40,11 @@ func TestWidgetAlertValue(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].AlertValueWidget
+	actualWidget := datadog.AlertValueWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, actualWidget, expected)
+	assert.Equal(t, *expected, actualWidget)
+
 }
 
 func TestWidgetChange(t *testing.T) {
@@ -63,9 +64,7 @@ func TestWidgetChange(t *testing.T) {
 		TileDef:    &datadog.TileDef{},
 	}
 
-	w := datadog.Widget{ChangeWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -76,9 +75,10 @@ func TestWidgetChange(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].ChangeWidget
+	actualWidget := datadog.ChangeWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetGraph(t *testing.T) {
@@ -94,16 +94,16 @@ func TestWidgetGraph(t *testing.T) {
 		TitleAlign: datadog.String("center"),
 		TitleSize:  datadog.Int(1),
 		Title:      datadog.Bool(true),
-		Timeframe:  datadog.String("1d"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1d"),
+		},
 		Type:       datadog.String("alert_graph"),
 		Legend:     datadog.Bool(true),
 		LegendSize: datadog.Int(5),
 		TileDef:    &datadog.TileDef{},
 	}
 
-	w := datadog.Widget{GraphWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -114,9 +114,10 @@ func TestWidgetGraph(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].GraphWidget
+	actualWidget := datadog.GraphWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetEventTimeline(t *testing.T) {
@@ -133,13 +134,13 @@ func TestWidgetEventTimeline(t *testing.T) {
 		TitleSize:  datadog.Int(1),
 		Title:      datadog.Bool(true),
 		Query:      datadog.String("avg:system.load.1{foo} by {bar}"),
-		Timeframe:  datadog.String("1d"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1d"),
+		},
 		Type:       datadog.String("alert_graph"),
 	}
 
-	w := datadog.Widget{EventTimelineWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -150,9 +151,10 @@ func TestWidgetEventTimeline(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].EventTimelineWidget
+	actualWidget := datadog.EventTimelineWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestAlertWidgetGraph(t *testing.T) {
@@ -169,15 +171,15 @@ func TestAlertWidgetGraph(t *testing.T) {
 		TitleSize:    datadog.Int(1),
 		Title:        datadog.Bool(true),
 		VizType:      datadog.String(""),
-		Timeframe:    datadog.String("1d"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1d"),
+		},
 		AddTimeframe: datadog.Bool(false),
 		AlertId:      datadog.Int(1),
 		Type:         datadog.String("alert_graph"),
 	}
 
-	w := datadog.Widget{AlertGraphWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -188,9 +190,10 @@ func TestAlertWidgetGraph(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].AlertGraphWidget
+	actualWidget := datadog.AlertGraphWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetHostMap(t *testing.T) {
@@ -208,15 +211,15 @@ func TestWidgetHostMap(t *testing.T) {
 		Title:      datadog.Bool(true),
 		Type:       datadog.String("check_status"),
 		Query:      datadog.String("avg:system.load.1{foo} by {bar}"),
-		Timeframe:  datadog.String("1d"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1d"),
+		},
 		Legend:     datadog.Bool(true),
 		LegendSize: datadog.Int(5),
 		TileDef:    &datadog.TileDef{},
 	}
 
-	w := datadog.Widget{HostMapWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -227,9 +230,10 @@ func TestWidgetHostMap(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].HostMapWidget
+	actualWidget := datadog.HostMapWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetCheckStatus(t *testing.T) {
@@ -247,15 +251,15 @@ func TestWidgetCheckStatus(t *testing.T) {
 		Title:      datadog.Bool(true),
 		Type:       datadog.String("check_status"),
 		Tags:       datadog.String("foo"),
-		Timeframe:  datadog.String("1d"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1d"),
+		},
 		Check:      datadog.String("datadog.agent.up"),
 		Group:      datadog.String("foo"),
 		Grouping:   datadog.String("check"),
 	}
 
-	w := datadog.Widget{CheckStatusWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -266,9 +270,10 @@ func TestWidgetCheckStatus(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].CheckStatusWidget
+	actualWidget := datadog.CheckStatusWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetIFrame(t *testing.T) {
@@ -288,9 +293,7 @@ func TestWidgetIFrame(t *testing.T) {
 		Type:       datadog.String("iframe"),
 	}
 
-	w := datadog.Widget{IFrameWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -301,9 +304,10 @@ func TestWidgetIFrame(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].IFrameWidget
+	actualWidget := datadog.IFrameWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetNote(t *testing.T) {
@@ -330,9 +334,7 @@ func TestWidgetNote(t *testing.T) {
 		AutoRefresh:  datadog.Bool(false),
 	}
 
-	w := datadog.Widget{NoteWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -343,9 +345,10 @@ func TestWidgetNote(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].NoteWidget
+	actualWidget := datadog.NoteWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetToplist(t *testing.T) {
@@ -364,14 +367,15 @@ func TestWidgetToplist(t *testing.T) {
 			Auto: datadog.Bool(true),
 		},
 		Title:      datadog.Bool(true),
-		Timeframe:  datadog.String("5m"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1d"),
+		},
+		Type: datadog.String("toplist"),
 		Legend:     datadog.Bool(false),
 		LegendSize: datadog.Int(5),
 	}
 
-	w := datadog.Widget{ToplistWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -382,9 +386,10 @@ func TestWidgetToplist(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].ToplistWidget
+	actualWidget := datadog.ToplistWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetEventSteam(t *testing.T) {
@@ -404,14 +409,14 @@ func TestWidgetEventSteam(t *testing.T) {
 			Auto: datadog.Bool(true),
 		},
 		Title:     datadog.Bool(true),
-		Timeframe: datadog.String("5m"),
-		Query:     datadog.String("foo"),
-		Type:      datadog.String("baz"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("5m"),
+		},
+		Query:     datadog.String("tags:release"),
+		Type:      datadog.String("event_stream"),
 	}
 
-	w := datadog.Widget{EventStreamWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -422,9 +427,10 @@ func TestWidgetEventSteam(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].EventStreamWidget
+	actualWidget := datadog.EventStreamWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetImage(t *testing.T) {
@@ -448,9 +454,7 @@ func TestWidgetImage(t *testing.T) {
 		Sizing:    datadog.String("quuz"),
 	}
 
-	w := datadog.Widget{ImageWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -461,9 +465,10 @@ func TestWidgetImage(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].ImageWidget
+	actualWidget := datadog.ImageWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetFreeText(t *testing.T) {
@@ -481,9 +486,7 @@ func TestWidgetFreeText(t *testing.T) {
 		Type:      datadog.String("baz"),
 	}
 
-	w := datadog.Widget{FreeTextWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
@@ -494,9 +497,10 @@ func TestWidgetFreeText(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].FreeTextWidget
+	actualWidget := datadog.FreeTextWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetTimeseries(t *testing.T) {
@@ -515,13 +519,13 @@ func TestWidgetTimeseries(t *testing.T) {
 			Auto: datadog.Bool(true),
 		},
 		TitleText: datadog.String("Test"),
-		Type:      datadog.String("baz"),
-		Timeframe: datadog.String("1m"),
+		Type:      datadog.String("timeseries"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1m"),
+		},
 	}
 
-	w := datadog.Widget{TimeseriesWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
@@ -531,9 +535,10 @@ func TestWidgetTimeseries(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].TimeseriesWidget
+	actualWidget := datadog.TimeseriesWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
 
 func TestWidgetQueryValue(t *testing.T) {
@@ -549,7 +554,9 @@ func TestWidgetQueryValue(t *testing.T) {
 		TitleAlign:          datadog.String("centre"),
 		TitleSize:           &datadog.TextSize{Size: datadog.Int(16)},
 		TitleText:           datadog.String("Test"),
-		Timeframe:           datadog.String("1m"),
+		Time:  		&datadog.Time{
+			LiveSpan: datadog.String("1m"),
+		},
 		TimeframeAggregator: datadog.String("sum"),
 		Aggregator:          datadog.String("min"),
 		Query:               datadog.String("docker.containers.running"),
@@ -566,11 +573,10 @@ func TestWidgetQueryValue(t *testing.T) {
 		IsValidQuery:   datadog.Bool(true),
 		ResultCalcFunc: datadog.String("raw"),
 		CalcFunc:       datadog.String("raw"),
+		Type:           datadog.String("query_value"),
 	}
 
-	w := datadog.Widget{QueryValueWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
+	board.Widgets = append(board.Widgets, expected)
 	if err := client.UpdateScreenboard(board); err != nil {
 		t.Fatalf("Updating a screenboard failed: %s", err)
 	}
@@ -580,7 +586,8 @@ func TestWidgetQueryValue(t *testing.T) {
 		t.Fatalf("Retrieving a screenboard failed: %s", err)
 	}
 
-	actualWidget := actual.Widgets[0].QueryValueWidget
+	actualWidget := datadog.QueryValueWidget{}
+	mapstructure.Decode(actual.Widgets[0], &actualWidget)
 
-	assert.Equal(t, *actualWidget, *expected)
+	assert.Equal(t, *expected, actualWidget)
 }
