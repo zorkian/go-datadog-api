@@ -7,10 +7,6 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func init() {
-	client = initTest()
-}
-
 func TestMonitorCreateAndDelete(t *testing.T) {
 	expected := getTestMonitor()
 	// create the monitor and compare it

@@ -7,10 +7,6 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func init() {
-	client = initTest()
-}
-
 func TestUserCreateAndDelete(t *testing.T) {
 	handle := "test@example.com"
 	name := "tester"

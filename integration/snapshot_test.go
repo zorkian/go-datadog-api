@@ -15,10 +15,6 @@ func Jsonify(v interface{}) (string, error) {
 	}
 }
 
-func init() {
-	client = initTest()
-}
-
 func TestSnapshot(t *testing.T) {
 
 	end := time.Now().Unix()

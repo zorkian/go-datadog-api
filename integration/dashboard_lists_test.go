@@ -7,10 +7,6 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func init() {
-	client = initTest()
-}
-
 func TestDashboardListsGet(t *testing.T) {
 	lists, err := client.GetDashboardLists()
 	if err != nil {

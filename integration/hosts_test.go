@@ -6,12 +6,8 @@ import (
 	"time"
 
 	"github.com/stretchr/testify/assert"
-	datadog "github.com/zorkian/go-datadog-api"
+	"github.com/zorkian/go-datadog-api"
 )
-
-func init() {
-	client = initTest()
-}
 
 func TestHost_Mute(t *testing.T) {
 	muteAction := getTestMuteAction()
