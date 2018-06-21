@@ -7,10 +7,6 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func init() {
-	client = initTest()
-}
-
 func TestDowntimeCreateAndDelete(t *testing.T) {
 	expected := getTestDowntime()
 	// create the downtime and compare it

@@ -7,10 +7,6 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func init() {
-	client = initTest()
-}
-
 func TestDashboardCreateAndDelete(t *testing.T) {
 	expected := getTestDashboard(createGraph)
 	// create the dashboard and compare it

@@ -5,10 +5,6 @@ import (
 	"testing"
 )
 
-func init() {
-	client = initTest()
-}
-
 func TestScreenboardCreateAndDelete(t *testing.T) {
 	expected := getTestScreenboard()
 	// create the screenboard and compare it

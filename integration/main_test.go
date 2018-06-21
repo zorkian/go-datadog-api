@@ -4,6 +4,7 @@ import (
 	"github.com/zorkian/go-datadog-api"
 	"log"
 	"os"
+	"testing"
 )
 
 var (
@@ -12,7 +13,7 @@ var (
 	client *datadog.Client
 )
 
-func initTest() *datadog.Client {
+func TestMain(m *testing.M) {
 	apiKey = os.Getenv("DATADOG_API_KEY")
 	appKey = os.Getenv("DATADOG_APP_KEY")
 
@@ -20,5 +21,6 @@ func initTest() *datadog.Client {
 		log.Fatal("Please make sure to set the env variables 'DATADOG_API_KEY' and 'DATADOG_APP_KEY' before running this test")
 	}
 
-	return datadog.NewClient(apiKey, appKey)
+	client = datadog.NewClient(apiKey, appKey)
+	os.Exit(m.Run())
 }
