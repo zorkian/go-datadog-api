@@ -13,8 +13,8 @@ package datadog
 */
 
 type servicePD struct {
-	ServiceName *string `json:"service"`
-	ServiceKey  *string `json:"key"`
+	ServiceName *string `json:"service_name"`
+	ServiceKey  *string `json:"service_key"`
 }
 
 type integrationPD struct {
