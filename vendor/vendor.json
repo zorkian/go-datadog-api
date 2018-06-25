@@ -23,10 +23,10 @@
 			"revisionTime": "2016-11-17T07:43:51Z"
 		},
 		{
-			"checksumSHA1": "hIEmcd7hIDqO/xWSp1rJJHd0TpE=",
+			"checksumSHA1": "c6pbpF7eowwO59phRTpF8cQ80Z0=",
 			"path": "github.com/stretchr/testify/assert",
-			"revision": "18a02ba4a312f95da08ff4cfc0055750ce50ae9e",
-			"revisionTime": "2016-11-17T07:43:51Z"
+			"revision": "f35b8ab0b5a2cef36673838d662e249dd9c94686",
+			"revisionTime": "2018-05-06T18:05:49Z"
 		}
 	],
 	"rootPath": "github.com/zorkian/go-datadog-api"
