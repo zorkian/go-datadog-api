@@ -249,3 +249,93 @@ func cleanUpIntegrationSlack(t *testing.T) {
 		t.Fatal("Fetching deleted Slack integration didn't lead to an error.")
 	}
 }
+
+/*
+	AWS Integration
+*/
+
+func TestIntegrationAWSCreateAndDelete(t *testing.T) {
+	// Validate creation of AWS Integration
+	expected := getTestIntegrationAWS()
+	createAwsIntegrationResponse := createTestIntegrationAWS(t)
+	defer cleanUpIntegrationAWS(t, getTestIntegrationAWSDeleteRequest())
+
+	assert.NotNil(t, createAwsIntegrationResponse.ExternalID, "An external ID should have been returned from Datadog on integration create.")
+
+	// Get the AWS Accounts from the AWS Integration
+	awsAccountsInDatadog, err := client.GetIntegrationAWS()
+	if err != nil {
+		t.Fatalf("Retrieving a AWS integration failed when it shouldn't: (%s)", err)
+	}
+
+	// Check the created AWS Account is in the slice
+	var createdAWSAccount datadog.IntegrationAWSAccount
+	for _, account := range *awsAccountsInDatadog {
+		if *account.AccountID == *expected.AccountID {
+			createdAWSAccount = account
+		}
+	}
+
+	// Test each property as slices order can change in FilterTags and HostTags
+	assert.Equal(t, expected.AccountID, createdAWSAccount.AccountID)
+	assert.Equal(t, expected.RoleName, createdAWSAccount.RoleName)
+	assert.ElementsMatch(t, expected.FilterTags, createdAWSAccount.FilterTags)
+	assert.ElementsMatch(t, expected.HostTags, createdAWSAccount.HostTags)
+	assert.Equal(t, expected.AccountSpecificNamespaceRules, createdAWSAccount.AccountSpecificNamespaceRules)
+}
+
+func getTestIntegrationAWS() *datadog.IntegrationAWSAccount {
+	return &datadog.IntegrationAWSAccount{
+		AccountID: datadog.String("1111111111111"),
+		RoleName:  datadog.String("GoLangDatadogAWSIntegrationRole"),
+		FilterTags: []string{
+			"env:production",
+			"instance-type:c1.*",
+			"!region:us-east-1",
+		},
+		HostTags: []string{
+			"account:my_aws_account",
+		},
+		AccountSpecificNamespaceRules: map[string]bool{
+			"auto_scaling": false,
+			"opsworks":     false,
+		},
+	}
+}
+
+func getTestIntegrationAWSDeleteRequest() *datadog.IntegrationAWSAccountDeleteRequest {
+	return &datadog.IntegrationAWSAccountDeleteRequest{
+		AccountID: datadog.String("1111111111111"),
+		RoleName:  datadog.String("GoLangDatadogAWSIntegrationRole"),
+	}
+}
+
+func createTestIntegrationAWS(t *testing.T) *datadog.IntegrationAWSAccountCreateResponse {
+	awsIntegrationRequest := getTestIntegrationAWS()
+
+	result, err := client.CreateIntegrationAWS(awsIntegrationRequest)
+	if err != nil {
+		t.Fatalf("Creating a AWS integration failed when it shouldn't: %s", err.Error())
+	}
+
+	return result
+}
+
+func cleanUpIntegrationAWS(t *testing.T, awsAccount *datadog.IntegrationAWSAccountDeleteRequest) {
+	if err := client.DeleteIntegrationAWS(awsAccount); err != nil {
+		t.Fatalf("Deleting the AWS Account from the AWS integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
+	}
+
+	awsIntegration, err := client.GetIntegrationAWS()
+
+	// check the account is no longer in Datadog
+	for _, account := range *awsIntegration {
+		if *account.AccountID == *awsAccount.AccountID {
+			t.Fatal("AWS Account in the AWS Integration hasn't been deleted when it should have been. Manual cleanup needed.")
+		}
+	}
+
+	if err != nil {
+		t.Fatalf("Getting AWS accounts from the AWS integration failed when it shouldn't: %s", err)
+	}
+}
