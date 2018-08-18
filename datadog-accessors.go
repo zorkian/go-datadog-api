@@ -8259,6 +8259,37 @@ func (m *Monitor) SetQuery(v string) {
 	m.Query = &v
 }
 
+// GetState returns the State field if non-nil, zero value otherwise.
+func (m *Monitor) GetState() string {
+	if m == nil || m.State == nil {
+		return ""
+	}
+	return *m.State
+}
+
+// GetOkState returns a tuple with the State field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *Monitor) GetStateOk() (string, bool) {
+	if m == nil || m.State == nil {
+		return "", false
+	}
+	return *m.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (m *Monitor) HasState() bool {
+	if m != nil && m.State != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetState allocates a new m.State and returns the pointer to it.
+func (m *Monitor) SetState(v string) {
+	m.State = &v
+}
+
 // GetType returns the Type field if non-nil, zero value otherwise.
 func (m *Monitor) GetType() string {
 	if m == nil || m.Type == nil {
