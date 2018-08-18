@@ -66,6 +66,7 @@ type Monitor struct {
 	Query   *string  `json:"query,omitempty"`
 	Name    *string  `json:"name,omitempty"`
 	Message *string  `json:"message,omitempty"`
+	State   *string  `json:"overall_state,omitempty"`
 	Tags    []string `json:"tags"`
 	Options *Options `json:"options,omitempty"`
 }
