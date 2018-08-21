@@ -161,12 +161,13 @@ func getTestMonitor() *datadog.Monitor {
 	}
 
 	return &datadog.Monitor{
-		Message: datadog.String("Test message"),
-		Query:   datadog.String("avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8"),
-		Name:    datadog.String("Test monitor"),
-		Options: o,
-		Type:    datadog.String("metric alert"),
-		Tags:    make([]string, 0),
+		Message:      datadog.String("Test message"),
+		Query:        datadog.String("avg(last_15m):avg:system.disk.in_use{*} by {host,device} > 0.8"),
+		Name:         datadog.String("Test monitor"),
+		Options:      o,
+		Type:         datadog.String("metric alert"),
+		Tags:         make([]string, 0),
+		OverallState: datadog.String("No Data"),
 	}
 }
 
@@ -188,7 +189,7 @@ func getTestMonitorWithTags() *datadog.Monitor {
 		Name:    datadog.String("Test monitor"),
 		Options: o,
 		Type:    datadog.String("metric alert"),
-		Tags:    []string {"foo:bar", "bar:baz"},
+		Tags:    []string{"foo:bar", "bar:baz"},
 	}
 }
 
