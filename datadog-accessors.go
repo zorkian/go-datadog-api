@@ -8228,6 +8228,37 @@ func (m *Monitor) SetOptions(v Options) {
 	m.Options = &v
 }
 
+// GetOverallState returns the OverallState field if non-nil, zero value otherwise.
+func (m *Monitor) GetOverallState() string {
+	if m == nil || m.OverallState == nil {
+		return ""
+	}
+	return *m.OverallState
+}
+
+// GetOkOverallState returns a tuple with the OverallState field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *Monitor) GetOverallStateOk() (string, bool) {
+	if m == nil || m.OverallState == nil {
+		return "", false
+	}
+	return *m.OverallState, true
+}
+
+// HasOverallState returns a boolean if a field has been set.
+func (m *Monitor) HasOverallState() bool {
+	if m != nil && m.OverallState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverallState allocates a new m.OverallState and returns the pointer to it.
+func (m *Monitor) SetOverallState(v string) {
+	m.OverallState = &v
+}
+
 // GetQuery returns the Query field if non-nil, zero value otherwise.
 func (m *Monitor) GetQuery() string {
 	if m == nil || m.Query == nil {
