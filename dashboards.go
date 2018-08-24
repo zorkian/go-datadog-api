@@ -76,26 +76,30 @@ func (y *Yaxis) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	if wrapper.Min != nil && *wrapper.Min == "auto" {
-		y.AutoMin = true
-		y.Min = nil
-	} else {
-		f, err := wrapper.Min.Float64()
-		if err != nil {
-			return err
+	if wrapper.Min != nil {
+		if *wrapper.Min == "auto" {
+			y.AutoMin = true
+			y.Min = nil
+		} else {
+			f, err := wrapper.Min.Float64()
+			if err != nil {
+				return err
+			}
+			y.Min = &f
 		}
-		y.Min = &f
 	}
 
-	if wrapper.Max != nil && *wrapper.Max == "auto" {
-		y.AutoMax = true
-		y.Max = nil
-	} else {
-		f, err := wrapper.Max.Float64()
-		if err != nil {
-			return err
+	if wrapper.Max != nil {
+		if *wrapper.Max == "auto" {
+			y.AutoMax = true
+			y.Max = nil
+		} else {
+			f, err := wrapper.Max.Float64()
+			if err != nil {
+				return err
+			}
+			y.Max = &f
 		}
-		y.Max = &f
 	}
 	return nil
 }
