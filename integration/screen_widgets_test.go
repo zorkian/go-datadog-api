@@ -7,580 +7,417 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func TestWidgetAlertValue(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.AlertValueWidget{
-		X:            datadog.Int(1),
-		Y:            datadog.Int(1),
-		Width:        datadog.Int(5),
-		Height:       datadog.Int(5),
-		TitleText:    datadog.String("foo"),
-		TitleAlign:   datadog.String("center"),
-		TitleSize:    datadog.Int(1),
-		Title:        datadog.Bool(true),
-		TextSize:     datadog.String("auto"),
-		Precision:    datadog.Int(2),
-		AlertId:      datadog.Int(1),
-		Type:         datadog.String("alert_value"),
-		Unit:         datadog.String("auto"),
-		AddTimeframe: datadog.Bool(false),
-	}
-
-	w := datadog.Widget{AlertValueWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].AlertValueWidget
-
-	assert.Equal(t, actualWidget, expected)
-}
-
-func TestWidgetChange(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.ChangeWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize:  datadog.Int(1),
-		Title:      datadog.Bool(true),
-		Aggregator: datadog.String("min"),
-		TileDef:    &datadog.TileDef{},
-	}
-
-	w := datadog.Widget{ChangeWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].ChangeWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetGraph(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.GraphWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize:  datadog.Int(1),
-		Title:      datadog.Bool(true),
-		Timeframe:  datadog.String("1d"),
-		Type:       datadog.String("alert_graph"),
-		Legend:     datadog.Bool(true),
-		LegendSize: datadog.Int(5),
-		TileDef:    &datadog.TileDef{},
-	}
-
-	w := datadog.Widget{GraphWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].GraphWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetEventTimeline(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.EventTimelineWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize:  datadog.Int(1),
-		Title:      datadog.Bool(true),
-		Query:      datadog.String("avg:system.load.1{foo} by {bar}"),
-		Timeframe:  datadog.String("1d"),
-		Type:       datadog.String("alert_graph"),
-	}
-
-	w := datadog.Widget{EventTimelineWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].EventTimelineWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestAlertWidgetGraph(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.AlertGraphWidget{
-		X:            datadog.Int(1),
-		Y:            datadog.Int(1),
-		Width:        datadog.Int(5),
-		Height:       datadog.Int(5),
-		TitleText:    datadog.String("foo"),
-		TitleAlign:   datadog.String("center"),
-		TitleSize:    datadog.Int(1),
-		Title:        datadog.Bool(true),
-		VizType:      datadog.String(""),
-		Timeframe:    datadog.String("1d"),
-		AddTimeframe: datadog.Bool(false),
-		AlertId:      datadog.Int(1),
-		Type:         datadog.String("alert_graph"),
-	}
-
-	w := datadog.Widget{AlertGraphWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].AlertGraphWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetHostMap(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.HostMapWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize:  datadog.Int(1),
-		Title:      datadog.Bool(true),
-		Type:       datadog.String("check_status"),
-		Query:      datadog.String("avg:system.load.1{foo} by {bar}"),
-		Timeframe:  datadog.String("1d"),
-		Legend:     datadog.Bool(true),
-		LegendSize: datadog.Int(5),
-		TileDef:    &datadog.TileDef{},
-	}
-
-	w := datadog.Widget{HostMapWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].HostMapWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetCheckStatus(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.CheckStatusWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize:  datadog.Int(1),
-		Title:      datadog.Bool(true),
-		Type:       datadog.String("check_status"),
-		Tags:       datadog.String("foo"),
-		Timeframe:  datadog.String("1d"),
-		Check:      datadog.String("datadog.agent.up"),
-		Group:      datadog.String("foo"),
-		Grouping:   datadog.String("check"),
-	}
-
-	w := datadog.Widget{CheckStatusWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].CheckStatusWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetIFrame(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.IFrameWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize:  datadog.Int(1),
-		Title:      datadog.Bool(true),
-		Url:        datadog.String("http://www.example.com"),
-		Type:       datadog.String("iframe"),
-	}
-
-	w := datadog.Widget{IFrameWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].IFrameWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetNote(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.NoteWidget{
-		X:            datadog.Int(1),
-		Y:            datadog.Int(1),
-		Width:        datadog.Int(5),
-		Height:       datadog.Int(5),
-		TitleText:    datadog.String("foo"),
-		TitleAlign:   datadog.String("center"),
-		TitleSize:    datadog.Int(1),
-		Title:        datadog.Bool(true),
-		Color:        datadog.String("green"),
-		FontSize:     datadog.Int(5),
-		RefreshEvery: datadog.Int(60),
-		TickPos:      datadog.String("foo"),
-		TickEdge:     datadog.String("bar"),
-		Html:         datadog.String("<strong>baz</strong>"),
-		Tick:         datadog.Bool(false),
-		Note:         datadog.String("quz"),
-		AutoRefresh:  datadog.Bool(false),
-	}
-
-	w := datadog.Widget{NoteWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].NoteWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetToplist(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.ToplistWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize: &datadog.TextSize{
-			Size: datadog.Int(1),
-			Auto: datadog.Bool(true),
+func TestWidgets(t *testing.T) {
+	widgets := []datadog.Widget{
+		{
+			Type:      datadog.String("free_text"),
+			X:         datadog.Int(1),
+			Y:         datadog.Int(1),
+			Width:     datadog.Int(5),
+			Height:    datadog.Int(5),
+			Text:      datadog.String("Test"),
+			TextAlign: datadog.String("right"),
+			FontSize:  datadog.String("36"),
+			Color:     datadog.String("#ffc0cb"),
 		},
-		Title:      datadog.Bool(true),
-		Timeframe:  datadog.String("5m"),
-		Legend:     datadog.Bool(false),
-		LegendSize: datadog.Int(5),
-	}
-
-	w := datadog.Widget{ToplistWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].ToplistWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetEventSteam(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.EventStreamWidget{
-		EventSize:  datadog.String("1"),
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		TitleText:  datadog.String("foo"),
-		TitleAlign: datadog.String("center"),
-		TitleSize: &datadog.TextSize{
-			Size: datadog.Int(1),
-			Auto: datadog.Bool(true),
+		{
+			Type:       datadog.String("timeseries"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Legend:     datadog.Bool(true),
+			LegendSize: datadog.String("16"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1d"),
+			},
+			TileDef: &datadog.TileDef{
+				Viz: datadog.String("timeseries"),
+				Requests: []datadog.TileDefRequest{{
+					Query: datadog.String("avg:system.cpu.user{*}"),
+					Type:  datadog.String("line"),
+					Style: &datadog.TileDefRequestStyle{
+						Palette: datadog.String("purple"),
+						Type:    datadog.String("dashed"),
+						Width:   datadog.String("thin"),
+					},
+				}},
+				Markers: []datadog.TileDefMarker{{
+					Label: datadog.String("test marker"),
+					Type:  datadog.String("error dashed"),
+					Value: datadog.String("y < 6"),
+				}},
+				Events: []datadog.TileDefEvent{{
+					Query: datadog.String("test event"),
+				}},
+			},
 		},
-		Title:     datadog.Bool(true),
-		Timeframe: datadog.String("5m"),
-		Query:     datadog.String("foo"),
-		Type:      datadog.String("baz"),
-	}
-
-	w := datadog.Widget{EventStreamWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].EventStreamWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetImage(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.ImageWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(5),
-		Height:     datadog.Int(5),
-		Title:      datadog.Bool(false),
-		TitleAlign: datadog.String("center"),
-		TitleSize: &datadog.TextSize{
-			Size: datadog.Int(1),
-			Auto: datadog.Bool(true),
+		{
+			Type:       datadog.String("query_value"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Legend:     datadog.Bool(true),
+			LegendSize: datadog.String("16"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1d"),
+			},
+			TileDef: &datadog.TileDef{
+				Viz: datadog.String("query_value"),
+				Requests: []datadog.TileDefRequest{{
+					Query: datadog.String("avg:system.cpu.user{*}"),
+					Type:  datadog.String("line"),
+					Style: &datadog.TileDefRequestStyle{
+						Palette: datadog.String("purple"),
+						Type:    datadog.String("dashed"),
+						Width:   datadog.String("thin"),
+					},
+					ConditionalFormats: []datadog.ConditionalFormat{
+						{
+							Comparator: datadog.String(">="),
+							Value:      datadog.String("1"),
+							Palette:    datadog.String("white_on_red"),
+						}},
+					Aggregator: datadog.String("max"),
+				}},
+				CustomUnit: datadog.String("%"),
+				Autoscale:  datadog.Bool(false),
+				Precision:  datadog.String("6"),
+				TextAlign:  datadog.String("right"),
+			},
 		},
-		TitleText: datadog.String("bar"),
-		Type:      datadog.String("baz"),
-		Url:       datadog.String("qux"),
-		Sizing:    datadog.String("quuz"),
-	}
-
-	w := datadog.Widget{ImageWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].ImageWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetFreeText(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.FreeTextWidget{
-		X:         datadog.Int(1),
-		Y:         datadog.Int(1),
-		Width:     datadog.Int(5),
-		Height:    datadog.Int(5),
-		Text:      datadog.String("Test"),
-		FontSize:  datadog.String("16"),
-		TextAlign: datadog.String("center"),
-		Type:      datadog.String("baz"),
-	}
-
-	w := datadog.Widget{FreeTextWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].FreeTextWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetTimeseries(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.TimeseriesWidget{
-		X:          datadog.Int(1),
-		Y:          datadog.Int(1),
-		Width:      datadog.Int(20),
-		Height:     datadog.Int(30),
-		Title:      datadog.Bool(true),
-		TitleAlign: datadog.String("centre"),
-		TitleSize: &datadog.TextSize{
-			Size: datadog.Int(16),
-			Auto: datadog.Bool(true),
+		{
+			Type:       datadog.String("toplist"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Legend:     datadog.Bool(true),
+			LegendSize: datadog.String("16"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1d"),
+			},
+			TileDef: &datadog.TileDef{
+				Viz: datadog.String("toplist"),
+				Requests: []datadog.TileDefRequest{{
+					Query: datadog.String("top(avg:system.load.1{*} by {host}, 10, 'mean', 'desc')"),
+					Style: &datadog.TileDefRequestStyle{
+						Palette: datadog.String("purple"),
+						Type:    datadog.String("dashed"),
+						Width:   datadog.String("thin"),
+					},
+					ConditionalFormats: []datadog.ConditionalFormat{
+						{
+							Comparator: datadog.String(">"),
+							Value:      datadog.String("4"),
+							Palette:    datadog.String("white_on_green"),
+						}},
+				}},
+			},
 		},
-		TitleText: datadog.String("Test"),
-		Type:      datadog.String("baz"),
-		Timeframe: datadog.String("1m"),
+		{
+			Type:       datadog.String("change"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1d"),
+			},
+			TileDef: &datadog.TileDef{
+				Viz: datadog.String("change"),
+				Requests: []datadog.TileDefRequest{{
+					Query:        datadog.String("min:system.load.1{*} by {host}"),
+					CompareTo:    datadog.String("week_before"),
+					ChangeType:   datadog.String("relative"),
+					OrderBy:      datadog.String("present"),
+					OrderDir:     datadog.String("asc"),
+					ExtraCol:     datadog.String(""),
+					IncreaseGood: datadog.Bool(false),
+				}},
+			},
+		},
+		{
+			Type:       datadog.String("event_timeline"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1d"),
+			},
+		},
+		{
+			Type:       datadog.String("event_stream"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Query:      datadog.String("*"),
+			EventSize:  datadog.String("l"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("4h"),
+			},
+		},
+		{
+			Type:       datadog.String("image"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Sizing:     datadog.String("fit"),
+			Margin:     datadog.String("large"),
+			URL:        datadog.String("https://datadog-prod.imgix.net/img/dd_logo_70x75.png"),
+		},
+		{
+			Type:      datadog.String("note"),
+			X:         datadog.Int(1),
+			Y:         datadog.Int(1),
+			Width:     datadog.Int(5),
+			Height:    datadog.Int(5),
+			Bgcolor:   datadog.String("pink"),
+			TextAlign: datadog.String("right"),
+			FontSize:  datadog.String("36"),
+			Tick:      datadog.Bool(true),
+			TickEdge:  datadog.String("bottom"),
+			TickPos:   datadog.String("50%"),
+			HTML:      datadog.String("<b>test</b>"),
+		},
+		{
+			Type:       datadog.String("alert_graph"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			AlertID:    datadog.Int(123456),
+			VizType:    datadog.String("toplist"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("15m"),
+			},
+		},
+		{
+			Type:       datadog.String("alert_value"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			AlertID:    datadog.Int(123456),
+			TextSize:   datadog.String("fill_height"),
+			TextAlign:  datadog.String("right"),
+			Precision:  datadog.String("*"),
+			Unit:       datadog.String("b"),
+		},
+		{
+			Type:   datadog.String("iframe"),
+			X:      datadog.Int(1),
+			Y:      datadog.Int(1),
+			Width:  datadog.Int(5),
+			Height: datadog.Int(5),
+			URL:    datadog.String("https://www.datadoghq.com/"),
+		},
+		{
+			Type:       datadog.String("check_status"),
+			X:          datadog.Int(1),
+			Y:          datadog.Int(1),
+			Width:      datadog.Int(5),
+			Height:     datadog.Int(5),
+			Title:      datadog.Bool(true),
+			TitleText:  datadog.String("Test title"),
+			TitleSize:  datadog.Int(16),
+			TitleAlign: datadog.String("right"),
+			Grouping:   datadog.String("check"),
+			Check:      datadog.String("aws.ecs.agent_connected"),
+			Tags:       []*string{datadog.String("*")},
+			Group:      datadog.String("cluster:test"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("15m"),
+			},
+		},
+		{
+			Type:                 datadog.String("trace_service"),
+			X:                    datadog.Int(1),
+			Y:                    datadog.Int(1),
+			Width:                datadog.Int(5),
+			Height:               datadog.Int(5),
+			Env:                  datadog.String("test"),
+			ServiceService:       datadog.String("service"),
+			ServiceName:          datadog.String("serviceName"),
+			SizeVersion:          datadog.String("large"),
+			LayoutVersion:        datadog.String("three_column"),
+			MustShowHits:         datadog.Bool(true),
+			MustShowErrors:       datadog.Bool(true),
+			MustShowLatency:      datadog.Bool(true),
+			MustShowBreakdown:    datadog.Bool(true),
+			MustShowDistribution: datadog.Bool(true),
+			MustShowResourceList: datadog.Bool(true),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("15m"),
+			},
+		},
+		{
+			Type:   datadog.String("hostmap"),
+			X:      datadog.Int(1),
+			Y:      datadog.Int(1),
+			Width:  datadog.Int(5),
+			Height: datadog.Int(5),
+			Query:  datadog.String("avg:system.load.1{*} by {host}"),
+			TileDef: &datadog.TileDef{
+				Viz:           datadog.String("hostmap"),
+				NodeType:      datadog.String("container"),
+				Scope:         []*string{datadog.String("tag:test")},
+				Group:         []*string{datadog.String("test")},
+				NoGroupHosts:  datadog.Bool(false),
+				NoMetricHosts: datadog.Bool(false),
+				Requests: []datadog.TileDefRequest{{
+					Query: datadog.String("min:process.stat.container.io.wbps{tag:test} by {host}"),
+					Type:  datadog.String("fill"),
+				}},
+				Style: &datadog.TileDefStyle{
+					Palette:     datadog.String("hostmap_blues"),
+					PaletteFlip: datadog.String("true"),
+					FillMin:     datadog.String("20"),
+					FillMax:     datadog.String("300"),
+				},
+			},
+		},
+		{
+			Type:                   datadog.String("manage_status"),
+			X:                      datadog.Int(1),
+			Y:                      datadog.Int(1),
+			Width:                  datadog.Int(5),
+			Height:                 datadog.Int(5),
+			DisplayFormat:          datadog.String("countsAndList"),
+			ColorPreference:        datadog.String("background"),
+			HideZeroCounts:         datadog.Bool(true),
+			ManageStatusShowTitle:  datadog.Bool(false),
+			ManageStatusTitleText:  datadog.String("Test title"),
+			ManageStatusTitleSize:  datadog.String("20"),
+			ManageStatusTitleAlign: datadog.String("right"),
+			Params: &datadog.Params{
+				Sort:  datadog.String("status,asc"),
+				Text:  datadog.String("status:alert"),
+				Count: datadog.String("50"),
+				Start: datadog.String("0"),
+			},
+		},
+		{
+			Type:    datadog.String("log_stream"),
+			X:       datadog.Int(1),
+			Y:       datadog.Int(1),
+			Width:   datadog.Int(5),
+			Height:  datadog.Int(5),
+			Query:   datadog.String("source:main"),
+			Columns: datadog.String("[\"column_1\",\"column_2\",\"column_3\"]"),
+			Logset:  datadog.String("1234"),
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1h"),
+			},
+		},
+		{
+			Type:   datadog.String("uptime"),
+			X:      datadog.Int(1),
+			Y:      datadog.Int(1),
+			Width:  datadog.Int(5),
+			Height: datadog.Int(5),
+			Timeframes: []*string{
+				datadog.String("7 days"),
+				datadog.String("Month-to-date"),
+				datadog.String("90 days"),
+			},
+			Rules: map[string]*datadog.Rule{
+				"0": {
+					Threshold: datadog.Int(95),
+					Timeframe: datadog.String("Month-to-date"),
+					Color:     datadog.String("green"),
+				},
+				"1": {
+					Threshold: datadog.Int(98),
+					Timeframe: datadog.String("7 days"),
+					Color:     datadog.String("red"),
+				},
+			},
+			Monitor: &datadog.ScreenboardMonitor{
+				Id: datadog.Int(1234),
+			},
+		},
+		{
+			Type:   datadog.String("process"),
+			X:      datadog.Int(1),
+			Y:      datadog.Int(1),
+			Width:  datadog.Int(5),
+			Height: datadog.Int(5),
+			TileDef: &datadog.TileDef{
+				Viz: datadog.String("process"),
+				Requests: []datadog.TileDefRequest{{
+					QueryType:  datadog.String("process"),
+					Metric:     datadog.String("process.stat.cpu.total_pct"),
+					TextFilter: datadog.String("test"),
+					TagFilters: []*string{datadog.String("test")},
+					Limit:      datadog.Int(200),
+					Style: &datadog.TileDefRequestStyle{
+						Palette: datadog.String("dog_classic_area"),
+					},
+				}},
+			},
+		},
 	}
 
-	w := datadog.Widget{TimeseriesWidget: expected}
+	for _, w := range widgets {
+		t.Run(*w.Type, func(t *testing.T) {
+			board := createTestScreenboard(t)
+			defer cleanUpScreenboard(t, *board.Id)
 
-	board.Widgets = append(board.Widgets, w)
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
+			board.Widgets = append(board.Widgets, w)
+
+			if err := client.UpdateScreenboard(board); err != nil {
+				t.Fatalf("Updating a screenboard failed: %s", err)
+			}
+
+			actual, err := client.GetScreenboard(*board.Id)
+			if err != nil {
+				t.Fatalf("Retrieving a screenboard failed: %s", err)
+			}
+
+			actualWidget := actual.Widgets[0]
+
+			assert.Equal(t, actualWidget, w)
+		})
 	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].TimeseriesWidget
-
-	assert.Equal(t, *actualWidget, *expected)
-}
-
-func TestWidgetQueryValue(t *testing.T) {
-	board := createTestScreenboard(t)
-	defer cleanUpScreenboard(t, *board.Id)
-
-	expected := &datadog.QueryValueWidget{
-		X:                   datadog.Int(1),
-		Y:                   datadog.Int(1),
-		Width:               datadog.Int(20),
-		Height:              datadog.Int(30),
-		Title:               datadog.Bool(true),
-		TitleAlign:          datadog.String("centre"),
-		TitleSize:           &datadog.TextSize{Size: datadog.Int(16)},
-		TitleText:           datadog.String("Test"),
-		Timeframe:           datadog.String("1m"),
-		TimeframeAggregator: datadog.String("sum"),
-		Aggregator:          datadog.String("min"),
-		Query:               datadog.String("docker.containers.running"),
-		MetricType:          datadog.String("standard"),
-		/* TODO: add test for conditional formats
-		"conditional_formats": [{
-			"comparator": ">",
-			"color": "white_on_red",
-			"custom_bg_color": null,
-			"value": 1,
-			"invert": false,
-			"custom_fg_color": null}],
-		*/
-		IsValidQuery:   datadog.Bool(true),
-		ResultCalcFunc: datadog.String("raw"),
-		CalcFunc:       datadog.String("raw"),
-	}
-
-	w := datadog.Widget{QueryValueWidget: expected}
-
-	board.Widgets = append(board.Widgets, w)
-	if err := client.UpdateScreenboard(board); err != nil {
-		t.Fatalf("Updating a screenboard failed: %s", err)
-	}
-
-	actual, err := client.GetScreenboard(*board.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a screenboard failed: %s", err)
-	}
-
-	actualWidget := actual.Widgets[0].QueryValueWidget
-
-	assert.Equal(t, *actualWidget, *expected)
 }
