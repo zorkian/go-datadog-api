@@ -76,7 +76,7 @@ type TileDefStyle struct {
 }
 
 type Time struct {
-	LiveSpan *string `mapstructure:"live_span" json:"live_span,omitempty"`
+	LiveSpan *string `json:"live_span,omitempty"`
 }
 
 type Widget struct {
