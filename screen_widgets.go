@@ -191,7 +191,7 @@ type Params struct {
 }
 
 type Rule struct {
-	Threshold *int    `json:"threshold,omitempty"`
+	Threshold *string `json:"threshold,omitempty"`
 	Timeframe *string `json:"timeframe,omitempty"`
 	Color     *string `json:"color,omitempty"`
 }
