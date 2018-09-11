@@ -191,9 +191,9 @@ type Params struct {
 }
 
 type Rule struct {
-	Threshold *string `json:"threshold,omitempty"`
-	Timeframe *string `json:"timeframe,omitempty"`
-	Color     *string `json:"color,omitempty"`
+	Threshold *float64 `json:"threshold,omitempty"`
+	Timeframe *string  `json:"timeframe,omitempty"`
+	Color     *string  `json:"color,omitempty"`
 }
 
 type ScreenboardMonitor struct {

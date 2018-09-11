@@ -5005,18 +5005,18 @@ func (r *Rule) SetColor(v string) {
 }
 
 // GetThreshold returns the Threshold field if non-nil, zero value otherwise.
-func (r *Rule) GetThreshold() string {
+func (r *Rule) GetThreshold() float64 {
 	if r == nil || r.Threshold == nil {
-		return ""
+		return 0
 	}
 	return *r.Threshold
 }
 
 // GetOkThreshold returns a tuple with the Threshold field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (r *Rule) GetThresholdOk() (string, bool) {
+func (r *Rule) GetThresholdOk() (float64, bool) {
 	if r == nil || r.Threshold == nil {
-		return "", false
+		return 0, false
 	}
 	return *r.Threshold, true
 }
@@ -5031,7 +5031,7 @@ func (r *Rule) HasThreshold() bool {
 }
 
 // SetThreshold allocates a new r.Threshold and returns the pointer to it.
-func (r *Rule) SetThreshold(v string) {
+func (r *Rule) SetThreshold(v float64) {
 	r.Threshold = &v
 }
 
