@@ -178,6 +178,7 @@ type Widget struct {
 	Logset  *string `json:"logset,omitempty"`
 
 	// For Uptime
+	// Widget is undocumented, subject to breaking API changes, and without customer support
 	Timeframes []*string           `json:"timeframes,omitempty"`
 	Rules      map[string]*Rule    `json:"rules,omitempty"`
 	Monitor    *ScreenboardMonitor `json:"monitor,omitempty"`
