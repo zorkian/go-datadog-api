@@ -351,6 +351,7 @@ func TestWidgets(t *testing.T) {
 			},
 		},
 		{
+			// Widget is undocumented, subject to breaking API changes, and without customer support
 			Type:   datadog.String("uptime"),
 			X:      datadog.Int(1),
 			Y:      datadog.Int(1),
