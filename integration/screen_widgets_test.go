@@ -364,12 +364,12 @@ func TestWidgets(t *testing.T) {
 			},
 			Rules: map[string]*datadog.Rule{
 				"0": {
-					Threshold: datadog.Int(95),
+					Threshold: datadog.JsonNumber("95"),
 					Timeframe: datadog.String("Month-to-date"),
 					Color:     datadog.String("green"),
 				},
 				"1": {
-					Threshold: datadog.Int(98),
+					Threshold: datadog.JsonNumber("98"),
 					Timeframe: datadog.String("7 days"),
 					Color:     datadog.String("red"),
 				},
@@ -384,6 +384,7 @@ func TestWidgets(t *testing.T) {
 			Y:      datadog.Int(1),
 			Width:  datadog.Int(5),
 			Height: datadog.Int(5),
+			Time:   &datadog.Time{},
 			TileDef: &datadog.TileDef{
 				Viz: datadog.String("process"),
 				Requests: []datadog.TileDefRequest{{
