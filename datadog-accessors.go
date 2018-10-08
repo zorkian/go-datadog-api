@@ -2462,6 +2462,37 @@ func (g *GraphDefinition) SetIncludeUngroupedHosts(v bool) {
 	g.IncludeUngroupedHosts = &v
 }
 
+// GetNodeType returns the NodeType field if non-nil, zero value otherwise.
+func (g *GraphDefinition) GetNodeType() string {
+	if g == nil || g.NodeType == nil {
+		return ""
+	}
+	return *g.NodeType
+}
+
+// GetOkNodeType returns a tuple with the NodeType field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphDefinition) GetNodeTypeOk() (string, bool) {
+	if g == nil || g.NodeType == nil {
+		return "", false
+	}
+	return *g.NodeType, true
+}
+
+// HasNodeType returns a boolean if a field has been set.
+func (g *GraphDefinition) HasNodeType() bool {
+	if g != nil && g.NodeType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNodeType allocates a new g.NodeType and returns the pointer to it.
+func (g *GraphDefinition) SetNodeType(v string) {
+	g.NodeType = &v
+}
+
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
 func (g *GraphDefinition) GetPrecision() string {
 	if g == nil || g.Precision == nil {
