@@ -2470,7 +2470,7 @@ func (g *GraphDefinition) GetNodeType() string {
 	return *g.NodeType
 }
 
-// GetOkNodeType returns a tuple with the NodeType field if it's non-nil, zero value otherwise
+// GetNodeTypeOk returns a tuple with the NodeType field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GraphDefinition) GetNodeTypeOk() (string, bool) {
 	if g == nil || g.NodeType == nil {
@@ -3276,7 +3276,7 @@ func (g *GroupData) GetLastNoDataTs() int {
 	return *g.LastNoDataTs
 }
 
-// GetOkLastNoDataTs returns a tuple with the LastNoDataTs field if it's non-nil, zero value otherwise
+// GetLastNoDataTsOk returns a tuple with the LastNoDataTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetLastNoDataTsOk() (int, bool) {
 	if g == nil || g.LastNoDataTs == nil {
@@ -3307,7 +3307,7 @@ func (g *GroupData) GetLastNotifiedTs() int {
 	return *g.LastNotifiedTs
 }
 
-// GetOkLastNotifiedTs returns a tuple with the LastNotifiedTs field if it's non-nil, zero value otherwise
+// GetLastNotifiedTsOk returns a tuple with the LastNotifiedTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetLastNotifiedTsOk() (int, bool) {
 	if g == nil || g.LastNotifiedTs == nil {
@@ -3338,7 +3338,7 @@ func (g *GroupData) GetLastResolvedTs() int {
 	return *g.LastResolvedTs
 }
 
-// GetOkLastResolvedTs returns a tuple with the LastResolvedTs field if it's non-nil, zero value otherwise
+// GetLastResolvedTsOk returns a tuple with the LastResolvedTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetLastResolvedTsOk() (int, bool) {
 	if g == nil || g.LastResolvedTs == nil {
@@ -3369,7 +3369,7 @@ func (g *GroupData) GetLastTriggeredTs() int {
 	return *g.LastTriggeredTs
 }
 
-// GetOkLastTriggeredTs returns a tuple with the LastTriggeredTs field if it's non-nil, zero value otherwise
+// GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetLastTriggeredTsOk() (int, bool) {
 	if g == nil || g.LastTriggeredTs == nil {
@@ -3400,7 +3400,7 @@ func (g *GroupData) GetName() string {
 	return *g.Name
 }
 
-// GetOkName returns a tuple with the Name field if it's non-nil, zero value otherwise
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetNameOk() (string, bool) {
 	if g == nil || g.Name == nil {
@@ -3431,7 +3431,7 @@ func (g *GroupData) GetStatus() string {
 	return *g.Status
 }
 
-// GetOkStatus returns a tuple with the Status field if it's non-nil, zero value otherwise
+// GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetStatusOk() (string, bool) {
 	if g == nil || g.Status == nil {
@@ -3462,7 +3462,7 @@ func (g *GroupData) GetTriggeringValue() TriggeringValue {
 	return *g.TriggeringValue
 }
 
-// GetOkTriggeringValue returns a tuple with the TriggeringValue field if it's non-nil, zero value otherwise
+// GetTriggeringValueOk returns a tuple with the TriggeringValue field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (g *GroupData) GetTriggeringValueOk() (TriggeringValue, bool) {
 	if g == nil || g.TriggeringValue == nil {
@@ -4392,7 +4392,7 @@ func (m *Monitor) GetOverallStateModified() string {
 	return *m.OverallStateModified
 }
 
-// GetOkOverallStateModified returns a tuple with the OverallStateModified field if it's non-nil, zero value otherwise
+// GetOverallStateModifiedOk returns a tuple with the OverallStateModified field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (m *Monitor) GetOverallStateModifiedOk() (string, bool) {
 	if m == nil || m.OverallStateModified == nil {
@@ -7585,7 +7585,7 @@ func (t *TriggeringValue) GetFromTs() int {
 	return *t.FromTs
 }
 
-// GetOkFromTs returns a tuple with the FromTs field if it's non-nil, zero value otherwise
+// GetFromTsOk returns a tuple with the FromTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (t *TriggeringValue) GetFromTsOk() (int, bool) {
 	if t == nil || t.FromTs == nil {
@@ -7616,7 +7616,7 @@ func (t *TriggeringValue) GetToTs() int {
 	return *t.ToTs
 }
 
-// GetOkToTs returns a tuple with the ToTs field if it's non-nil, zero value otherwise
+// GetToTsOk returns a tuple with the ToTs field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (t *TriggeringValue) GetToTsOk() (int, bool) {
 	if t == nil || t.ToTs == nil {
@@ -7647,7 +7647,7 @@ func (t *TriggeringValue) GetValue() int {
 	return *t.Value
 }
 
-// GetOkValue returns a tuple with the Value field if it's non-nil, zero value otherwise
+// GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
 func (t *TriggeringValue) GetValueOk() (int, bool) {
 	if t == nil || t.Value == nil {
