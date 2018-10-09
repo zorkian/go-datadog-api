@@ -2462,6 +2462,37 @@ func (g *GraphDefinition) SetIncludeUngroupedHosts(v bool) {
 	g.IncludeUngroupedHosts = &v
 }
 
+// GetNodeType returns the NodeType field if non-nil, zero value otherwise.
+func (g *GraphDefinition) GetNodeType() string {
+	if g == nil || g.NodeType == nil {
+		return ""
+	}
+	return *g.NodeType
+}
+
+// GetOkNodeType returns a tuple with the NodeType field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphDefinition) GetNodeTypeOk() (string, bool) {
+	if g == nil || g.NodeType == nil {
+		return "", false
+	}
+	return *g.NodeType, true
+}
+
+// HasNodeType returns a boolean if a field has been set.
+func (g *GraphDefinition) HasNodeType() bool {
+	if g != nil && g.NodeType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNodeType allocates a new g.NodeType and returns the pointer to it.
+func (g *GraphDefinition) SetNodeType(v string) {
+	g.NodeType = &v
+}
+
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
 func (g *GraphDefinition) GetPrecision() string {
 	if g == nil || g.Precision == nil {
@@ -3235,6 +3266,223 @@ func (g *GraphEvent) HasQuery() bool {
 // SetQuery allocates a new g.Query and returns the pointer to it.
 func (g *GraphEvent) SetQuery(v string) {
 	g.Query = &v
+}
+
+// GetLastNoDataTs returns the LastNoDataTs field if non-nil, zero value otherwise.
+func (g *GroupData) GetLastNoDataTs() int {
+	if g == nil || g.LastNoDataTs == nil {
+		return 0
+	}
+	return *g.LastNoDataTs
+}
+
+// GetOkLastNoDataTs returns a tuple with the LastNoDataTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetLastNoDataTsOk() (int, bool) {
+	if g == nil || g.LastNoDataTs == nil {
+		return 0, false
+	}
+	return *g.LastNoDataTs, true
+}
+
+// HasLastNoDataTs returns a boolean if a field has been set.
+func (g *GroupData) HasLastNoDataTs() bool {
+	if g != nil && g.LastNoDataTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastNoDataTs allocates a new g.LastNoDataTs and returns the pointer to it.
+func (g *GroupData) SetLastNoDataTs(v int) {
+	g.LastNoDataTs = &v
+}
+
+// GetLastNotifiedTs returns the LastNotifiedTs field if non-nil, zero value otherwise.
+func (g *GroupData) GetLastNotifiedTs() int {
+	if g == nil || g.LastNotifiedTs == nil {
+		return 0
+	}
+	return *g.LastNotifiedTs
+}
+
+// GetOkLastNotifiedTs returns a tuple with the LastNotifiedTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetLastNotifiedTsOk() (int, bool) {
+	if g == nil || g.LastNotifiedTs == nil {
+		return 0, false
+	}
+	return *g.LastNotifiedTs, true
+}
+
+// HasLastNotifiedTs returns a boolean if a field has been set.
+func (g *GroupData) HasLastNotifiedTs() bool {
+	if g != nil && g.LastNotifiedTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastNotifiedTs allocates a new g.LastNotifiedTs and returns the pointer to it.
+func (g *GroupData) SetLastNotifiedTs(v int) {
+	g.LastNotifiedTs = &v
+}
+
+// GetLastResolvedTs returns the LastResolvedTs field if non-nil, zero value otherwise.
+func (g *GroupData) GetLastResolvedTs() int {
+	if g == nil || g.LastResolvedTs == nil {
+		return 0
+	}
+	return *g.LastResolvedTs
+}
+
+// GetOkLastResolvedTs returns a tuple with the LastResolvedTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetLastResolvedTsOk() (int, bool) {
+	if g == nil || g.LastResolvedTs == nil {
+		return 0, false
+	}
+	return *g.LastResolvedTs, true
+}
+
+// HasLastResolvedTs returns a boolean if a field has been set.
+func (g *GroupData) HasLastResolvedTs() bool {
+	if g != nil && g.LastResolvedTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastResolvedTs allocates a new g.LastResolvedTs and returns the pointer to it.
+func (g *GroupData) SetLastResolvedTs(v int) {
+	g.LastResolvedTs = &v
+}
+
+// GetLastTriggeredTs returns the LastTriggeredTs field if non-nil, zero value otherwise.
+func (g *GroupData) GetLastTriggeredTs() int {
+	if g == nil || g.LastTriggeredTs == nil {
+		return 0
+	}
+	return *g.LastTriggeredTs
+}
+
+// GetOkLastTriggeredTs returns a tuple with the LastTriggeredTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetLastTriggeredTsOk() (int, bool) {
+	if g == nil || g.LastTriggeredTs == nil {
+		return 0, false
+	}
+	return *g.LastTriggeredTs, true
+}
+
+// HasLastTriggeredTs returns a boolean if a field has been set.
+func (g *GroupData) HasLastTriggeredTs() bool {
+	if g != nil && g.LastTriggeredTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastTriggeredTs allocates a new g.LastTriggeredTs and returns the pointer to it.
+func (g *GroupData) SetLastTriggeredTs(v int) {
+	g.LastTriggeredTs = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (g *GroupData) GetName() string {
+	if g == nil || g.Name == nil {
+		return ""
+	}
+	return *g.Name
+}
+
+// GetOkName returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetNameOk() (string, bool) {
+	if g == nil || g.Name == nil {
+		return "", false
+	}
+	return *g.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (g *GroupData) HasName() bool {
+	if g != nil && g.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new g.Name and returns the pointer to it.
+func (g *GroupData) SetName(v string) {
+	g.Name = &v
+}
+
+// GetStatus returns the Status field if non-nil, zero value otherwise.
+func (g *GroupData) GetStatus() string {
+	if g == nil || g.Status == nil {
+		return ""
+	}
+	return *g.Status
+}
+
+// GetOkStatus returns a tuple with the Status field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetStatusOk() (string, bool) {
+	if g == nil || g.Status == nil {
+		return "", false
+	}
+	return *g.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (g *GroupData) HasStatus() bool {
+	if g != nil && g.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus allocates a new g.Status and returns the pointer to it.
+func (g *GroupData) SetStatus(v string) {
+	g.Status = &v
+}
+
+// GetTriggeringValue returns the TriggeringValue field if non-nil, zero value otherwise.
+func (g *GroupData) GetTriggeringValue() TriggeringValue {
+	if g == nil || g.TriggeringValue == nil {
+		return TriggeringValue{}
+	}
+	return *g.TriggeringValue
+}
+
+// GetOkTriggeringValue returns a tuple with the TriggeringValue field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GroupData) GetTriggeringValueOk() (TriggeringValue, bool) {
+	if g == nil || g.TriggeringValue == nil {
+		return TriggeringValue{}, false
+	}
+	return *g.TriggeringValue, true
+}
+
+// HasTriggeringValue returns a boolean if a field has been set.
+func (g *GroupData) HasTriggeringValue() bool {
+	if g != nil && g.TriggeringValue != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggeringValue allocates a new g.TriggeringValue and returns the pointer to it.
+func (g *GroupData) SetTriggeringValue(v TriggeringValue) {
+	g.TriggeringValue = &v
 }
 
 // GetEndTime returns the EndTime field if non-nil, zero value otherwise.
@@ -4134,6 +4382,37 @@ func (m *Monitor) HasOverallState() bool {
 // SetOverallState allocates a new m.OverallState and returns the pointer to it.
 func (m *Monitor) SetOverallState(v string) {
 	m.OverallState = &v
+}
+
+// GetOverallStateModified returns the OverallStateModified field if non-nil, zero value otherwise.
+func (m *Monitor) GetOverallStateModified() string {
+	if m == nil || m.OverallStateModified == nil {
+		return ""
+	}
+	return *m.OverallStateModified
+}
+
+// GetOkOverallStateModified returns a tuple with the OverallStateModified field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *Monitor) GetOverallStateModifiedOk() (string, bool) {
+	if m == nil || m.OverallStateModified == nil {
+		return "", false
+	}
+	return *m.OverallStateModified, true
+}
+
+// HasOverallStateModified returns a boolean if a field has been set.
+func (m *Monitor) HasOverallStateModified() bool {
+	if m != nil && m.OverallStateModified != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverallStateModified allocates a new m.OverallStateModified and returns the pointer to it.
+func (m *Monitor) SetOverallStateModified(v string) {
+	m.OverallStateModified = &v
 }
 
 // GetQuery returns the Query field if non-nil, zero value otherwise.
@@ -7296,6 +7575,99 @@ func (t *Time) HasLiveSpan() bool {
 // SetLiveSpan allocates a new t.LiveSpan and returns the pointer to it.
 func (t *Time) SetLiveSpan(v string) {
 	t.LiveSpan = &v
+}
+
+// GetFromTs returns the FromTs field if non-nil, zero value otherwise.
+func (t *TriggeringValue) GetFromTs() int {
+	if t == nil || t.FromTs == nil {
+		return 0
+	}
+	return *t.FromTs
+}
+
+// GetOkFromTs returns a tuple with the FromTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TriggeringValue) GetFromTsOk() (int, bool) {
+	if t == nil || t.FromTs == nil {
+		return 0, false
+	}
+	return *t.FromTs, true
+}
+
+// HasFromTs returns a boolean if a field has been set.
+func (t *TriggeringValue) HasFromTs() bool {
+	if t != nil && t.FromTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFromTs allocates a new t.FromTs and returns the pointer to it.
+func (t *TriggeringValue) SetFromTs(v int) {
+	t.FromTs = &v
+}
+
+// GetToTs returns the ToTs field if non-nil, zero value otherwise.
+func (t *TriggeringValue) GetToTs() int {
+	if t == nil || t.ToTs == nil {
+		return 0
+	}
+	return *t.ToTs
+}
+
+// GetOkToTs returns a tuple with the ToTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TriggeringValue) GetToTsOk() (int, bool) {
+	if t == nil || t.ToTs == nil {
+		return 0, false
+	}
+	return *t.ToTs, true
+}
+
+// HasToTs returns a boolean if a field has been set.
+func (t *TriggeringValue) HasToTs() bool {
+	if t != nil && t.ToTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetToTs allocates a new t.ToTs and returns the pointer to it.
+func (t *TriggeringValue) SetToTs(v int) {
+	t.ToTs = &v
+}
+
+// GetValue returns the Value field if non-nil, zero value otherwise.
+func (t *TriggeringValue) GetValue() int {
+	if t == nil || t.Value == nil {
+		return 0
+	}
+	return *t.Value
+}
+
+// GetOkValue returns a tuple with the Value field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TriggeringValue) GetValueOk() (int, bool) {
+	if t == nil || t.Value == nil {
+		return 0, false
+	}
+	return *t.Value, true
+}
+
+// HasValue returns a boolean if a field has been set.
+func (t *TriggeringValue) HasValue() bool {
+	if t != nil && t.Value != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValue allocates a new t.Value and returns the pointer to it.
+func (t *TriggeringValue) SetValue(v int) {
+	t.Value = &v
 }
 
 // GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
