@@ -127,10 +127,12 @@ type GraphDefinition struct {
 	// For hostname type graphs
 	Style *Style `json:"Style,omitempty"`
 
+	// For hostmaps
 	Groups                []string `json:"group,omitempty"`
 	IncludeNoMetricHosts  *bool    `json:"noMetricHosts,omitempty"`
 	Scopes                []string `json:"scope,omitempty"`
 	IncludeUngroupedHosts *bool    `json:"noGroupHosts,omitempty"`
+	NodeType              *string  `json:"nodeType,omitempty"`
 }
 
 // Graph represents a graph that might exist on a dashboard.
