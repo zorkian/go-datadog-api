@@ -14,6 +14,7 @@ install:
   - go get -v -t .
 
 script:
+  - scripts/check-fmt.sh
   - go get -u github.com/golang/lint/golint
   - golint ./... | grep -v vendor/
   - make
