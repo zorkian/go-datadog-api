@@ -6151,6 +6151,68 @@ func (s *ServicePDRequest) SetServiceName(v string) {
 	s.ServiceName = &v
 }
 
+// GetFillMax returns the FillMax field if non-nil, zero value otherwise.
+func (s *Style) GetFillMax() json.Number {
+	if s == nil || s.FillMax == nil {
+		return ""
+	}
+	return *s.FillMax
+}
+
+// GetFillMaxOk returns a tuple with the FillMax field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Style) GetFillMaxOk() (json.Number, bool) {
+	if s == nil || s.FillMax == nil {
+		return "", false
+	}
+	return *s.FillMax, true
+}
+
+// HasFillMax returns a boolean if a field has been set.
+func (s *Style) HasFillMax() bool {
+	if s != nil && s.FillMax != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFillMax allocates a new s.FillMax and returns the pointer to it.
+func (s *Style) SetFillMax(v json.Number) {
+	s.FillMax = &v
+}
+
+// GetFillMin returns the FillMin field if non-nil, zero value otherwise.
+func (s *Style) GetFillMin() json.Number {
+	if s == nil || s.FillMin == nil {
+		return ""
+	}
+	return *s.FillMin
+}
+
+// GetFillMinOk returns a tuple with the FillMin field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Style) GetFillMinOk() (json.Number, bool) {
+	if s == nil || s.FillMin == nil {
+		return "", false
+	}
+	return *s.FillMin, true
+}
+
+// HasFillMin returns a boolean if a field has been set.
+func (s *Style) HasFillMin() bool {
+	if s != nil && s.FillMin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFillMin allocates a new s.FillMin and returns the pointer to it.
+func (s *Style) SetFillMin(v json.Number) {
+	s.FillMin = &v
+}
+
 // GetPalette returns the Palette field if non-nil, zero value otherwise.
 func (s *Style) GetPalette() string {
 	if s == nil || s.Palette == nil {
