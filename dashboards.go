@@ -105,8 +105,10 @@ func (y *Yaxis) UnmarshalJSON(data []byte) error {
 }
 
 type Style struct {
-	Palette     *string `json:"palette,omitempty"`
-	PaletteFlip *bool   `json:"paletteFlip,omitempty"`
+	Palette     *string      `json:"palette,omitempty"`
+	PaletteFlip *bool        `json:"paletteFlip,omitempty"`
+	FillMin     *json.Number `json:"fillMin,omitempty"`
+	FillMax     *json.Number `json:"fillMax,omitempty"`
 }
 
 type GraphDefinition struct {
@@ -124,10 +126,8 @@ type GraphDefinition struct {
 	Precision  *string `json:"precision,omitempty"`
 	CustomUnit *string `json:"custom_unit,omitempty"`
 
-	// For hostname type graphs
-	Style *Style `json:"Style,omitempty"`
-
 	// For hostmaps
+	Style                 *Style   `json:"style,omitempty"`
 	Groups                []string `json:"group,omitempty"`
 	IncludeNoMetricHosts  *bool    `json:"noMetricHosts,omitempty"`
 	Scopes                []string `json:"scope,omitempty"`
