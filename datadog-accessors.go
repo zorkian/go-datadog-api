@@ -2494,7 +2494,7 @@ func (g *GraphDefinition) SetNodeType(v string) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (g *GraphDefinition) GetPrecision() string {
+func (g *GraphDefinition) GetPrecision() json.Number {
 	if g == nil || g.Precision == nil {
 		return ""
 	}
@@ -2503,7 +2503,7 @@ func (g *GraphDefinition) GetPrecision() string {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (g *GraphDefinition) GetPrecisionOk() (string, bool) {
+func (g *GraphDefinition) GetPrecisionOk() (json.Number, bool) {
 	if g == nil || g.Precision == nil {
 		return "", false
 	}
@@ -2520,7 +2520,7 @@ func (g *GraphDefinition) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new g.Precision and returns the pointer to it.
-func (g *GraphDefinition) SetPrecision(v string) {
+func (g *GraphDefinition) SetPrecision(v json.Number) {
 	g.Precision = &v
 }
 
@@ -6710,7 +6710,7 @@ func (t *TileDef) SetNoMetricHosts(v bool) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (t *TileDef) GetPrecision() string {
+func (t *TileDef) GetPrecision() json.Number {
 	if t == nil || t.Precision == nil {
 		return ""
 	}
@@ -6719,7 +6719,7 @@ func (t *TileDef) GetPrecision() string {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDef) GetPrecisionOk() (string, bool) {
+func (t *TileDef) GetPrecisionOk() (json.Number, bool) {
 	if t == nil || t.Precision == nil {
 		return "", false
 	}
@@ -6736,7 +6736,7 @@ func (t *TileDef) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new t.Precision and returns the pointer to it.
-func (t *TileDef) SetPrecision(v string) {
+func (t *TileDef) SetPrecision(v json.Number) {
 	t.Precision = &v
 }
 
