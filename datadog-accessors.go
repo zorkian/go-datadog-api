@@ -11360,6 +11360,68 @@ func (m *Monitor) SetType(v string) {
 	m.Type = &v
 }
 
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (m *MonitorQueryOpts) GetName() string {
+	if m == nil || m.Name == nil {
+		return ""
+	}
+	return *m.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *MonitorQueryOpts) GetNameOk() (string, bool) {
+	if m == nil || m.Name == nil {
+		return "", false
+	}
+	return *m.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (m *MonitorQueryOpts) HasName() bool {
+	if m != nil && m.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new m.Name and returns the pointer to it.
+func (m *MonitorQueryOpts) SetName(v string) {
+	m.Name = &v
+}
+
+// GetWithDowntimes returns the WithDowntimes field if non-nil, zero value otherwise.
+func (m *MonitorQueryOpts) GetWithDowntimes() bool {
+	if m == nil || m.WithDowntimes == nil {
+		return false
+	}
+	return *m.WithDowntimes
+}
+
+// GetWithDowntimesOk returns a tuple with the WithDowntimes field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *MonitorQueryOpts) GetWithDowntimesOk() (bool, bool) {
+	if m == nil || m.WithDowntimes == nil {
+		return false, false
+	}
+	return *m.WithDowntimes, true
+}
+
+// HasWithDowntimes returns a boolean if a field has been set.
+func (m *MonitorQueryOpts) HasWithDowntimes() bool {
+	if m != nil && m.WithDowntimes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWithDowntimes allocates a new m.WithDowntimes and returns the pointer to it.
+func (m *MonitorQueryOpts) SetWithDowntimes(v bool) {
+	m.WithDowntimes = &v
+}
+
 // GetEnd returns the End field if non-nil, zero value otherwise.
 func (m *MuteMonitorScope) GetEnd() int {
 	if m == nil || m.End == nil {
