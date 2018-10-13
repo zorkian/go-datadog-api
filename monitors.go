@@ -133,34 +133,14 @@ func (client *Client) GetMonitor(id int) (*Monitor, error) {
 	return &out, nil
 }
 
-// GetMonitor retrieves monitors by name
-func (self *Client) GetMonitorsByName(name string) ([]Monitor, error) {
-	var out reqMonitors
-	query, err := url.ParseQuery(fmt.Sprintf("name=%v", name))
-	if err != nil {
-		return nil, err
-	}
-
-	err = self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
-	if err != nil {
-		return nil, err
-	}
-	return out.Monitors, nil
+// GetMonitorsByName retrieves monitors by name
+func (client *Client) GetMonitorsByName(name string) ([]Monitor, error) {
+	return client.GetMonitorsWithOptions(MonitorQueryOpts{Name: name})
 }
 
-// GetMonitor retrieves monitors by a slice of tags
-func (self *Client) GetMonitorsByTags(tags []string) ([]Monitor, error) {
-	var out reqMonitors
-	query, err := url.ParseQuery(fmt.Sprintf("monitor_tags=%v", strings.Join(tags, ",")))
-	if err != nil {
-		return nil, err
-	}
-
-	err = self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
-	if err != nil {
-		return nil, err
-	}
-	return out.Monitors, nil
+// GetMonitorsByTags retrieves monitors by a slice of tags
+func (client *Client) GetMonitorsByTags(tags []string) ([]Monitor, error) {
+	return client.GetMonitorsWithOptions(MonitorQueryOpts{Tags: tags})
 }
 
 // DeleteMonitor removes a monitor from the system
@@ -171,11 +151,59 @@ func (client *Client) DeleteMonitor(id int) error {
 
 // GetMonitors returns a slice of all monitors
 func (client *Client) GetMonitors() ([]Monitor, error) {
+	return client.GetMonitorsWithOptions(MonitorQueryOpts{})
+}
+
+// MonitorQueryOpts contains the options supported by
+// https://docs.datadoghq.com/api/?lang=bash#get-all-monitor-details
+type MonitorQueryOpts struct {
+	GroupStates   []string
+	Name          string
+	Tags          []string
+	MonitorTags   []string
+	WithDowntimes *bool
+}
+
+// GetMonitorsWithOptions returns a slice of all monitors
+// It supports all the options for querying
+func (client *Client) GetMonitorsWithOptions(opts MonitorQueryOpts) ([]Monitor, error) {
 	var out reqMonitors
-	if err := client.doJsonRequest("GET", "/v1/monitor", nil, &out.Monitors); err != nil {
+	var query []string
+	if len(opts.Tags) > 0 {
+		value := fmt.Sprintf("tags=%v", strings.Join(opts.Tags, ","))
+		query = append(query, value)
+	}
+
+	if len(opts.GroupStates) > 0 {
+		value := fmt.Sprintf("group_states=%v", strings.Join(opts.GroupStates, ","))
+		query = append(query, value)
+	}
+
+	if len(opts.MonitorTags) > 0 {
+		value := fmt.Sprintf("monitor_tags=%v", strings.Join(opts.MonitorTags, ","))
+		query = append(query, value)
+	}
+
+	if opts.WithDowntimes != nil {
+		value := fmt.Sprintf("with_downtimes=%t", *opts.WithDowntimes)
+		query = append(query, value)
+	}
+
+	if opts.Name != "" {
+		value := fmt.Sprintf("name=%s", opts.Name)
+		query = append(query, value)
+	}
+
+	queryString, err := url.ParseQuery(strings.Join(query, "&"))
+	if err != nil {
+		return nil, err
+	}
+	err = client.doJsonRequest("GET", fmt.Sprintf("/v1/monitor?%v", queryString.Encode()), nil, &out.Monitors)
+	if err != nil {
 		return nil, err
 	}
 	return out.Monitors, nil
+
 }
 
 // MuteMonitors turns off monitoring notifications
