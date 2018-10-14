@@ -15,7 +15,7 @@ install:
 
 script:
   - scripts/check-fmt.sh
-  - go get -u github.com/golang/lint/golint
+  - go get -u golang.org/x/lint/golint
   - golint ./... | grep -v vendor/
   - make
   - scripts/check-code-generation-ran.sh
