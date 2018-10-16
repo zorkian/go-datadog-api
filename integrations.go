@@ -200,14 +200,14 @@ type IntegrationGCPCreateRequest struct {
 	TokenURI                *string `json:"token_uri"`                   // Should be https://accounts.google.com/o/oauth2/token
 	AuthProviderX509CertURL *string `json:"auth_provider_x509_cert_url"` // Should be https://www.googleapis.com/oauth2/v1/certs
 	ClientX509CertURL       *string `json:"client_x509_cert_url"`        // https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
-	HostFilters             *string `json:"host_filters"`
+	HostFilters             *string `json:"host_filters,omitempty"`
 }
 
 // IntegrationGCPUpdateRequest defines the request payload for updating Datadog-Google CloudPlatform integration.
 type IntegrationGCPUpdateRequest struct {
 	ProjectID   *string `json:"project_id"`
 	ClientEmail *string `json:"client_email"`
-	HostFilters *string `json:"host_filters"`
+	HostFilters *string `json:"host_filters,omitempty"`
 }
 
 // IntegrationGCPDeleteRequest defines the request payload for deleting Datadog-Google CloudPlatform integration.
@@ -216,7 +216,7 @@ type IntegrationGCPDeleteRequest struct {
 	ClientEmail *string `json:"client_email"`
 }
 
-// ListIntegrationGCP creates new Google Cloud Platform Integrations.
+// ListIntegrationGCP gets all Google Cloud Platform Integrations.
 func (client *Client) ListIntegrationGCP() ([]*IntegrationGCP, error) {
 	var list []*IntegrationGCP
 	if err := client.doJsonRequest("GET", "/v1/integration/gcp", nil, &list); err != nil {
@@ -225,17 +225,17 @@ func (client *Client) ListIntegrationGCP() ([]*IntegrationGCP, error) {
 	return list, nil
 }
 
-// CreateIntegrationGCP creates new Google Cloud Platform Integrations.
+// CreateIntegrationGCP creates a new Google Cloud Platform Integration.
 func (client *Client) CreateIntegrationGCP(cir *IntegrationGCPCreateRequest) error {
 	return client.doJsonRequest("POST", "/v1/integration/gcp", cir, nil)
 }
 
-// UpdateIntegrationGCP updates new Google Cloud Platform Integrations.
+// UpdateIntegrationGCP updates a Google Cloud Platform Integration.
 func (client *Client) UpdateIntegrationGCP(cir *IntegrationGCPUpdateRequest) error {
 	return client.doJsonRequest("POST", "/v1/integration/gcp/host_filters", cir, nil)
 }
 
-// DeleteIntegrationGCP deletes new Google Cloud Platform Integrations.
+// DeleteIntegrationGCP deletes a Google Cloud Platform Integration.
 func (client *Client) DeleteIntegrationGCP(cir *IntegrationGCPDeleteRequest) error {
 	return client.doJsonRequest("DELETE", "/v1/integration/gcp", cir, nil)
 }
