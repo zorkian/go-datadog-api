@@ -339,3 +339,85 @@ func cleanUpIntegrationAWS(t *testing.T, awsAccount *datadog.IntegrationAWSAccou
 		t.Fatalf("Getting AWS accounts from the AWS integration failed when it shouldn't: %s", err)
 	}
 }
+
+/*
+	Google Cloud Platform Integration
+*/
+
+func TestIntegrationGCPCreateAndDelete(t *testing.T) {
+	expected := createTestIntegrationGCP(t)
+	defer cleanUpIntegrationGCP(t)
+
+	actual, err := client.ListIntegrationGCP()
+	if err != nil {
+		t.Fatalf("Retrieving a GCP integration failed when it shouldn't: (%s)", err)
+	}
+	assert.Equal(t, 1, len(actual))
+	assert.Equal(t, expected.ProjectID, actual[0].ProjectID)
+	assert.Equal(t, expected.ClientEmail, actual[0].ClientEmail)
+	assert.Equal(t, expected.HostFilters, actual[0].HostFilters)
+}
+
+func TestIntegrationGCPUpdate(t *testing.T) {
+	req := createTestIntegrationGCP(t)
+	defer cleanUpIntegrationGCP(t)
+
+	newHostFilters := datadog.String("name0:value0,name1:value1")
+
+	if err := client.UpdateIntegrationGCP(&datadog.IntegrationGCPUpdateRequest{
+		ProjectID:   req.ProjectID,
+		ClientEmail: req.ClientEmail,
+		HostFilters: newHostFilters,
+	}); err != nil {
+		t.Fatalf("Updating a GCP integration failed when it shouldn't: %s", err)
+	}
+
+	actual, err := client.ListIntegrationGCP()
+	if err != nil {
+		t.Fatalf("Retrieving a GCP integration failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, 1, len(actual))
+	assert.Equal(t, req.ProjectID, actual[0].ProjectID)
+	assert.Equal(t, req.ClientEmail, actual[0].ClientEmail)
+	assert.Equal(t, newHostFilters, actual[0].HostFilters)
+}
+
+func getTestIntegrationGCPCreateRequest() *datadog.IntegrationGCPCreateRequest {
+	return &datadog.IntegrationGCPCreateRequest{
+		Type:                    datadog.String("service_account"),
+		ProjectID:               datadog.String("test-project-id"),
+		PrivateKeyID:            datadog.String("1234567890123456789012345678901234567890"),
+		PrivateKey:              datadog.String(""),
+		ClientEmail:             datadog.String("go-datadog-api@test-project-id.iam.gserviceaccount.com"),
+		ClientID:                datadog.String("123456789012345678901"),
+		AuthURI:                 datadog.String("https://accounts.google.com/o/oauth2/auth"),
+		TokenURI:                datadog.String("https://oauth2.googleapis.com/token"),
+		AuthProviderX509CertURL: datadog.String("https://www.googleapis.com/oauth2/v1/certs"),
+		ClientX509CertURL:       datadog.String("https://www.googleapis.com/robot/v1/metadata/x509/go-datadog-api@test-project-id.iam.gserviceaccount.com"),
+		HostFilters:             datadog.String("foo:bar,buzz:lightyear"),
+	}
+}
+
+func createTestIntegrationGCP(t *testing.T) *datadog.IntegrationGCPCreateRequest {
+	req := getTestIntegrationGCPCreateRequest()
+	err := client.CreateIntegrationGCP(req)
+	if err != nil {
+		t.Fatalf("Creating a GCP integration failed when it shouldn't: %s", err)
+	}
+	return req
+}
+
+func cleanUpIntegrationGCP(t *testing.T) {
+	if err := client.DeleteIntegrationGCP(&datadog.IntegrationGCPDeleteRequest{
+		ProjectID:   datadog.String("test-project-id"),
+		ClientEmail: datadog.String("go-datadog-api@test-project-id.iam.gserviceaccount.com"),
+	}); err != nil {
+		t.Fatalf("Deleting the GCP integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
+	}
+
+	actual, err := client.ListIntegrationGCP()
+	if err != nil {
+		t.Fatalf("Fetching deleted GCP integration didn't lead to an error: %s", err)
+	}
+	assert.Equal(t, 0, len(actual))
+}

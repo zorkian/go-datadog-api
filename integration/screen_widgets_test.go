@@ -241,7 +241,7 @@ func TestWidgets(t *testing.T) {
 			AlertID:    datadog.Int(123456),
 			TextSize:   datadog.String("fill_height"),
 			TextAlign:  datadog.String("right"),
-			Precision:  datadog.JsonNumber("*"),
+			Precision:  datadog.String("*"),
 			Unit:       datadog.String("b"),
 		},
 		{

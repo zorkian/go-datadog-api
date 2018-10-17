@@ -3702,6 +3702,595 @@ func (i *IntegrationAWSAccountDeleteRequest) SetRoleName(v string) {
 	i.RoleName = &v
 }
 
+// GetClientEmail returns the ClientEmail field if non-nil, zero value otherwise.
+func (i *IntegrationGCP) GetClientEmail() string {
+	if i == nil || i.ClientEmail == nil {
+		return ""
+	}
+	return *i.ClientEmail
+}
+
+// GetClientEmailOk returns a tuple with the ClientEmail field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCP) GetClientEmailOk() (string, bool) {
+	if i == nil || i.ClientEmail == nil {
+		return "", false
+	}
+	return *i.ClientEmail, true
+}
+
+// HasClientEmail returns a boolean if a field has been set.
+func (i *IntegrationGCP) HasClientEmail() bool {
+	if i != nil && i.ClientEmail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientEmail allocates a new i.ClientEmail and returns the pointer to it.
+func (i *IntegrationGCP) SetClientEmail(v string) {
+	i.ClientEmail = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationGCP) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCP) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationGCP) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationGCP) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetProjectID returns the ProjectID field if non-nil, zero value otherwise.
+func (i *IntegrationGCP) GetProjectID() string {
+	if i == nil || i.ProjectID == nil {
+		return ""
+	}
+	return *i.ProjectID
+}
+
+// GetProjectIDOk returns a tuple with the ProjectID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCP) GetProjectIDOk() (string, bool) {
+	if i == nil || i.ProjectID == nil {
+		return "", false
+	}
+	return *i.ProjectID, true
+}
+
+// HasProjectID returns a boolean if a field has been set.
+func (i *IntegrationGCP) HasProjectID() bool {
+	if i != nil && i.ProjectID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectID allocates a new i.ProjectID and returns the pointer to it.
+func (i *IntegrationGCP) SetProjectID(v string) {
+	i.ProjectID = &v
+}
+
+// GetAuthProviderX509CertURL returns the AuthProviderX509CertURL field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetAuthProviderX509CertURL() string {
+	if i == nil || i.AuthProviderX509CertURL == nil {
+		return ""
+	}
+	return *i.AuthProviderX509CertURL
+}
+
+// GetAuthProviderX509CertURLOk returns a tuple with the AuthProviderX509CertURL field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetAuthProviderX509CertURLOk() (string, bool) {
+	if i == nil || i.AuthProviderX509CertURL == nil {
+		return "", false
+	}
+	return *i.AuthProviderX509CertURL, true
+}
+
+// HasAuthProviderX509CertURL returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasAuthProviderX509CertURL() bool {
+	if i != nil && i.AuthProviderX509CertURL != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthProviderX509CertURL allocates a new i.AuthProviderX509CertURL and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetAuthProviderX509CertURL(v string) {
+	i.AuthProviderX509CertURL = &v
+}
+
+// GetAuthURI returns the AuthURI field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetAuthURI() string {
+	if i == nil || i.AuthURI == nil {
+		return ""
+	}
+	return *i.AuthURI
+}
+
+// GetAuthURIOk returns a tuple with the AuthURI field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetAuthURIOk() (string, bool) {
+	if i == nil || i.AuthURI == nil {
+		return "", false
+	}
+	return *i.AuthURI, true
+}
+
+// HasAuthURI returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasAuthURI() bool {
+	if i != nil && i.AuthURI != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthURI allocates a new i.AuthURI and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetAuthURI(v string) {
+	i.AuthURI = &v
+}
+
+// GetClientEmail returns the ClientEmail field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetClientEmail() string {
+	if i == nil || i.ClientEmail == nil {
+		return ""
+	}
+	return *i.ClientEmail
+}
+
+// GetClientEmailOk returns a tuple with the ClientEmail field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetClientEmailOk() (string, bool) {
+	if i == nil || i.ClientEmail == nil {
+		return "", false
+	}
+	return *i.ClientEmail, true
+}
+
+// HasClientEmail returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasClientEmail() bool {
+	if i != nil && i.ClientEmail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientEmail allocates a new i.ClientEmail and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetClientEmail(v string) {
+	i.ClientEmail = &v
+}
+
+// GetClientID returns the ClientID field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetClientID() string {
+	if i == nil || i.ClientID == nil {
+		return ""
+	}
+	return *i.ClientID
+}
+
+// GetClientIDOk returns a tuple with the ClientID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetClientIDOk() (string, bool) {
+	if i == nil || i.ClientID == nil {
+		return "", false
+	}
+	return *i.ClientID, true
+}
+
+// HasClientID returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasClientID() bool {
+	if i != nil && i.ClientID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientID allocates a new i.ClientID and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetClientID(v string) {
+	i.ClientID = &v
+}
+
+// GetClientX509CertURL returns the ClientX509CertURL field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetClientX509CertURL() string {
+	if i == nil || i.ClientX509CertURL == nil {
+		return ""
+	}
+	return *i.ClientX509CertURL
+}
+
+// GetClientX509CertURLOk returns a tuple with the ClientX509CertURL field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetClientX509CertURLOk() (string, bool) {
+	if i == nil || i.ClientX509CertURL == nil {
+		return "", false
+	}
+	return *i.ClientX509CertURL, true
+}
+
+// HasClientX509CertURL returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasClientX509CertURL() bool {
+	if i != nil && i.ClientX509CertURL != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientX509CertURL allocates a new i.ClientX509CertURL and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetClientX509CertURL(v string) {
+	i.ClientX509CertURL = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetPrivateKey() string {
+	if i == nil || i.PrivateKey == nil {
+		return ""
+	}
+	return *i.PrivateKey
+}
+
+// GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetPrivateKeyOk() (string, bool) {
+	if i == nil || i.PrivateKey == nil {
+		return "", false
+	}
+	return *i.PrivateKey, true
+}
+
+// HasPrivateKey returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasPrivateKey() bool {
+	if i != nil && i.PrivateKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKey allocates a new i.PrivateKey and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetPrivateKey(v string) {
+	i.PrivateKey = &v
+}
+
+// GetPrivateKeyID returns the PrivateKeyID field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetPrivateKeyID() string {
+	if i == nil || i.PrivateKeyID == nil {
+		return ""
+	}
+	return *i.PrivateKeyID
+}
+
+// GetPrivateKeyIDOk returns a tuple with the PrivateKeyID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetPrivateKeyIDOk() (string, bool) {
+	if i == nil || i.PrivateKeyID == nil {
+		return "", false
+	}
+	return *i.PrivateKeyID, true
+}
+
+// HasPrivateKeyID returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasPrivateKeyID() bool {
+	if i != nil && i.PrivateKeyID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateKeyID allocates a new i.PrivateKeyID and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetPrivateKeyID(v string) {
+	i.PrivateKeyID = &v
+}
+
+// GetProjectID returns the ProjectID field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetProjectID() string {
+	if i == nil || i.ProjectID == nil {
+		return ""
+	}
+	return *i.ProjectID
+}
+
+// GetProjectIDOk returns a tuple with the ProjectID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetProjectIDOk() (string, bool) {
+	if i == nil || i.ProjectID == nil {
+		return "", false
+	}
+	return *i.ProjectID, true
+}
+
+// HasProjectID returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasProjectID() bool {
+	if i != nil && i.ProjectID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectID allocates a new i.ProjectID and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetProjectID(v string) {
+	i.ProjectID = &v
+}
+
+// GetTokenURI returns the TokenURI field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetTokenURI() string {
+	if i == nil || i.TokenURI == nil {
+		return ""
+	}
+	return *i.TokenURI
+}
+
+// GetTokenURIOk returns a tuple with the TokenURI field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetTokenURIOk() (string, bool) {
+	if i == nil || i.TokenURI == nil {
+		return "", false
+	}
+	return *i.TokenURI, true
+}
+
+// HasTokenURI returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasTokenURI() bool {
+	if i != nil && i.TokenURI != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTokenURI allocates a new i.TokenURI and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetTokenURI(v string) {
+	i.TokenURI = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (i *IntegrationGCPCreateRequest) GetType() string {
+	if i == nil || i.Type == nil {
+		return ""
+	}
+	return *i.Type
+}
+
+// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPCreateRequest) GetTypeOk() (string, bool) {
+	if i == nil || i.Type == nil {
+		return "", false
+	}
+	return *i.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (i *IntegrationGCPCreateRequest) HasType() bool {
+	if i != nil && i.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new i.Type and returns the pointer to it.
+func (i *IntegrationGCPCreateRequest) SetType(v string) {
+	i.Type = &v
+}
+
+// GetClientEmail returns the ClientEmail field if non-nil, zero value otherwise.
+func (i *IntegrationGCPDeleteRequest) GetClientEmail() string {
+	if i == nil || i.ClientEmail == nil {
+		return ""
+	}
+	return *i.ClientEmail
+}
+
+// GetClientEmailOk returns a tuple with the ClientEmail field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPDeleteRequest) GetClientEmailOk() (string, bool) {
+	if i == nil || i.ClientEmail == nil {
+		return "", false
+	}
+	return *i.ClientEmail, true
+}
+
+// HasClientEmail returns a boolean if a field has been set.
+func (i *IntegrationGCPDeleteRequest) HasClientEmail() bool {
+	if i != nil && i.ClientEmail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientEmail allocates a new i.ClientEmail and returns the pointer to it.
+func (i *IntegrationGCPDeleteRequest) SetClientEmail(v string) {
+	i.ClientEmail = &v
+}
+
+// GetProjectID returns the ProjectID field if non-nil, zero value otherwise.
+func (i *IntegrationGCPDeleteRequest) GetProjectID() string {
+	if i == nil || i.ProjectID == nil {
+		return ""
+	}
+	return *i.ProjectID
+}
+
+// GetProjectIDOk returns a tuple with the ProjectID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPDeleteRequest) GetProjectIDOk() (string, bool) {
+	if i == nil || i.ProjectID == nil {
+		return "", false
+	}
+	return *i.ProjectID, true
+}
+
+// HasProjectID returns a boolean if a field has been set.
+func (i *IntegrationGCPDeleteRequest) HasProjectID() bool {
+	if i != nil && i.ProjectID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectID allocates a new i.ProjectID and returns the pointer to it.
+func (i *IntegrationGCPDeleteRequest) SetProjectID(v string) {
+	i.ProjectID = &v
+}
+
+// GetClientEmail returns the ClientEmail field if non-nil, zero value otherwise.
+func (i *IntegrationGCPUpdateRequest) GetClientEmail() string {
+	if i == nil || i.ClientEmail == nil {
+		return ""
+	}
+	return *i.ClientEmail
+}
+
+// GetClientEmailOk returns a tuple with the ClientEmail field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPUpdateRequest) GetClientEmailOk() (string, bool) {
+	if i == nil || i.ClientEmail == nil {
+		return "", false
+	}
+	return *i.ClientEmail, true
+}
+
+// HasClientEmail returns a boolean if a field has been set.
+func (i *IntegrationGCPUpdateRequest) HasClientEmail() bool {
+	if i != nil && i.ClientEmail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientEmail allocates a new i.ClientEmail and returns the pointer to it.
+func (i *IntegrationGCPUpdateRequest) SetClientEmail(v string) {
+	i.ClientEmail = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationGCPUpdateRequest) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPUpdateRequest) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationGCPUpdateRequest) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationGCPUpdateRequest) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetProjectID returns the ProjectID field if non-nil, zero value otherwise.
+func (i *IntegrationGCPUpdateRequest) GetProjectID() string {
+	if i == nil || i.ProjectID == nil {
+		return ""
+	}
+	return *i.ProjectID
+}
+
+// GetProjectIDOk returns a tuple with the ProjectID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationGCPUpdateRequest) GetProjectIDOk() (string, bool) {
+	if i == nil || i.ProjectID == nil {
+		return "", false
+	}
+	return *i.ProjectID, true
+}
+
+// HasProjectID returns a boolean if a field has been set.
+func (i *IntegrationGCPUpdateRequest) HasProjectID() bool {
+	if i != nil && i.ProjectID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectID allocates a new i.ProjectID and returns the pointer to it.
+func (i *IntegrationGCPUpdateRequest) SetProjectID(v string) {
+	i.ProjectID = &v
+}
+
 // GetAPIToken returns the APIToken field if non-nil, zero value otherwise.
 func (i *integrationPD) GetAPIToken() string {
 	if i == nil || i.APIToken == nil {
