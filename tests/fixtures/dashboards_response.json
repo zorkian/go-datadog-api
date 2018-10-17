@@ -1,0 +1,44 @@
+{
+  "dashes": [
+    {
+      "read_only": false,
+      "resource": "/api/v1/dash/123",
+      "description": "created by user1",
+      "title": "Dashboard 1",
+      "created": "2018-10-05T12:32:01.000000+00:00",
+      "id": "123",
+      "created_by": {
+        "disabled": true,
+        "handle": "john.doe@company.com",
+        "name": "John Doe",
+        "is_admin": true,
+        "role": null,
+        "access_role": "adm",
+        "verified": true,
+        "email": "john.doe@company.com",
+        "icon": "https://pics.site.com/123.jpg"
+      },
+      "modified": "2018-09-11T06:38:09.000000+00:00"
+    },
+    {
+      "read_only": false,
+      "resource": "/api/v1/dash/1234",
+      "description": "created by user2",
+      "title": "Dashboard 2",
+      "created": "2018-01-01T00:00:00.000000+00:00",
+      "id": "1234",
+      "created_by": {
+        "disabled": false,
+        "handle": "jane.doe@company.com",
+        "name": "Jane Doe",
+        "is_admin": false,
+        "role": null,
+        "access_role": "st",
+        "verified": true,
+        "email": "jane.doe@company.com",
+        "icon": "https://pics.site.com/1234.jpg"
+      },
+      "modified": "2018-09-11T06:38:09.000000+00:00"
+    }
+  ]
+}
