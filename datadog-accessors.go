@@ -881,6 +881,285 @@ func (c *ConditionalFormat) SetValue(v string) {
 	c.Value = &v
 }
 
+// GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetAccessRole() string {
+	if c == nil || c.AccessRole == nil {
+		return ""
+	}
+	return *c.AccessRole
+}
+
+// GetAccessRoleOk returns a tuple with the AccessRole field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetAccessRoleOk() (string, bool) {
+	if c == nil || c.AccessRole == nil {
+		return "", false
+	}
+	return *c.AccessRole, true
+}
+
+// HasAccessRole returns a boolean if a field has been set.
+func (c *CreatedBy) HasAccessRole() bool {
+	if c != nil && c.AccessRole != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessRole allocates a new c.AccessRole and returns the pointer to it.
+func (c *CreatedBy) SetAccessRole(v string) {
+	c.AccessRole = &v
+}
+
+// GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetDisabled() bool {
+	if c == nil || c.Disabled == nil {
+		return false
+	}
+	return *c.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetDisabledOk() (bool, bool) {
+	if c == nil || c.Disabled == nil {
+		return false, false
+	}
+	return *c.Disabled, true
+}
+
+// HasDisabled returns a boolean if a field has been set.
+func (c *CreatedBy) HasDisabled() bool {
+	if c != nil && c.Disabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabled allocates a new c.Disabled and returns the pointer to it.
+func (c *CreatedBy) SetDisabled(v bool) {
+	c.Disabled = &v
+}
+
+// GetEmail returns the Email field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetEmail() string {
+	if c == nil || c.Email == nil {
+		return ""
+	}
+	return *c.Email
+}
+
+// GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetEmailOk() (string, bool) {
+	if c == nil || c.Email == nil {
+		return "", false
+	}
+	return *c.Email, true
+}
+
+// HasEmail returns a boolean if a field has been set.
+func (c *CreatedBy) HasEmail() bool {
+	if c != nil && c.Email != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEmail allocates a new c.Email and returns the pointer to it.
+func (c *CreatedBy) SetEmail(v string) {
+	c.Email = &v
+}
+
+// GetHandle returns the Handle field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetHandle() string {
+	if c == nil || c.Handle == nil {
+		return ""
+	}
+	return *c.Handle
+}
+
+// GetHandleOk returns a tuple with the Handle field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetHandleOk() (string, bool) {
+	if c == nil || c.Handle == nil {
+		return "", false
+	}
+	return *c.Handle, true
+}
+
+// HasHandle returns a boolean if a field has been set.
+func (c *CreatedBy) HasHandle() bool {
+	if c != nil && c.Handle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHandle allocates a new c.Handle and returns the pointer to it.
+func (c *CreatedBy) SetHandle(v string) {
+	c.Handle = &v
+}
+
+// GetIcon returns the Icon field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetIcon() string {
+	if c == nil || c.Icon == nil {
+		return ""
+	}
+	return *c.Icon
+}
+
+// GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetIconOk() (string, bool) {
+	if c == nil || c.Icon == nil {
+		return "", false
+	}
+	return *c.Icon, true
+}
+
+// HasIcon returns a boolean if a field has been set.
+func (c *CreatedBy) HasIcon() bool {
+	if c != nil && c.Icon != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIcon allocates a new c.Icon and returns the pointer to it.
+func (c *CreatedBy) SetIcon(v string) {
+	c.Icon = &v
+}
+
+// GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetIsAdmin() bool {
+	if c == nil || c.IsAdmin == nil {
+		return false
+	}
+	return *c.IsAdmin
+}
+
+// GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetIsAdminOk() (bool, bool) {
+	if c == nil || c.IsAdmin == nil {
+		return false, false
+	}
+	return *c.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (c *CreatedBy) HasIsAdmin() bool {
+	if c != nil && c.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin allocates a new c.IsAdmin and returns the pointer to it.
+func (c *CreatedBy) SetIsAdmin(v bool) {
+	c.IsAdmin = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetName() string {
+	if c == nil || c.Name == nil {
+		return ""
+	}
+	return *c.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetNameOk() (string, bool) {
+	if c == nil || c.Name == nil {
+		return "", false
+	}
+	return *c.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (c *CreatedBy) HasName() bool {
+	if c != nil && c.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new c.Name and returns the pointer to it.
+func (c *CreatedBy) SetName(v string) {
+	c.Name = &v
+}
+
+// GetRole returns the Role field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetRole() string {
+	if c == nil || c.Role == nil {
+		return ""
+	}
+	return *c.Role
+}
+
+// GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetRoleOk() (string, bool) {
+	if c == nil || c.Role == nil {
+		return "", false
+	}
+	return *c.Role, true
+}
+
+// HasRole returns a boolean if a field has been set.
+func (c *CreatedBy) HasRole() bool {
+	if c != nil && c.Role != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRole allocates a new c.Role and returns the pointer to it.
+func (c *CreatedBy) SetRole(v string) {
+	c.Role = &v
+}
+
+// GetVerified returns the Verified field if non-nil, zero value otherwise.
+func (c *CreatedBy) GetVerified() bool {
+	if c == nil || c.Verified == nil {
+		return false
+	}
+	return *c.Verified
+}
+
+// GetVerifiedOk returns a tuple with the Verified field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *CreatedBy) GetVerifiedOk() (bool, bool) {
+	if c == nil || c.Verified == nil {
+		return false, false
+	}
+	return *c.Verified, true
+}
+
+// HasVerified returns a boolean if a field has been set.
+func (c *CreatedBy) HasVerified() bool {
+	if c != nil && c.Verified != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVerified allocates a new c.Verified and returns the pointer to it.
+func (c *CreatedBy) SetVerified(v bool) {
+	c.Verified = &v
+}
+
 // GetEmail returns the Email field if non-nil, zero value otherwise.
 func (c *Creator) GetEmail() string {
 	if c == nil || c.Email == nil {
@@ -1501,6 +1780,68 @@ func (d *DashboardListItem) SetType(v string) {
 	d.Type = &v
 }
 
+// GetCreated returns the Created field if non-nil, zero value otherwise.
+func (d *DashboardLite) GetCreated() string {
+	if d == nil || d.Created == nil {
+		return ""
+	}
+	return *d.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardLite) GetCreatedOk() (string, bool) {
+	if d == nil || d.Created == nil {
+		return "", false
+	}
+	return *d.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (d *DashboardLite) HasCreated() bool {
+	if d != nil && d.Created != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated allocates a new d.Created and returns the pointer to it.
+func (d *DashboardLite) SetCreated(v string) {
+	d.Created = &v
+}
+
+// GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+func (d *DashboardLite) GetCreatedBy() CreatedBy {
+	if d == nil || d.CreatedBy == nil {
+		return CreatedBy{}
+	}
+	return *d.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardLite) GetCreatedByOk() (CreatedBy, bool) {
+	if d == nil || d.CreatedBy == nil {
+		return CreatedBy{}, false
+	}
+	return *d.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (d *DashboardLite) HasCreatedBy() bool {
+	if d != nil && d.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy allocates a new d.CreatedBy and returns the pointer to it.
+func (d *DashboardLite) SetCreatedBy(v CreatedBy) {
+	d.CreatedBy = &v
+}
+
 // GetDescription returns the Description field if non-nil, zero value otherwise.
 func (d *DashboardLite) GetDescription() string {
 	if d == nil || d.Description == nil {
@@ -1561,6 +1902,68 @@ func (d *DashboardLite) HasId() bool {
 // SetId allocates a new d.Id and returns the pointer to it.
 func (d *DashboardLite) SetId(v int) {
 	d.Id = &v
+}
+
+// GetModified returns the Modified field if non-nil, zero value otherwise.
+func (d *DashboardLite) GetModified() string {
+	if d == nil || d.Modified == nil {
+		return ""
+	}
+	return *d.Modified
+}
+
+// GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardLite) GetModifiedOk() (string, bool) {
+	if d == nil || d.Modified == nil {
+		return "", false
+	}
+	return *d.Modified, true
+}
+
+// HasModified returns a boolean if a field has been set.
+func (d *DashboardLite) HasModified() bool {
+	if d != nil && d.Modified != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModified allocates a new d.Modified and returns the pointer to it.
+func (d *DashboardLite) SetModified(v string) {
+	d.Modified = &v
+}
+
+// GetReadOnly returns the ReadOnly field if non-nil, zero value otherwise.
+func (d *DashboardLite) GetReadOnly() bool {
+	if d == nil || d.ReadOnly == nil {
+		return false
+	}
+	return *d.ReadOnly
+}
+
+// GetReadOnlyOk returns a tuple with the ReadOnly field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *DashboardLite) GetReadOnlyOk() (bool, bool) {
+	if d == nil || d.ReadOnly == nil {
+		return false, false
+	}
+	return *d.ReadOnly, true
+}
+
+// HasReadOnly returns a boolean if a field has been set.
+func (d *DashboardLite) HasReadOnly() bool {
+	if d != nil && d.ReadOnly != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReadOnly allocates a new d.ReadOnly and returns the pointer to it.
+func (d *DashboardLite) SetReadOnly(v bool) {
+	d.ReadOnly = &v
 }
 
 // GetResource returns the Resource field if non-nil, zero value otherwise.

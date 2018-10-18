@@ -162,10 +162,27 @@ type Dashboard struct {
 // DashboardLite represents a user created dashboard. This is the mini
 // struct when we load the summaries.
 type DashboardLite struct {
-	Id          *int    `json:"id,string,omitempty"` // TODO: Remove ',string'.
-	Resource    *string `json:"resource,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Title       *string `json:"title,omitempty"`
+	Id          *int       `json:"id,string,omitempty"` // TODO: Remove ',string'.
+	Resource    *string    `json:"resource,omitempty"`
+	Description *string    `json:"description,omitempty"`
+	Title       *string    `json:"title,omitempty"`
+	ReadOnly    *bool      `json:"read_only,omitempty"`
+	Created     *string    `json:"created,omitempty"`
+	Modified    *string    `json:"modified,omitempty"`
+	CreatedBy   *CreatedBy `json:"created_by,omitempty"`
+}
+
+// CreatedBy represents a field from DashboardLite.
+type CreatedBy struct {
+	Disabled   *bool   `json:"disabled,omitempty"`
+	Handle     *string `json:"handle,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	IsAdmin    *bool   `json:"is_admin,omitempty"`
+	Role       *string `json:"role,omitempty"`
+	AccessRole *string `json:"access_role,omitempty"`
+	Verified   *bool   `json:"verified,omitempty"`
+	Email      *string `json:"email,omitempty"`
+	Icon       *string `json:"icon,omitempty"`
 }
 
 // reqGetDashboards from /api/v1/dash
