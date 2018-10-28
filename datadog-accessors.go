@@ -5779,6 +5779,37 @@ func (o *Options) SetThresholds(v ThresholdCount) {
 	o.Thresholds = &v
 }
 
+// GetThresholdWindows returns the ThresholdWindows field if non-nil, zero value otherwise.
+func (o *Options) GetThresholdWindows() ThresholdWindows {
+	if o == nil || o.ThresholdWindows == nil {
+		return ThresholdWindows{}
+	}
+	return *o.ThresholdWindows
+}
+
+// GetThresholdWindowsOk returns a tuple with the ThresholdWindows field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Options) GetThresholdWindowsOk() (ThresholdWindows, bool) {
+	if o == nil || o.ThresholdWindows == nil {
+		return ThresholdWindows{}, false
+	}
+	return *o.ThresholdWindows, true
+}
+
+// HasThresholdWindows returns a boolean if a field has been set.
+func (o *Options) HasThresholdWindows() bool {
+	if o != nil && o.ThresholdWindows != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetThresholdWindows allocates a new o.ThresholdWindows and returns the pointer to it.
+func (o *Options) SetThresholdWindows(v ThresholdWindows) {
+	o.ThresholdWindows = &v
+}
+
 // GetTimeoutH returns the TimeoutH field if non-nil, zero value otherwise.
 func (o *Options) GetTimeoutH() int {
 	if o == nil || o.TimeoutH == nil {
@@ -7544,6 +7575,68 @@ func (t *ThresholdCount) HasWarningRecovery() bool {
 // SetWarningRecovery allocates a new t.WarningRecovery and returns the pointer to it.
 func (t *ThresholdCount) SetWarningRecovery(v json.Number) {
 	t.WarningRecovery = &v
+}
+
+// GetRecoveryWindow returns the RecoveryWindow field if non-nil, zero value otherwise.
+func (t *ThresholdWindows) GetRecoveryWindow() string {
+	if t == nil || t.RecoveryWindow == nil {
+		return ""
+	}
+	return *t.RecoveryWindow
+}
+
+// GetRecoveryWindowOk returns a tuple with the RecoveryWindow field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *ThresholdWindows) GetRecoveryWindowOk() (string, bool) {
+	if t == nil || t.RecoveryWindow == nil {
+		return "", false
+	}
+	return *t.RecoveryWindow, true
+}
+
+// HasRecoveryWindow returns a boolean if a field has been set.
+func (t *ThresholdWindows) HasRecoveryWindow() bool {
+	if t != nil && t.RecoveryWindow != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRecoveryWindow allocates a new t.RecoveryWindow and returns the pointer to it.
+func (t *ThresholdWindows) SetRecoveryWindow(v string) {
+	t.RecoveryWindow = &v
+}
+
+// GetTriggerWindow returns the TriggerWindow field if non-nil, zero value otherwise.
+func (t *ThresholdWindows) GetTriggerWindow() string {
+	if t == nil || t.TriggerWindow == nil {
+		return ""
+	}
+	return *t.TriggerWindow
+}
+
+// GetTriggerWindowOk returns a tuple with the TriggerWindow field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *ThresholdWindows) GetTriggerWindowOk() (string, bool) {
+	if t == nil || t.TriggerWindow == nil {
+		return "", false
+	}
+	return *t.TriggerWindow, true
+}
+
+// HasTriggerWindow returns a boolean if a field has been set.
+func (t *ThresholdWindows) HasTriggerWindow() bool {
+	if t != nil && t.TriggerWindow != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggerWindow allocates a new t.TriggerWindow and returns the pointer to it.
+func (t *ThresholdWindows) SetTriggerWindow(v string) {
+	t.TriggerWindow = &v
 }
 
 // GetAutoscale returns the Autoscale field if non-nil, zero value otherwise.
