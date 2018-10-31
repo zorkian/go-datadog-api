@@ -6523,6 +6523,23 @@ func (s *Screenboard) SetWidth(v int) {
 	s.Width = &v
 }
 
+// GetWidgets returns the []Widget field if non-nil, zero value otherwise.
+func (s *Screenboard) GetWidgets() []Widget {
+	if s == nil || s.Widgets == nil {
+		return []Widget{}
+	}
+	return s.Widgets
+}
+
+// GetWidgetsByOk returns a tuple with the []Widget field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Screenboard) GetWidgetsByOk() ([]Widget, bool) {
+	if s == nil || s.Widgets == nil {
+		return []Widget{}, false
+	}
+	return s.Widgets, true
+}
+
 // GetId returns the Id field if non-nil, zero value otherwise.
 func (s *ScreenboardLite) GetId() int {
 	if s == nil || s.Id == nil {
