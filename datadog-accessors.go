@@ -6338,18 +6338,18 @@ func (r *Rule) SetTimeframe(v string) {
 }
 
 // GetHeight returns the Height field if non-nil, zero value otherwise.
-func (s *Screenboard) GetHeight() string {
+func (s *Screenboard) GetHeight() int {
 	if s == nil || s.Height == nil {
-		return ""
+		return 0
 	}
 	return *s.Height
 }
 
 // GetHeightOk returns a tuple with the Height field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *Screenboard) GetHeightOk() (string, bool) {
+func (s *Screenboard) GetHeightOk() (int, bool) {
 	if s == nil || s.Height == nil {
-		return "", false
+		return 0, false
 	}
 	return *s.Height, true
 }
@@ -6364,7 +6364,7 @@ func (s *Screenboard) HasHeight() bool {
 }
 
 // SetHeight allocates a new s.Height and returns the pointer to it.
-func (s *Screenboard) SetHeight(v string) {
+func (s *Screenboard) SetHeight(v int) {
 	s.Height = &v
 }
 
@@ -6493,18 +6493,18 @@ func (s *Screenboard) SetTitle(v string) {
 }
 
 // GetWidth returns the Width field if non-nil, zero value otherwise.
-func (s *Screenboard) GetWidth() string {
+func (s *Screenboard) GetWidth() int {
 	if s == nil || s.Width == nil {
-		return ""
+		return 0
 	}
 	return *s.Width
 }
 
 // GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *Screenboard) GetWidthOk() (string, bool) {
+func (s *Screenboard) GetWidthOk() (int, bool) {
 	if s == nil || s.Width == nil {
-		return "", false
+		return 0, false
 	}
 	return *s.Width, true
 }
@@ -6519,7 +6519,7 @@ func (s *Screenboard) HasWidth() bool {
 }
 
 // SetWidth allocates a new s.Width and returns the pointer to it.
-func (s *Screenboard) SetWidth(v string) {
+func (s *Screenboard) SetWidth(v int) {
 	s.Width = &v
 }
 
