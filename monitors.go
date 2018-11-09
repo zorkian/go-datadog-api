@@ -135,7 +135,7 @@ func (client *Client) GetMonitor(id int) (*Monitor, error) {
 
 // GetMonitorsByName retrieves monitors by name
 func (client *Client) GetMonitorsByName(name string) ([]Monitor, error) {
-	return client.GetMonitorsWithOptions(MonitorQueryOpts{Name: name})
+	return client.GetMonitorsWithOptions(MonitorQueryOpts{Name: &name})
 }
 
 // GetMonitorsByTags retrieves monitors by a slice of tags
@@ -158,7 +158,7 @@ func (client *Client) GetMonitors() ([]Monitor, error) {
 // https://docs.datadoghq.com/api/?lang=bash#get-all-monitor-details
 type MonitorQueryOpts struct {
 	GroupStates   []string
-	Name          string
+	Name          *string
 	Tags          []string
 	MonitorTags   []string
 	WithDowntimes *bool
@@ -184,14 +184,12 @@ func (client *Client) GetMonitorsWithOptions(opts MonitorQueryOpts) ([]Monitor, 
 		query = append(query, value)
 	}
 
-	if opts.WithDowntimes != nil {
-		value := fmt.Sprintf("with_downtimes=%t", *opts.WithDowntimes)
-		query = append(query, value)
+	if v, ok := opts.GetWithDowntimesOk(); ok {
+		query = append(query, fmt.Sprintf("with_downtimes=%t", v))
 	}
 
-	if opts.Name != "" {
-		value := fmt.Sprintf("name=%s", opts.Name)
-		query = append(query, value)
+	if v, ok := opts.GetNameOk(); ok {
+		query = append(query, fmt.Sprintf("name=%s", v))
 	}
 
 	queryString, err := url.ParseQuery(strings.Join(query, "&"))
