@@ -25,27 +25,33 @@ type YAxisTestSuite struct {
 
 func (suite *YAxisTestSuite) SetupTest() {
 	// Custom Y.Min, Y.Max
-	suite.yJSON = []byte(`{"min":0,"max":1,"scale":"linear"}`)
+	suite.yJSON = []byte(`{"min":0,"max":1,"scale":"linear","includeZero":true,"units":true}`)
 	suite.yMarshalledJSON = suite.yJSON
 	yMinFloat := float64(0)
 	yMaxFloat := float64(1)
 	yScale := "linear"
+	yIncludeZero := true
+	yIncludeUnits := true
 	suite.y = Yaxis{
-		Min:     &yMinFloat,
-		AutoMin: false,
-		Max:     &yMaxFloat,
-		AutoMax: false,
-		Scale:   &yScale,
+		Min:          &yMinFloat,
+		AutoMin:      false,
+		Max:          &yMaxFloat,
+		AutoMax:      false,
+		Scale:        &yScale,
+		IncludeZero:  &yIncludeZero,
+		IncludeUnits: &yIncludeUnits,
 	}
 	// Auto Y.Min, Y.Max
-	suite.yAutoMinMaxJSON = []byte(`{"min":"auto","max":"auto","scale":"linear"}`)
-	suite.yAutoMinMaxMarshalledJSON = []byte(`{"scale":"linear"}`)
+	suite.yAutoMinMaxJSON = []byte(`{"min":"auto","max":"auto","scale":"linear","includeZero":true,"units":true}`)
+	suite.yAutoMinMaxMarshalledJSON = []byte(`{"scale":"linear","includeZero":true,"units":true}`)
 	suite.yAutoMinMax = Yaxis{
-		Min:     nil,
-		AutoMin: true,
-		Max:     nil,
-		AutoMax: true,
-		Scale:   &yScale,
+		Min:          nil,
+		AutoMin:      true,
+		Max:          nil,
+		AutoMax:      true,
+		Scale:        &yScale,
+		IncludeZero:  &yIncludeZero,
+		IncludeUnits: &yIncludeUnits,
 	}
 }
 

@@ -10863,6 +10863,68 @@ func (w *Widget) SetY(v int) {
 	w.Y = &v
 }
 
+// GetIncludeUnits returns the IncludeUnits field if non-nil, zero value otherwise.
+func (y *Yaxis) GetIncludeUnits() bool {
+	if y == nil || y.IncludeUnits == nil {
+		return false
+	}
+	return *y.IncludeUnits
+}
+
+// GetIncludeUnitsOk returns a tuple with the IncludeUnits field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (y *Yaxis) GetIncludeUnitsOk() (bool, bool) {
+	if y == nil || y.IncludeUnits == nil {
+		return false, false
+	}
+	return *y.IncludeUnits, true
+}
+
+// HasIncludeUnits returns a boolean if a field has been set.
+func (y *Yaxis) HasIncludeUnits() bool {
+	if y != nil && y.IncludeUnits != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIncludeUnits allocates a new y.IncludeUnits and returns the pointer to it.
+func (y *Yaxis) SetIncludeUnits(v bool) {
+	y.IncludeUnits = &v
+}
+
+// GetIncludeZero returns the IncludeZero field if non-nil, zero value otherwise.
+func (y *Yaxis) GetIncludeZero() bool {
+	if y == nil || y.IncludeZero == nil {
+		return false
+	}
+	return *y.IncludeZero
+}
+
+// GetIncludeZeroOk returns a tuple with the IncludeZero field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (y *Yaxis) GetIncludeZeroOk() (bool, bool) {
+	if y == nil || y.IncludeZero == nil {
+		return false, false
+	}
+	return *y.IncludeZero, true
+}
+
+// HasIncludeZero returns a boolean if a field has been set.
+func (y *Yaxis) HasIncludeZero() bool {
+	if y != nil && y.IncludeZero != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIncludeZero allocates a new y.IncludeZero and returns the pointer to it.
+func (y *Yaxis) SetIncludeZero(v bool) {
+	y.IncludeZero = &v
+}
+
 // GetMax returns the Max field if non-nil, zero value otherwise.
 func (y *Yaxis) GetMax() float64 {
 	if y == nil || y.Max == nil {
