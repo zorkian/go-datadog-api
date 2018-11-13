@@ -91,7 +91,7 @@ func TestWidgets(t *testing.T) {
 				}},
 				CustomUnit: datadog.String("%"),
 				Autoscale:  datadog.Bool(false),
-				Precision:  datadog.JsonNumber("6"),
+				Precision:  datadog.String("6"),
 				TextAlign:  datadog.String("right"),
 			},
 		},
