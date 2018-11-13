@@ -104,9 +104,9 @@ type Widget struct {
 	Color *string `json:"color,omitempty"`
 
 	// For AlertValue widget
-	TextSize  *string `json:"text_size,omitempty"`
-	Unit      *string `json:"unit,omitempty"`
-	Precision *string `json:"precision,omitempty"`
+	TextSize  *string      `json:"text_size,omitempty"`
+	Unit      *string      `json:"unit,omitempty"`
+	Precision *json.Number `json:"precision,omitempty"`
 
 	// AlertGraph widget
 	VizType *string `json:"viz_type,omitempty"`

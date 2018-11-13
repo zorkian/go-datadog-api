@@ -10089,7 +10089,7 @@ func (w *Widget) SetParams(v Params) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (w *Widget) GetPrecision() string {
+func (w *Widget) GetPrecision() json.Number {
 	if w == nil || w.Precision == nil {
 		return ""
 	}
@@ -10098,7 +10098,7 @@ func (w *Widget) GetPrecision() string {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetPrecisionOk() (string, bool) {
+func (w *Widget) GetPrecisionOk() (json.Number, bool) {
 	if w == nil || w.Precision == nil {
 		return "", false
 	}
@@ -10115,7 +10115,7 @@ func (w *Widget) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new w.Precision and returns the pointer to it.
-func (w *Widget) SetPrecision(v string) {
+func (w *Widget) SetPrecision(v json.Number) {
 	w.Precision = &v
 }
 
