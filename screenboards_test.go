@@ -37,14 +37,13 @@ func TestGetScreenboard(t *testing.T) {
 		t.Fatalf("expect title %s. Got %s", expectedTitle, title)
 	}
 
-	expectedHeight := 768
+	expectedHeight := HeightS("768")
 	if height := screenboard.GetHeight(); height != expectedHeight {
-		t.Fatalf("expect height %d. Got %d", expectedHeight, height)
+		t.Fatalf("expect height %s. Got %s", expectedHeight, height)
 	}
-
-	expectedWidth := 1024
+	expectedWidth := WidthS("1024")
 	if width := screenboard.GetWidth(); width != expectedWidth {
-		t.Fatalf("expect width %d. Got %d", expectedWidth, width)
+		t.Fatalf("expect width %s. Got %s", expectedWidth, width)
 	}
 
 	expectedReadOnly := false
@@ -59,6 +58,41 @@ func TestGetScreenboard(t *testing.T) {
 
 	for _, widget := range screenboard.Widgets {
 		validateWidget(t, widget)
+	}
+}
+
+func TestGetScreenboardWithWidhtHeightAsString(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		response, err := ioutil.ReadFile("./tests/fixtures/screenboard_response_with_strings.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		w.Write(response)
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	screenboard, err := datadogClient.GetScreenboard(6334)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	expectedID := 6334
+	if id := screenboard.GetId(); id != expectedID {
+		t.Fatalf("expect ID %d. Got %d", expectedID, id)
+	}
+
+	expectedHeight := HeightS("768")
+	if height := screenboard.GetHeight(); height != expectedHeight {
+		t.Fatalf("expect height %s. Got %s", expectedHeight, height)
+	}
+	expectedWidth := WidthS("100%")
+	if width := screenboard.GetWidth(); width != expectedWidth {
+		t.Fatalf("expect width %s. Got %s", expectedWidth, width)
 	}
 }
 
