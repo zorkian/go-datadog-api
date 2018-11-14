@@ -9,8 +9,31 @@
 package datadog
 
 import (
+	"encoding/json"
 	"fmt"
 )
+
+// WidthS ...
+type WidthS string
+
+// UnmarshalJSON is a Custom Unmarshal for WidthS. The Datadog API can
+// return 1 (int), "1" (number, but a string type) or something like "100%" (string).
+func (w *WidthS) UnmarshalJSON(data []byte) error {
+	var err error
+	var widthNum json.Number
+	if err = json.Unmarshal(data, &widthNum); err == nil {
+		*w = WidthS(widthNum)
+		return nil
+	}
+	var widthStr string
+	if err = json.Unmarshal(data, &widthStr); err == nil {
+		*w = WidthS(widthStr)
+		return nil
+	}
+	var w0 WidthS
+	*w = w0
+	return err
+}
 
 // Screenboard represents a user created screenboard. This is the full screenboard
 // struct when we load a screenboard in detail.
@@ -18,7 +41,7 @@ type Screenboard struct {
 	Id                *int               `json:"id,omitempty"`
 	Title             *string            `json:"board_title,omitempty"`
 	Height            *int               `json:"height,omitempty"`
-	Width             *int               `json:"width,omitempty"`
+	Width             *WidthS            `json:"width,omitempty"`
 	Shared            *bool              `json:"shared,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
 	Widgets           []Widget           `json:"widgets"`
