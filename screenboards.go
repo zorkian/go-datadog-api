@@ -9,6 +9,7 @@
 package datadog
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -17,8 +18,8 @@ import (
 type Screenboard struct {
 	Id                *int               `json:"id,omitempty"`
 	Title             *string            `json:"board_title,omitempty"`
-	Height            *int               `json:"height,omitempty"`
-	Width             *int               `json:"width,omitempty"`
+	Height            *json.Number       `json:"height,omitempty"`
+	Width             *json.Number       `json:"width,omitempty"`
 	Shared            *bool              `json:"shared,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
 	Widgets           []Widget           `json:"widgets"`
