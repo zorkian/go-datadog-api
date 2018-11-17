@@ -35,12 +35,34 @@ func (w *WidthS) UnmarshalJSON(data []byte) error {
 	return err
 }
 
+// HeightS ...
+type HeightS string
+
+// UnmarshalJSON is a Custom Unmarshal for HeightS. The Datadog API can
+// return 1 (int), "1" (number, but a string type) or something like "100%" (string).
+func (h *HeightS) UnmarshalJSON(data []byte) error {
+	var err error
+	var heightNum json.Number
+	if err = json.Unmarshal(data, &heightNum); err == nil {
+		*h = HeightS(heightNum)
+		return nil
+	}
+	var heightStr string
+	if err = json.Unmarshal(data, &heightStr); err == nil {
+		*h = HeightS(heightStr)
+		return nil
+	}
+	var h0 HeightS
+	*h = h0
+	return err
+}
+
 // Screenboard represents a user created screenboard. This is the full screenboard
 // struct when we load a screenboard in detail.
 type Screenboard struct {
 	Id                *int               `json:"id,omitempty"`
 	Title             *string            `json:"board_title,omitempty"`
-	Height            *int               `json:"height,omitempty"`
+	Height            *HeightS           `json:"height,omitempty"`
 	Width             *WidthS            `json:"width,omitempty"`
 	Shared            *bool              `json:"shared,omitempty"`
 	TemplateVariables []TemplateVariable `json:"template_variables,omitempty"`
