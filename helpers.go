@@ -79,3 +79,31 @@ func GetPrecision(v *PrecisionT) (PrecisionT, bool) {
 
 	return PrecisionT(""), false
 }
+
+// Width is a helper routine that allocates a new width value
+// to store v and returns a pointer to it.
+func Width(v WidthS) *WidthS { return &v }
+
+// GetWidthOk is a helper routine that returns a boolean representing
+// if a value was set, and if so, dereferences the pointer to it.
+func GetWidthOk(v *WidthS) (WidthS, bool) {
+	if v != nil {
+		return *v, true
+	}
+
+	return WidthS(""), false
+}
+
+// Height is a helper routine that allocates a new width value
+// to store v and returns a pointer to it.
+func Height(v HeightS) *HeightS { return &v }
+
+// GetHeightOk is a helper routine that returns a boolean representing
+// if a value was set, and if so, dereferences the pointer to it.
+func GetHeightOk(v *HeightS) (HeightS, bool) {
+	if v != nil {
+		return *v, true
+	}
+
+	return HeightS(""), false
+}

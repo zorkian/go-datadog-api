@@ -12,6 +12,7 @@ import (
 	"testing"
 
 	"encoding/json"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
 )
@@ -85,6 +86,20 @@ func TestHelperGetJsonNumberNotSet(t *testing.T) {
 	assert.Equal(t, false, ok)
 }
 
+func TestHelperGetWidth(t *testing.T) {
+	s := getTestScreenBoard()
+	_, ok := datadog.GetWidthOk(s.Width)
+
+	assert.Equal(t, true, ok)
+}
+
+func TestHelperGetHeight(t *testing.T) {
+	s := getTestScreenBoard()
+	_, ok := datadog.GetHeightOk(s.Height)
+
+	assert.Equal(t, true, ok)
+}
+
 func getTestMonitor() *datadog.Monitor {
 
 	o := &datadog.Options{
@@ -104,5 +119,14 @@ func getTestMonitor() *datadog.Monitor {
 		Options: o,
 		Type:    datadog.String("metric alert"),
 		Tags:    make([]string, 0),
+	}
+}
+
+func getTestScreenBoard() *datadog.Screenboard {
+
+	return &datadog.Screenboard{
+		Title:  datadog.String("Test ScreenBoard"),
+		Height: datadog.Height("600"),
+		Width:  datadog.Width("100%"),
 	}
 }
