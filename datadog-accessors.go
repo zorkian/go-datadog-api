@@ -5469,6 +5469,37 @@ func (m *Monitor) SetType(v string) {
 	m.Type = &v
 }
 
+// GetEnableLogsSample returns the EnableLogsSample field if non-nil, zero value otherwise.
+func (o *Options) GetEnableLogsSample() bool {
+	if o == nil || o.EnableLogsSample == nil {
+		return false
+	}
+	return *o.EnableLogsSample
+}
+
+// GetEnableLogsSampleOk returns a tuple with the EnableLogsSample field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Options) GetEnableLogsSampleOk() (bool, bool) {
+	if o == nil || o.EnableLogsSample == nil {
+		return false, false
+	}
+	return *o.EnableLogsSample, true
+}
+
+// HasEnableLogsSample returns a boolean if a field has been set.
+func (o *Options) HasEnableLogsSample() bool {
+	if o != nil && o.EnableLogsSample != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableLogsSample allocates a new o.EnableLogsSample and returns the pointer to it.
+func (o *Options) SetEnableLogsSample(v bool) {
+	o.EnableLogsSample = &v
+}
+
 // GetEscalationMessage returns the EscalationMessage field if non-nil, zero value otherwise.
 func (o *Options) GetEscalationMessage() string {
 	if o == nil || o.EscalationMessage == nil {
