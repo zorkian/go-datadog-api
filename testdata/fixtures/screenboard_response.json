@@ -10,6 +10,18 @@
       "width": 32,
       "x": 32,
       "y": 7
+    },
+    {
+      "type": "timeseries",
+      "tile_def": {
+        "precision": 42
+      }
+    },
+    {
+      "type": "timeseries",
+      "tile_def": {
+        "precision": "*"
+      }
     }
   ],
   "width": 1024,

@@ -49,6 +49,18 @@ func TestGetScreenboard(t *testing.T) {
 				Y:      Int(7),
 				URL:    String("http://path/to/image.jpg"),
 			},
+			{
+				Type: String("timeseries"),
+				TileDef: &TileDef{
+					Precision: StrInt("42"),
+				},
+			},
+			{
+				Type: String("timeseries"),
+				TileDef: &TileDef{
+					Precision: StrInt("*"),
+				},
+			},
 		},
 	}
 

@@ -2897,7 +2897,7 @@ func (g *GraphDefinition) SetNodeType(v string) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (g *GraphDefinition) GetPrecision() PrecisionT {
+func (g *GraphDefinition) GetPrecision() StrIntD {
 	if g == nil || g.Precision == nil {
 		return ""
 	}
@@ -2906,7 +2906,7 @@ func (g *GraphDefinition) GetPrecision() PrecisionT {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (g *GraphDefinition) GetPrecisionOk() (PrecisionT, bool) {
+func (g *GraphDefinition) GetPrecisionOk() (StrIntD, bool) {
 	if g == nil || g.Precision == nil {
 		return "", false
 	}
@@ -2923,7 +2923,7 @@ func (g *GraphDefinition) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new g.Precision and returns the pointer to it.
-func (g *GraphDefinition) SetPrecision(v PrecisionT) {
+func (g *GraphDefinition) SetPrecision(v StrIntD) {
 	g.Precision = &v
 }
 
@@ -7826,7 +7826,7 @@ func (t *TileDef) SetNoMetricHosts(v bool) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (t *TileDef) GetPrecision() PrecisionT {
+func (t *TileDef) GetPrecision() StrIntD {
 	if t == nil || t.Precision == nil {
 		return ""
 	}
@@ -7835,7 +7835,7 @@ func (t *TileDef) GetPrecision() PrecisionT {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDef) GetPrecisionOk() (PrecisionT, bool) {
+func (t *TileDef) GetPrecisionOk() (StrIntD, bool) {
 	if t == nil || t.Precision == nil {
 		return "", false
 	}
@@ -7852,7 +7852,7 @@ func (t *TileDef) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new t.Precision and returns the pointer to it.
-func (t *TileDef) SetPrecision(v PrecisionT) {
+func (t *TileDef) SetPrecision(v StrIntD) {
 	t.Precision = &v
 }
 
@@ -10120,7 +10120,7 @@ func (w *Widget) SetParams(v Params) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (w *Widget) GetPrecision() PrecisionT {
+func (w *Widget) GetPrecision() StrIntD {
 	if w == nil || w.Precision == nil {
 		return ""
 	}
@@ -10129,7 +10129,7 @@ func (w *Widget) GetPrecision() PrecisionT {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetPrecisionOk() (PrecisionT, bool) {
+func (w *Widget) GetPrecisionOk() (StrIntD, bool) {
 	if w == nil || w.Precision == nil {
 		return "", false
 	}
@@ -10146,7 +10146,7 @@ func (w *Widget) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new w.Precision and returns the pointer to it.
-func (w *Widget) SetPrecision(v PrecisionT) {
+func (w *Widget) SetPrecision(v StrIntD) {
 	w.Precision = &v
 }
 

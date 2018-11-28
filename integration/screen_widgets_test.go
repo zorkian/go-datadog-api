@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zorkian/go-datadog-api"
+	datadog "github.com/zorkian/go-datadog-api"
 )
 
 func TestWidgets(t *testing.T) {
@@ -91,7 +91,7 @@ func TestWidgets(t *testing.T) {
 				}},
 				CustomUnit: datadog.String("%"),
 				Autoscale:  datadog.Bool(false),
-				Precision:  datadog.Precision("6"),
+				Precision:  datadog.StrInt("6"),
 				TextAlign:  datadog.String("right"),
 			},
 		},
@@ -241,7 +241,7 @@ func TestWidgets(t *testing.T) {
 			AlertID:    datadog.Int(123456),
 			TextSize:   datadog.String("fill_height"),
 			TextAlign:  datadog.String("right"),
-			Precision:  datadog.Precision("*"),
+			Precision:  datadog.StrInt("*"),
 			Unit:       datadog.String("b"),
 		},
 		{
