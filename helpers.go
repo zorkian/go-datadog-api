@@ -66,16 +66,16 @@ func GetJsonNumberOk(v *json.Number) (json.Number, bool) {
 	return "", false
 }
 
-// Precision is a helper routine that allocates a new precision value
+// Strint is a helper routine that allocates a new strint value
 // to store v and returns a pointer to it.
-func Precision(v PrecisionT) *PrecisionT { return &v }
+func Strint(v StrintD) *StrintD { return &v }
 
-// GetPrecision is a helper routine that returns a boolean representing
+// GetStrint is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
-func GetPrecision(v *PrecisionT) (PrecisionT, bool) {
+func GetStrint(v *StrintD) (StrintD, bool) {
 	if v != nil {
 		return *v, true
 	}
 
-	return PrecisionT(""), false
+	return StrintD(""), false
 }

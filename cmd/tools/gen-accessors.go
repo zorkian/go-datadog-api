@@ -185,7 +185,7 @@ func (t *templateData) addIdent(x *ast.Ident, receiverType, fieldName string) {
 		zeroValue = "0"
 	case "Status":
 		zeroValue = "0"
-	case "PrecisionT":
+	case "StrintD":
 		zeroValue = `""`
 	default:
 		zeroValue = fmt.Sprintf("%s{}", x.String())
