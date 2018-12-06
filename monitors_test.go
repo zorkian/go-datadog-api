@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"encoding/json"
+
 	"github.com/stretchr/testify/assert"
 	dd "github.com/zorkian/go-datadog-api"
 )
@@ -54,4 +55,77 @@ func TestMonitorSerialization(t *testing.T) {
 	assert.Equal(t, *monitor.Id, 91879)
 	assert.Equal(t, *monitor.State.Groups["host:host0"].Name, "host:host0")
 
+}
+
+func TestMonitorSerializationForLogAlert(t *testing.T) {
+
+	raw := `
+	{
+		"tags": [
+		  "app:webserver",
+		  "frontend"
+		],
+		"deleted": null,
+		"query": "logs(\"env:develop\").index(\"main\").rollup(\"count\").last(\"5m\") > 500",
+		"message": "Monitor Log Count",
+		"id": 91879,
+		"multi": false,
+		"name": "Monitor Log Count",
+		"created": "2018-12-06T08:26:17.235509+00:00",
+		"created_at": 1544084777000,
+		"org_id": 1499,
+		"modified": "2018-12-06T08:26:17.235509+00:00",
+		"overall_state_modified": null,
+		"overall_state": "No Data",
+		"type": "log alert",
+		"options": {
+		  "notify_audit": false,
+		  "locked": false,
+		  "timeout_h": 0,
+		  "silenced": {},
+		  "enable_logs_sample": true,
+		  "thresholds": {
+			"comparison": ">",
+			"critical": 1000,
+			"period": {
+			  "seconds": 300,
+			  "text": "5 minutes",
+			  "value": "last_5m",
+			  "name": "5 minute average",
+			  "unit": "minutes"
+			},
+			"timeAggregator": "avg"
+		  },
+		  "queryConfig": {
+			"logset": {
+			  "id": "1499",
+			  "name": "main"
+			},
+			"timeRange": {
+			  "to": 1539675566736,
+			  "live": true,
+			  "from": 1539661166736
+			},
+			"queryString": "env:develop",
+			"queryIsFailed": false
+		  },
+		  "new_host_delay": 300,
+		  "notify_no_data": false,
+		  "renotify_interval": 0,
+		  "evaluation_delay": 500,
+		  "no_data_timeframe": 2
+		}
+	  }
+	  `
+
+	var monitor dd.Monitor
+	err := json.Unmarshal([]byte(raw), &monitor)
+
+	assert.Equal(t, err, nil)
+
+	assert.Equal(t, 91879, *monitor.Id)
+	assert.Equal(t, true, *monitor.Options.EnableLogsSample)
+	assert.Equal(t, json.Number("1499"), *monitor.Options.QueryConfig.LogSet.ID)
+	assert.Equal(t, json.Number("1539661166736"), *monitor.Options.QueryConfig.TimeRange.From)
+	assert.Equal(t, "env:develop", *monitor.Options.QueryConfig.QueryString)
 }
