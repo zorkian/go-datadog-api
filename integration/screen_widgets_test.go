@@ -312,8 +312,8 @@ func TestWidgets(t *testing.T) {
 				Style: &datadog.TileDefStyle{
 					Palette:     datadog.String("hostmap_blues"),
 					PaletteFlip: datadog.String("true"),
-					FillMin:     datadog.String("20"),
-					FillMax:     datadog.String("300"),
+					FillMin:     datadog.JsonNumber("20"),
+					FillMax:     datadog.JsonNumber("300"),
 				},
 			},
 		},
