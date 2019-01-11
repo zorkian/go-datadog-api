@@ -62,11 +62,12 @@ func (client *Client) GetEvent(id int) (*Event, error) {
 
 // QueryEvents returns a slice of events from the query stream.
 func (client *Client) GetEvents(start, end int,
-	priority, sources, tags string) ([]Event, error) {
+	priority, sources, tags string, unaggregated bool) ([]Event, error) {
 	// Since this is a GET request, we need to build a query string.
 	vals := url.Values{}
 	vals.Add("start", strconv.Itoa(start))
 	vals.Add("end", strconv.Itoa(end))
+	vals.Add("unaggregated", strconv.FormatBool(unaggregated))
 	if priority != "" {
 		vals.Add("priority", priority)
 	}
