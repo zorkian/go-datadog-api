@@ -49,13 +49,12 @@ type SyntheticsCheckOptions struct {
 	TickEvery *int `json:"tick_every,omitempty"`
 }
 
-// /api/v0/synthetics/checks/search
-type reqSearchSyntheticsChecks struct {
+type responseSearchSyntheticsChecks struct {
 	Checks []SyntheticsCheck `json:"screenboards,omitempty"`
 }
 
 func (client *Client) SearchSyntheticsChecks(text string) ([]SyntheticsCheck, error) {
-	var out reqSearchSyntheticsChecks
+	var out responseSearchSyntheticsChecks
 	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/search?text="+text, nil, &out); err != nil {
 		return nil, err
 	}
@@ -76,4 +75,20 @@ func (client *Client) CreateSyntheticsCheck(check *SyntheticsCheck) (*Synthetics
 		return nil, err
 	}
 	return &out, nil
+}
+
+// string array of public_id
+type DeleteSyntheticsChecksRequest struct {
+	CheckIds []string `json:"check_ids,omitempty"`
+}
+
+// DeleteSyntheticsChecks deletes checks
+func (client *Client) DeleteSyntheticsChecks(publicIds []string) error {
+	req := DeleteSyntheticsChecksRequest{
+		CheckIds: publicIds,
+	}
+	if err := client.doJsonRequest("POST", "/v0/synthetics/checks/delete", req, nil); err != nil {
+		return err
+	}
+	return nil
 }
