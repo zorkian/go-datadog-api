@@ -11,9 +11,9 @@ type SyntheticsCheck struct {
 	Message         *string                       `json:"message,omitempty"`
 	Id              *int                          `json:"id,omitempty"`
 	LastTriggeredTs *int                          `json:"last_triggered_ts,omitempty"`
-	Name            *string                       `json:"string,omitempty"`
+	Name            *string                       `json:"name,omitempty"`
 	MonitorId       *int                          `json:"monitor_id,omitempty"`
-	Type            *string                       `json:"api,omitempty"`
+	Type            *string                       `json:"type,omitempty"`
 	CreatedAt       *string                       `json:"created_at,omitempty"`
 	ModifiedAt      *string                       `json:"modified_at,omitempty"`
 	Config          SyntheticsCheckConfig         `json:"config,omitempty"`
