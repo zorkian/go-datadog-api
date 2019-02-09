@@ -7763,37 +7763,6 @@ func (s *SyntheticsCheckAssertion) SetProperty(v string) {
 	s.Property = &v
 }
 
-// GetTarget returns the Target field if non-nil, zero value otherwise.
-func (s *SyntheticsCheckAssertion) GetTarget() string {
-	if s == nil || s.Target == nil {
-		return ""
-	}
-	return *s.Target
-}
-
-// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (s *SyntheticsCheckAssertion) GetTargetOk() (string, bool) {
-	if s == nil || s.Target == nil {
-		return "", false
-	}
-	return *s.Target, true
-}
-
-// HasTarget returns a boolean if a field has been set.
-func (s *SyntheticsCheckAssertion) HasTarget() bool {
-	if s != nil && s.Target != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTarget allocates a new s.Target and returns the pointer to it.
-func (s *SyntheticsCheckAssertion) SetTarget(v string) {
-	s.Target = &v
-}
-
 // GetType returns the Type field if non-nil, zero value otherwise.
 func (s *SyntheticsCheckAssertion) GetType() string {
 	if s == nil || s.Type == nil {

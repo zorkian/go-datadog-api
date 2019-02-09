@@ -16,7 +16,7 @@ type SyntheticsCheck struct {
 	Type            *string                       `json:"api,omitempty"`
 	CreatedAt       *string                       `json:"created_at,omitempty"`
 	ModifiedAt      *string                       `json:"modified_at,omitempty"`
-	Config          []SyntheticsCheckConfig       `json:"config,omitempty"`
+	Config          SyntheticsCheckConfig         `json:"config,omitempty"`
 	Options         *SyntheticsCheckOptions       `json:"options,omitempty"`
 }
 
@@ -43,7 +43,9 @@ type SyntheticsCheckAssertion struct {
 	Operator *string `json:"operator,omitempty"`
 	Property *string `json:"property,omitempty"`
 	Type     *string `json:"type,omitempty"`
-	Target   *string `json:"target,omitempty"`
+	// sometimes target is string ( like "text/html; charset=UTF-8" for header content-type )
+	// and sometimes target is int ( like 1200 for responseTime, 200 for statusCode )
+	Target *interface{} `json:"target,omitempty"`
 }
 
 type SyntheticsCheckOptions struct {
@@ -51,7 +53,7 @@ type SyntheticsCheckOptions struct {
 }
 
 type responseSearchSyntheticsChecks struct {
-	Checks []SyntheticsCheck `json:"screenboards,omitempty"`
+	Checks []SyntheticsCheck `json:"checks,omitempty"`
 }
 
 // SearchSyntheticsChecks searches checks with text query
