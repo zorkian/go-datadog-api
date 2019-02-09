@@ -61,6 +61,7 @@ func (client *Client) SearchSyntheticsChecks(text string) ([]SyntheticsCheck, er
 	return out.Checks, nil
 }
 
+// GetSyntheticsCheck creates check
 func (client *Client) GetSyntheticsCheck(publicId string) (*SyntheticsCheck, error) {
 	var out SyntheticsCheck
 	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/"+publicId, nil, &out); err != nil {
@@ -69,6 +70,7 @@ func (client *Client) GetSyntheticsCheck(publicId string) (*SyntheticsCheck, err
 	return &out, nil
 }
 
+// CreateSyntheticsCheck creates a check
 func (client *Client) CreateSyntheticsCheck(check *SyntheticsCheck) (*SyntheticsCheck, error) {
 	var out SyntheticsCheck
 	if err := client.doJsonRequest("POST", "/v0/synthetics/checks", check, &out); err != nil {
