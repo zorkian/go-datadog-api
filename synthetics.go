@@ -62,7 +62,7 @@ type reqSearchChecks struct {
 	Checks []SyntheticsCheck `json:"screenboards,omitempty"`
 }
 
-func (client *Client) CreateSyntheticsChecks(text string) ([]SyntheticsCheck, error) {
+func (client *Client) SearchSyntheticsChecks(text string) ([]SyntheticsCheck, error) {
 	var out reqSearchChecks
 	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/search?text="+text, nil, &out); err != nil {
 		return nil, err
