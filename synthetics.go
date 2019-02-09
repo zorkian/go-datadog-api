@@ -1,5 +1,6 @@
 package datadog
 
+// SyntheticsCheck represents a user created check in synthetics
 type SyntheticsCheck struct {
 	Status          *string                       `json:"status,omitempty"`
 	PublicId        *string                       `json:"public_id,omitempty"`
@@ -53,6 +54,7 @@ type responseSearchSyntheticsChecks struct {
 	Checks []SyntheticsCheck `json:"screenboards,omitempty"`
 }
 
+// SearchSyntheticsChecks searches checks with text query
 func (client *Client) SearchSyntheticsChecks(text string) ([]SyntheticsCheck, error) {
 	var out responseSearchSyntheticsChecks
 	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/search?text="+text, nil, &out); err != nil {
