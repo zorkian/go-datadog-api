@@ -7329,6 +7329,812 @@ func (s *Style) SetPaletteFlip(v bool) {
 	s.PaletteFlip = &v
 }
 
+// GetCheckStatus returns the CheckStatus field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetCheckStatus() string {
+	if s == nil || s.CheckStatus == nil {
+		return ""
+	}
+	return *s.CheckStatus
+}
+
+// GetCheckStatusOk returns a tuple with the CheckStatus field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetCheckStatusOk() (string, bool) {
+	if s == nil || s.CheckStatus == nil {
+		return "", false
+	}
+	return *s.CheckStatus, true
+}
+
+// HasCheckStatus returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasCheckStatus() bool {
+	if s != nil && s.CheckStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckStatus allocates a new s.CheckStatus and returns the pointer to it.
+func (s *SyntheticsCheck) SetCheckStatus(v string) {
+	s.CheckStatus = &v
+}
+
+// GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetCreatedAt() string {
+	if s == nil || s.CreatedAt == nil {
+		return ""
+	}
+	return *s.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetCreatedAtOk() (string, bool) {
+	if s == nil || s.CreatedAt == nil {
+		return "", false
+	}
+	return *s.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasCreatedAt() bool {
+	if s != nil && s.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt allocates a new s.CreatedAt and returns the pointer to it.
+func (s *SyntheticsCheck) SetCreatedAt(v string) {
+	s.CreatedAt = &v
+}
+
+// GetId returns the Id field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetId() int {
+	if s == nil || s.Id == nil {
+		return 0
+	}
+	return *s.Id
+}
+
+// GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetIdOk() (int, bool) {
+	if s == nil || s.Id == nil {
+		return 0, false
+	}
+	return *s.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasId() bool {
+	if s != nil && s.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId allocates a new s.Id and returns the pointer to it.
+func (s *SyntheticsCheck) SetId(v int) {
+	s.Id = &v
+}
+
+// GetLastTriggeredTs returns the LastTriggeredTs field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetLastTriggeredTs() int {
+	if s == nil || s.LastTriggeredTs == nil {
+		return 0
+	}
+	return *s.LastTriggeredTs
+}
+
+// GetLastTriggeredTsOk returns a tuple with the LastTriggeredTs field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetLastTriggeredTsOk() (int, bool) {
+	if s == nil || s.LastTriggeredTs == nil {
+		return 0, false
+	}
+	return *s.LastTriggeredTs, true
+}
+
+// HasLastTriggeredTs returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasLastTriggeredTs() bool {
+	if s != nil && s.LastTriggeredTs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastTriggeredTs allocates a new s.LastTriggeredTs and returns the pointer to it.
+func (s *SyntheticsCheck) SetLastTriggeredTs(v int) {
+	s.LastTriggeredTs = &v
+}
+
+// GetMessage returns the Message field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetMessage() string {
+	if s == nil || s.Message == nil {
+		return ""
+	}
+	return *s.Message
+}
+
+// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetMessageOk() (string, bool) {
+	if s == nil || s.Message == nil {
+		return "", false
+	}
+	return *s.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasMessage() bool {
+	if s != nil && s.Message != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage allocates a new s.Message and returns the pointer to it.
+func (s *SyntheticsCheck) SetMessage(v string) {
+	s.Message = &v
+}
+
+// GetModifiedAt returns the ModifiedAt field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetModifiedAt() string {
+	if s == nil || s.ModifiedAt == nil {
+		return ""
+	}
+	return *s.ModifiedAt
+}
+
+// GetModifiedAtOk returns a tuple with the ModifiedAt field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetModifiedAtOk() (string, bool) {
+	if s == nil || s.ModifiedAt == nil {
+		return "", false
+	}
+	return *s.ModifiedAt, true
+}
+
+// HasModifiedAt returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasModifiedAt() bool {
+	if s != nil && s.ModifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModifiedAt allocates a new s.ModifiedAt and returns the pointer to it.
+func (s *SyntheticsCheck) SetModifiedAt(v string) {
+	s.ModifiedAt = &v
+}
+
+// GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetMonitorId() int {
+	if s == nil || s.MonitorId == nil {
+		return 0
+	}
+	return *s.MonitorId
+}
+
+// GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetMonitorIdOk() (int, bool) {
+	if s == nil || s.MonitorId == nil {
+		return 0, false
+	}
+	return *s.MonitorId, true
+}
+
+// HasMonitorId returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasMonitorId() bool {
+	if s != nil && s.MonitorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorId allocates a new s.MonitorId and returns the pointer to it.
+func (s *SyntheticsCheck) SetMonitorId(v int) {
+	s.MonitorId = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetName() string {
+	if s == nil || s.Name == nil {
+		return ""
+	}
+	return *s.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetNameOk() (string, bool) {
+	if s == nil || s.Name == nil {
+		return "", false
+	}
+	return *s.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasName() bool {
+	if s != nil && s.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new s.Name and returns the pointer to it.
+func (s *SyntheticsCheck) SetName(v string) {
+	s.Name = &v
+}
+
+// GetOptions returns the Options field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetOptions() SyntheticsCheckOptions {
+	if s == nil || s.Options == nil {
+		return SyntheticsCheckOptions{}
+	}
+	return *s.Options
+}
+
+// GetOptionsOk returns a tuple with the Options field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetOptionsOk() (SyntheticsCheckOptions, bool) {
+	if s == nil || s.Options == nil {
+		return SyntheticsCheckOptions{}, false
+	}
+	return *s.Options, true
+}
+
+// HasOptions returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasOptions() bool {
+	if s != nil && s.Options != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOptions allocates a new s.Options and returns the pointer to it.
+func (s *SyntheticsCheck) SetOptions(v SyntheticsCheckOptions) {
+	s.Options = &v
+}
+
+// GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetPublicId() string {
+	if s == nil || s.PublicId == nil {
+		return ""
+	}
+	return *s.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetPublicIdOk() (string, bool) {
+	if s == nil || s.PublicId == nil {
+		return "", false
+	}
+	return *s.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasPublicId() bool {
+	if s != nil && s.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId allocates a new s.PublicId and returns the pointer to it.
+func (s *SyntheticsCheck) SetPublicId(v string) {
+	s.PublicId = &v
+}
+
+// GetStatus returns the Status field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetStatus() string {
+	if s == nil || s.Status == nil {
+		return ""
+	}
+	return *s.Status
+}
+
+// GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetStatusOk() (string, bool) {
+	if s == nil || s.Status == nil {
+		return "", false
+	}
+	return *s.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasStatus() bool {
+	if s != nil && s.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus allocates a new s.Status and returns the pointer to it.
+func (s *SyntheticsCheck) SetStatus(v string) {
+	s.Status = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (s *SyntheticsCheck) GetType() string {
+	if s == nil || s.Type == nil {
+		return ""
+	}
+	return *s.Type
+}
+
+// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheck) GetTypeOk() (string, bool) {
+	if s == nil || s.Type == nil {
+		return "", false
+	}
+	return *s.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (s *SyntheticsCheck) HasType() bool {
+	if s != nil && s.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new s.Type and returns the pointer to it.
+func (s *SyntheticsCheck) SetType(v string) {
+	s.Type = &v
+}
+
+// GetOperator returns the Operator field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckAssertion) GetOperator() string {
+	if s == nil || s.Operator == nil {
+		return ""
+	}
+	return *s.Operator
+}
+
+// GetOperatorOk returns a tuple with the Operator field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckAssertion) GetOperatorOk() (string, bool) {
+	if s == nil || s.Operator == nil {
+		return "", false
+	}
+	return *s.Operator, true
+}
+
+// HasOperator returns a boolean if a field has been set.
+func (s *SyntheticsCheckAssertion) HasOperator() bool {
+	if s != nil && s.Operator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOperator allocates a new s.Operator and returns the pointer to it.
+func (s *SyntheticsCheckAssertion) SetOperator(v string) {
+	s.Operator = &v
+}
+
+// GetProperty returns the Property field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckAssertion) GetProperty() string {
+	if s == nil || s.Property == nil {
+		return ""
+	}
+	return *s.Property
+}
+
+// GetPropertyOk returns a tuple with the Property field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckAssertion) GetPropertyOk() (string, bool) {
+	if s == nil || s.Property == nil {
+		return "", false
+	}
+	return *s.Property, true
+}
+
+// HasProperty returns a boolean if a field has been set.
+func (s *SyntheticsCheckAssertion) HasProperty() bool {
+	if s != nil && s.Property != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProperty allocates a new s.Property and returns the pointer to it.
+func (s *SyntheticsCheckAssertion) SetProperty(v string) {
+	s.Property = &v
+}
+
+// GetTarget returns the Target field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckAssertion) GetTarget() string {
+	if s == nil || s.Target == nil {
+		return ""
+	}
+	return *s.Target
+}
+
+// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckAssertion) GetTargetOk() (string, bool) {
+	if s == nil || s.Target == nil {
+		return "", false
+	}
+	return *s.Target, true
+}
+
+// HasTarget returns a boolean if a field has been set.
+func (s *SyntheticsCheckAssertion) HasTarget() bool {
+	if s != nil && s.Target != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTarget allocates a new s.Target and returns the pointer to it.
+func (s *SyntheticsCheckAssertion) SetTarget(v string) {
+	s.Target = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckAssertion) GetType() string {
+	if s == nil || s.Type == nil {
+		return ""
+	}
+	return *s.Type
+}
+
+// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckAssertion) GetTypeOk() (string, bool) {
+	if s == nil || s.Type == nil {
+		return "", false
+	}
+	return *s.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (s *SyntheticsCheckAssertion) HasType() bool {
+	if s != nil && s.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new s.Type and returns the pointer to it.
+func (s *SyntheticsCheckAssertion) SetType(v string) {
+	s.Type = &v
+}
+
+// GetLocations returns the Locations field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckConfig) GetLocations() string {
+	if s == nil || s.Locations == nil {
+		return ""
+	}
+	return *s.Locations
+}
+
+// GetLocationsOk returns a tuple with the Locations field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckConfig) GetLocationsOk() (string, bool) {
+	if s == nil || s.Locations == nil {
+		return "", false
+	}
+	return *s.Locations, true
+}
+
+// HasLocations returns a boolean if a field has been set.
+func (s *SyntheticsCheckConfig) HasLocations() bool {
+	if s != nil && s.Locations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLocations allocates a new s.Locations and returns the pointer to it.
+func (s *SyntheticsCheckConfig) SetLocations(v string) {
+	s.Locations = &v
+}
+
+// GetRequest returns the Request field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckConfig) GetRequest() SyntheticsCheckRequest {
+	if s == nil || s.Request == nil {
+		return SyntheticsCheckRequest{}
+	}
+	return *s.Request
+}
+
+// GetRequestOk returns a tuple with the Request field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckConfig) GetRequestOk() (SyntheticsCheckRequest, bool) {
+	if s == nil || s.Request == nil {
+		return SyntheticsCheckRequest{}, false
+	}
+	return *s.Request, true
+}
+
+// HasRequest returns a boolean if a field has been set.
+func (s *SyntheticsCheckConfig) HasRequest() bool {
+	if s != nil && s.Request != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequest allocates a new s.Request and returns the pointer to it.
+func (s *SyntheticsCheckConfig) SetRequest(v SyntheticsCheckRequest) {
+	s.Request = &v
+}
+
+// GetHandle returns the Handle field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckNotification) GetHandle() string {
+	if s == nil || s.Handle == nil {
+		return ""
+	}
+	return *s.Handle
+}
+
+// GetHandleOk returns a tuple with the Handle field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckNotification) GetHandleOk() (string, bool) {
+	if s == nil || s.Handle == nil {
+		return "", false
+	}
+	return *s.Handle, true
+}
+
+// HasHandle returns a boolean if a field has been set.
+func (s *SyntheticsCheckNotification) HasHandle() bool {
+	if s != nil && s.Handle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHandle allocates a new s.Handle and returns the pointer to it.
+func (s *SyntheticsCheckNotification) SetHandle(v string) {
+	s.Handle = &v
+}
+
+// GetIcon returns the Icon field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckNotification) GetIcon() string {
+	if s == nil || s.Icon == nil {
+		return ""
+	}
+	return *s.Icon
+}
+
+// GetIconOk returns a tuple with the Icon field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckNotification) GetIconOk() (string, bool) {
+	if s == nil || s.Icon == nil {
+		return "", false
+	}
+	return *s.Icon, true
+}
+
+// HasIcon returns a boolean if a field has been set.
+func (s *SyntheticsCheckNotification) HasIcon() bool {
+	if s != nil && s.Icon != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIcon allocates a new s.Icon and returns the pointer to it.
+func (s *SyntheticsCheckNotification) SetIcon(v string) {
+	s.Icon = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckNotification) GetName() string {
+	if s == nil || s.Name == nil {
+		return ""
+	}
+	return *s.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckNotification) GetNameOk() (string, bool) {
+	if s == nil || s.Name == nil {
+		return "", false
+	}
+	return *s.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (s *SyntheticsCheckNotification) HasName() bool {
+	if s != nil && s.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new s.Name and returns the pointer to it.
+func (s *SyntheticsCheckNotification) SetName(v string) {
+	s.Name = &v
+}
+
+// GetService returns the Service field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckNotification) GetService() string {
+	if s == nil || s.Service == nil {
+		return ""
+	}
+	return *s.Service
+}
+
+// GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckNotification) GetServiceOk() (string, bool) {
+	if s == nil || s.Service == nil {
+		return "", false
+	}
+	return *s.Service, true
+}
+
+// HasService returns a boolean if a field has been set.
+func (s *SyntheticsCheckNotification) HasService() bool {
+	if s != nil && s.Service != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetService allocates a new s.Service and returns the pointer to it.
+func (s *SyntheticsCheckNotification) SetService(v string) {
+	s.Service = &v
+}
+
+// GetTickEvery returns the TickEvery field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckOptions) GetTickEvery() int {
+	if s == nil || s.TickEvery == nil {
+		return 0
+	}
+	return *s.TickEvery
+}
+
+// GetTickEveryOk returns a tuple with the TickEvery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckOptions) GetTickEveryOk() (int, bool) {
+	if s == nil || s.TickEvery == nil {
+		return 0, false
+	}
+	return *s.TickEvery, true
+}
+
+// HasTickEvery returns a boolean if a field has been set.
+func (s *SyntheticsCheckOptions) HasTickEvery() bool {
+	if s != nil && s.TickEvery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTickEvery allocates a new s.TickEvery and returns the pointer to it.
+func (s *SyntheticsCheckOptions) SetTickEvery(v int) {
+	s.TickEvery = &v
+}
+
+// GetMethod returns the Method field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckRequest) GetMethod() string {
+	if s == nil || s.Method == nil {
+		return ""
+	}
+	return *s.Method
+}
+
+// GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckRequest) GetMethodOk() (string, bool) {
+	if s == nil || s.Method == nil {
+		return "", false
+	}
+	return *s.Method, true
+}
+
+// HasMethod returns a boolean if a field has been set.
+func (s *SyntheticsCheckRequest) HasMethod() bool {
+	if s != nil && s.Method != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMethod allocates a new s.Method and returns the pointer to it.
+func (s *SyntheticsCheckRequest) SetMethod(v string) {
+	s.Method = &v
+}
+
+// GetTimeout returns the Timeout field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckRequest) GetTimeout() int {
+	if s == nil || s.Timeout == nil {
+		return 0
+	}
+	return *s.Timeout
+}
+
+// GetTimeoutOk returns a tuple with the Timeout field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckRequest) GetTimeoutOk() (int, bool) {
+	if s == nil || s.Timeout == nil {
+		return 0, false
+	}
+	return *s.Timeout, true
+}
+
+// HasTimeout returns a boolean if a field has been set.
+func (s *SyntheticsCheckRequest) HasTimeout() bool {
+	if s != nil && s.Timeout != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeout allocates a new s.Timeout and returns the pointer to it.
+func (s *SyntheticsCheckRequest) SetTimeout(v int) {
+	s.Timeout = &v
+}
+
+// GetUrl returns the Url field if non-nil, zero value otherwise.
+func (s *SyntheticsCheckRequest) GetUrl() string {
+	if s == nil || s.Url == nil {
+		return ""
+	}
+	return *s.Url
+}
+
+// GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsCheckRequest) GetUrlOk() (string, bool) {
+	if s == nil || s.Url == nil {
+		return "", false
+	}
+	return *s.Url, true
+}
+
+// HasUrl returns a boolean if a field has been set.
+func (s *SyntheticsCheckRequest) HasUrl() bool {
+	if s != nil && s.Url != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl allocates a new s.Url and returns the pointer to it.
+func (s *SyntheticsCheckRequest) SetUrl(v string) {
+	s.Url = &v
+}
+
 // GetDefault returns the Default field if non-nil, zero value otherwise.
 func (t *TemplateVariable) GetDefault() string {
 	if t == nil || t.Default == nil {
