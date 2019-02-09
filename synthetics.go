@@ -37,6 +37,7 @@ type Notification struct {
 type Config struct {
 	Request    *Request     `json:"request,omitempty"`
 	Assertions []*Assertion `json:"assertions,omitempty"`
+	Locations  *string      `json:"locations,omitempty"`
 }
 
 type Request struct {
@@ -61,10 +62,18 @@ type reqSearchChecks struct {
 	Checks []*Check `json:"screenboards,omitempty"`
 }
 
-func (client *Client) SearchChecks(text string) ([]Check, error) {
+func (client *Client) CreateChecks(text string) ([]Check, error) {
 	var out reqSearch
 	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/search?text="+text, nil, &out); err != nil {
 		return nil, err
 	}
 	return out.Checks, nil
+}
+
+func (client *Client) CreateCheck(check *Check) (*Check, error) {
+	var out Check
+	if err := client.doJsonRequest("POST", "/v0/synthetics/checks", check, &out); err != nil {
+		return nil, err
+	}
+	return &out, nil
 }
