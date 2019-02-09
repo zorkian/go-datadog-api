@@ -1,11 +1,3 @@
-/*
- * Datadog API for Go
- *
- * Please see the included LICENSE file for licensing information.
- *
- * Copyright 2013 by authors and contributors.
- */
-
 package datadog
 
 type SyntheticsCheck struct {
@@ -58,16 +50,24 @@ type SyntheticsCheckOptions struct {
 }
 
 // /api/v0/synthetics/checks/search
-type reqSearchChecks struct {
+type reqSearchSyntheticsChecks struct {
 	Checks []SyntheticsCheck `json:"screenboards,omitempty"`
 }
 
 func (client *Client) SearchSyntheticsChecks(text string) ([]SyntheticsCheck, error) {
-	var out reqSearchChecks
+	var out reqSearchSyntheticsChecks
 	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/search?text="+text, nil, &out); err != nil {
 		return nil, err
 	}
 	return out.Checks, nil
+}
+
+func (client *Client) GetSyntheticsCheck(publicId string) (*SyntheticsCheck, error) {
+	var out SyntheticsCheck
+	if err := client.doJsonRequest("GET", "/v0/synthetics/checks/"+publicId, nil, &out); err != nil {
+		return nil, err
+	}
+	return &out, nil
 }
 
 func (client *Client) CreateSyntheticsCheck(check *SyntheticsCheck) (*SyntheticsCheck, error) {
