@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSearchSyntheticsChecks(t *testing.T) {
@@ -119,9 +121,38 @@ func TestGetSyntheticsCheck(t *testing.T) {
 		t.Fatalf("expect tag %s. Got %s", expectedTag, tag)
 	}
 
-	// TODO
-	// "modified_by"
-	// "created_by"
-	// "config"
+	createdBy := c.GetCreatedBy()
+	assert.Equal(t, createdBy.GetEmail(), "example@example.com")
+	assert.Equal(t, createdBy.GetHandle(), "example@example.com")
+	assert.Equal(t, createdBy.GetId(), 123456)
+	assert.Equal(t, createdBy.GetName(), "John Doe")
 
+	modifiedBy := c.GetModifiedBy()
+	assert.Equal(t, modifiedBy.GetEmail(), "example@example.com")
+	assert.Equal(t, modifiedBy.GetHandle(), "example@example.com")
+	assert.Equal(t, modifiedBy.GetId(), 123456)
+	assert.Equal(t, modifiedBy.GetName(), "John Doe")
+
+	config := c.GetConfig()
+
+	request := config.GetRequest()
+	assert.Equal(t, request.GetUrl(), "https://example.com/")
+	assert.Equal(t, request.GetMethod(), "GET")
+	assert.Equal(t, request.GetTimeout(), 30)
+
+	assertions := config.Assertions
+	assert.Equal(t, len(assertions), 3)
+
+	assert.Equal(t, assertions[0].GetOperator(), "is")
+	assert.Equal(t, assertions[0].GetProperty(), "content-type")
+	assert.Equal(t, assertions[0].GetType(), "header")
+	assert.Equal(t, assertions[0].Target.(string), "text/html; charset=UTF-8")
+
+	assert.Equal(t, assertions[1].GetOperator(), "lessThan")
+	assert.Equal(t, assertions[1].GetType(), "responseTime")
+	assert.Equal(t, int(assertions[1].Target.(float64)), 4000)
+
+	assert.Equal(t, assertions[2].GetOperator(), "is")
+	assert.Equal(t, assertions[2].GetType(), "statusCode")
+	assert.Equal(t, int(assertions[2].Target.(float64)), 200)
 }

@@ -16,8 +16,10 @@ type SyntheticsCheck struct {
 	Type            *string                       `json:"type,omitempty"`
 	CreatedAt       *string                       `json:"created_at,omitempty"`
 	ModifiedAt      *string                       `json:"modified_at,omitempty"`
-	Config          SyntheticsCheckConfig         `json:"config,omitempty"`
+	Config          *SyntheticsCheckConfig        `json:"config,omitempty"`
 	Options         *SyntheticsCheckOptions       `json:"options,omitempty"`
+	CreatedBy       *SyntheticsCheckCreatedBy     `json:"created_by,omitempty"`
+	ModifiedBy      *SyntheticsCheckModifiedBy    `json:"modified_by,omitempty"`
 }
 
 type SyntheticsCheckNotification struct {
@@ -45,11 +47,25 @@ type SyntheticsCheckAssertion struct {
 	Type     *string `json:"type,omitempty"`
 	// sometimes target is string ( like "text/html; charset=UTF-8" for header content-type )
 	// and sometimes target is int ( like 1200 for responseTime, 200 for statusCode )
-	Target *interface{} `json:"target,omitempty"`
+	Target interface{} `json:"target,omitempty"`
 }
 
 type SyntheticsCheckOptions struct {
 	TickEvery *int `json:"tick_every,omitempty"`
+}
+
+type SyntheticsCheckCreatedBy struct {
+	Id     *int    `json:"id,omitempty"`
+	Name   *string `json:"name,omitempty"`
+	Email  *string `json:"email,omitempty"`
+	Handle *string `json:"handle,omitempty"`
+}
+
+type SyntheticsCheckModifiedBy struct {
+	Id     *int    `json:"id,omitempty"`
+	Name   *string `json:"name,omitempty"`
+	Email  *string `json:"email,omitempty"`
+	Handle *string `json:"handle,omitempty"`
 }
 
 type responseSearchSyntheticsChecks struct {
