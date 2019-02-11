@@ -32,6 +32,7 @@ func (client *Client) UnmuteHost(host string) (*HostActionResp, error) {
 	return &out, nil
 }
 
+// HostTotalsResp defines response to GET /v1/hosts/totals.
 type HostTotalsResp struct {
 	TotalUp     int `json:"total_up"`
 	TotalActive int `json:"total_active"`
