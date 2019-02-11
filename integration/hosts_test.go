@@ -39,3 +39,11 @@ func getTestMuteAction() *datadog.HostActionMute {
 		Override: datadog.Bool(false),
 	}
 }
+
+// Just checking HTTP status is 2XX because numbers of active and up hosts are hard to fix.
+func TestHostTotals(t *testing.T) {
+	_, err := client.GetHostTotals()
+	if err != nil {
+		t.Fatalf("Failed to get hosts totals, err: %s", err)
+	}
+}
