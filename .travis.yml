@@ -1,7 +1,6 @@
 language: go
 
 go:
-  - "1.9"
   - "1.10.x"
   - "1.11.x"
   - "tip"
@@ -18,8 +17,7 @@ script:
   - golint ./... | grep -v vendor/
   - make
   - scripts/check-code-generation-ran.sh
-  # PR's don't have access to Travis EnvVars with DDog API Keys. Skip acceptance tests on PR.
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then make testacc; fi'
+  - scripts/acceptance-tests.sh
 
 matrix:
     allow_failures:
