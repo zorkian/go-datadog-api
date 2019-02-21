@@ -11,14 +11,17 @@ case "$TRAVIS_GO_VERSION" in
     1.10*)
         export DATADOG_API_KEY=${DATADOG_API_KEY_A:?}
         export DATADOG_APP_KEY=${DATADOG_APP_KEY_A:?}
+        echo "Using Datadog 'A' test account"
         ;;
     1.11*)
         export DATADOG_API_KEY=${DATADOG_API_KEY_B:?}
         export DATADOG_APP_KEY=${DATADOG_APP_KEY_B:?}
+        echo "Using Datadog 'B' test account"
         ;;
     *)
         export DATADOG_API_KEY=${DATADOG_API_KEY_C:?}
         export DATADOG_APP_KEY=${DATADOG_APP_KEY_C:?}
+        echo "Using Datadog 'C' test account"
         ;;
 esac
 
