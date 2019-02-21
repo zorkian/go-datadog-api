@@ -26,4 +26,4 @@ case "$TRAVIS_GO_VERSION" in
 esac
 
 echo "Running acceptance tests"
-make testacc
+GOCACHE=off make testacc
