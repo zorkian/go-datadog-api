@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # Make generate will always update datadog-accessors.go
 cp datadog-accessors.go datadog-accessors.go.bak
 
@@ -9,7 +11,7 @@ changed=$?
 rm datadog-accessors.go.bak
 
 # See if contents have changed and error if they have
-if [[ $changed != 0 ]] ; then
+if [ $changed != 0 ] ; then
     echo "Did you run 'make generate' before committing?"
     exit 1
 fi
