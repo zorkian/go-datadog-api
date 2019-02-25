@@ -1,6 +1,7 @@
 package integration
 
 import (
+	"encoding/json"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -84,7 +85,7 @@ func TestWidgets(t *testing.T) {
 					ConditionalFormats: []datadog.ConditionalFormat{
 						{
 							Comparator: datadog.String(">="),
-							Value:      datadog.String("1"),
+							Value:      datadog.JsonNumber(json.Number("1")),
 							Palette:    datadog.String("white_on_red"),
 						}},
 					Aggregator: datadog.String("max"),
@@ -122,7 +123,7 @@ func TestWidgets(t *testing.T) {
 					ConditionalFormats: []datadog.ConditionalFormat{
 						{
 							Comparator: datadog.String(">"),
-							Value:      datadog.String("4"),
+							Value:      datadog.JsonNumber(json.Number("4")),
 							Palette:    datadog.String("white_on_green"),
 						}},
 				}},

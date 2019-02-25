@@ -851,7 +851,7 @@ func (c *ConditionalFormat) SetPalette(v string) {
 }
 
 // GetValue returns the Value field if non-nil, zero value otherwise.
-func (c *ConditionalFormat) GetValue() string {
+func (c *ConditionalFormat) GetValue() json.Number {
 	if c == nil || c.Value == nil {
 		return ""
 	}
@@ -860,7 +860,7 @@ func (c *ConditionalFormat) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (c *ConditionalFormat) GetValueOk() (string, bool) {
+func (c *ConditionalFormat) GetValueOk() (json.Number, bool) {
 	if c == nil || c.Value == nil {
 		return "", false
 	}
@@ -877,7 +877,7 @@ func (c *ConditionalFormat) HasValue() bool {
 }
 
 // SetValue allocates a new c.Value and returns the pointer to it.
-func (c *ConditionalFormat) SetValue(v string) {
+func (c *ConditionalFormat) SetValue(v json.Number) {
 	c.Value = &v
 }
 
@@ -6555,18 +6555,18 @@ func (s *Screenboard) SetTitle(v string) {
 }
 
 // GetWidth returns the Width field if non-nil, zero value otherwise.
-func (s *Screenboard) GetWidth() int {
+func (s *Screenboard) GetWidth() json.Number {
 	if s == nil || s.Width == nil {
-		return 0
+		return ""
 	}
 	return *s.Width
 }
 
 // GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *Screenboard) GetWidthOk() (int, bool) {
+func (s *Screenboard) GetWidthOk() (json.Number, bool) {
 	if s == nil || s.Width == nil {
-		return 0, false
+		return "", false
 	}
 	return *s.Width, true
 }
@@ -6581,7 +6581,7 @@ func (s *Screenboard) HasWidth() bool {
 }
 
 // SetWidth allocates a new s.Width and returns the pointer to it.
-func (s *Screenboard) SetWidth(v int) {
+func (s *Screenboard) SetWidth(v json.Number) {
 	s.Width = &v
 }
 

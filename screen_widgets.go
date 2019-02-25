@@ -81,12 +81,12 @@ type TileDefRequest struct {
 }
 
 type ConditionalFormat struct {
-	Color      *string `json:"color,omitempty"`
-	Palette    *string `json:"palette,omitempty"`
-	Comparator *string `json:"comparator,omitempty"`
-	Invert     *bool   `json:"invert,omitempty"`
-	Value      *string `json:"value,omitempty"`
-	ImageURL   *string `json:"image_url,omitempty"`
+	Color      *string      `json:"color,omitempty"`
+	Palette    *string      `json:"palette,omitempty"`
+	Comparator *string      `json:"comparator,omitempty"`
+	Invert     *bool        `json:"invert,omitempty"`
+	Value      *json.Number `json:"value,omitempty"`
+	ImageURL   *string      `json:"image_url,omitempty"`
 }
 
 type TileDefRequestStyle struct {
