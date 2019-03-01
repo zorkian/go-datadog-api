@@ -3,7 +3,7 @@ package integration
 import (
 	"testing"
 
-	"github.com/zorkian/go-datadog-api"
+	datadog "github.com/zorkian/go-datadog-api"
 )
 
 func TestScreenboardCreateAndDelete(t *testing.T) {
@@ -93,8 +93,8 @@ func TestScreenboardGet(t *testing.T) {
 func getTestScreenboard() *datadog.Screenboard {
 	return &datadog.Screenboard{
 		Title:   datadog.String("___Test-Board___"),
-		Height:  datadog.Int(600),
-		Width:   datadog.Int(800),
+		Height:  datadog.StrInt("600"),
+		Width:   datadog.StrInt("800"),
 		Widgets: []datadog.Widget{},
 	}
 }
@@ -129,10 +129,10 @@ func assertScreenboardEquals(t *testing.T, actual, expected *datadog.Screenboard
 		t.Errorf("Screenboard title does not match: %s != %s", *actual.Title, *expected.Title)
 	}
 	if *actual.Width != *expected.Width {
-		t.Errorf("Screenboard width does not match: %d != %d", *actual.Width, *expected.Width)
+		t.Errorf("Screenboard width does not match: %s != %s", *actual.Width, *expected.Width)
 	}
 	if *actual.Height != *expected.Height {
-		t.Errorf("Screenboard width does not match: %d != %d", *actual.Height, *expected.Height)
+		t.Errorf("Screenboard width does not match: %s != %s", *actual.Height, *expected.Height)
 	}
 	if len(actual.Widgets) != len(expected.Widgets) {
 		t.Errorf("Number of Screenboard widgets does not match: %d != %d", len(actual.Widgets), len(expected.Widgets))
