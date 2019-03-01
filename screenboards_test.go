@@ -76,6 +76,89 @@ func TestGetScreenboard(t *testing.T) {
 				},
 			},
 		},
+		{
+			file: "screenboard_response_conditional_format",
+			want: &Screenboard{
+				Id:    Int(334488),
+				Title: String("OrderCapture ScreenBoard"),
+				Widgets: []Widget{
+					{
+						Type: String("query_value"),
+						TileDef: &TileDef{
+							Viz: String("query_value"),
+							Requests: []TileDefRequest{
+								{
+									ConditionalFormats: []ConditionalFormat{
+										// string values in JSON
+										{
+											Palette:    String("white_on_red"),
+											Comparator: String(">"),
+											Value:      StrInt("1000"),
+										},
+										{
+											Palette:    String("white_on_yellow"),
+											Comparator: String(">="),
+											Value:      StrInt("200"),
+										},
+										{
+											Palette:    String("white_on_green"),
+											Comparator: String("<"),
+											Value:      StrInt("200"),
+										},
+									},
+								},
+							},
+						},
+					},
+					{
+						Type: String("query_value"),
+						TileDef: &TileDef{
+							Viz: String("query_value"),
+							Requests: []TileDefRequest{
+								{
+									ConditionalFormats: []ConditionalFormat{
+										// null values in JSON
+										{
+											Palette:    String("white_on_red"),
+											Comparator: String(">"),
+											Value:      nil,
+										},
+										{
+											Palette:    String("white_on_yellow"),
+											Comparator: String(">="),
+											Value:      nil,
+										},
+										{
+											Palette:    String("white_on_green"),
+											Comparator: String("<"),
+											Value:      nil,
+										},
+									},
+								},
+							},
+						},
+					},
+					{
+						Type: String("toplist"),
+						TileDef: &TileDef{
+							Viz: String("toplist"),
+							Requests: []TileDefRequest{
+								{
+									ConditionalFormats: []ConditionalFormat{
+										// number value in JSON
+										{
+											Palette:    String("white_on_red"),
+											Comparator: String(">"),
+											Value:      StrInt("1"),
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {

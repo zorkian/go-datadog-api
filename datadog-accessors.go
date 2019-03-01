@@ -851,7 +851,7 @@ func (c *ConditionalFormat) SetPalette(v string) {
 }
 
 // GetValue returns the Value field if non-nil, zero value otherwise.
-func (c *ConditionalFormat) GetValue() string {
+func (c *ConditionalFormat) GetValue() StrIntD {
 	if c == nil || c.Value == nil {
 		return ""
 	}
@@ -860,7 +860,7 @@ func (c *ConditionalFormat) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (c *ConditionalFormat) GetValueOk() (string, bool) {
+func (c *ConditionalFormat) GetValueOk() (StrIntD, bool) {
 	if c == nil || c.Value == nil {
 		return "", false
 	}
@@ -877,7 +877,7 @@ func (c *ConditionalFormat) HasValue() bool {
 }
 
 // SetValue allocates a new c.Value and returns the pointer to it.
-func (c *ConditionalFormat) SetValue(v string) {
+func (c *ConditionalFormat) SetValue(v StrIntD) {
 	c.Value = &v
 }
 

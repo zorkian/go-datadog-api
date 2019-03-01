@@ -84,7 +84,7 @@ func TestWidgets(t *testing.T) {
 					ConditionalFormats: []datadog.ConditionalFormat{
 						{
 							Comparator: datadog.String(">="),
-							Value:      datadog.String("1"),
+							Value:      datadog.StrInt("1"),
 							Palette:    datadog.String("white_on_red"),
 						}},
 					Aggregator: datadog.String("max"),
@@ -122,7 +122,7 @@ func TestWidgets(t *testing.T) {
 					ConditionalFormats: []datadog.ConditionalFormat{
 						{
 							Comparator: datadog.String(">"),
-							Value:      datadog.String("4"),
+							Value:      datadog.StrInt("4"),
 							Palette:    datadog.String("white_on_green"),
 						}},
 				}},
