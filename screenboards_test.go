@@ -172,6 +172,18 @@ func TestGetScreenboard(t *testing.T) {
 				},
 			},
 		},
+		{
+			file: "screenboard_response_manage_status_titlesize",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("manage_status"),
+
+						ManageStatusTitleSize: StrInt("16"),
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {

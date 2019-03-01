@@ -1,0 +1,8 @@
+{
+	"widgets": [
+		{
+			"type": "manage_status",
+			"titleSize": 16
+		}
+	]
+}

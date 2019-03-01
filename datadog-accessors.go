@@ -9779,7 +9779,7 @@ func (w *Widget) SetManageStatusTitleAlign(v string) {
 }
 
 // GetManageStatusTitleSize returns the ManageStatusTitleSize field if non-nil, zero value otherwise.
-func (w *Widget) GetManageStatusTitleSize() string {
+func (w *Widget) GetManageStatusTitleSize() StrIntD {
 	if w == nil || w.ManageStatusTitleSize == nil {
 		return ""
 	}
@@ -9788,7 +9788,7 @@ func (w *Widget) GetManageStatusTitleSize() string {
 
 // GetManageStatusTitleSizeOk returns a tuple with the ManageStatusTitleSize field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetManageStatusTitleSizeOk() (string, bool) {
+func (w *Widget) GetManageStatusTitleSizeOk() (StrIntD, bool) {
 	if w == nil || w.ManageStatusTitleSize == nil {
 		return "", false
 	}
@@ -9805,7 +9805,7 @@ func (w *Widget) HasManageStatusTitleSize() bool {
 }
 
 // SetManageStatusTitleSize allocates a new w.ManageStatusTitleSize and returns the pointer to it.
-func (w *Widget) SetManageStatusTitleSize(v string) {
+func (w *Widget) SetManageStatusTitleSize(v StrIntD) {
 	w.ManageStatusTitleSize = &v
 }
 

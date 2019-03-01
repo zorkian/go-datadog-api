@@ -166,14 +166,14 @@ type Widget struct {
 	MustShowResourceList *bool   `json:"mustShowResourceList,omitempty"`
 
 	// For MonitorSummary (manage_status) widget
-	DisplayFormat          *string `json:"displayFormat,omitempty"`
-	ColorPreference        *string `json:"colorPreference,omitempty"`
-	HideZeroCounts         *bool   `json:"hideZeroCounts,omitempty"`
-	ManageStatusShowTitle  *bool   `json:"showTitle,omitempty"`
-	ManageStatusTitleText  *string `json:"titleText,omitempty"`
-	ManageStatusTitleSize  *string `json:"titleSize,omitempty"`
-	ManageStatusTitleAlign *string `json:"titleAlign,omitempty"`
-	Params                 *Params `json:"params,omitempty"`
+	DisplayFormat          *string  `json:"displayFormat,omitempty"`
+	ColorPreference        *string  `json:"colorPreference,omitempty"`
+	HideZeroCounts         *bool    `json:"hideZeroCounts,omitempty"`
+	ManageStatusShowTitle  *bool    `json:"showTitle,omitempty"`
+	ManageStatusTitleText  *string  `json:"titleText,omitempty"`
+	ManageStatusTitleSize  *StrIntD `json:"titleSize,omitempty"`
+	ManageStatusTitleAlign *string  `json:"titleAlign,omitempty"`
+	Params                 *Params  `json:"params,omitempty"`
 
 	// For LogStream widget
 	Columns *string `json:"columns,omitempty"`

@@ -328,7 +328,7 @@ func TestWidgets(t *testing.T) {
 			HideZeroCounts:         datadog.Bool(true),
 			ManageStatusShowTitle:  datadog.Bool(false),
 			ManageStatusTitleText:  datadog.String("Test title"),
-			ManageStatusTitleSize:  datadog.String("20"),
+			ManageStatusTitleSize:  datadog.StrInt("20"),
 			ManageStatusTitleAlign: datadog.String("right"),
 			Params: &datadog.Params{
 				Sort:  datadog.String("status,asc"),
