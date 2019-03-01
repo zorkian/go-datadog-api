@@ -29,8 +29,8 @@ func TestGetScreenboard(t *testing.T) {
 						Type:   String("image"),
 						Height: Int(20),
 						Width:  Int(32),
-						X:      Int(32),
-						Y:      Int(7),
+						X:      Float32(32),
+						Y:      Float32(7),
 						URL:    String("http://path/to/image.jpg"),
 					},
 					{
@@ -155,6 +155,19 @@ func TestGetScreenboard(t *testing.T) {
 								},
 							},
 						},
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_widget_float_position",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("free_text"),
+						Text: String("processed"),
+						X:    Float32(1),
+						Y:    Float32(70.83333333333334),
 					},
 				},
 			},

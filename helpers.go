@@ -28,6 +28,10 @@ func GetBool(v *bool) (bool, bool) {
 // to store v and returns a pointer to it.
 func Int(v int) *int { return &v }
 
+// Float32 is a helper routine that allocates a new float32 value
+// to store v and returns a pointer to it.
+func Float32(v float32) *float32 { return &v }
+
 // GetInt is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
 func GetIntOk(v *int) (int, bool) {

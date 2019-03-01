@@ -10833,7 +10833,7 @@ func (w *Widget) SetWidth(v int) {
 }
 
 // GetX returns the X field if non-nil, zero value otherwise.
-func (w *Widget) GetX() int {
+func (w *Widget) GetX() float32 {
 	if w == nil || w.X == nil {
 		return 0
 	}
@@ -10842,7 +10842,7 @@ func (w *Widget) GetX() int {
 
 // GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetXOk() (int, bool) {
+func (w *Widget) GetXOk() (float32, bool) {
 	if w == nil || w.X == nil {
 		return 0, false
 	}
@@ -10859,12 +10859,12 @@ func (w *Widget) HasX() bool {
 }
 
 // SetX allocates a new w.X and returns the pointer to it.
-func (w *Widget) SetX(v int) {
+func (w *Widget) SetX(v float32) {
 	w.X = &v
 }
 
 // GetY returns the Y field if non-nil, zero value otherwise.
-func (w *Widget) GetY() int {
+func (w *Widget) GetY() float32 {
 	if w == nil || w.Y == nil {
 		return 0
 	}
@@ -10873,7 +10873,7 @@ func (w *Widget) GetY() int {
 
 // GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetYOk() (int, bool) {
+func (w *Widget) GetYOk() (float32, bool) {
 	if w == nil || w.Y == nil {
 		return 0, false
 	}
@@ -10890,7 +10890,7 @@ func (w *Widget) HasY() bool {
 }
 
 // SetY allocates a new w.Y and returns the pointer to it.
-func (w *Widget) SetY(v int) {
+func (w *Widget) SetY(v float32) {
 	w.Y = &v
 }
 

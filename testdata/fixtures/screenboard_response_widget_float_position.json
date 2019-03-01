@@ -1,0 +1,10 @@
+{
+	"widgets": [
+		{
+			"text": "processed",
+			"x": 1,
+			"y": 70.83333333333334,
+			"type": "free_text"
+		}
+	]
+}

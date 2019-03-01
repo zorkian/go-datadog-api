@@ -83,15 +83,15 @@ type Time struct {
 
 type Widget struct {
 	// Common attributes
-	Type       *string `json:"type,omitempty"`
-	Title      *bool   `json:"title,omitempty"`
-	TitleText  *string `json:"title_text,omitempty"`
-	TitleAlign *string `json:"title_align,omitempty"`
-	TitleSize  *int    `json:"title_size,omitempty"`
-	Height     *int    `json:"height,omitempty"`
-	Width      *int    `json:"width,omitempty"`
-	X          *int    `json:"x,omitempty"`
-	Y          *int    `json:"y,omitempty"`
+	Type       *string  `json:"type,omitempty"`
+	Title      *bool    `json:"title,omitempty"`
+	TitleText  *string  `json:"title_text,omitempty"`
+	TitleAlign *string  `json:"title_align,omitempty"`
+	TitleSize  *int     `json:"title_size,omitempty"`
+	Height     *int     `json:"height,omitempty"`
+	Width      *int     `json:"width,omitempty"`
+	X          *float32 `json:"x,omitempty"`
+	Y          *float32 `json:"y,omitempty"`
 
 	// For Timeseries, TopList, EventTimeline, EvenStream, AlertGraph, CheckStatus, ServiceSummary, LogStream widgets
 	Time *Time `json:"time,omitempty"`

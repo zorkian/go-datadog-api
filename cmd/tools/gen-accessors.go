@@ -177,6 +177,8 @@ func (t *templateData) addIdent(x *ast.Ident, receiverType, fieldName string) {
 	switch x.String() {
 	case "int":
 		zeroValue = "0"
+	case "float32":
+		zeroValue = "0"
 	case "string":
 		zeroValue = `""`
 	case "bool":
