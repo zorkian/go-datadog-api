@@ -58,6 +58,24 @@ func TestGetScreenboard(t *testing.T) {
 				ReadOnly: Bool(false),
 			},
 		},
+		{
+			file: "screenboard_response_manage_status",
+			want: &Screenboard{
+				Id:    Int(6336),
+				Title: String("dogapi manage_status test"),
+				Widgets: []Widget{
+					{
+						Type: String("manage_status"),
+						Params: &Params{
+							Sort:  String("status,asc"),
+							Text:  String(`scope:"priority:important" muted:false`),
+							Count: StrInt("50"),
+							Start: StrInt("0"),
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {

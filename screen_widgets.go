@@ -187,10 +187,10 @@ type Widget struct {
 }
 
 type Params struct {
-	Sort  *string `json:"sort,omitempty"`
-	Text  *string `json:"text,omitempty"`
-	Count *string `json:"count,omitempty"`
-	Start *string `json:"start,omitempty"`
+	Sort  *string  `json:"sort,omitempty"`
+	Text  *string  `json:"text,omitempty"`
+	Count *StrIntD `json:"count,omitempty"`
+	Start *StrIntD `json:"start,omitempty"`
 }
 
 type Rule struct {

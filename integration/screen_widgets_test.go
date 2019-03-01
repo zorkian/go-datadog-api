@@ -333,8 +333,8 @@ func TestWidgets(t *testing.T) {
 			Params: &datadog.Params{
 				Sort:  datadog.String("status,asc"),
 				Text:  datadog.String("status:alert"),
-				Count: datadog.String("50"),
-				Start: datadog.String("0"),
+				Count: datadog.StrInt("50"),
+				Start: datadog.StrInt("0"),
 			},
 		},
 		{
