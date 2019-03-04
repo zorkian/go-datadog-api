@@ -17,7 +17,7 @@ func TestWidgets(t *testing.T) {
 			Height:    datadog.Int(5),
 			Text:      datadog.String("Test"),
 			TextAlign: datadog.String("right"),
-			FontSize:  datadog.String("36"),
+			FontSize:  datadog.StrInt("36"),
 			Color:     datadog.String("#ffc0cb"),
 		},
 		{
@@ -206,7 +206,7 @@ func TestWidgets(t *testing.T) {
 			Height:    datadog.Int(5),
 			Bgcolor:   datadog.String("pink"),
 			TextAlign: datadog.String("right"),
-			FontSize:  datadog.String("36"),
+			FontSize:  datadog.StrInt("36"),
 			Tick:      datadog.Bool(true),
 			TickEdge:  datadog.String("bottom"),
 			TickPos:   datadog.String("50%"),

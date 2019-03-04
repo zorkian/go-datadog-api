@@ -9407,7 +9407,7 @@ func (w *Widget) SetEventSize(v string) {
 }
 
 // GetFontSize returns the FontSize field if non-nil, zero value otherwise.
-func (w *Widget) GetFontSize() string {
+func (w *Widget) GetFontSize() StrIntD {
 	if w == nil || w.FontSize == nil {
 		return ""
 	}
@@ -9416,7 +9416,7 @@ func (w *Widget) GetFontSize() string {
 
 // GetFontSizeOk returns a tuple with the FontSize field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetFontSizeOk() (string, bool) {
+func (w *Widget) GetFontSizeOk() (StrIntD, bool) {
 	if w == nil || w.FontSize == nil {
 		return "", false
 	}
@@ -9433,7 +9433,7 @@ func (w *Widget) HasFontSize() bool {
 }
 
 // SetFontSize allocates a new w.FontSize and returns the pointer to it.
-func (w *Widget) SetFontSize(v string) {
+func (w *Widget) SetFontSize(v StrIntD) {
 	w.FontSize = &v
 }
 

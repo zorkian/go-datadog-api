@@ -115,7 +115,7 @@ type Widget struct {
 	TextAlign *string `json:"text_align,omitempty"`
 
 	// For FreeText, Note widgets
-	FontSize *string `json:"font_size,omitempty"`
+	FontSize *StrIntD `json:"font_size,omitempty"`
 
 	// For AlertValue, AlertGraph widgets
 	AlertID     *StrIntD `json:"alert_id,omitempty"`

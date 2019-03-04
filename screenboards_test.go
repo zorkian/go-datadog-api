@@ -228,6 +228,17 @@ func TestGetScreenboard(t *testing.T) {
 				},
 			},
 		},
+		{
+			file: "screenboard_response_fontsize",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type:     String("free_text"),
+						FontSize: StrInt("24"),
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {
