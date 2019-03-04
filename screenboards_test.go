@@ -201,6 +201,22 @@ func TestGetScreenboard(t *testing.T) {
 				},
 			},
 		},
+		{
+			file: "screenboard_response_palette_flip",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("hostmap"),
+						TileDef: &TileDef{
+							Viz: String("hostmap"),
+							Style: &TileDefStyle{
+								PaletteFlip: StrBool("false"),
+							},
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {
