@@ -118,8 +118,8 @@ type Widget struct {
 	FontSize *string `json:"font_size,omitempty"`
 
 	// For AlertValue, AlertGraph widgets
-	AlertID     *int  `json:"alert_id,omitempty"`
-	AutoRefresh *bool `json:"auto_refresh,omitempty"`
+	AlertID     *StrIntD `json:"alert_id,omitempty"`
+	AutoRefresh *bool    `json:"auto_refresh,omitempty"`
 
 	// For Timeseries, QueryValue, Toplist widgets
 	Legend     *bool   `json:"legend,omitempty"`

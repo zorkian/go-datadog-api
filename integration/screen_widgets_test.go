@@ -222,7 +222,7 @@ func TestWidgets(t *testing.T) {
 			TitleText:  datadog.String("Test title"),
 			TitleSize:  datadog.Int(16),
 			TitleAlign: datadog.String("right"),
-			AlertID:    datadog.Int(123456),
+			AlertID:    datadog.StrInt("123456"),
 			VizType:    datadog.String("toplist"),
 			Time: &datadog.Time{
 				LiveSpan: datadog.String("15m"),
@@ -238,7 +238,7 @@ func TestWidgets(t *testing.T) {
 			TitleText:  datadog.String("Test title"),
 			TitleSize:  datadog.Int(16),
 			TitleAlign: datadog.String("right"),
-			AlertID:    datadog.Int(123456),
+			AlertID:    datadog.StrInt("123456"),
 			TextSize:   datadog.String("fill_height"),
 			TextAlign:  datadog.String("right"),
 			Precision:  datadog.StrInt("*"),

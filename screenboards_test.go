@@ -217,6 +217,17 @@ func TestGetScreenboard(t *testing.T) {
 				},
 			},
 		},
+		{
+			file: "screenboard_response_alert_id",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type:    String("alert_value"),
+						AlertID: StrInt("2156443"),
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {

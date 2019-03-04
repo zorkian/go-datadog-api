@@ -9097,18 +9097,18 @@ func (u *User) SetVerified(v bool) {
 }
 
 // GetAlertID returns the AlertID field if non-nil, zero value otherwise.
-func (w *Widget) GetAlertID() int {
+func (w *Widget) GetAlertID() StrIntD {
 	if w == nil || w.AlertID == nil {
-		return 0
+		return ""
 	}
 	return *w.AlertID
 }
 
 // GetAlertIDOk returns a tuple with the AlertID field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetAlertIDOk() (int, bool) {
+func (w *Widget) GetAlertIDOk() (StrIntD, bool) {
 	if w == nil || w.AlertID == nil {
-		return 0, false
+		return "", false
 	}
 	return *w.AlertID, true
 }
@@ -9123,7 +9123,7 @@ func (w *Widget) HasAlertID() bool {
 }
 
 // SetAlertID allocates a new w.AlertID and returns the pointer to it.
-func (w *Widget) SetAlertID(v int) {
+func (w *Widget) SetAlertID(v StrIntD) {
 	w.AlertID = &v
 }
 
