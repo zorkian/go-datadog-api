@@ -2,31 +2,6 @@ package datadog
 
 import "encoding/json"
 
-type PrecisionT string
-
-// UnmarshalJSON is a Custom Unmarshal for PrecisionT. The Datadog API can
-// return 1 (int), "1" (number, but a string type) or something like "100%" or
-// "*" (string).
-func (p *PrecisionT) UnmarshalJSON(data []byte) error {
-	var err error
-	var precisionNum json.Number
-	if err = json.Unmarshal(data, &precisionNum); err == nil {
-		*p = PrecisionT(precisionNum)
-		return nil
-	}
-
-	var precisionStr string
-	if err = json.Unmarshal(data, &precisionStr); err == nil {
-		*p = PrecisionT(precisionStr)
-		return nil
-	}
-
-	var p0 PrecisionT
-	*p = p0
-
-	return err
-}
-
 type TileDef struct {
 	Events     []TileDefEvent   `json:"events,omitempty"`
 	Markers    []TileDefMarker  `json:"markers,omitempty"`
@@ -34,7 +9,7 @@ type TileDef struct {
 	Viz        *string          `json:"viz,omitempty"`
 	CustomUnit *string          `json:"custom_unit,omitempty"`
 	Autoscale  *bool            `json:"autoscale,omitempty"`
-	Precision  *PrecisionT      `json:"precision,omitempty"`
+	Precision  *StrIntD         `json:"precision,omitempty"`
 	TextAlign  *string          `json:"text_align,omitempty"`
 
 	// For hostmap
@@ -51,9 +26,9 @@ type TileDefEvent struct {
 }
 
 type TileDefMarker struct {
-	Label *string `json:"label,omitempty"`
-	Type  *string `json:"type,omitempty"`
-	Value *string `json:"value,omitempty"`
+	Label *StrBoolD `json:"label,omitempty"`
+	Type  *string   `json:"type,omitempty"`
+	Value *string   `json:"value,omitempty"`
 }
 
 type TileDefRequest struct {
@@ -81,12 +56,12 @@ type TileDefRequest struct {
 }
 
 type ConditionalFormat struct {
-	Color      *string `json:"color,omitempty"`
-	Palette    *string `json:"palette,omitempty"`
-	Comparator *string `json:"comparator,omitempty"`
-	Invert     *bool   `json:"invert,omitempty"`
-	Value      *string `json:"value,omitempty"`
-	ImageURL   *string `json:"image_url,omitempty"`
+	Color      *string  `json:"color,omitempty"`
+	Palette    *string  `json:"palette,omitempty"`
+	Comparator *string  `json:"comparator,omitempty"`
+	Invert     *bool    `json:"invert,omitempty"`
+	Value      *StrIntD `json:"value,omitempty"`
+	ImageURL   *string  `json:"image_url,omitempty"`
 }
 
 type TileDefRequestStyle struct {
@@ -97,7 +72,7 @@ type TileDefRequestStyle struct {
 
 type TileDefStyle struct {
 	Palette     *string      `json:"palette,omitempty"`
-	PaletteFlip *string      `json:"paletteFlip,omitempty"`
+	PaletteFlip *StrBoolD    `json:"paletteFlip,omitempty"`
 	FillMin     *json.Number `json:"fillMin,omitempty"`
 	FillMax     *json.Number `json:"fillMax,omitempty"`
 }
@@ -108,15 +83,15 @@ type Time struct {
 
 type Widget struct {
 	// Common attributes
-	Type       *string `json:"type,omitempty"`
-	Title      *bool   `json:"title,omitempty"`
-	TitleText  *string `json:"title_text,omitempty"`
-	TitleAlign *string `json:"title_align,omitempty"`
-	TitleSize  *int    `json:"title_size,omitempty"`
-	Height     *int    `json:"height,omitempty"`
-	Width      *int    `json:"width,omitempty"`
-	X          *int    `json:"x,omitempty"`
-	Y          *int    `json:"y,omitempty"`
+	Type       *string  `json:"type,omitempty"`
+	Title      *bool    `json:"title,omitempty"`
+	TitleText  *string  `json:"title_text,omitempty"`
+	TitleAlign *string  `json:"title_align,omitempty"`
+	TitleSize  *int     `json:"title_size,omitempty"`
+	Height     *int     `json:"height,omitempty"`
+	Width      *int     `json:"width,omitempty"`
+	X          *float32 `json:"x,omitempty"`
+	Y          *float32 `json:"y,omitempty"`
 
 	// For Timeseries, TopList, EventTimeline, EvenStream, AlertGraph, CheckStatus, ServiceSummary, LogStream widgets
 	Time *Time `json:"time,omitempty"`
@@ -129,9 +104,9 @@ type Widget struct {
 	Color *string `json:"color,omitempty"`
 
 	// For AlertValue widget
-	TextSize  *string     `json:"text_size,omitempty"`
-	Unit      *string     `json:"unit,omitempty"`
-	Precision *PrecisionT `json:"precision,omitempty"`
+	TextSize  *string  `json:"text_size,omitempty"`
+	Unit      *string  `json:"unit,omitempty"`
+	Precision *StrIntD `json:"precision,omitempty"`
 
 	// AlertGraph widget
 	VizType *string `json:"viz_type,omitempty"`
@@ -140,11 +115,11 @@ type Widget struct {
 	TextAlign *string `json:"text_align,omitempty"`
 
 	// For FreeText, Note widgets
-	FontSize *string `json:"font_size,omitempty"`
+	FontSize *StrIntD `json:"font_size,omitempty"`
 
 	// For AlertValue, AlertGraph widgets
-	AlertID     *int  `json:"alert_id,omitempty"`
-	AutoRefresh *bool `json:"auto_refresh,omitempty"`
+	AlertID     *StrIntD `json:"alert_id,omitempty"`
+	AutoRefresh *bool    `json:"auto_refresh,omitempty"`
 
 	// For Timeseries, QueryValue, Toplist widgets
 	Legend     *bool   `json:"legend,omitempty"`
@@ -191,14 +166,14 @@ type Widget struct {
 	MustShowResourceList *bool   `json:"mustShowResourceList,omitempty"`
 
 	// For MonitorSummary (manage_status) widget
-	DisplayFormat          *string `json:"displayFormat,omitempty"`
-	ColorPreference        *string `json:"colorPreference,omitempty"`
-	HideZeroCounts         *bool   `json:"hideZeroCounts,omitempty"`
-	ManageStatusShowTitle  *bool   `json:"showTitle,omitempty"`
-	ManageStatusTitleText  *string `json:"titleText,omitempty"`
-	ManageStatusTitleSize  *string `json:"titleSize,omitempty"`
-	ManageStatusTitleAlign *string `json:"titleAlign,omitempty"`
-	Params                 *Params `json:"params,omitempty"`
+	DisplayFormat          *string  `json:"displayFormat,omitempty"`
+	ColorPreference        *string  `json:"colorPreference,omitempty"`
+	HideZeroCounts         *bool    `json:"hideZeroCounts,omitempty"`
+	ManageStatusShowTitle  *bool    `json:"showTitle,omitempty"`
+	ManageStatusTitleText  *string  `json:"titleText,omitempty"`
+	ManageStatusTitleSize  *StrIntD `json:"titleSize,omitempty"`
+	ManageStatusTitleAlign *string  `json:"titleAlign,omitempty"`
+	Params                 *Params  `json:"params,omitempty"`
 
 	// For LogStream widget
 	Columns *string `json:"columns,omitempty"`
@@ -212,10 +187,10 @@ type Widget struct {
 }
 
 type Params struct {
-	Sort  *string `json:"sort,omitempty"`
-	Text  *string `json:"text,omitempty"`
-	Count *string `json:"count,omitempty"`
-	Start *string `json:"start,omitempty"`
+	Sort  *string  `json:"sort,omitempty"`
+	Text  *string  `json:"text,omitempty"`
+	Count *StrIntD `json:"count,omitempty"`
+	Start *StrIntD `json:"start,omitempty"`
 }
 
 type Rule struct {

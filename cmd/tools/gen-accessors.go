@@ -177,6 +177,8 @@ func (t *templateData) addIdent(x *ast.Ident, receiverType, fieldName string) {
 	switch x.String() {
 	case "int":
 		zeroValue = "0"
+	case "float32":
+		zeroValue = "0"
 	case "string":
 		zeroValue = `""`
 	case "bool":
@@ -185,7 +187,9 @@ func (t *templateData) addIdent(x *ast.Ident, receiverType, fieldName string) {
 		zeroValue = "0"
 	case "Status":
 		zeroValue = "0"
-	case "PrecisionT":
+	case "StrIntD":
+		zeroValue = `""`
+	case "StrBoolD":
 		zeroValue = `""`
 	default:
 		zeroValue = fmt.Sprintf("%s{}", x.String())

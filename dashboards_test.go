@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
@@ -87,17 +88,20 @@ func TestYAxisTestSuite(t *testing.T) {
 
 func TestDashboardGetters(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/dashboards_response.json")
+		response, err := ioutil.ReadFile("./testdata/fixtures/dashboards_response.json")
 		if err != nil {
-			t.Fatal(err)
+			// mustn't call t.Fatal from a different Goroutine
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 		w.Write(response)
 	}))
 	defer ts.Close()
 
 	datadogClient := Client{
-		baseUrl:    ts.URL,
-		HttpClient: http.DefaultClient,
+		baseUrl:      ts.URL,
+		HttpClient:   ts.Client(),
+		RetryTimeout: 5 * time.Second,
 	}
 
 	dashboards, err := datadogClient.GetDashboards()

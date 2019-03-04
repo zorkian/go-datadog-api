@@ -851,7 +851,7 @@ func (c *ConditionalFormat) SetPalette(v string) {
 }
 
 // GetValue returns the Value field if non-nil, zero value otherwise.
-func (c *ConditionalFormat) GetValue() string {
+func (c *ConditionalFormat) GetValue() StrIntD {
 	if c == nil || c.Value == nil {
 		return ""
 	}
@@ -860,7 +860,7 @@ func (c *ConditionalFormat) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (c *ConditionalFormat) GetValueOk() (string, bool) {
+func (c *ConditionalFormat) GetValueOk() (StrIntD, bool) {
 	if c == nil || c.Value == nil {
 		return "", false
 	}
@@ -877,7 +877,7 @@ func (c *ConditionalFormat) HasValue() bool {
 }
 
 // SetValue allocates a new c.Value and returns the pointer to it.
-func (c *ConditionalFormat) SetValue(v string) {
+func (c *ConditionalFormat) SetValue(v StrIntD) {
 	c.Value = &v
 }
 
@@ -2897,7 +2897,7 @@ func (g *GraphDefinition) SetNodeType(v string) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (g *GraphDefinition) GetPrecision() PrecisionT {
+func (g *GraphDefinition) GetPrecision() StrIntD {
 	if g == nil || g.Precision == nil {
 		return ""
 	}
@@ -2906,7 +2906,7 @@ func (g *GraphDefinition) GetPrecision() PrecisionT {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (g *GraphDefinition) GetPrecisionOk() (PrecisionT, bool) {
+func (g *GraphDefinition) GetPrecisionOk() (StrIntD, bool) {
 	if g == nil || g.Precision == nil {
 		return "", false
 	}
@@ -2923,7 +2923,7 @@ func (g *GraphDefinition) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new g.Precision and returns the pointer to it.
-func (g *GraphDefinition) SetPrecision(v PrecisionT) {
+func (g *GraphDefinition) SetPrecision(v StrIntD) {
 	g.Precision = &v
 }
 
@@ -5873,7 +5873,7 @@ func (o *Options) SetTimeoutH(v int) {
 }
 
 // GetCount returns the Count field if non-nil, zero value otherwise.
-func (p *Params) GetCount() string {
+func (p *Params) GetCount() StrIntD {
 	if p == nil || p.Count == nil {
 		return ""
 	}
@@ -5882,7 +5882,7 @@ func (p *Params) GetCount() string {
 
 // GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (p *Params) GetCountOk() (string, bool) {
+func (p *Params) GetCountOk() (StrIntD, bool) {
 	if p == nil || p.Count == nil {
 		return "", false
 	}
@@ -5899,7 +5899,7 @@ func (p *Params) HasCount() bool {
 }
 
 // SetCount allocates a new p.Count and returns the pointer to it.
-func (p *Params) SetCount(v string) {
+func (p *Params) SetCount(v StrIntD) {
 	p.Count = &v
 }
 
@@ -5935,7 +5935,7 @@ func (p *Params) SetSort(v string) {
 }
 
 // GetStart returns the Start field if non-nil, zero value otherwise.
-func (p *Params) GetStart() string {
+func (p *Params) GetStart() StrIntD {
 	if p == nil || p.Start == nil {
 		return ""
 	}
@@ -5944,7 +5944,7 @@ func (p *Params) GetStart() string {
 
 // GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (p *Params) GetStartOk() (string, bool) {
+func (p *Params) GetStartOk() (StrIntD, bool) {
 	if p == nil || p.Start == nil {
 		return "", false
 	}
@@ -5961,7 +5961,7 @@ func (p *Params) HasStart() bool {
 }
 
 // SetStart allocates a new p.Start and returns the pointer to it.
-func (p *Params) SetStart(v string) {
+func (p *Params) SetStart(v StrIntD) {
 	p.Start = &v
 }
 
@@ -6400,18 +6400,18 @@ func (r *Rule) SetTimeframe(v string) {
 }
 
 // GetHeight returns the Height field if non-nil, zero value otherwise.
-func (s *Screenboard) GetHeight() int {
+func (s *Screenboard) GetHeight() StrIntD {
 	if s == nil || s.Height == nil {
-		return 0
+		return ""
 	}
 	return *s.Height
 }
 
 // GetHeightOk returns a tuple with the Height field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *Screenboard) GetHeightOk() (int, bool) {
+func (s *Screenboard) GetHeightOk() (StrIntD, bool) {
 	if s == nil || s.Height == nil {
-		return 0, false
+		return "", false
 	}
 	return *s.Height, true
 }
@@ -6426,7 +6426,7 @@ func (s *Screenboard) HasHeight() bool {
 }
 
 // SetHeight allocates a new s.Height and returns the pointer to it.
-func (s *Screenboard) SetHeight(v int) {
+func (s *Screenboard) SetHeight(v StrIntD) {
 	s.Height = &v
 }
 
@@ -6555,18 +6555,18 @@ func (s *Screenboard) SetTitle(v string) {
 }
 
 // GetWidth returns the Width field if non-nil, zero value otherwise.
-func (s *Screenboard) GetWidth() int {
+func (s *Screenboard) GetWidth() StrIntD {
 	if s == nil || s.Width == nil {
-		return 0
+		return ""
 	}
 	return *s.Width
 }
 
 // GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *Screenboard) GetWidthOk() (int, bool) {
+func (s *Screenboard) GetWidthOk() (StrIntD, bool) {
 	if s == nil || s.Width == nil {
-		return 0, false
+		return "", false
 	}
 	return *s.Width, true
 }
@@ -6581,7 +6581,7 @@ func (s *Screenboard) HasWidth() bool {
 }
 
 // SetWidth allocates a new s.Width and returns the pointer to it.
-func (s *Screenboard) SetWidth(v int) {
+func (s *Screenboard) SetWidth(v StrIntD) {
 	s.Width = &v
 }
 
@@ -7826,7 +7826,7 @@ func (t *TileDef) SetNoMetricHosts(v bool) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (t *TileDef) GetPrecision() PrecisionT {
+func (t *TileDef) GetPrecision() StrIntD {
 	if t == nil || t.Precision == nil {
 		return ""
 	}
@@ -7835,7 +7835,7 @@ func (t *TileDef) GetPrecision() PrecisionT {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDef) GetPrecisionOk() (PrecisionT, bool) {
+func (t *TileDef) GetPrecisionOk() (StrIntD, bool) {
 	if t == nil || t.Precision == nil {
 		return "", false
 	}
@@ -7852,7 +7852,7 @@ func (t *TileDef) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new t.Precision and returns the pointer to it.
-func (t *TileDef) SetPrecision(v PrecisionT) {
+func (t *TileDef) SetPrecision(v StrIntD) {
 	t.Precision = &v
 }
 
@@ -7981,7 +7981,7 @@ func (t *TileDefEvent) SetQuery(v string) {
 }
 
 // GetLabel returns the Label field if non-nil, zero value otherwise.
-func (t *TileDefMarker) GetLabel() string {
+func (t *TileDefMarker) GetLabel() StrBoolD {
 	if t == nil || t.Label == nil {
 		return ""
 	}
@@ -7990,7 +7990,7 @@ func (t *TileDefMarker) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDefMarker) GetLabelOk() (string, bool) {
+func (t *TileDefMarker) GetLabelOk() (StrBoolD, bool) {
 	if t == nil || t.Label == nil {
 		return "", false
 	}
@@ -8007,7 +8007,7 @@ func (t *TileDefMarker) HasLabel() bool {
 }
 
 // SetLabel allocates a new t.Label and returns the pointer to it.
-func (t *TileDefMarker) SetLabel(v string) {
+func (t *TileDefMarker) SetLabel(v StrBoolD) {
 	t.Label = &v
 }
 
@@ -8694,7 +8694,7 @@ func (t *TileDefStyle) SetPalette(v string) {
 }
 
 // GetPaletteFlip returns the PaletteFlip field if non-nil, zero value otherwise.
-func (t *TileDefStyle) GetPaletteFlip() string {
+func (t *TileDefStyle) GetPaletteFlip() StrBoolD {
 	if t == nil || t.PaletteFlip == nil {
 		return ""
 	}
@@ -8703,7 +8703,7 @@ func (t *TileDefStyle) GetPaletteFlip() string {
 
 // GetPaletteFlipOk returns a tuple with the PaletteFlip field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDefStyle) GetPaletteFlipOk() (string, bool) {
+func (t *TileDefStyle) GetPaletteFlipOk() (StrBoolD, bool) {
 	if t == nil || t.PaletteFlip == nil {
 		return "", false
 	}
@@ -8720,7 +8720,7 @@ func (t *TileDefStyle) HasPaletteFlip() bool {
 }
 
 // SetPaletteFlip allocates a new t.PaletteFlip and returns the pointer to it.
-func (t *TileDefStyle) SetPaletteFlip(v string) {
+func (t *TileDefStyle) SetPaletteFlip(v StrBoolD) {
 	t.PaletteFlip = &v
 }
 
@@ -9097,18 +9097,18 @@ func (u *User) SetVerified(v bool) {
 }
 
 // GetAlertID returns the AlertID field if non-nil, zero value otherwise.
-func (w *Widget) GetAlertID() int {
+func (w *Widget) GetAlertID() StrIntD {
 	if w == nil || w.AlertID == nil {
-		return 0
+		return ""
 	}
 	return *w.AlertID
 }
 
 // GetAlertIDOk returns a tuple with the AlertID field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetAlertIDOk() (int, bool) {
+func (w *Widget) GetAlertIDOk() (StrIntD, bool) {
 	if w == nil || w.AlertID == nil {
-		return 0, false
+		return "", false
 	}
 	return *w.AlertID, true
 }
@@ -9123,7 +9123,7 @@ func (w *Widget) HasAlertID() bool {
 }
 
 // SetAlertID allocates a new w.AlertID and returns the pointer to it.
-func (w *Widget) SetAlertID(v int) {
+func (w *Widget) SetAlertID(v StrIntD) {
 	w.AlertID = &v
 }
 
@@ -9407,7 +9407,7 @@ func (w *Widget) SetEventSize(v string) {
 }
 
 // GetFontSize returns the FontSize field if non-nil, zero value otherwise.
-func (w *Widget) GetFontSize() string {
+func (w *Widget) GetFontSize() StrIntD {
 	if w == nil || w.FontSize == nil {
 		return ""
 	}
@@ -9416,7 +9416,7 @@ func (w *Widget) GetFontSize() string {
 
 // GetFontSizeOk returns a tuple with the FontSize field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetFontSizeOk() (string, bool) {
+func (w *Widget) GetFontSizeOk() (StrIntD, bool) {
 	if w == nil || w.FontSize == nil {
 		return "", false
 	}
@@ -9433,7 +9433,7 @@ func (w *Widget) HasFontSize() bool {
 }
 
 // SetFontSize allocates a new w.FontSize and returns the pointer to it.
-func (w *Widget) SetFontSize(v string) {
+func (w *Widget) SetFontSize(v StrIntD) {
 	w.FontSize = &v
 }
 
@@ -9779,7 +9779,7 @@ func (w *Widget) SetManageStatusTitleAlign(v string) {
 }
 
 // GetManageStatusTitleSize returns the ManageStatusTitleSize field if non-nil, zero value otherwise.
-func (w *Widget) GetManageStatusTitleSize() string {
+func (w *Widget) GetManageStatusTitleSize() StrIntD {
 	if w == nil || w.ManageStatusTitleSize == nil {
 		return ""
 	}
@@ -9788,7 +9788,7 @@ func (w *Widget) GetManageStatusTitleSize() string {
 
 // GetManageStatusTitleSizeOk returns a tuple with the ManageStatusTitleSize field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetManageStatusTitleSizeOk() (string, bool) {
+func (w *Widget) GetManageStatusTitleSizeOk() (StrIntD, bool) {
 	if w == nil || w.ManageStatusTitleSize == nil {
 		return "", false
 	}
@@ -9805,7 +9805,7 @@ func (w *Widget) HasManageStatusTitleSize() bool {
 }
 
 // SetManageStatusTitleSize allocates a new w.ManageStatusTitleSize and returns the pointer to it.
-func (w *Widget) SetManageStatusTitleSize(v string) {
+func (w *Widget) SetManageStatusTitleSize(v StrIntD) {
 	w.ManageStatusTitleSize = &v
 }
 
@@ -10120,7 +10120,7 @@ func (w *Widget) SetParams(v Params) {
 }
 
 // GetPrecision returns the Precision field if non-nil, zero value otherwise.
-func (w *Widget) GetPrecision() PrecisionT {
+func (w *Widget) GetPrecision() StrIntD {
 	if w == nil || w.Precision == nil {
 		return ""
 	}
@@ -10129,7 +10129,7 @@ func (w *Widget) GetPrecision() PrecisionT {
 
 // GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetPrecisionOk() (PrecisionT, bool) {
+func (w *Widget) GetPrecisionOk() (StrIntD, bool) {
 	if w == nil || w.Precision == nil {
 		return "", false
 	}
@@ -10146,7 +10146,7 @@ func (w *Widget) HasPrecision() bool {
 }
 
 // SetPrecision allocates a new w.Precision and returns the pointer to it.
-func (w *Widget) SetPrecision(v PrecisionT) {
+func (w *Widget) SetPrecision(v StrIntD) {
 	w.Precision = &v
 }
 
@@ -10833,7 +10833,7 @@ func (w *Widget) SetWidth(v int) {
 }
 
 // GetX returns the X field if non-nil, zero value otherwise.
-func (w *Widget) GetX() int {
+func (w *Widget) GetX() float32 {
 	if w == nil || w.X == nil {
 		return 0
 	}
@@ -10842,7 +10842,7 @@ func (w *Widget) GetX() int {
 
 // GetXOk returns a tuple with the X field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetXOk() (int, bool) {
+func (w *Widget) GetXOk() (float32, bool) {
 	if w == nil || w.X == nil {
 		return 0, false
 	}
@@ -10859,12 +10859,12 @@ func (w *Widget) HasX() bool {
 }
 
 // SetX allocates a new w.X and returns the pointer to it.
-func (w *Widget) SetX(v int) {
+func (w *Widget) SetX(v float32) {
 	w.X = &v
 }
 
 // GetY returns the Y field if non-nil, zero value otherwise.
-func (w *Widget) GetY() int {
+func (w *Widget) GetY() float32 {
 	if w == nil || w.Y == nil {
 		return 0
 	}
@@ -10873,7 +10873,7 @@ func (w *Widget) GetY() int {
 
 // GetYOk returns a tuple with the Y field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (w *Widget) GetYOk() (int, bool) {
+func (w *Widget) GetYOk() (float32, bool) {
 	if w == nil || w.Y == nil {
 		return 0, false
 	}
@@ -10890,7 +10890,7 @@ func (w *Widget) HasY() bool {
 }
 
 // SetY allocates a new w.Y and returns the pointer to it.
-func (w *Widget) SetY(v int) {
+func (w *Widget) SetY(v float32) {
 	w.Y = &v
 }
 

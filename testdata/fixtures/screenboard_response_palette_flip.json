@@ -1,0 +1,13 @@
+{
+	"widgets": [
+		{
+			"tile_def": {
+				"style": {
+					"paletteFlip": false
+				},
+				"viz": "hostmap"
+			},
+			"type": "hostmap"
+		}
+	]
+}

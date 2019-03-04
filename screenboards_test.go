@@ -4,92 +4,270 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"testing"
+	"time"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 func TestGetScreenboard(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/screenboard_response.json")
-		if err != nil {
-			t.Fatal(err)
-		}
-		w.Write(response)
-	}))
-	defer ts.Close()
+	tests := []struct {
+		file string
+		want *Screenboard
+	}{
+		{
+			file: "screenboard_response",
+			want: &Screenboard{
+				Id:       Int(6334),
+				Title:    String("dogapi test"),
+				Height:   StrInt("768"),
+				Width:    StrInt("1024"),
+				ReadOnly: Bool(false),
+				Widgets: []Widget{
+					{
+						Type:   String("image"),
+						Height: Int(20),
+						Width:  Int(32),
+						X:      Float32(32),
+						Y:      Float32(7),
+						URL:    String("http://path/to/image.jpg"),
+					},
+					{
+						Type: String("timeseries"),
+						TileDef: &TileDef{
+							Precision: StrInt("42"),
+						},
+					},
+					{
+						Type: String("timeseries"),
+						TileDef: &TileDef{
+							Precision: StrInt("*"),
+						},
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_fullscreen",
+			want: &Screenboard{
+				Id:       Int(6335),
+				Title:    String("dogapi fullscreen test"),
+				Height:   StrInt("100%"),
+				Width:    StrInt("100%"),
+				ReadOnly: Bool(false),
+			},
+		},
+		{
+			file: "screenboard_response_manage_status",
+			want: &Screenboard{
+				Id:    Int(6336),
+				Title: String("dogapi manage_status test"),
+				Widgets: []Widget{
+					{
+						Type: String("manage_status"),
+						Params: &Params{
+							Sort:  String("status,asc"),
+							Text:  String(`scope:"priority:important" muted:false`),
+							Count: StrInt("50"),
+							Start: StrInt("0"),
+						},
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_conditional_format",
+			want: &Screenboard{
+				Id:    Int(334488),
+				Title: String("OrderCapture ScreenBoard"),
+				Widgets: []Widget{
+					{
+						Type: String("query_value"),
+						TileDef: &TileDef{
+							Viz: String("query_value"),
+							Requests: []TileDefRequest{
+								{
+									ConditionalFormats: []ConditionalFormat{
+										// string values in JSON
+										{
+											Palette:    String("white_on_red"),
+											Comparator: String(">"),
+											Value:      StrInt("1000"),
+										},
+										{
+											Palette:    String("white_on_yellow"),
+											Comparator: String(">="),
+											Value:      StrInt("200"),
+										},
+										{
+											Palette:    String("white_on_green"),
+											Comparator: String("<"),
+											Value:      StrInt("200"),
+										},
+									},
+								},
+							},
+						},
+					},
+					{
+						Type: String("query_value"),
+						TileDef: &TileDef{
+							Viz: String("query_value"),
+							Requests: []TileDefRequest{
+								{
+									ConditionalFormats: []ConditionalFormat{
+										// null values in JSON
+										{
+											Palette:    String("white_on_red"),
+											Comparator: String(">"),
+											Value:      nil,
+										},
+										{
+											Palette:    String("white_on_yellow"),
+											Comparator: String(">="),
+											Value:      nil,
+										},
+										{
+											Palette:    String("white_on_green"),
+											Comparator: String("<"),
+											Value:      nil,
+										},
+									},
+								},
+							},
+						},
+					},
+					{
+						Type: String("toplist"),
+						TileDef: &TileDef{
+							Viz: String("toplist"),
+							Requests: []TileDefRequest{
+								{
+									ConditionalFormats: []ConditionalFormat{
+										// number value in JSON
+										{
+											Palette:    String("white_on_red"),
+											Comparator: String(">"),
+											Value:      StrInt("1"),
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_widget_float_position",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("free_text"),
+						Text: String("processed"),
+						X:    Float32(1),
+						Y:    Float32(70.83333333333334),
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_manage_status_titlesize",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("manage_status"),
 
-	datadogClient := Client{
-		baseUrl:    ts.URL,
-		HttpClient: http.DefaultClient,
+						ManageStatusTitleSize: StrInt("16"),
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_marker_label",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("timeseries"),
+						TileDef: &TileDef{
+							Markers: []TileDefMarker{
+								{
+									Label: StrBool("true"),
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_palette_flip",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("hostmap"),
+						TileDef: &TileDef{
+							Viz: String("hostmap"),
+							Style: &TileDefStyle{
+								PaletteFlip: StrBool("false"),
+							},
+						},
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_alert_id",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type:    String("alert_value"),
+						AlertID: StrInt("2156443"),
+					},
+				},
+			},
+		},
+		{
+			file: "screenboard_response_fontsize",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type:     String("free_text"),
+						FontSize: StrInt("24"),
+					},
+				},
+			},
+		},
 	}
+	for _, tt := range tests {
+		t.Run(tt.file, func(t *testing.T) {
+			ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				response, err := ioutil.ReadFile("./testdata/fixtures/" + tt.file + ".json")
+				if err != nil {
+					// mustn't call t.Fatal from a different Goroutine
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+				}
+				w.Write(response)
+			}))
+			defer ts.Close()
 
-	screenboard, err := datadogClient.GetScreenboard(6334)
-	if err != nil {
-		t.Fatal(err)
-	}
+			datadogClient := Client{
+				baseUrl:      ts.URL,
+				HttpClient:   ts.Client(),
+				RetryTimeout: 5 * time.Second,
+			}
 
-	expectedID := 6334
-	if id := screenboard.GetId(); id != expectedID {
-		t.Fatalf("expect ID %d. Got %d", expectedID, id)
-	}
+			got, err := datadogClient.GetScreenboard(6334)
+			if err != nil {
+				t.Fatal(err)
+			}
 
-	expectedTitle := "dogapi test"
-	if title := screenboard.GetTitle(); title != expectedTitle {
-		t.Fatalf("expect title %s. Got %s", expectedTitle, title)
-	}
-
-	expectedHeight := 768
-	if height := screenboard.GetHeight(); height != expectedHeight {
-		t.Fatalf("expect height %d. Got %d", expectedHeight, height)
-	}
-
-	expectedWidth := 1024
-	if width := screenboard.GetWidth(); width != expectedWidth {
-		t.Fatalf("expect width %d. Got %d", expectedWidth, width)
-	}
-
-	expectedReadOnly := false
-	readOnly, ok := screenboard.GetReadOnlyOk()
-	if !ok {
-		t.Fatalf("expect to have a read_only field")
-	}
-
-	if readOnly != expectedReadOnly {
-		t.Fatalf("expect read_only %v. Got %v", expectedReadOnly, readOnly)
-	}
-
-	for _, widget := range screenboard.Widgets {
-		validateWidget(t, widget)
-	}
-}
-
-func validateWidget(t *testing.T, wd Widget) {
-	expectedType := "image"
-	if widgetType := wd.GetType(); widgetType != expectedType {
-		t.Fatalf("expect type %s. Got %s", expectedType, widgetType)
-	}
-
-	expectedHeight := 20
-	if height := wd.GetHeight(); height != expectedHeight {
-		t.Fatalf("expect height %d. Got %d", expectedHeight, height)
-	}
-
-	expectedWidth := 32
-	if width := wd.GetWidth(); width != expectedWidth {
-		t.Fatalf("expect width %d. Got %d", expectedWidth, width)
-	}
-
-	expectedX := 32
-	if x := wd.GetX(); x != expectedX {
-		t.Fatalf("expect x %d. Got %d", expectedX, x)
-	}
-
-	expectedY := 7
-	if y := wd.GetY(); y != expectedY {
-		t.Fatalf("expect y %d. Got %d", expectedY, y)
-	}
-
-	expectedURL := "http://path/to/image.jpg"
-	if url := wd.GetURL(); url != expectedURL {
-		t.Fatalf("expect url %s. Got %s", expectedURL, url)
+			if !reflect.DeepEqual(got, tt.want) {
+				// Go formatting doesn't handle pointers gracefully, so we're spewing
+				t.Errorf("got:\n%s\nwant:\n%s", spew.Sdump(got), spew.Sdump(tt.want))
+			}
+		})
 	}
 }

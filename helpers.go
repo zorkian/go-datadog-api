@@ -28,6 +28,10 @@ func GetBool(v *bool) (bool, bool) {
 // to store v and returns a pointer to it.
 func Int(v int) *int { return &v }
 
+// Float32 is a helper routine that allocates a new float32 value
+// to store v and returns a pointer to it.
+func Float32(v float32) *float32 { return &v }
+
 // GetInt is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
 func GetIntOk(v *int) (int, bool) {
@@ -66,16 +70,30 @@ func GetJsonNumberOk(v *json.Number) (json.Number, bool) {
 	return "", false
 }
 
-// Precision is a helper routine that allocates a new precision value
+// StrInt is a helper routine that allocates a new StrInt value
 // to store v and returns a pointer to it.
-func Precision(v PrecisionT) *PrecisionT { return &v }
+func StrInt(v StrIntD) *StrIntD { return &v }
 
-// GetPrecision is a helper routine that returns a boolean representing
+// GetStrInt is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
-func GetPrecision(v *PrecisionT) (PrecisionT, bool) {
+func GetStrInt(v *StrIntD) (StrIntD, bool) {
 	if v != nil {
 		return *v, true
 	}
 
-	return PrecisionT(""), false
+	return StrIntD(""), false
+}
+
+// StrBool is a helper routine that allocates a new StrBool value
+// to store v and returns a pointer to it.
+func StrBool(v StrBoolD) *StrBoolD { return &v }
+
+// GetStrBool is a helper routine that returns a boolean representing
+// if a value was set, and if so, dereferences the pointer to it.
+func GetStrBool(v *StrBoolD) (StrBoolD, bool) {
+	if v != nil {
+		return *v, true
+	}
+
+	return StrBoolD(""), false
 }

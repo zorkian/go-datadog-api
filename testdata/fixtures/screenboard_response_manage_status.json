@@ -1,0 +1,15 @@
+{
+	"board_title": "dogapi manage_status test",
+	"id": 6336,
+	"widgets": [
+		{
+			"params": {
+				"sort": "status,asc",
+				"text": "scope:\"priority:important\" muted:false",
+				"count": 50,
+				"start": 0
+			},
+			"type": "manage_status"
+		}
+	]
+}
