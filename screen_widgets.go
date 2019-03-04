@@ -26,9 +26,9 @@ type TileDefEvent struct {
 }
 
 type TileDefMarker struct {
-	Label *string `json:"label,omitempty"`
-	Type  *string `json:"type,omitempty"`
-	Value *string `json:"value,omitempty"`
+	Label *StrBoolD `json:"label,omitempty"`
+	Type  *string   `json:"type,omitempty"`
+	Value *string   `json:"value,omitempty"`
 }
 
 type TileDefRequest struct {

@@ -184,6 +184,23 @@ func TestGetScreenboard(t *testing.T) {
 				},
 			},
 		},
+		{
+			file: "screenboard_response_marker_label",
+			want: &Screenboard{
+				Widgets: []Widget{
+					{
+						Type: String("timeseries"),
+						TileDef: &TileDef{
+							Markers: []TileDefMarker{
+								{
+									Label: StrBool("true"),
+								},
+							},
+						},
+					},
+				},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.file, func(t *testing.T) {

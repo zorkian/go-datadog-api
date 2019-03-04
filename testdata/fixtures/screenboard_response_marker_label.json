@@ -1,0 +1,14 @@
+{
+	"widgets": [
+		{
+			"tile_def": {
+				"markers": [
+					{
+						"label": true
+					}
+				]
+			},
+			"type": "timeseries"
+		}
+	]
+}

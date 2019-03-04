@@ -83,3 +83,17 @@ func GetStrInt(v *StrIntD) (StrIntD, bool) {
 
 	return StrIntD(""), false
 }
+
+// StrBool is a helper routine that allocates a new StrBool value
+// to store v and returns a pointer to it.
+func StrBool(v StrBoolD) *StrBoolD { return &v }
+
+// GetStrBool is a helper routine that returns a boolean representing
+// if a value was set, and if so, dereferences the pointer to it.
+func GetStrBool(v *StrBoolD) (StrBoolD, bool) {
+	if v != nil {
+		return *v, true
+	}
+
+	return StrBoolD(""), false
+}

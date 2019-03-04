@@ -47,7 +47,7 @@ func TestWidgets(t *testing.T) {
 					},
 				}},
 				Markers: []datadog.TileDefMarker{{
-					Label: datadog.String("test marker"),
+					Label: datadog.StrBool("test marker"),
 					Type:  datadog.String("error dashed"),
 					Value: datadog.String("y < 6"),
 				}},

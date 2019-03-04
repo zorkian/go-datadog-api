@@ -7981,7 +7981,7 @@ func (t *TileDefEvent) SetQuery(v string) {
 }
 
 // GetLabel returns the Label field if non-nil, zero value otherwise.
-func (t *TileDefMarker) GetLabel() string {
+func (t *TileDefMarker) GetLabel() StrBoolD {
 	if t == nil || t.Label == nil {
 		return ""
 	}
@@ -7990,7 +7990,7 @@ func (t *TileDefMarker) GetLabel() string {
 
 // GetLabelOk returns a tuple with the Label field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDefMarker) GetLabelOk() (string, bool) {
+func (t *TileDefMarker) GetLabelOk() (StrBoolD, bool) {
 	if t == nil || t.Label == nil {
 		return "", false
 	}
@@ -8007,7 +8007,7 @@ func (t *TileDefMarker) HasLabel() bool {
 }
 
 // SetLabel allocates a new t.Label and returns the pointer to it.
-func (t *TileDefMarker) SetLabel(v string) {
+func (t *TileDefMarker) SetLabel(v StrBoolD) {
 	t.Label = &v
 }
 
