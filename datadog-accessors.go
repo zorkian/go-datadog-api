@@ -1346,6 +1346,37 @@ func (d *Dashboard) SetId(v int) {
 	d.Id = &v
 }
 
+// GetNewId returns the NewId field if non-nil, zero value otherwise.
+func (d *Dashboard) GetNewId() string {
+	if d == nil || d.NewId == nil {
+		return ""
+	}
+	return *d.NewId
+}
+
+// GetNewIdOk returns a tuple with the NewId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Dashboard) GetNewIdOk() (string, bool) {
+	if d == nil || d.NewId == nil {
+		return "", false
+	}
+	return *d.NewId, true
+}
+
+// HasNewId returns a boolean if a field has been set.
+func (d *Dashboard) HasNewId() bool {
+	if d != nil && d.NewId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewId allocates a new d.NewId and returns the pointer to it.
+func (d *Dashboard) SetNewId(v string) {
+	d.NewId = &v
+}
+
 // GetReadOnly returns the ReadOnly field if non-nil, zero value otherwise.
 func (d *Dashboard) GetReadOnly() bool {
 	if d == nil || d.ReadOnly == nil {
@@ -6459,6 +6490,37 @@ func (s *Screenboard) HasId() bool {
 // SetId allocates a new s.Id and returns the pointer to it.
 func (s *Screenboard) SetId(v int) {
 	s.Id = &v
+}
+
+// GetNewId returns the NewId field if non-nil, zero value otherwise.
+func (s *Screenboard) GetNewId() string {
+	if s == nil || s.NewId == nil {
+		return ""
+	}
+	return *s.NewId
+}
+
+// GetNewIdOk returns a tuple with the NewId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Screenboard) GetNewIdOk() (string, bool) {
+	if s == nil || s.NewId == nil {
+		return "", false
+	}
+	return *s.NewId, true
+}
+
+// HasNewId returns a boolean if a field has been set.
+func (s *Screenboard) HasNewId() bool {
+	if s != nil && s.NewId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewId allocates a new s.NewId and returns the pointer to it.
+func (s *Screenboard) SetNewId(v string) {
+	s.NewId = &v
 }
 
 // GetReadOnly returns the ReadOnly field if non-nil, zero value otherwise.
