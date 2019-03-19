@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/zorkian/go-datadog-api"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestScreenboardCreateAndDelete(t *testing.T) {
@@ -88,6 +89,57 @@ func TestScreenboardGet(t *testing.T) {
 	if num+1 != len(boards) {
 		t.Fatalf("Number of screenboards didn't match expected: %d != %d", len(boards), num+1)
 	}
+}
+
+func TestScreenboardGetWithNewId(t *testing.T) {
+	expected := getTestScreenboard()
+	// create the screenboard and compare it
+	actual, err := client.CreateScreenboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a screenboard failed when it shouldn't. (%s)", err)
+	}
+
+	defer cleanUpScreenboard(t, *actual.Id)
+
+	assertScreenboardEquals(t, actual, expected)
+
+	// try to fetch it freshly and compare it again
+	actual, err = client.GetScreenboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a screenboard failed when it shouldn't. (%s)", err)
+	}
+
+	assertScreenboardEquals(t, actual, expected)
+
+	// try to fetch it freshly using the new id format and compare it again
+	actual, err = client.GetScreenboard(*actual.NewId)
+	if err != nil {
+		t.Fatalf("Retrieving a screenboard failed when it shouldn't. (%s)", err)
+	}
+	assertScreenboardEquals(t, actual, expected)
+
+	// try to fetch it freshly using a string, but with a wrong value
+	actual, err = client.GetScreenboard("random_string")
+	if assert.NotNil(t, err) {
+		// it should not fail because of the id format
+		assert.NotContains(t, err.Error(), "unsupported id type")
+		assert.Contains(t, err.Error(), "404")
+	}
+
+	// try to fetch it freshly using a boolean
+	actual, err = client.GetScreenboard(true)
+	if assert.NotNil(t, err) {
+		// it should fail because of the id format
+		assert.Contains(t, err.Error(), "unsupported id type")
+	}
+
+	// try to fetch it freshly using a float64
+	actual, err = client.GetScreenboard(5.5)
+	if assert.NotNil(t, err) {
+		// it should fail because of the id format
+		assert.Contains(t, err.Error(), "unsupported id type")
+	}
+
 }
 
 func getTestScreenboard() *datadog.Screenboard {

@@ -106,3 +106,25 @@ func getTestMonitor() *datadog.Monitor {
 		Tags:    make([]string, 0),
 	}
 }
+
+func TestHelperGetStringId(t *testing.T) {
+	// Assert GetStringId returned the id without a change if it is a string
+	id, err := datadog.GetStringId("abc-xyz-123")
+	assert.Equal(t, err, nil)
+	assert.Equal(t, id, "abc-xyz-123")
+
+	// Assert GetStringId returned the id as a string if it is an integer
+	id, err = datadog.GetStringId(123)
+	assert.Equal(t, err, nil)
+	assert.Equal(t, id, "123")
+
+	// Assert GetStringId returned an error if the id type is boolean
+	_, err = datadog.GetStringId(true)
+	assert.NotNil(t, err)
+	assert.Contains(t, err.Error(), "unsupported id type")
+
+	// Assert GetStringId returned an error if the id type is float64
+	_, err = datadog.GetStringId(5.2)
+	assert.NotNil(t, err)
+	assert.Contains(t, err.Error(), "unsupported id type")
+}
