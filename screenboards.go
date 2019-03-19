@@ -16,7 +16,7 @@ import (
 // struct when we load a screenboard in detail.
 type Screenboard struct {
 	Id                *int               `json:"id,omitempty"`
-	NewId       	  *string            `json:"new_id,omitempty"`
+	NewId             *string            `json:"new_id,omitempty"`
 	Title             *string            `json:"board_title,omitempty"`
 	Height            *int               `json:"height,omitempty"`
 	Width             *int               `json:"width,omitempty"`

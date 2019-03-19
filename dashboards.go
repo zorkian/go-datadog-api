@@ -154,7 +154,7 @@ type TemplateVariable struct {
 // struct when we load a dashboard in detail.
 type Dashboard struct {
 	Id                *int               `json:"id,omitempty"`
-	NewId       	  *string            `json:"new_id,omitempty"`
+	NewId             *string            `json:"new_id,omitempty"`
 	Description       *string            `json:"description,omitempty"`
 	Title             *string            `json:"title,omitempty"`
 	Graphs            []Graph            `json:"graphs,omitempty"`

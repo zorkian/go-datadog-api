@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/zorkian/go-datadog-api"
 	"github.com/stretchr/testify/assert"
+	"github.com/zorkian/go-datadog-api"
 )
 
 func TestDashboardCreateAndDelete(t *testing.T) {

@@ -10,8 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"strconv"
 	"errors"
+	"strconv"
 )
 
 // Bool is a helper routine that allocates a new bool value
@@ -90,11 +90,11 @@ func GetPrecision(v *PrecisionT) (PrecisionT, bool) {
 // It return an error if the type is neither string or an integer
 func GetStringId(id interface{}) (string, error) {
 	switch v := id.(type) {
-		case int:
-			return strconv.Itoa(v), nil
-		case string:
-			return v, nil
-		default:
-			return "", errors.New("unsupported id type")
-		}
+	case int:
+		return strconv.Itoa(v), nil
+	case string:
+		return v, nil
+	default:
+		return "", errors.New("unsupported id type")
+	}
 }
