@@ -131,7 +131,7 @@ func TestDashboardGetWithNewId(t *testing.T) {
 	}
 	assertDashboardEquals(t, actualWithNewId, expected)
 
-	// the ids are euqal whether fetching using the old or the new id
+	// the ids are equal whether fetching using the old or the new id
 	assert.Equal(t, *actualWithNewId.Id, *actual.Id)
 
 	// try to fetch it freshly using a string, but with a wrong value
