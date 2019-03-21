@@ -125,11 +125,14 @@ func TestDashboardGetWithNewId(t *testing.T) {
 	assertDashboardEquals(t, actual, expected)
 
 	// try to fetch it freshly using the new id format and compare it again
-	actual, err = client.GetDashboard(*actual.NewId)
+	actualWithNewId, err := client.GetDashboard(*actual.NewId)
 	if err != nil {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
-	assertDashboardEquals(t, actual, expected)
+	assertDashboardEquals(t, actualWithNewId, expected)
+
+	// the ids are euqal whether fetching using the old or the new id
+	assert.Equal(t, *actualWithNewId.Id, *actual.Id)
 
 	// try to fetch it freshly using a string, but with a wrong value
 	actual, err = client.GetDashboard("random_string")

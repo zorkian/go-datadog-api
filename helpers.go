@@ -84,7 +84,7 @@ func GetPrecision(v *PrecisionT) (PrecisionT, bool) {
 	return PrecisionT(""), false
 }
 
-// GetStringId is a helper routine that allows screenboards and timebaords to be retrieved
+// GetStringId is a helper routine that allows screenboards and timeboards to be retrieved
 // by either the legacy numerical format or the new string format.
 // It returns the id as is if it is a string, converts it to a string if it is an integer.
 // It return an error if the type is neither string or an integer
