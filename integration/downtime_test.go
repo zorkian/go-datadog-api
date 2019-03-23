@@ -98,13 +98,14 @@ func getTestDowntime() *datadog.Downtime {
 	}
 
 	return &datadog.Downtime{
-		Active:     datadog.Bool(false),
-		Disabled:   datadog.Bool(false),
-		Message:    datadog.String("Test downtime message"),
-		Scope:      []string{"env:downtime_test"},
-		Start:      datadog.Int(1577836800),
-		End:        datadog.Int(1577840400),
-		Recurrence: r,
+		Active:      datadog.Bool(false),
+		Disabled:    datadog.Bool(false),
+		Message:     datadog.String("Test downtime message"),
+		MonitorTags: []string{"some:tag"},
+		Scope:       []string{"env:downtime_test"},
+		Start:       datadog.Int(1577836800),
+		End:         datadog.Int(1577840400),
+		Recurrence:  r,
 	}
 }
 
