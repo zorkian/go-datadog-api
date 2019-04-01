@@ -60,7 +60,7 @@ func (client *Client) GetEvent(id int) (*Event, error) {
 	return out.Event, nil
 }
 
-// QueryEvents returns a slice of events from the query stream.
+// GetEvents returns a slice of events from the query stream.
 // unaggregated was added on as variadic to allow a non-breaking change.
 // if addtional parameters are needed this will need to be changed to a struct input or fully variadic.
 func (client *Client) GetEvents(start, end int,

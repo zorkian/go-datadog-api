@@ -158,6 +158,7 @@ func getTestMonitor() *datadog.Monitor {
 		NewHostDelay:      datadog.Int(600),
 		RequireFullWindow: datadog.Bool(true),
 		Silenced:          map[string]int{},
+		IncludeTags:       datadog.Bool(false),
 	}
 
 	return &datadog.Monitor{
@@ -181,6 +182,7 @@ func getTestMonitorWithTags() *datadog.Monitor {
 		NewHostDelay:      datadog.Int(600),
 		RequireFullWindow: datadog.Bool(true),
 		Silenced:          map[string]int{},
+		IncludeTags:       datadog.Bool(true),
 	}
 
 	return &datadog.Monitor{
@@ -202,6 +204,7 @@ func getTestMonitorWithoutNoDataTimeframe() *datadog.Monitor {
 		NewHostDelay:      datadog.Int(600),
 		RequireFullWindow: datadog.Bool(true),
 		Silenced:          map[string]int{},
+		IncludeTags:       datadog.Bool(false),
 	}
 
 	return &datadog.Monitor{
