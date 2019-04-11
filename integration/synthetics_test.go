@@ -130,6 +130,30 @@ func TestMonitorPauseResume(t *testing.T) {
 	assert.Equal(t, "live", *syntheticsTest.Status)
 }
 
+func TestSyntheticsGetAllLocations(t *testing.T) {
+	syntheticsLocations, err := client.GetSyntheticsLocations()
+	if err != nil {
+		t.Fatalf("Retrieving synthetics locations failed when it shouldn't: %s", err)
+	}
+	num := len(syntheticsLocations)
+
+	if num == 0 {
+		t.Fatalf("Number of synthetics locations should be more than 0")
+	}
+}
+
+func TestSyntheticsGetAllDevices(t *testing.T) {
+	syntheticsDevices, err := client.GetSyntheticsBrowserDevices()
+	if err != nil {
+		t.Fatalf("Retrieving synthetics browser devices failed when it shouldn't: %s", err)
+	}
+	num := len(syntheticsDevices)
+
+	if num == 0 {
+		t.Fatalf("Number of synthetics devices should be more than 0")
+	}
+}
+
 /*
 	Testing of global mute and unmuting has not been added for following reasons:
 	* Disabling and enabling of global monitoring does an @all mention which is noisy

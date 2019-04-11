@@ -25,14 +25,14 @@ type SyntheticsTest struct {
 }
 
 type SyntheticsConfig struct {
-	Request    *SyntheticsRequest    `json:"request"`
-	Assertions []SyntheticsAssertion `json:"assertions"`
+	Request    *SyntheticsRequest    `json:"request,omitempty"`
+	Assertions []SyntheticsAssertion `json:"assertions,omitempty"`
 	Variables  []interface{}         `json:"variables,omitempty"`
 }
 
 type SyntheticsRequest struct {
-	Url     *string           `json:"url"`
-	Method  *string           `json:"method"`
+	Url     *string           `json:"url,omitempty"`
+	Method  *string           `json:"method,omitempty"`
 	Timeout *int              `json:"timeout,omitempty"`
 	Headers map[string]string `json:"headers,omitempty"`
 	Body    *string           `json:"body,omitempty"`
@@ -48,10 +48,11 @@ type SyntheticsAssertion struct {
 }
 
 type SyntheticsOptions struct {
-	TickEvery          *int               `json:"tick_every"`
-	MinFailureDuration *int               `json:"min_failure_duration,omitempty"`
-	MinLocationFailed  *int               `json:"min_location_failed,omitempty"`
-	Devices            []SyntheticsDevice `json:"devices,omitempty"`
+	TickEvery          *int     `json:"tick_every,omitempty"`
+	FollowRedirects    *bool    `json:"follow_redirects,omitempty"`
+	MinFailureDuration *int     `json:"min_failure_duration,omitempty"`
+	MinLocationFailed  *int     `json:"min_location_failed,omitempty"`
+	DeviceIds          []string `json:"device_ids,omitempty"`
 }
 
 type SyntheticsUser struct {
@@ -62,26 +63,32 @@ type SyntheticsUser struct {
 }
 
 type SyntheticsDevice struct {
-	Id          *string `json:"id"`
-	Name        *string `json:"name"`
-	Height      *int    `json:"height"`
-	Width       *int    `json:"width"`
+	Id          *string `json:"id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Height      *int    `json:"height,omitempty"`
+	Width       *int    `json:"width,omitempty"`
 	IsLandscape *bool   `json:"isLandscape,omitempty"`
 	IsMobile    *bool   `json:"isMobile,omitempty"`
 	UserAgent   *string `json:"userAgent,omitempty"`
 }
 
-type SyntheticsTestsList struct {
-	SyntheticsTests []SyntheticsTest `json:"tests,omitempty"`
+type SyntheticsLocation struct {
+	Id          *int    `json:"id,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
+	Region      *string `json:"region,omitempty"`
+	IsLandscape *bool   `json:"is_active,omitempty"`
 }
 
 type ToggleStatus struct {
-	NewStatus *string `json:"new_status"`
+	NewStatus *string `json:"new_status,omitempty"`
 }
 
 // GetSyntheticsTests get all tests of type API
 func (client *Client) GetSyntheticsTests() ([]SyntheticsTest, error) {
-	var out SyntheticsTestsList
+	var out struct {
+		SyntheticsTests []SyntheticsTest `json:"tests,omitempty"`
+	}
 	if err := client.doJsonRequest("GET", "/v1/synthetics/tests", nil, &out); err != nil {
 		return nil, err
 	}
@@ -90,7 +97,9 @@ func (client *Client) GetSyntheticsTests() ([]SyntheticsTest, error) {
 
 // GetSyntheticsTestsByType get all tests by type (e.g. api or browser)
 func (client *Client) GetSyntheticsTestsByType(testType string) ([]SyntheticsTest, error) {
-	var out SyntheticsTestsList
+	var out struct {
+		SyntheticsTests []SyntheticsTest `json:"tests,omitempty"`
+	}
 	query, err := url.ParseQuery(fmt.Sprintf("type=%v", testType))
 	if err != nil {
 		return nil, err
@@ -162,4 +171,27 @@ func (client *Client) DeleteSyntheticsTests(publicIds []string) error {
 		return err
 	}
 	return nil
+}
+
+// GetSyntheticsLocations get all test locations
+func (client *Client) GetSyntheticsLocations() ([]SyntheticsLocation, error) {
+	var out struct {
+		Locations []SyntheticsLocation `json:"locations,omitempty"`
+	}
+	if err := client.doJsonRequest("GET", "/v1/synthetics/locations", nil, &out); err != nil {
+		return nil, err
+	}
+	return out.Locations, nil
+}
+
+// GetSyntheticsBrowserDevices get all test devices (for browser)
+func (client *Client) GetSyntheticsBrowserDevices() ([]SyntheticsDevice, error) {
+	var out struct {
+		Devices []SyntheticsDevice `json:"devices,omitempty"`
+	}
+
+	if err := client.doJsonRequest("GET", "/v1/synthetics/browser/devices", nil, &out); err != nil {
+		return nil, err
+	}
+	return out.Devices, nil
 }
