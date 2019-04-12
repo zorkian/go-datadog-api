@@ -8,7 +8,6 @@
   ],
   "status": "live",
   "message": "Danger! @example@example.com",
-  "id": 1234,
   "modified_by": {
     "email": "example@example.com",
     "handle": "example@example.com",
@@ -25,8 +24,6 @@
     "id": 123456,
     "name": "John Doe"
   },
-  "overall_state_modified": "2019-02-09T18:11:22.102922+00:00",
-  "overall_state": 0,
   "config": {
     "request": {
       "url": "https://example.com/",
@@ -53,6 +50,9 @@
     ]
   },
   "options": {
-    "tick_every": 60
+    "tick_every": 60,
+    "follow_redirects": true,
+    "min_failure_duration": 30,
+    "min_location_failed": 3
   }
 }
