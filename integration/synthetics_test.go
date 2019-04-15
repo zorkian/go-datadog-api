@@ -184,6 +184,7 @@ func getTestSynthetics() *datadog.SyntheticsTest {
 		Config:    c,
 		Options:   o,
 		Locations: []string{"aws:eu-central-1"},
+		Status:    datadog.String("live"),
 		Type:      datadog.String("api"),
 		Tags:      []string{"tag1:value1", "tag2:value2"},
 	}
