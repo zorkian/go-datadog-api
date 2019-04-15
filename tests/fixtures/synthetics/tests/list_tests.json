@@ -1,0 +1,141 @@
+{
+  "tests": [
+    {
+      "monitor_status": "OK",
+      "public_id": "xxx-xxx-xxx",
+      "tags": [
+        "important"
+      ],
+      "locations": [
+        "aws:ap-northeast-1"
+      ],
+      "notifications": [
+        {
+          "handle": "example@example.com",
+          "name": "John Doe",
+          "service": "Email",
+          "icon": "https://example.com/avatar/example"
+        }
+      ],
+      "status": "live",
+      "message": "Alert !!! @example@example.com",
+      "id": 1216,
+      "last_triggered_ts": 1549732460,
+      "name": "Check on example.com",
+      "monitor_id": 8097920,
+      "type": "api",
+      "created_at": "2019-01-25T02:25:40.241032+00:00",
+      "modified_at": "2019-02-09T18:11:12.801165+00:00",
+      "config": {
+        "request": {
+          "url": "https://example.com/",
+          "method": "GET",
+          "timeout": 30
+        },
+        "assertions": [
+          {
+            "operator": "is",
+            "property": "content-type",
+            "type": "header",
+            "target": "text/html; charset=UTF-8"
+          },
+          {
+            "operator": "lessThan",
+            "type": "responseTime",
+            "target": 4000
+          },
+          {
+            "operator": "is",
+            "type": "statusCode",
+            "target": 200
+          }
+        ]
+      },
+      "options": {
+        "tick_every": 60
+      }
+    },
+    {
+      "monitor_status": "OK",
+      "public_id": "yyy-yyy-yyy",
+      "tags": [],
+      "locations": [
+        "aws:ap-northeast-1"
+      ],
+      "notifications": [],
+      "status": "live",
+      "message": "",
+      "id": 1238,
+      "last_triggered_ts": 1549631477,
+      "name": "Check on www.example.com",
+      "monitor_id": 8104097,
+      "type": "api",
+      "created_at": "2019-01-25T14:09:43.158039+00:00",
+      "modified_at": "2019-01-25T14:16:48.429972+00:00",
+      "config": {
+        "request": {
+          "url": "https://www.example.com",
+          "method": "GET",
+          "timeout": 30
+        },
+        "assertions": [
+          {
+            "operator": "is",
+            "property": "content-type",
+            "type": "header",
+            "target": "text/html; charset=UTF-8"
+          },
+          {
+            "operator": "lessThan",
+            "type": "responseTime",
+            "target": 2000
+          },
+          {
+            "operator": "is",
+            "type": "statusCode",
+            "target": 200
+          }
+        ]
+      },
+      "options": {
+        "tick_every": 60
+      }
+    },
+    {
+      "monitor_status": "OK",
+      "public_id": "zzz-zzz-zzz",
+      "tags": [],
+      "locations": [
+        "aws:eu-central-1",
+        "aws:ap-northeast-1"
+      ],
+      "notifications": [],
+      "status": "live",
+      "message": "",
+      "id": 2150,
+      "last_triggered_ts": null,
+      "name": "Check on example.org",
+      "monitor_id": 8277216,
+      "type": "api",
+      "created_at": "2019-02-09T17:27:57.343339+00:00",
+      "modified_at": "2019-02-09T17:27:57.343339+00:00",
+      "config": {
+        "request": {
+          "url": "https://example.org",
+          "method": "GET",
+          "timeout": 30
+        },
+        "assertions": [
+          {
+            "operator": "is",
+            "type": "statusCode",
+            "target": 200
+          }
+        ]
+      },
+      "options": {
+        "tick_every": 60
+      }
+    }
+  ]
+}
