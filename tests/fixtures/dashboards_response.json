@@ -7,6 +7,7 @@
       "title": "Dashboard 1",
       "created": "2018-10-05T12:32:01.000000+00:00",
       "id": "123",
+      "new_id": "abc-xyz-111",
       "created_by": {
         "disabled": true,
         "handle": "john.doe@company.com",
@@ -27,6 +28,7 @@
       "title": "Dashboard 2",
       "created": "2018-01-01T00:00:00.000000+00:00",
       "id": "1234",
+      "new_id": "abc-xyz-222",
       "created_by": {
         "disabled": false,
         "handle": "jane.doe@company.com",
