@@ -1,6 +1,7 @@
 package integration
 
 import (
+	"encoding/json"
 	"testing"
 
 	"github.com/zorkian/go-datadog-api"
@@ -94,7 +95,7 @@ func getTestScreenboard() *datadog.Screenboard {
 	return &datadog.Screenboard{
 		Title:   datadog.String("___Test-Board___"),
 		Height:  datadog.Int(600),
-		Width:   datadog.Int(800),
+		Width:   datadog.JsonNumber(json.Number("800")),
 		Widgets: []datadog.Widget{},
 	}
 }
@@ -129,7 +130,7 @@ func assertScreenboardEquals(t *testing.T, actual, expected *datadog.Screenboard
 		t.Errorf("Screenboard title does not match: %s != %s", *actual.Title, *expected.Title)
 	}
 	if *actual.Width != *expected.Width {
-		t.Errorf("Screenboard width does not match: %d != %d", *actual.Width, *expected.Width)
+		t.Errorf("Screenboard width does not match: %s != %s", *actual.Width, *expected.Width)
 	}
 	if *actual.Height != *expected.Height {
 		t.Errorf("Screenboard width does not match: %d != %d", *actual.Height, *expected.Height)

@@ -1,6 +1,7 @@
 package datadog
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -42,9 +43,9 @@ func TestGetScreenboard(t *testing.T) {
 		t.Fatalf("expect height %d. Got %d", expectedHeight, height)
 	}
 
-	expectedWidth := 1024
+	expectedWidth := json.Number("1024")
 	if width := screenboard.GetWidth(); width != expectedWidth {
-		t.Fatalf("expect width %d. Got %d", expectedWidth, width)
+		t.Fatalf("expect width %s. Got %s", expectedWidth, width)
 	}
 
 	expectedReadOnly := false
