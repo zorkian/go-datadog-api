@@ -11,6 +11,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // GetCreator returns the Creator field if non-nil, zero value otherwise.
@@ -724,6 +725,130 @@ func (a *AlertValueDefinition) HasUnit() bool {
 // SetUnit allocates a new a.Unit and returns the pointer to it.
 func (a *AlertValueDefinition) SetUnit(v string) {
 	a.Unit = &v
+}
+
+// GetCreated returns the Created field if non-nil, zero value otherwise.
+func (a *APIKey) GetCreated() time.Time {
+	if a == nil || a.Created == nil {
+		return time.Time{}
+	}
+	return *a.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APIKey) GetCreatedOk() (time.Time, bool) {
+	if a == nil || a.Created == nil {
+		return time.Time{}, false
+	}
+	return *a.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (a *APIKey) HasCreated() bool {
+	if a != nil && a.Created != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated allocates a new a.Created and returns the pointer to it.
+func (a *APIKey) SetCreated(v time.Time) {
+	a.Created = &v
+}
+
+// GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+func (a *APIKey) GetCreatedBy() string {
+	if a == nil || a.CreatedBy == nil {
+		return ""
+	}
+	return *a.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APIKey) GetCreatedByOk() (string, bool) {
+	if a == nil || a.CreatedBy == nil {
+		return "", false
+	}
+	return *a.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (a *APIKey) HasCreatedBy() bool {
+	if a != nil && a.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy allocates a new a.CreatedBy and returns the pointer to it.
+func (a *APIKey) SetCreatedBy(v string) {
+	a.CreatedBy = &v
+}
+
+// GetKey returns the Key field if non-nil, zero value otherwise.
+func (a *APIKey) GetKey() string {
+	if a == nil || a.Key == nil {
+		return ""
+	}
+	return *a.Key
+}
+
+// GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APIKey) GetKeyOk() (string, bool) {
+	if a == nil || a.Key == nil {
+		return "", false
+	}
+	return *a.Key, true
+}
+
+// HasKey returns a boolean if a field has been set.
+func (a *APIKey) HasKey() bool {
+	if a != nil && a.Key != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKey allocates a new a.Key and returns the pointer to it.
+func (a *APIKey) SetKey(v string) {
+	a.Key = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (a *APIKey) GetName() string {
+	if a == nil || a.Name == nil {
+		return ""
+	}
+	return *a.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APIKey) GetNameOk() (string, bool) {
+	if a == nil || a.Name == nil {
+		return "", false
+	}
+	return *a.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (a *APIKey) HasName() bool {
+	if a != nil && a.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new a.Name and returns the pointer to it.
+func (a *APIKey) SetName(v string) {
+	a.Name = &v
 }
 
 // GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
@@ -11295,6 +11420,37 @@ func (r *Recurrence) HasUntilOccurrences() bool {
 // SetUntilOccurrences allocates a new r.UntilOccurrences and returns the pointer to it.
 func (r *Recurrence) SetUntilOccurrences(v int) {
 	r.UntilOccurrences = &v
+}
+
+// GetAPIKey returns the APIKey field if non-nil, zero value otherwise.
+func (r *reqAPIKey) GetAPIKey() APIKey {
+	if r == nil || r.APIKey == nil {
+		return APIKey{}
+	}
+	return *r.APIKey
+}
+
+// GetAPIKeyOk returns a tuple with the APIKey field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (r *reqAPIKey) GetAPIKeyOk() (APIKey, bool) {
+	if r == nil || r.APIKey == nil {
+		return APIKey{}, false
+	}
+	return *r.APIKey, true
+}
+
+// HasAPIKey returns a boolean if a field has been set.
+func (r *reqAPIKey) HasAPIKey() bool {
+	if r != nil && r.APIKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPIKey allocates a new r.APIKey and returns the pointer to it.
+func (r *reqAPIKey) SetAPIKey(v APIKey) {
+	r.APIKey = &v
 }
 
 // GetComment returns the Comment field if non-nil, zero value otherwise.
