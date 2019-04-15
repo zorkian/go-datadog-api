@@ -3,7 +3,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2013 by authors and contributors.
+ * Copyright 2019 by authors and contributors.
  */
 
 package datadog
