@@ -15,7 +15,7 @@ import (
 
 func TestAPIKeyCreateGetAndDelete(t *testing.T) {
 	keyName := "client-test-key"
-	expected, err := client.CreateAPIKey(datadog.String(keyName))
+	expected, err := client.CreateAPIKey(keyName)
 	if err != nil {
 		t.Fatalf("Creating API key failed when it shouldn't. (%s)", err)
 	}
@@ -34,28 +34,28 @@ func TestAPIKeyCreateGetAndDelete(t *testing.T) {
 }
 
 func TestAPIKeyUpdateName(t *testing.T) {
-	keyName := datadog.String("client-test-key")
-	newKeyName := datadog.String("client-test-key-new")
+	keyName := "client-test-key"
+	newKeyName := "client-test-key-new"
 	keyStruct, err := client.CreateAPIKey(keyName)
 	if err != nil {
 		t.Fatalf("Creating API key failed when it shouldn't. (%s)", err)
 	}
 	defer cleanUpAPIKey(t, *keyStruct.Key)
 
-	keyStruct.Name = newKeyName
+	*keyStruct.Name = newKeyName
 	err = client.UpdateAPIKey(keyStruct)
 	if err != nil {
 		t.Fatalf("Updating API key failed when it shouldn't. (%s)", err)
 	}
 
-	if keyStruct.Name != newKeyName {
-		t.Errorf("API key name not updated. Got %s, want %s", *keyStruct.Name, *newKeyName)
+	if *keyStruct.Name != newKeyName {
+		t.Errorf("API key name not updated. Got %s, want %s", *keyStruct.Name, newKeyName)
 	}
 }
 
 func TestAPIKeyGetMultipleKeys(t *testing.T) {
-	key1Name := datadog.String("client-test-1")
-	key2Name := datadog.String("client-test-2")
+	key1Name := "client-test-1"
+	key2Name := "client-test-2"
 	key1, err := client.CreateAPIKey(key1Name)
 	if err != nil {
 		t.Fatalf("Creating API key failed when it shouldn't. (%s)", err)
@@ -73,10 +73,10 @@ func TestAPIKeyGetMultipleKeys(t *testing.T) {
 	key1Found, key2Found := false, false
 	for _, key := range allKeys {
 		switch *key.Name {
-		case *key1Name:
+		case key1Name:
 			assertAPIKeyEquals(t, &key, key1)
 			key1Found = true
-		case *key2Name:
+		case key2Name:
 			assertAPIKeyEquals(t, &key, key2)
 			key2Found = true
 		}
