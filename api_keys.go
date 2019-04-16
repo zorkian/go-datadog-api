@@ -91,12 +91,12 @@ func (client *Client) GetAPIKey(key string) (*APIKey, error) {
 }
 
 // CreateAPIKey creates an API key from given struct and fills the rest of its
-// fileds, or returns an error on failure
-func (client *Client) CreateAPIKey(name *string) (*APIKey, error) {
+// fields, or returns an error on failure
+func (client *Client) CreateAPIKey(name string) (*APIKey, error) {
 	toPost := struct {
 		Name *string `json:"name,omitempty"`
 	}{
-		name,
+		&name,
 	}
 	var out reqAPIKey
 	if err := client.doJsonRequest("POST", "/v1/api_key", toPost, &out); err != nil {
