@@ -102,6 +102,8 @@ func getTestDowntime() *datadog.Downtime {
 		Disabled:    datadog.Bool(false),
 		Message:     datadog.String("Test downtime message"),
 		MonitorTags: []string{"some:tag"},
+		ParentId:    nil,
+		Timezone:    datadog.String("UTC"),
 		Scope:       []string{"env:downtime_test"},
 		Start:       datadog.Int(1577836800),
 		End:         datadog.Int(1577840400),
