@@ -4540,6 +4540,37 @@ func (d *Downtime) SetMonitorId(v int) {
 	d.MonitorId = &v
 }
 
+// GetParentId returns the ParentId field if non-nil, zero value otherwise.
+func (d *Downtime) GetParentId() int {
+	if d == nil || d.ParentId == nil {
+		return 0
+	}
+	return *d.ParentId
+}
+
+// GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Downtime) GetParentIdOk() (int, bool) {
+	if d == nil || d.ParentId == nil {
+		return 0, false
+	}
+	return *d.ParentId, true
+}
+
+// HasParentId returns a boolean if a field has been set.
+func (d *Downtime) HasParentId() bool {
+	if d != nil && d.ParentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParentId allocates a new d.ParentId and returns the pointer to it.
+func (d *Downtime) SetParentId(v int) {
+	d.ParentId = &v
+}
+
 // GetRecurrence returns the Recurrence field if non-nil, zero value otherwise.
 func (d *Downtime) GetRecurrence() Recurrence {
 	if d == nil || d.Recurrence == nil {
@@ -4600,6 +4631,37 @@ func (d *Downtime) HasStart() bool {
 // SetStart allocates a new d.Start and returns the pointer to it.
 func (d *Downtime) SetStart(v int) {
 	d.Start = &v
+}
+
+// GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+func (d *Downtime) GetTimezone() string {
+	if d == nil || d.Timezone == nil {
+		return ""
+	}
+	return *d.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Downtime) GetTimezoneOk() (string, bool) {
+	if d == nil || d.Timezone == nil {
+		return "", false
+	}
+	return *d.Timezone, true
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (d *Downtime) HasTimezone() bool {
+	if d != nil && d.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone allocates a new d.Timezone and returns the pointer to it.
+func (d *Downtime) SetTimezone(v string) {
+	d.Timezone = &v
 }
 
 // GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
