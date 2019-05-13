@@ -141,6 +141,47 @@ func TestMonitorMuteUnmute(t *testing.T) {
 	assert.Equal(t, 0, len(monitor.Options.Silenced))
 }
 
+func TestMonitorMuteUnmuteScopes(t *testing.T) {
+	monitor := createTestMonitor(t)
+	err := client.MuteMonitorScope(*monitor.Id, &datadog.MuteMonitorScope{Scope: datadog.String("host:foo")})
+	if err != nil {
+		t.Fatalf("Failed to mute monitor scope host:foo: %s", err)
+	}
+
+	err = client.MuteMonitorScope(*monitor.Id, &datadog.MuteMonitorScope{Scope: datadog.String("host:bar")})
+	if err != nil {
+		t.Fatalf("Failed to mute monitor scope host:bar: %s", err)
+	}
+
+	monitor, err = client.GetMonitor(*monitor.Id)
+	if err != nil {
+		t.Fatalf("Retrieving monitor failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, monitor.Options.Silenced, map[string]int{"host:foo": 0, "host:bar": 0})
+
+	err = client.UnmuteMonitorScopes(*monitor.Id, &datadog.UnmuteMonitorScopes{Scope: datadog.String("host:foo")})
+	if err != nil {
+		t.Fatalf("Failed to unmute monitor scope host:foo: %s", err)
+	}
+
+	monitor, err = client.GetMonitor(*monitor.Id)
+	if err != nil {
+		t.Fatalf("Retrieving monitor failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, monitor.Options.Silenced, map[string]int{"host:bar": 0})
+
+	err = client.UnmuteMonitorScopes(*monitor.Id, &datadog.UnmuteMonitorScopes{AllScopes: datadog.Bool(true)})
+	if err != nil {
+		t.Fatalf("Failed to unmute all monitor scopes: %s", err)
+	}
+
+	monitor, err = client.GetMonitor(*monitor.Id)
+	if err != nil {
+		t.Fatalf("Retrieving monitor failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, monitor.Options.Silenced, map[string]int{})
+}
+
 /*
 	Testing of global mute and unmuting has not been added for following reasons:
 	* Disabling and enabling of global monitoring does an @all mention which is noisy
