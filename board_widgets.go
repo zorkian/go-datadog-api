@@ -31,6 +31,7 @@ const (
 	MANAGE_STATUS_WIDGET  = "manage_status"
 	NOTE_WIDGET           = "note"
 	QUERY_VALUE_WIDGET    = "query_value"
+	QUERY_TABLE_WIDGET    = "query_table"
 	SCATTERPLOT_WIDGET    = "scatterplot"
 	TIMESERIES_WIDGET     = "timeseries"
 	TOPLIST_WIDGET        = "toplist"
@@ -89,6 +90,8 @@ func (widget *BoardWidget) GetWidgetType() (string, error) {
 		return NOTE_WIDGET, nil
 	case QueryValueDefinition:
 		return QUERY_VALUE_WIDGET, nil
+	case QueryTableDefinition:
+		return QUERY_TABLE_WIDGET, nil
 	case ScatterplotDefinition:
 		return SCATTERPLOT_WIDGET, nil
 	case TimeseriesDefinition:
@@ -340,6 +343,30 @@ type QueryValueRequest struct {
 	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	Aggregator         *string                   `json:"aggregator,omitempty"`
 	// A QueryValueRequest should implement exactly one of the following query types
+	MetricQuery  *string              `json:"q,omitempty"`
+	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+}
+
+type QueryTableDefinition struct {
+	Type            *string               `json:"type"`
+	Requests        []QueryTableRequest   `json:"requests"`
+	RowDimension    []QueryTableDimension `json:"row_dimension"`
+	ColumnDimension []QueryTableDimension `json:"column_dimension"`
+	Title           *string               `json:"title,omitempty"`
+	TitleSize       *string               `json:"title_size,omitempty"`
+	TitleAlign      *string               `json:"title_align,omitempty"`
+	Time            *WidgetTime           `json:"time,omitempty"`
+}
+type QueryTableDimension struct {
+	Header *string `json:"header"`
+	Name   *string `json:"name"`
+}
+type QueryTableRequest struct {
+	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+	Metadata           []WidgetMetadata          `json:"metadata,omitempty"`
+	// A QueryTableRequest should implement exactly one of the following query types
 	MetricQuery  *string              `json:"q,omitempty"`
 	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
 	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
@@ -599,6 +626,14 @@ func (widget *BoardWidget) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		widget.Definition = queryValueWidget.Definition
+	case QUERY_TABLE_WIDGET:
+		var queryTableWidget struct {
+			Definition QueryTableDefinition `json:"definition"`
+		}
+		if err := json.Unmarshal(data, &queryTableWidget); err != nil {
+			return err
+		}
+		widget.Definition = queryTableWidget.Definition
 	case SCATTERPLOT_WIDGET:
 		var scatterplotWidget struct {
 			Definition ScatterplotDefinition `json:"definition"`
