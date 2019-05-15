@@ -52,7 +52,10 @@ func TestDowntimeLinkedToMonitorCreateAndDelete(t *testing.T) {
 func TestDowntimeUpdate(t *testing.T) {
 
 	downtime := createTestDowntime(t)
+	originalID := int(downtime.GetId())
 
+	// changing the scope will cause the downtime to be replaced in the future
+	// this test should be updated to validate this
 	downtime.Scope = []string{"env:downtime_test", "env:downtime_test2"}
 	defer cleanUpDowntime(t, *downtime.Id)
 
@@ -65,8 +68,22 @@ func TestDowntimeUpdate(t *testing.T) {
 		t.Fatalf("Retrieving a downtime failed when it shouldn't: %s", err)
 	}
 
-	assert.Equal(t, downtime, actual)
-
+	// uncomment once immutable to validate it changed to NotEqual
+	assert.Equal(t, originalID, actual.GetId())
+	assert.Equal(t, downtime.GetActive(), actual.GetActive())
+	assert.Equal(t, downtime.GetCanceled(), actual.GetCanceled())
+	assert.Equal(t, downtime.GetDisabled(), actual.GetDisabled())
+	assert.Equal(t, downtime.GetEnd(), actual.GetEnd())
+	assert.Equal(t, downtime.GetMessage(), actual.GetMessage())
+	assert.Equal(t, downtime.GetMonitorId(), actual.GetMonitorId())
+	assert.Equal(t, downtime.MonitorTags, actual.MonitorTags)
+	assert.Equal(t, downtime.GetParentId(), actual.GetParentId())
+	// timezone will be automatically updated to UTC
+	assert.Equal(t, "UTC", actual.GetTimezone())
+	assert.Equal(t, downtime.GetRecurrence(), actual.GetRecurrence())
+	assert.EqualValues(t, downtime.Scope, actual.Scope)
+	// in the future the replaced downtime will have an updated start time, flip this to NotEqual
+	assert.Equal(t, downtime.GetStart(), actual.GetStart())
 }
 
 func TestDowntimeGet(t *testing.T) {
