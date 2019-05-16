@@ -45,6 +45,11 @@ func TestWidgets(t *testing.T) {
 						Type:    datadog.String("dashed"),
 						Width:   datadog.String("thin"),
 					},
+					Metadata: map[string]datadog.TileDefMetadata{
+						"avg:system.cpu.user{*}": {
+							Alias: datadog.String("avg_cpu"),
+						},
+					},
 				}},
 				Markers: []datadog.TileDefMarker{{
 					Label: datadog.String("test marker"),

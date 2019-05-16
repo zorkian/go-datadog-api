@@ -69,15 +69,20 @@ type TileDefRequest struct {
 	TagFilters []*string `json:"tag_filters"`
 	Limit      *int      `json:"limit,omitempty"`
 
-	ConditionalFormats []ConditionalFormat  `json:"conditional_formats,omitempty"`
-	Style              *TileDefRequestStyle `json:"style,omitempty"`
-	Aggregator         *string              `json:"aggregator,omitempty"`
-	CompareTo          *string              `json:"compare_to,omitempty"`
-	ChangeType         *string              `json:"change_type,omitempty"`
-	OrderBy            *string              `json:"order_by,omitempty"`
-	OrderDir           *string              `json:"order_dir,omitempty"`
-	ExtraCol           *string              `json:"extra_col,omitempty"`
-	IncreaseGood       *bool                `json:"increase_good,omitempty"`
+	ConditionalFormats []ConditionalFormat        `json:"conditional_formats,omitempty"`
+	Style              *TileDefRequestStyle       `json:"style,omitempty"`
+	Aggregator         *string                    `json:"aggregator,omitempty"`
+	CompareTo          *string                    `json:"compare_to,omitempty"`
+	ChangeType         *string                    `json:"change_type,omitempty"`
+	OrderBy            *string                    `json:"order_by,omitempty"`
+	OrderDir           *string                    `json:"order_dir,omitempty"`
+	ExtraCol           *string                    `json:"extra_col,omitempty"`
+	IncreaseGood       *bool                      `json:"increase_good,omitempty"`
+	Metadata           map[string]TileDefMetadata `json:"metadata,omitempty"`
+}
+
+type TileDefMetadata struct {
+	Alias *string `json:"alias,omitempty"`
 }
 
 type ConditionalFormat struct {
