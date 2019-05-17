@@ -94,7 +94,7 @@ func (client *Client) CreateDowntime(downtime *Downtime) (*Downtime, error) {
 // and sends it back to the server.
 func (client *Client) UpdateDowntime(downtime *Downtime) error {
 	return client.doJsonRequest("PUT", fmt.Sprintf("/v1/downtime/%d", *downtime.Id),
-		downtime, nil)
+		downtime, downtime)
 }
 
 // Getdowntime retrieves an downtime by identifier.
