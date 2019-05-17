@@ -15824,6 +15824,37 @@ func (t *TileDefMarker) SetValue(v string) {
 	t.Value = &v
 }
 
+// GetAlias returns the Alias field if non-nil, zero value otherwise.
+func (t *TileDefMetadata) GetAlias() string {
+	if t == nil || t.Alias == nil {
+		return ""
+	}
+	return *t.Alias
+}
+
+// GetAliasOk returns a tuple with the Alias field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefMetadata) GetAliasOk() (string, bool) {
+	if t == nil || t.Alias == nil {
+		return "", false
+	}
+	return *t.Alias, true
+}
+
+// HasAlias returns a boolean if a field has been set.
+func (t *TileDefMetadata) HasAlias() bool {
+	if t != nil && t.Alias != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAlias allocates a new t.Alias and returns the pointer to it.
+func (t *TileDefMetadata) SetAlias(v string) {
+	t.Alias = &v
+}
+
 // GetAggregator returns the Aggregator field if non-nil, zero value otherwise.
 func (t *TileDefRequest) GetAggregator() string {
 	if t == nil || t.Aggregator == nil {
