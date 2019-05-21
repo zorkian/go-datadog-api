@@ -2711,6 +2711,37 @@ func (c *ConditionalFormat) SetComparator(v string) {
 	c.Comparator = &v
 }
 
+// GetCustomBgColor returns the CustomBgColor field if non-nil, zero value otherwise.
+func (c *ConditionalFormat) GetCustomBgColor() string {
+	if c == nil || c.CustomBgColor == nil {
+		return ""
+	}
+	return *c.CustomBgColor
+}
+
+// GetCustomBgColorOk returns a tuple with the CustomBgColor field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *ConditionalFormat) GetCustomBgColorOk() (string, bool) {
+	if c == nil || c.CustomBgColor == nil {
+		return "", false
+	}
+	return *c.CustomBgColor, true
+}
+
+// HasCustomBgColor returns a boolean if a field has been set.
+func (c *ConditionalFormat) HasCustomBgColor() bool {
+	if c != nil && c.CustomBgColor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomBgColor allocates a new c.CustomBgColor and returns the pointer to it.
+func (c *ConditionalFormat) SetCustomBgColor(v string) {
+	c.CustomBgColor = &v
+}
+
 // GetImageURL returns the ImageURL field if non-nil, zero value otherwise.
 func (c *ConditionalFormat) GetImageURL() string {
 	if c == nil || c.ImageURL == nil {
