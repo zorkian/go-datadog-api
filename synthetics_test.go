@@ -60,6 +60,11 @@ func TestGetSyntheticsTestApi(t *testing.T) {
 		t.Fatalf("expect public_id %s. Got %s", expectedPublicId, publicId)
 	}
 
+	expectedMonitorId := 666
+	if monitorId := c.GetMonitorId(); monitorId != expectedMonitorId {
+		t.Fatalf("expect monitor_id %d. Got %d", expectedMonitorId, monitorId)
+	}
+
 	expectedName := "Check on example.com"
 	if name := c.GetName(); name != expectedName {
 		t.Fatalf("expect name %s. Got %s", expectedName, name)
@@ -191,6 +196,11 @@ func TestGetSyntheticsTestBrowser(t *testing.T) {
 	expectedPublicId := "xxx-xxx-xxx"
 	if publicId := c.GetPublicId(); publicId != expectedPublicId {
 		t.Fatalf("expect public_id %s. Got %s", expectedPublicId, publicId)
+	}
+
+	expectedMonitorId := 666
+	if monitorId := c.GetMonitorId(); monitorId != expectedMonitorId {
+		t.Fatalf("expect monitor_id %d. Got %d", expectedMonitorId, monitorId)
 	}
 
 	expectedName := "Check on example.com"
