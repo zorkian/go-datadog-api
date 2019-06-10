@@ -13,8 +13,11 @@ func TestDowntimeCreateAndDelete(t *testing.T) {
 	actual := createTestDowntime(t)
 	defer cleanUpDowntime(t, *actual.Id)
 
-	// Set ID of our original struct to zero so we can easily compare the results
+	// Set ID of our original struct to ID of the returned struct so we can easily compare the results
 	expected.SetId(actual.GetId())
+	// Set creator ID for the same reason (there's no easy way to get ID of current user ATM,
+	// but if there was, we could do this dynamically)
+	expected.SetCreatorID(actual.GetCreatorID())
 
 	assert.Equal(t, expected, actual)
 
@@ -39,6 +42,7 @@ func TestDowntimeLinkedToMonitorCreateAndDelete(t *testing.T) {
 	}
 
 	expected.SetId(downtime.GetId())
+	expected.SetCreatorID(downtime.GetCreatorID())
 
 	assert.Equal(t, expected, downtime)
 
@@ -116,6 +120,7 @@ func getTestDowntime() *datadog.Downtime {
 
 	return &datadog.Downtime{
 		Active:      datadog.Bool(false),
+		CreatorID:   datadog.Int(123),
 		Disabled:    datadog.Bool(false),
 		Message:     datadog.String("Test downtime message"),
 		MonitorTags: []string{"some:tag"},
@@ -125,6 +130,7 @@ func getTestDowntime() *datadog.Downtime {
 		Start:       datadog.Int(1577836800),
 		End:         datadog.Int(1577840400),
 		Recurrence:  r,
+		Type:        datadog.Int(2),
 	}
 }
 
