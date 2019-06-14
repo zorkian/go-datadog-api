@@ -68,6 +68,41 @@ func (client *Client) DeleteIntegrationPD() error {
 	return client.doJsonRequest("DELETE", "/v1/integration/pagerduty", nil, nil)
 }
 
+// CreateIntegrationPDService creates a single service object in the PagerDuty integration
+// Note that creating a service object requires the integration to be activated
+func (client *Client) CreateIntegrationPDService(serviceObject *ServicePDRequest) error {
+	return client.doJsonRequest("POST", "/v1/integration/pagerduty/configuration/services", serviceObject, nil)
+}
+
+// UpdateIntegrationPDService updates a single service object in the PagerDuty integration
+func (client *Client) UpdateIntegrationPDService(serviceObject *ServicePDRequest) error {
+	// we can only post the ServiceKey, not ServiceName
+	toPost := struct {
+		ServiceKey *string `json:"service_key,omitempty"`
+	}{
+		serviceObject.ServiceKey,
+	}
+	uri := "/v1/integration/pagerduty/configuration/services/" + *serviceObject.ServiceName
+	return client.doJsonRequest("PUT", uri, toPost, nil)
+}
+
+// GetIntegrationPDService gets a single service object in the PagerDuty integration
+// NOTE: the service key is never returned by the API, so it won't be set
+func (client *Client) GetIntegrationPDService(serviceName string) (*ServicePDRequest, error) {
+	uri := "/v1/integration/pagerduty/configuration/services/" + serviceName
+	var out ServicePDRequest
+	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
+// DeleteIntegrationPDService deletes a single service object in the PagerDuty integration
+func (client *Client) DeleteIntegrationPDService(serviceName string) error {
+	uri := "/v1/integration/pagerduty/configuration/services/" + serviceName
+	return client.doJsonRequest("DELETE", uri, nil, nil)
+}
+
 /*
 	Slack Integration
 */
