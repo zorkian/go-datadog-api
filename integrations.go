@@ -44,7 +44,7 @@ type IntegrationPDRequest struct {
 // Use this if you want to setup the integration for the first time
 // or to add more services/schedules.
 func (client *Client) CreateIntegrationPD(pdIntegration *IntegrationPDRequest) error {
-	return client.doJsonRequest("POST", "/v1/integration/pagerduty", pdIntegration, nil)
+	return client.doJsonRequest("PUT", "/v1/integration/pagerduty", pdIntegration, nil)
 }
 
 // UpdateIntegrationPD updates the PagerDuty Integration.
