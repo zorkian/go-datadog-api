@@ -86,6 +86,49 @@ func TestIntegrationPDGet(t *testing.T) {
 	assert.Equal(t, expectedServiceNames, actualServiceNames)
 }
 
+func TestIntegrationPDService(t *testing.T) {
+	// test manipulation of individual service objects in the PD integration
+	// when the integration is not active, manipulating service objects
+	// should return 404
+	so := datadog.ServicePDRequest{
+		ServiceName: datadog.String("testPDServiceNameIndividual"),
+		ServiceKey:  datadog.String("testPDServiceKeyIndividual"),
+	}
+
+	err := client.CreateIntegrationPDService(&so)
+	if err == nil {
+		t.Fatalf("Creating PD integration service object succeeded without active PD integration")
+	}
+
+	_ = createTestIntegrationPD(t)
+	defer cleanUpIntegrationPD(t)
+
+	err = client.CreateIntegrationPDService(&so)
+	if err != nil {
+		t.Fatalf("Creating PD integration service object failed when it shouldn't: %s", err)
+	}
+
+	var soRead *datadog.ServicePDRequest
+	soRead, err = client.GetIntegrationPDService(*so.ServiceName)
+	if err != nil {
+		t.Fatalf("Reading PD integration service object failed when it shouldn't: %s", err)
+	}
+	// ServiceKey is never returned by API, so we can't test it
+	assert.Equal(t, *so.ServiceName, *soRead.ServiceName)
+
+	so.SetServiceKey("other")
+	err = client.UpdateIntegrationPDService(&so)
+	if err != nil {
+		t.Fatalf("Updating PD integration service object failed when it shouldn't: %s", err)
+	}
+	// we can't really test anything here, since only the ServiceKey was changed
+
+	err = client.DeleteIntegrationPDService(*so.ServiceName)
+	if err != nil {
+		t.Fatalf("Deleting PD integration service object failed when it shouldn't: %s", err)
+	}
+}
+
 func getTestIntegrationPD() *datadog.IntegrationPDRequest {
 	return &datadog.IntegrationPDRequest{
 		Services: []datadog.ServicePDRequest{
