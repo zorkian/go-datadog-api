@@ -713,6 +713,7 @@ type WidgetConditionalFormat struct {
 	ImageUrl      *string  `json:"image_url,omitempty"`
 	HideValue     *bool    `json:"hide_value,omitempty"`
 	Timeframe     *string  `json:"timeframe,omitempty"`
+	Metric        *string  `json:"metric,omitempty"`
 }
 
 // WidgetApmOrLogQuery represents an APM or a Log query
