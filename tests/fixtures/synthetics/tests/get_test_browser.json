@@ -1,5 +1,6 @@
 {
   "public_id": "xxx-xxx-xxx",
+  "monitor_id": 666,
   "tags": [
     "example_tag"
   ],

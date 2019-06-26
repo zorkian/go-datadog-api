@@ -231,13 +231,18 @@ func createAdvancedTimeseriesGraph() []datadog.Graph {
 
 func createCustomGraph() []datadog.Graph {
 	gd := &datadog.GraphDefinition{}
-	gd.SetViz("query_value")
+	gd.SetViz("timeseries")
 
 	r := gd.Requests
 	gd.Requests = append(r, datadog.GraphDefinitionRequest{
 		Query:      datadog.String("( sum:system.mem.used{*} / sum:system.mem.free{*} ) * 100"),
 		Stacked:    datadog.Bool(false),
 		Aggregator: datadog.String("avg"),
+		Metadata: map[string]datadog.GraphDefinitionMetadata{
+			"(sum:system.mem.used{*}/sum:system.mem.free{*})*100": {
+				Alias: datadog.String("mem_used_ratio"),
+			},
+		},
 		ConditionalFormats: []datadog.DashboardConditionalFormat{
 			{
 				Comparator: datadog.String(">"),
