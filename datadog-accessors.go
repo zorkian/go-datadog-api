@@ -1161,6 +1161,99 @@ func (a *ApmOrLogQuerySearch) SetQuery(v string) {
 	a.Query = &v
 }
 
+// GetHash returns the Hash field if non-nil, zero value otherwise.
+func (a *APPKey) GetHash() string {
+	if a == nil || a.Hash == nil {
+		return ""
+	}
+	return *a.Hash
+}
+
+// GetHashOk returns a tuple with the Hash field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APPKey) GetHashOk() (string, bool) {
+	if a == nil || a.Hash == nil {
+		return "", false
+	}
+	return *a.Hash, true
+}
+
+// HasHash returns a boolean if a field has been set.
+func (a *APPKey) HasHash() bool {
+	if a != nil && a.Hash != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHash allocates a new a.Hash and returns the pointer to it.
+func (a *APPKey) SetHash(v string) {
+	a.Hash = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (a *APPKey) GetName() string {
+	if a == nil || a.Name == nil {
+		return ""
+	}
+	return *a.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APPKey) GetNameOk() (string, bool) {
+	if a == nil || a.Name == nil {
+		return "", false
+	}
+	return *a.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (a *APPKey) HasName() bool {
+	if a != nil && a.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new a.Name and returns the pointer to it.
+func (a *APPKey) SetName(v string) {
+	a.Name = &v
+}
+
+// GetOwner returns the Owner field if non-nil, zero value otherwise.
+func (a *APPKey) GetOwner() string {
+	if a == nil || a.Owner == nil {
+		return ""
+	}
+	return *a.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APPKey) GetOwnerOk() (string, bool) {
+	if a == nil || a.Owner == nil {
+		return "", false
+	}
+	return *a.Owner, true
+}
+
+// HasOwner returns a boolean if a field has been set.
+func (a *APPKey) HasOwner() bool {
+	if a != nil && a.Owner != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner allocates a new a.Owner and returns the pointer to it.
+func (a *APPKey) SetOwner(v string) {
+	a.Owner = &v
+}
+
 // GetAuthorHandle returns the AuthorHandle field if non-nil, zero value otherwise.
 func (b *Board) GetAuthorHandle() string {
 	if b == nil || b.AuthorHandle == nil {
@@ -12071,6 +12164,37 @@ func (r *reqAPIKey) HasAPIKey() bool {
 // SetAPIKey allocates a new r.APIKey and returns the pointer to it.
 func (r *reqAPIKey) SetAPIKey(v APIKey) {
 	r.APIKey = &v
+}
+
+// GetAPPKey returns the APPKey field if non-nil, zero value otherwise.
+func (r *reqAPPKey) GetAPPKey() APPKey {
+	if r == nil || r.APPKey == nil {
+		return APPKey{}
+	}
+	return *r.APPKey
+}
+
+// GetAPPKeyOk returns a tuple with the APPKey field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (r *reqAPPKey) GetAPPKeyOk() (APPKey, bool) {
+	if r == nil || r.APPKey == nil {
+		return APPKey{}, false
+	}
+	return *r.APPKey, true
+}
+
+// HasAPPKey returns a boolean if a field has been set.
+func (r *reqAPPKey) HasAPPKey() bool {
+	if r != nil && r.APPKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPPKey allocates a new r.APPKey and returns the pointer to it.
+func (r *reqAPPKey) SetAPPKey(v APPKey) {
+	r.APPKey = &v
 }
 
 // GetComment returns the Comment field if non-nil, zero value otherwise.
