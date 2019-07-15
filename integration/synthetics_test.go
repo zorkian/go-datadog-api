@@ -18,6 +18,7 @@ func TestSyntheticsCreateAndDelete(t *testing.T) {
 	// Set Creator to the original struct as we can't predict details of the creator
 	expected.SetCreatedAt(actual.GetCreatedAt())
 	expected.SetModifiedAt(actual.GetModifiedAt())
+	expected.SetMonitorId(actual.GetMonitorId())
 
 	assert.Equal(t, expected, actual)
 
@@ -28,6 +29,7 @@ func TestSyntheticsCreateAndDelete(t *testing.T) {
 	expected.SetStatus(actual.GetStatus())
 	expected.SetCreatedBy(actual.GetCreatedBy())
 	expected.SetModifiedBy(actual.GetModifiedBy())
+	expected.SetMonitorId(actual.GetMonitorId())
 	assert.Equal(t, expected, actual)
 }
 
@@ -42,6 +44,7 @@ func TestSyntheticsUpdate(t *testing.T) {
 	syntheticsTest.PublicId = nil
 	syntheticsTest.CreatedAt = nil
 	syntheticsTest.ModifiedAt = nil
+	syntheticsTest.MonitorId = nil
 	actual, err := client.UpdateSyntheticsTest(publicId, syntheticsTest)
 	if err != nil {
 		t.Fatalf("Updating a synthetics test failed when it shouldn't: %s", err)
@@ -50,6 +53,7 @@ func TestSyntheticsUpdate(t *testing.T) {
 	syntheticsTest.SetPublicId(publicId)
 	syntheticsTest.SetCreatedAt(createdAt)
 	syntheticsTest.SetModifiedAt(actual.GetModifiedAt())
+	syntheticsTest.SetMonitorId(actual.GetMonitorId())
 	assert.Equal(t, syntheticsTest, actual)
 
 }
@@ -64,6 +68,7 @@ func TestSyntheticsUpdateRemovingTags(t *testing.T) {
 	syntheticsTest.PublicId = nil
 	syntheticsTest.CreatedAt = nil
 	syntheticsTest.ModifiedAt = nil
+	syntheticsTest.MonitorId = nil
 	syntheticsTest.Tags = []string{}
 	actual, err := client.UpdateSyntheticsTest(publicId, syntheticsTest)
 	if err != nil {
@@ -73,6 +78,7 @@ func TestSyntheticsUpdateRemovingTags(t *testing.T) {
 	syntheticsTest.SetPublicId(publicId)
 	syntheticsTest.SetCreatedAt(createdAt)
 	syntheticsTest.SetModifiedAt(actual.GetModifiedAt())
+	syntheticsTest.SetMonitorId(actual.GetMonitorId())
 	assert.Equal(t, syntheticsTest, actual)
 
 }

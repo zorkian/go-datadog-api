@@ -1161,6 +1161,99 @@ func (a *ApmOrLogQuerySearch) SetQuery(v string) {
 	a.Query = &v
 }
 
+// GetHash returns the Hash field if non-nil, zero value otherwise.
+func (a *APPKey) GetHash() string {
+	if a == nil || a.Hash == nil {
+		return ""
+	}
+	return *a.Hash
+}
+
+// GetHashOk returns a tuple with the Hash field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APPKey) GetHashOk() (string, bool) {
+	if a == nil || a.Hash == nil {
+		return "", false
+	}
+	return *a.Hash, true
+}
+
+// HasHash returns a boolean if a field has been set.
+func (a *APPKey) HasHash() bool {
+	if a != nil && a.Hash != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHash allocates a new a.Hash and returns the pointer to it.
+func (a *APPKey) SetHash(v string) {
+	a.Hash = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (a *APPKey) GetName() string {
+	if a == nil || a.Name == nil {
+		return ""
+	}
+	return *a.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APPKey) GetNameOk() (string, bool) {
+	if a == nil || a.Name == nil {
+		return "", false
+	}
+	return *a.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (a *APPKey) HasName() bool {
+	if a != nil && a.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new a.Name and returns the pointer to it.
+func (a *APPKey) SetName(v string) {
+	a.Name = &v
+}
+
+// GetOwner returns the Owner field if non-nil, zero value otherwise.
+func (a *APPKey) GetOwner() string {
+	if a == nil || a.Owner == nil {
+		return ""
+	}
+	return *a.Owner
+}
+
+// GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (a *APPKey) GetOwnerOk() (string, bool) {
+	if a == nil || a.Owner == nil {
+		return "", false
+	}
+	return *a.Owner, true
+}
+
+// HasOwner returns a boolean if a field has been set.
+func (a *APPKey) HasOwner() bool {
+	if a != nil && a.Owner != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOwner allocates a new a.Owner and returns the pointer to it.
+func (a *APPKey) SetOwner(v string) {
+	a.Owner = &v
+}
+
 // GetAuthorHandle returns the AuthorHandle field if non-nil, zero value otherwise.
 func (b *Board) GetAuthorHandle() string {
 	if b == nil || b.AuthorHandle == nil {
@@ -2709,6 +2802,37 @@ func (c *ConditionalFormat) HasComparator() bool {
 // SetComparator allocates a new c.Comparator and returns the pointer to it.
 func (c *ConditionalFormat) SetComparator(v string) {
 	c.Comparator = &v
+}
+
+// GetCustomBgColor returns the CustomBgColor field if non-nil, zero value otherwise.
+func (c *ConditionalFormat) GetCustomBgColor() string {
+	if c == nil || c.CustomBgColor == nil {
+		return ""
+	}
+	return *c.CustomBgColor
+}
+
+// GetCustomBgColorOk returns a tuple with the CustomBgColor field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *ConditionalFormat) GetCustomBgColorOk() (string, bool) {
+	if c == nil || c.CustomBgColor == nil {
+		return "", false
+	}
+	return *c.CustomBgColor, true
+}
+
+// HasCustomBgColor returns a boolean if a field has been set.
+func (c *ConditionalFormat) HasCustomBgColor() bool {
+	if c != nil && c.CustomBgColor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomBgColor allocates a new c.CustomBgColor and returns the pointer to it.
+func (c *ConditionalFormat) SetCustomBgColor(v string) {
+	c.CustomBgColor = &v
 }
 
 // GetImageURL returns the ImageURL field if non-nil, zero value otherwise.
@@ -4385,6 +4509,37 @@ func (d *Downtime) SetCanceled(v int) {
 	d.Canceled = &v
 }
 
+// GetCreatorID returns the CreatorID field if non-nil, zero value otherwise.
+func (d *Downtime) GetCreatorID() int {
+	if d == nil || d.CreatorID == nil {
+		return 0
+	}
+	return *d.CreatorID
+}
+
+// GetCreatorIDOk returns a tuple with the CreatorID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Downtime) GetCreatorIDOk() (int, bool) {
+	if d == nil || d.CreatorID == nil {
+		return 0, false
+	}
+	return *d.CreatorID, true
+}
+
+// HasCreatorID returns a boolean if a field has been set.
+func (d *Downtime) HasCreatorID() bool {
+	if d != nil && d.CreatorID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatorID allocates a new d.CreatorID and returns the pointer to it.
+func (d *Downtime) SetCreatorID(v int) {
+	d.CreatorID = &v
+}
+
 // GetDisabled returns the Disabled field if non-nil, zero value otherwise.
 func (d *Downtime) GetDisabled() bool {
 	if d == nil || d.Disabled == nil {
@@ -4662,6 +4817,68 @@ func (d *Downtime) HasTimezone() bool {
 // SetTimezone allocates a new d.Timezone and returns the pointer to it.
 func (d *Downtime) SetTimezone(v string) {
 	d.Timezone = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (d *Downtime) GetType() int {
+	if d == nil || d.Type == nil {
+		return 0
+	}
+	return *d.Type
+}
+
+// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Downtime) GetTypeOk() (int, bool) {
+	if d == nil || d.Type == nil {
+		return 0, false
+	}
+	return *d.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (d *Downtime) HasType() bool {
+	if d != nil && d.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new d.Type and returns the pointer to it.
+func (d *Downtime) SetType(v int) {
+	d.Type = &v
+}
+
+// GetUpdaterID returns the UpdaterID field if non-nil, zero value otherwise.
+func (d *Downtime) GetUpdaterID() int {
+	if d == nil || d.UpdaterID == nil {
+		return 0
+	}
+	return *d.UpdaterID
+}
+
+// GetUpdaterIDOk returns a tuple with the UpdaterID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (d *Downtime) GetUpdaterIDOk() (int, bool) {
+	if d == nil || d.UpdaterID == nil {
+		return 0, false
+	}
+	return *d.UpdaterID, true
+}
+
+// HasUpdaterID returns a boolean if a field has been set.
+func (d *Downtime) HasUpdaterID() bool {
+	if d != nil && d.UpdaterID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdaterID allocates a new d.UpdaterID and returns the pointer to it.
+func (d *Downtime) SetUpdaterID(v int) {
+	d.UpdaterID = &v
 }
 
 // GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
@@ -11949,6 +12166,37 @@ func (r *reqAPIKey) SetAPIKey(v APIKey) {
 	r.APIKey = &v
 }
 
+// GetAPPKey returns the APPKey field if non-nil, zero value otherwise.
+func (r *reqAPPKey) GetAPPKey() APPKey {
+	if r == nil || r.APPKey == nil {
+		return APPKey{}
+	}
+	return *r.APPKey
+}
+
+// GetAPPKeyOk returns a tuple with the APPKey field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (r *reqAPPKey) GetAPPKeyOk() (APPKey, bool) {
+	if r == nil || r.APPKey == nil {
+		return APPKey{}, false
+	}
+	return *r.APPKey, true
+}
+
+// HasAPPKey returns a boolean if a field has been set.
+func (r *reqAPPKey) HasAPPKey() bool {
+	if r != nil && r.APPKey != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPPKey allocates a new r.APPKey and returns the pointer to it.
+func (r *reqAPPKey) SetAPPKey(v APPKey) {
+	r.APPKey = &v
+}
+
 // GetComment returns the Comment field if non-nil, zero value otherwise.
 func (r *reqComment) GetComment() Comment {
 	if r == nil || r.Comment == nil {
@@ -14615,6 +14863,37 @@ func (s *SyntheticsTest) SetModifiedBy(v SyntheticsUser) {
 	s.ModifiedBy = &v
 }
 
+// GetMonitorId returns the MonitorId field if non-nil, zero value otherwise.
+func (s *SyntheticsTest) GetMonitorId() int {
+	if s == nil || s.MonitorId == nil {
+		return 0
+	}
+	return *s.MonitorId
+}
+
+// GetMonitorIdOk returns a tuple with the MonitorId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsTest) GetMonitorIdOk() (int, bool) {
+	if s == nil || s.MonitorId == nil {
+		return 0, false
+	}
+	return *s.MonitorId, true
+}
+
+// HasMonitorId returns a boolean if a field has been set.
+func (s *SyntheticsTest) HasMonitorId() bool {
+	if s != nil && s.MonitorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorId allocates a new s.MonitorId and returns the pointer to it.
+func (s *SyntheticsTest) SetMonitorId(v int) {
+	s.MonitorId = &v
+}
+
 // GetMonitorStatus returns the MonitorStatus field if non-nil, zero value otherwise.
 func (s *SyntheticsTest) GetMonitorStatus() string {
 	if s == nil || s.MonitorStatus == nil {
@@ -15729,6 +16008,37 @@ func (t *TileDefMarker) HasValue() bool {
 // SetValue allocates a new t.Value and returns the pointer to it.
 func (t *TileDefMarker) SetValue(v string) {
 	t.Value = &v
+}
+
+// GetAlias returns the Alias field if non-nil, zero value otherwise.
+func (t *TileDefMetadata) GetAlias() string {
+	if t == nil || t.Alias == nil {
+		return ""
+	}
+	return *t.Alias
+}
+
+// GetAliasOk returns a tuple with the Alias field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefMetadata) GetAliasOk() (string, bool) {
+	if t == nil || t.Alias == nil {
+		return "", false
+	}
+	return *t.Alias, true
+}
+
+// HasAlias returns a boolean if a field has been set.
+func (t *TileDefMetadata) HasAlias() bool {
+	if t != nil && t.Alias != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAlias allocates a new t.Alias and returns the pointer to it.
+func (t *TileDefMetadata) SetAlias(v string) {
+	t.Alias = &v
 }
 
 // GetAggregator returns the Aggregator field if non-nil, zero value otherwise.
