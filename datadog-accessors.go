@@ -6090,6 +6090,409 @@ func (g *Graph) SetTitle(v string) {
 	g.Title = &v
 }
 
+// GetCompute returns the Compute field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQuery) GetCompute() GraphApmOrLogQueryCompute {
+	if g == nil || g.Compute == nil {
+		return GraphApmOrLogQueryCompute{}
+	}
+	return *g.Compute
+}
+
+// GetComputeOk returns a tuple with the Compute field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQuery) GetComputeOk() (GraphApmOrLogQueryCompute, bool) {
+	if g == nil || g.Compute == nil {
+		return GraphApmOrLogQueryCompute{}, false
+	}
+	return *g.Compute, true
+}
+
+// HasCompute returns a boolean if a field has been set.
+func (g *GraphApmOrLogQuery) HasCompute() bool {
+	if g != nil && g.Compute != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCompute allocates a new g.Compute and returns the pointer to it.
+func (g *GraphApmOrLogQuery) SetCompute(v GraphApmOrLogQueryCompute) {
+	g.Compute = &v
+}
+
+// GetIndex returns the Index field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQuery) GetIndex() string {
+	if g == nil || g.Index == nil {
+		return ""
+	}
+	return *g.Index
+}
+
+// GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQuery) GetIndexOk() (string, bool) {
+	if g == nil || g.Index == nil {
+		return "", false
+	}
+	return *g.Index, true
+}
+
+// HasIndex returns a boolean if a field has been set.
+func (g *GraphApmOrLogQuery) HasIndex() bool {
+	if g != nil && g.Index != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex allocates a new g.Index and returns the pointer to it.
+func (g *GraphApmOrLogQuery) SetIndex(v string) {
+	g.Index = &v
+}
+
+// GetSearch returns the Search field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQuery) GetSearch() GraphApmOrLogQuerySearch {
+	if g == nil || g.Search == nil {
+		return GraphApmOrLogQuerySearch{}
+	}
+	return *g.Search
+}
+
+// GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQuery) GetSearchOk() (GraphApmOrLogQuerySearch, bool) {
+	if g == nil || g.Search == nil {
+		return GraphApmOrLogQuerySearch{}, false
+	}
+	return *g.Search, true
+}
+
+// HasSearch returns a boolean if a field has been set.
+func (g *GraphApmOrLogQuery) HasSearch() bool {
+	if g != nil && g.Search != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSearch allocates a new g.Search and returns the pointer to it.
+func (g *GraphApmOrLogQuery) SetSearch(v GraphApmOrLogQuerySearch) {
+	g.Search = &v
+}
+
+// GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryCompute) GetAggregation() string {
+	if g == nil || g.Aggregation == nil {
+		return ""
+	}
+	return *g.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryCompute) GetAggregationOk() (string, bool) {
+	if g == nil || g.Aggregation == nil {
+		return "", false
+	}
+	return *g.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryCompute) HasAggregation() bool {
+	if g != nil && g.Aggregation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation allocates a new g.Aggregation and returns the pointer to it.
+func (g *GraphApmOrLogQueryCompute) SetAggregation(v string) {
+	g.Aggregation = &v
+}
+
+// GetFacet returns the Facet field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryCompute) GetFacet() string {
+	if g == nil || g.Facet == nil {
+		return ""
+	}
+	return *g.Facet
+}
+
+// GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryCompute) GetFacetOk() (string, bool) {
+	if g == nil || g.Facet == nil {
+		return "", false
+	}
+	return *g.Facet, true
+}
+
+// HasFacet returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryCompute) HasFacet() bool {
+	if g != nil && g.Facet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacet allocates a new g.Facet and returns the pointer to it.
+func (g *GraphApmOrLogQueryCompute) SetFacet(v string) {
+	g.Facet = &v
+}
+
+// GetInterval returns the Interval field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryCompute) GetInterval() int {
+	if g == nil || g.Interval == nil {
+		return 0
+	}
+	return *g.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryCompute) GetIntervalOk() (int, bool) {
+	if g == nil || g.Interval == nil {
+		return 0, false
+	}
+	return *g.Interval, true
+}
+
+// HasInterval returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryCompute) HasInterval() bool {
+	if g != nil && g.Interval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterval allocates a new g.Interval and returns the pointer to it.
+func (g *GraphApmOrLogQueryCompute) SetInterval(v int) {
+	g.Interval = &v
+}
+
+// GetFacet returns the Facet field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryGroupBy) GetFacet() string {
+	if g == nil || g.Facet == nil {
+		return ""
+	}
+	return *g.Facet
+}
+
+// GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryGroupBy) GetFacetOk() (string, bool) {
+	if g == nil || g.Facet == nil {
+		return "", false
+	}
+	return *g.Facet, true
+}
+
+// HasFacet returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryGroupBy) HasFacet() bool {
+	if g != nil && g.Facet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacet allocates a new g.Facet and returns the pointer to it.
+func (g *GraphApmOrLogQueryGroupBy) SetFacet(v string) {
+	g.Facet = &v
+}
+
+// GetLimit returns the Limit field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryGroupBy) GetLimit() int {
+	if g == nil || g.Limit == nil {
+		return 0
+	}
+	return *g.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryGroupBy) GetLimitOk() (int, bool) {
+	if g == nil || g.Limit == nil {
+		return 0, false
+	}
+	return *g.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryGroupBy) HasLimit() bool {
+	if g != nil && g.Limit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit allocates a new g.Limit and returns the pointer to it.
+func (g *GraphApmOrLogQueryGroupBy) SetLimit(v int) {
+	g.Limit = &v
+}
+
+// GetSort returns the Sort field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryGroupBy) GetSort() GraphApmOrLogQueryGroupBySort {
+	if g == nil || g.Sort == nil {
+		return GraphApmOrLogQueryGroupBySort{}
+	}
+	return *g.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryGroupBy) GetSortOk() (GraphApmOrLogQueryGroupBySort, bool) {
+	if g == nil || g.Sort == nil {
+		return GraphApmOrLogQueryGroupBySort{}, false
+	}
+	return *g.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryGroupBy) HasSort() bool {
+	if g != nil && g.Sort != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSort allocates a new g.Sort and returns the pointer to it.
+func (g *GraphApmOrLogQueryGroupBy) SetSort(v GraphApmOrLogQueryGroupBySort) {
+	g.Sort = &v
+}
+
+// GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryGroupBySort) GetAggregation() string {
+	if g == nil || g.Aggregation == nil {
+		return ""
+	}
+	return *g.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryGroupBySort) GetAggregationOk() (string, bool) {
+	if g == nil || g.Aggregation == nil {
+		return "", false
+	}
+	return *g.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryGroupBySort) HasAggregation() bool {
+	if g != nil && g.Aggregation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation allocates a new g.Aggregation and returns the pointer to it.
+func (g *GraphApmOrLogQueryGroupBySort) SetAggregation(v string) {
+	g.Aggregation = &v
+}
+
+// GetFacet returns the Facet field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryGroupBySort) GetFacet() string {
+	if g == nil || g.Facet == nil {
+		return ""
+	}
+	return *g.Facet
+}
+
+// GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryGroupBySort) GetFacetOk() (string, bool) {
+	if g == nil || g.Facet == nil {
+		return "", false
+	}
+	return *g.Facet, true
+}
+
+// HasFacet returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryGroupBySort) HasFacet() bool {
+	if g != nil && g.Facet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacet allocates a new g.Facet and returns the pointer to it.
+func (g *GraphApmOrLogQueryGroupBySort) SetFacet(v string) {
+	g.Facet = &v
+}
+
+// GetOrder returns the Order field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQueryGroupBySort) GetOrder() string {
+	if g == nil || g.Order == nil {
+		return ""
+	}
+	return *g.Order
+}
+
+// GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQueryGroupBySort) GetOrderOk() (string, bool) {
+	if g == nil || g.Order == nil {
+		return "", false
+	}
+	return *g.Order, true
+}
+
+// HasOrder returns a boolean if a field has been set.
+func (g *GraphApmOrLogQueryGroupBySort) HasOrder() bool {
+	if g != nil && g.Order != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrder allocates a new g.Order and returns the pointer to it.
+func (g *GraphApmOrLogQueryGroupBySort) SetOrder(v string) {
+	g.Order = &v
+}
+
+// GetQuery returns the Query field if non-nil, zero value otherwise.
+func (g *GraphApmOrLogQuerySearch) GetQuery() string {
+	if g == nil || g.Query == nil {
+		return ""
+	}
+	return *g.Query
+}
+
+// GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphApmOrLogQuerySearch) GetQueryOk() (string, bool) {
+	if g == nil || g.Query == nil {
+		return "", false
+	}
+	return *g.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (g *GraphApmOrLogQuerySearch) HasQuery() bool {
+	if g != nil && g.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery allocates a new g.Query and returns the pointer to it.
+func (g *GraphApmOrLogQuerySearch) SetQuery(v string) {
+	g.Query = &v
+}
+
 // GetAutoscale returns the Autoscale field if non-nil, zero value otherwise.
 func (g *GraphDefinition) GetAutoscale() bool {
 	if g == nil || g.Autoscale == nil {
@@ -6708,6 +7111,37 @@ func (g *GraphDefinitionRequest) HasIncreaseGood() bool {
 // SetIncreaseGood allocates a new g.IncreaseGood and returns the pointer to it.
 func (g *GraphDefinitionRequest) SetIncreaseGood(v bool) {
 	g.IncreaseGood = &v
+}
+
+// GetLogQuery returns the LogQuery field if non-nil, zero value otherwise.
+func (g *GraphDefinitionRequest) GetLogQuery() GraphApmOrLogQuery {
+	if g == nil || g.LogQuery == nil {
+		return GraphApmOrLogQuery{}
+	}
+	return *g.LogQuery
+}
+
+// GetLogQueryOk returns a tuple with the LogQuery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphDefinitionRequest) GetLogQueryOk() (GraphApmOrLogQuery, bool) {
+	if g == nil || g.LogQuery == nil {
+		return GraphApmOrLogQuery{}, false
+	}
+	return *g.LogQuery, true
+}
+
+// HasLogQuery returns a boolean if a field has been set.
+func (g *GraphDefinitionRequest) HasLogQuery() bool {
+	if g != nil && g.LogQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogQuery allocates a new g.LogQuery and returns the pointer to it.
+func (g *GraphDefinitionRequest) SetLogQuery(v GraphApmOrLogQuery) {
+	g.LogQuery = &v
 }
 
 // GetOrderBy returns the OrderBy field if non-nil, zero value otherwise.
@@ -16754,6 +17188,409 @@ func (t *TileDef) SetViz(v string) {
 	t.Viz = &v
 }
 
+// GetCompute returns the Compute field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQuery) GetCompute() TileDefApmOrLogQueryCompute {
+	if t == nil || t.Compute == nil {
+		return TileDefApmOrLogQueryCompute{}
+	}
+	return *t.Compute
+}
+
+// GetComputeOk returns a tuple with the Compute field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQuery) GetComputeOk() (TileDefApmOrLogQueryCompute, bool) {
+	if t == nil || t.Compute == nil {
+		return TileDefApmOrLogQueryCompute{}, false
+	}
+	return *t.Compute, true
+}
+
+// HasCompute returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQuery) HasCompute() bool {
+	if t != nil && t.Compute != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCompute allocates a new t.Compute and returns the pointer to it.
+func (t *TileDefApmOrLogQuery) SetCompute(v TileDefApmOrLogQueryCompute) {
+	t.Compute = &v
+}
+
+// GetIndex returns the Index field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQuery) GetIndex() string {
+	if t == nil || t.Index == nil {
+		return ""
+	}
+	return *t.Index
+}
+
+// GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQuery) GetIndexOk() (string, bool) {
+	if t == nil || t.Index == nil {
+		return "", false
+	}
+	return *t.Index, true
+}
+
+// HasIndex returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQuery) HasIndex() bool {
+	if t != nil && t.Index != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex allocates a new t.Index and returns the pointer to it.
+func (t *TileDefApmOrLogQuery) SetIndex(v string) {
+	t.Index = &v
+}
+
+// GetSearch returns the Search field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQuery) GetSearch() TileDefApmOrLogQuerySearch {
+	if t == nil || t.Search == nil {
+		return TileDefApmOrLogQuerySearch{}
+	}
+	return *t.Search
+}
+
+// GetSearchOk returns a tuple with the Search field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQuery) GetSearchOk() (TileDefApmOrLogQuerySearch, bool) {
+	if t == nil || t.Search == nil {
+		return TileDefApmOrLogQuerySearch{}, false
+	}
+	return *t.Search, true
+}
+
+// HasSearch returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQuery) HasSearch() bool {
+	if t != nil && t.Search != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSearch allocates a new t.Search and returns the pointer to it.
+func (t *TileDefApmOrLogQuery) SetSearch(v TileDefApmOrLogQuerySearch) {
+	t.Search = &v
+}
+
+// GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryCompute) GetAggregation() string {
+	if t == nil || t.Aggregation == nil {
+		return ""
+	}
+	return *t.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryCompute) GetAggregationOk() (string, bool) {
+	if t == nil || t.Aggregation == nil {
+		return "", false
+	}
+	return *t.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryCompute) HasAggregation() bool {
+	if t != nil && t.Aggregation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation allocates a new t.Aggregation and returns the pointer to it.
+func (t *TileDefApmOrLogQueryCompute) SetAggregation(v string) {
+	t.Aggregation = &v
+}
+
+// GetFacet returns the Facet field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryCompute) GetFacet() string {
+	if t == nil || t.Facet == nil {
+		return ""
+	}
+	return *t.Facet
+}
+
+// GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryCompute) GetFacetOk() (string, bool) {
+	if t == nil || t.Facet == nil {
+		return "", false
+	}
+	return *t.Facet, true
+}
+
+// HasFacet returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryCompute) HasFacet() bool {
+	if t != nil && t.Facet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacet allocates a new t.Facet and returns the pointer to it.
+func (t *TileDefApmOrLogQueryCompute) SetFacet(v string) {
+	t.Facet = &v
+}
+
+// GetInterval returns the Interval field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryCompute) GetInterval() int {
+	if t == nil || t.Interval == nil {
+		return 0
+	}
+	return *t.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryCompute) GetIntervalOk() (int, bool) {
+	if t == nil || t.Interval == nil {
+		return 0, false
+	}
+	return *t.Interval, true
+}
+
+// HasInterval returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryCompute) HasInterval() bool {
+	if t != nil && t.Interval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterval allocates a new t.Interval and returns the pointer to it.
+func (t *TileDefApmOrLogQueryCompute) SetInterval(v int) {
+	t.Interval = &v
+}
+
+// GetFacet returns the Facet field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryGroupBy) GetFacet() string {
+	if t == nil || t.Facet == nil {
+		return ""
+	}
+	return *t.Facet
+}
+
+// GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryGroupBy) GetFacetOk() (string, bool) {
+	if t == nil || t.Facet == nil {
+		return "", false
+	}
+	return *t.Facet, true
+}
+
+// HasFacet returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryGroupBy) HasFacet() bool {
+	if t != nil && t.Facet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacet allocates a new t.Facet and returns the pointer to it.
+func (t *TileDefApmOrLogQueryGroupBy) SetFacet(v string) {
+	t.Facet = &v
+}
+
+// GetLimit returns the Limit field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryGroupBy) GetLimit() int {
+	if t == nil || t.Limit == nil {
+		return 0
+	}
+	return *t.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryGroupBy) GetLimitOk() (int, bool) {
+	if t == nil || t.Limit == nil {
+		return 0, false
+	}
+	return *t.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryGroupBy) HasLimit() bool {
+	if t != nil && t.Limit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit allocates a new t.Limit and returns the pointer to it.
+func (t *TileDefApmOrLogQueryGroupBy) SetLimit(v int) {
+	t.Limit = &v
+}
+
+// GetSort returns the Sort field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryGroupBy) GetSort() TileDefApmOrLogQueryGroupBySort {
+	if t == nil || t.Sort == nil {
+		return TileDefApmOrLogQueryGroupBySort{}
+	}
+	return *t.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryGroupBy) GetSortOk() (TileDefApmOrLogQueryGroupBySort, bool) {
+	if t == nil || t.Sort == nil {
+		return TileDefApmOrLogQueryGroupBySort{}, false
+	}
+	return *t.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryGroupBy) HasSort() bool {
+	if t != nil && t.Sort != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSort allocates a new t.Sort and returns the pointer to it.
+func (t *TileDefApmOrLogQueryGroupBy) SetSort(v TileDefApmOrLogQueryGroupBySort) {
+	t.Sort = &v
+}
+
+// GetAggregation returns the Aggregation field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryGroupBySort) GetAggregation() string {
+	if t == nil || t.Aggregation == nil {
+		return ""
+	}
+	return *t.Aggregation
+}
+
+// GetAggregationOk returns a tuple with the Aggregation field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryGroupBySort) GetAggregationOk() (string, bool) {
+	if t == nil || t.Aggregation == nil {
+		return "", false
+	}
+	return *t.Aggregation, true
+}
+
+// HasAggregation returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryGroupBySort) HasAggregation() bool {
+	if t != nil && t.Aggregation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAggregation allocates a new t.Aggregation and returns the pointer to it.
+func (t *TileDefApmOrLogQueryGroupBySort) SetAggregation(v string) {
+	t.Aggregation = &v
+}
+
+// GetFacet returns the Facet field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryGroupBySort) GetFacet() string {
+	if t == nil || t.Facet == nil {
+		return ""
+	}
+	return *t.Facet
+}
+
+// GetFacetOk returns a tuple with the Facet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryGroupBySort) GetFacetOk() (string, bool) {
+	if t == nil || t.Facet == nil {
+		return "", false
+	}
+	return *t.Facet, true
+}
+
+// HasFacet returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryGroupBySort) HasFacet() bool {
+	if t != nil && t.Facet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFacet allocates a new t.Facet and returns the pointer to it.
+func (t *TileDefApmOrLogQueryGroupBySort) SetFacet(v string) {
+	t.Facet = &v
+}
+
+// GetOrder returns the Order field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQueryGroupBySort) GetOrder() string {
+	if t == nil || t.Order == nil {
+		return ""
+	}
+	return *t.Order
+}
+
+// GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQueryGroupBySort) GetOrderOk() (string, bool) {
+	if t == nil || t.Order == nil {
+		return "", false
+	}
+	return *t.Order, true
+}
+
+// HasOrder returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQueryGroupBySort) HasOrder() bool {
+	if t != nil && t.Order != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrder allocates a new t.Order and returns the pointer to it.
+func (t *TileDefApmOrLogQueryGroupBySort) SetOrder(v string) {
+	t.Order = &v
+}
+
+// GetQuery returns the Query field if non-nil, zero value otherwise.
+func (t *TileDefApmOrLogQuerySearch) GetQuery() string {
+	if t == nil || t.Query == nil {
+		return ""
+	}
+	return *t.Query
+}
+
+// GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefApmOrLogQuerySearch) GetQueryOk() (string, bool) {
+	if t == nil || t.Query == nil {
+		return "", false
+	}
+	return *t.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (t *TileDefApmOrLogQuerySearch) HasQuery() bool {
+	if t != nil && t.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery allocates a new t.Query and returns the pointer to it.
+func (t *TileDefApmOrLogQuerySearch) SetQuery(v string) {
+	t.Query = &v
+}
+
 // GetQuery returns the Query field if non-nil, zero value otherwise.
 func (t *TileDefEvent) GetQuery() string {
 	if t == nil || t.Query == nil {
@@ -17093,6 +17930,37 @@ func (t *TileDefRequest) HasLimit() bool {
 // SetLimit allocates a new t.Limit and returns the pointer to it.
 func (t *TileDefRequest) SetLimit(v int) {
 	t.Limit = &v
+}
+
+// GetLogQuery returns the LogQuery field if non-nil, zero value otherwise.
+func (t *TileDefRequest) GetLogQuery() TileDefApmOrLogQuery {
+	if t == nil || t.LogQuery == nil {
+		return TileDefApmOrLogQuery{}
+	}
+	return *t.LogQuery
+}
+
+// GetLogQueryOk returns a tuple with the LogQuery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefRequest) GetLogQueryOk() (TileDefApmOrLogQuery, bool) {
+	if t == nil || t.LogQuery == nil {
+		return TileDefApmOrLogQuery{}, false
+	}
+	return *t.LogQuery, true
+}
+
+// HasLogQuery returns a boolean if a field has been set.
+func (t *TileDefRequest) HasLogQuery() bool {
+	if t != nil && t.LogQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogQuery allocates a new t.LogQuery and returns the pointer to it.
+func (t *TileDefRequest) SetLogQuery(v TileDefApmOrLogQuery) {
+	t.LogQuery = &v
 }
 
 // GetMetric returns the Metric field if non-nil, zero value otherwise.

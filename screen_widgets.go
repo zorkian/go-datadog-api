@@ -69,6 +69,9 @@ type TileDefRequest struct {
 	TagFilters []*string `json:"tag_filters"`
 	Limit      *int      `json:"limit,omitempty"`
 
+	// For APM or log query
+	LogQuery *TileDefApmOrLogQuery `json:"log_query,omitempty"`
+
 	ConditionalFormats []ConditionalFormat        `json:"conditional_formats,omitempty"`
 	Style              *TileDefRequestStyle       `json:"style,omitempty"`
 	Aggregator         *string                    `json:"aggregator,omitempty"`
@@ -79,6 +82,32 @@ type TileDefRequest struct {
 	ExtraCol           *string                    `json:"extra_col,omitempty"`
 	IncreaseGood       *bool                      `json:"increase_good,omitempty"`
 	Metadata           map[string]TileDefMetadata `json:"metadata,omitempty"`
+}
+
+// TileDefApmOrLogQuery represents an APM or a Log query
+type TileDefApmOrLogQuery struct {
+	Index   *string                       `json:"index"`
+	Compute *TileDefApmOrLogQueryCompute  `json:"compute"`
+	Search  *TileDefApmOrLogQuerySearch   `json:"search,omitempty"`
+	GroupBy []TileDefApmOrLogQueryGroupBy `json:"groupBy,omitempty"`
+}
+type TileDefApmOrLogQueryCompute struct {
+	Aggregation *string `json:"aggregation"`
+	Facet       *string `json:"facet,omitempty"`
+	Interval    *int    `json:"interval,omitempty"`
+}
+type TileDefApmOrLogQuerySearch struct {
+	Query *string `json:"query"`
+}
+type TileDefApmOrLogQueryGroupBy struct {
+	Facet *string                          `json:"facet"`
+	Limit *int                             `json:"limit,omitempty"`
+	Sort  *TileDefApmOrLogQueryGroupBySort `json:"sort,omitempty"`
+}
+type TileDefApmOrLogQueryGroupBySort struct {
+	Aggregation *string `json:"aggregation"`
+	Order       *string `json:"order"`
+	Facet       *string `json:"facet,omitempty"`
 }
 
 type TileDefMetadata struct {
