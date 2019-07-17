@@ -57,7 +57,6 @@ type TileDefMarker struct {
 }
 
 type TileDefRequest struct {
-	Query *string `json:"q,omitempty"`
 
 	// For Hostmap
 	Type *string `json:"type,omitempty"`
@@ -69,8 +68,10 @@ type TileDefRequest struct {
 	TagFilters []*string `json:"tag_filters"`
 	Limit      *int      `json:"limit,omitempty"`
 
-	// For APM or log query
-	LogQuery *TileDefApmOrLogQuery `json:"log_query,omitempty"`
+	Query        *string               `json:"q,omitempty"`
+	LogQuery     *TileDefApmOrLogQuery `json:"log_query,omitempty"`
+	APMQuery     *TileDefApmOrLogQuery `json:"apm_query,omitempty"`
+	ProcessQuery *TileDefProcessQuery  `json:"process_query,omitempty"`
 
 	ConditionalFormats []ConditionalFormat        `json:"conditional_formats,omitempty"`
 	Style              *TileDefRequestStyle       `json:"style,omitempty"`
@@ -108,6 +109,13 @@ type TileDefApmOrLogQueryGroupBySort struct {
 	Aggregation *string `json:"aggregation"`
 	Order       *string `json:"order"`
 	Facet       *string `json:"facet,omitempty"`
+}
+
+type TileDefProcessQuery struct {
+	Metric   *string  `json:"metric"`
+	SearchBy *string  `json:"search_by,omitempty"`
+	FilterBy []string `json:"filter_by,omitempty"`
+	Limit    *int     `json:"limit,omitempty"`
 }
 
 type TileDefMetadata struct {

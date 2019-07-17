@@ -22,7 +22,6 @@ type GraphDefinitionRequestStyle struct {
 
 // GraphDefinitionRequest represents the requests passed into each graph.
 type GraphDefinitionRequest struct {
-	Query              *string                      `json:"q,omitempty"`
 	Stacked            *bool                        `json:"stacked,omitempty"`
 	Aggregator         *string                      `json:"aggregator,omitempty"`
 	ConditionalFormats []DashboardConditionalFormat `json:"conditional_formats,omitempty"`
@@ -38,8 +37,10 @@ type GraphDefinitionRequest struct {
 	ExtraCol       *string                            `json:"extra_col,omitempty"`
 	Metadata       map[string]GraphDefinitionMetadata `json:"metadata,omitempty"`
 
-	// For APM and log query
-	LogQuery *GraphApmOrLogQuery `json:"log_query,omitempty"`
+	Query        *string             `json:"q,omitempty"`
+	LogQuery     *GraphApmOrLogQuery `json:"log_query,omitempty"`
+	APMQuery     *GraphApmOrLogQuery `json:"apm_query,omitempty"`
+	ProcessQuery *GraphProcessQuery  `json:"process_query,omitempty"`
 }
 
 // GraphApmOrLogQuery represents an APM or a Log query
@@ -70,6 +71,13 @@ type GraphApmOrLogQueryGroupBySort struct {
 	Aggregation *string `json:"aggregation"`
 	Order       *string `json:"order"`
 	Facet       *string `json:"facet,omitempty"`
+}
+
+type GraphProcessQuery struct {
+	Metric   *string  `json:"metric"`
+	SearchBy *string  `json:"search_by,omitempty"`
+	FilterBy []string `json:"filter_by,omitempty"`
+	Limit    *int     `json:"limit,omitempty"`
 }
 
 type GraphDefinitionMetadata TileDefMetadata

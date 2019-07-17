@@ -6989,6 +6989,37 @@ func (g *GraphDefinitionRequest) SetAggregator(v string) {
 	g.Aggregator = &v
 }
 
+// GetAPMQuery returns the APMQuery field if non-nil, zero value otherwise.
+func (g *GraphDefinitionRequest) GetAPMQuery() GraphApmOrLogQuery {
+	if g == nil || g.APMQuery == nil {
+		return GraphApmOrLogQuery{}
+	}
+	return *g.APMQuery
+}
+
+// GetAPMQueryOk returns a tuple with the APMQuery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphDefinitionRequest) GetAPMQueryOk() (GraphApmOrLogQuery, bool) {
+	if g == nil || g.APMQuery == nil {
+		return GraphApmOrLogQuery{}, false
+	}
+	return *g.APMQuery, true
+}
+
+// HasAPMQuery returns a boolean if a field has been set.
+func (g *GraphDefinitionRequest) HasAPMQuery() bool {
+	if g != nil && g.APMQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPMQuery allocates a new g.APMQuery and returns the pointer to it.
+func (g *GraphDefinitionRequest) SetAPMQuery(v GraphApmOrLogQuery) {
+	g.APMQuery = &v
+}
+
 // GetChangeType returns the ChangeType field if non-nil, zero value otherwise.
 func (g *GraphDefinitionRequest) GetChangeType() string {
 	if g == nil || g.ChangeType == nil {
@@ -7204,6 +7235,37 @@ func (g *GraphDefinitionRequest) HasOrderDirection() bool {
 // SetOrderDirection allocates a new g.OrderDirection and returns the pointer to it.
 func (g *GraphDefinitionRequest) SetOrderDirection(v string) {
 	g.OrderDirection = &v
+}
+
+// GetProcessQuery returns the ProcessQuery field if non-nil, zero value otherwise.
+func (g *GraphDefinitionRequest) GetProcessQuery() GraphProcessQuery {
+	if g == nil || g.ProcessQuery == nil {
+		return GraphProcessQuery{}
+	}
+	return *g.ProcessQuery
+}
+
+// GetProcessQueryOk returns a tuple with the ProcessQuery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphDefinitionRequest) GetProcessQueryOk() (GraphProcessQuery, bool) {
+	if g == nil || g.ProcessQuery == nil {
+		return GraphProcessQuery{}, false
+	}
+	return *g.ProcessQuery, true
+}
+
+// HasProcessQuery returns a boolean if a field has been set.
+func (g *GraphDefinitionRequest) HasProcessQuery() bool {
+	if g != nil && g.ProcessQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessQuery allocates a new g.ProcessQuery and returns the pointer to it.
+func (g *GraphDefinitionRequest) SetProcessQuery(v GraphProcessQuery) {
+	g.ProcessQuery = &v
 }
 
 // GetQuery returns the Query field if non-nil, zero value otherwise.
@@ -7452,6 +7514,99 @@ func (g *GraphEvent) HasQuery() bool {
 // SetQuery allocates a new g.Query and returns the pointer to it.
 func (g *GraphEvent) SetQuery(v string) {
 	g.Query = &v
+}
+
+// GetLimit returns the Limit field if non-nil, zero value otherwise.
+func (g *GraphProcessQuery) GetLimit() int {
+	if g == nil || g.Limit == nil {
+		return 0
+	}
+	return *g.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphProcessQuery) GetLimitOk() (int, bool) {
+	if g == nil || g.Limit == nil {
+		return 0, false
+	}
+	return *g.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (g *GraphProcessQuery) HasLimit() bool {
+	if g != nil && g.Limit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit allocates a new g.Limit and returns the pointer to it.
+func (g *GraphProcessQuery) SetLimit(v int) {
+	g.Limit = &v
+}
+
+// GetMetric returns the Metric field if non-nil, zero value otherwise.
+func (g *GraphProcessQuery) GetMetric() string {
+	if g == nil || g.Metric == nil {
+		return ""
+	}
+	return *g.Metric
+}
+
+// GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphProcessQuery) GetMetricOk() (string, bool) {
+	if g == nil || g.Metric == nil {
+		return "", false
+	}
+	return *g.Metric, true
+}
+
+// HasMetric returns a boolean if a field has been set.
+func (g *GraphProcessQuery) HasMetric() bool {
+	if g != nil && g.Metric != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetric allocates a new g.Metric and returns the pointer to it.
+func (g *GraphProcessQuery) SetMetric(v string) {
+	g.Metric = &v
+}
+
+// GetSearchBy returns the SearchBy field if non-nil, zero value otherwise.
+func (g *GraphProcessQuery) GetSearchBy() string {
+	if g == nil || g.SearchBy == nil {
+		return ""
+	}
+	return *g.SearchBy
+}
+
+// GetSearchByOk returns a tuple with the SearchBy field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GraphProcessQuery) GetSearchByOk() (string, bool) {
+	if g == nil || g.SearchBy == nil {
+		return "", false
+	}
+	return *g.SearchBy, true
+}
+
+// HasSearchBy returns a boolean if a field has been set.
+func (g *GraphProcessQuery) HasSearchBy() bool {
+	if g != nil && g.SearchBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSearchBy allocates a new g.SearchBy and returns the pointer to it.
+func (g *GraphProcessQuery) SetSearchBy(v string) {
+	g.SearchBy = &v
 }
 
 // GetLastNoDataTs returns the LastNoDataTs field if non-nil, zero value otherwise.
@@ -17746,6 +17901,99 @@ func (t *TileDefMetadata) SetAlias(v string) {
 	t.Alias = &v
 }
 
+// GetLimit returns the Limit field if non-nil, zero value otherwise.
+func (t *TileDefProcessQuery) GetLimit() int {
+	if t == nil || t.Limit == nil {
+		return 0
+	}
+	return *t.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefProcessQuery) GetLimitOk() (int, bool) {
+	if t == nil || t.Limit == nil {
+		return 0, false
+	}
+	return *t.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (t *TileDefProcessQuery) HasLimit() bool {
+	if t != nil && t.Limit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit allocates a new t.Limit and returns the pointer to it.
+func (t *TileDefProcessQuery) SetLimit(v int) {
+	t.Limit = &v
+}
+
+// GetMetric returns the Metric field if non-nil, zero value otherwise.
+func (t *TileDefProcessQuery) GetMetric() string {
+	if t == nil || t.Metric == nil {
+		return ""
+	}
+	return *t.Metric
+}
+
+// GetMetricOk returns a tuple with the Metric field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefProcessQuery) GetMetricOk() (string, bool) {
+	if t == nil || t.Metric == nil {
+		return "", false
+	}
+	return *t.Metric, true
+}
+
+// HasMetric returns a boolean if a field has been set.
+func (t *TileDefProcessQuery) HasMetric() bool {
+	if t != nil && t.Metric != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetric allocates a new t.Metric and returns the pointer to it.
+func (t *TileDefProcessQuery) SetMetric(v string) {
+	t.Metric = &v
+}
+
+// GetSearchBy returns the SearchBy field if non-nil, zero value otherwise.
+func (t *TileDefProcessQuery) GetSearchBy() string {
+	if t == nil || t.SearchBy == nil {
+		return ""
+	}
+	return *t.SearchBy
+}
+
+// GetSearchByOk returns a tuple with the SearchBy field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefProcessQuery) GetSearchByOk() (string, bool) {
+	if t == nil || t.SearchBy == nil {
+		return "", false
+	}
+	return *t.SearchBy, true
+}
+
+// HasSearchBy returns a boolean if a field has been set.
+func (t *TileDefProcessQuery) HasSearchBy() bool {
+	if t != nil && t.SearchBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSearchBy allocates a new t.SearchBy and returns the pointer to it.
+func (t *TileDefProcessQuery) SetSearchBy(v string) {
+	t.SearchBy = &v
+}
+
 // GetAggregator returns the Aggregator field if non-nil, zero value otherwise.
 func (t *TileDefRequest) GetAggregator() string {
 	if t == nil || t.Aggregator == nil {
@@ -17775,6 +18023,37 @@ func (t *TileDefRequest) HasAggregator() bool {
 // SetAggregator allocates a new t.Aggregator and returns the pointer to it.
 func (t *TileDefRequest) SetAggregator(v string) {
 	t.Aggregator = &v
+}
+
+// GetAPMQuery returns the APMQuery field if non-nil, zero value otherwise.
+func (t *TileDefRequest) GetAPMQuery() TileDefApmOrLogQuery {
+	if t == nil || t.APMQuery == nil {
+		return TileDefApmOrLogQuery{}
+	}
+	return *t.APMQuery
+}
+
+// GetAPMQueryOk returns a tuple with the APMQuery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefRequest) GetAPMQueryOk() (TileDefApmOrLogQuery, bool) {
+	if t == nil || t.APMQuery == nil {
+		return TileDefApmOrLogQuery{}, false
+	}
+	return *t.APMQuery, true
+}
+
+// HasAPMQuery returns a boolean if a field has been set.
+func (t *TileDefRequest) HasAPMQuery() bool {
+	if t != nil && t.APMQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAPMQuery allocates a new t.APMQuery and returns the pointer to it.
+func (t *TileDefRequest) SetAPMQuery(v TileDefApmOrLogQuery) {
+	t.APMQuery = &v
 }
 
 // GetChangeType returns the ChangeType field if non-nil, zero value otherwise.
@@ -18054,6 +18333,37 @@ func (t *TileDefRequest) HasOrderDir() bool {
 // SetOrderDir allocates a new t.OrderDir and returns the pointer to it.
 func (t *TileDefRequest) SetOrderDir(v string) {
 	t.OrderDir = &v
+}
+
+// GetProcessQuery returns the ProcessQuery field if non-nil, zero value otherwise.
+func (t *TileDefRequest) GetProcessQuery() TileDefProcessQuery {
+	if t == nil || t.ProcessQuery == nil {
+		return TileDefProcessQuery{}
+	}
+	return *t.ProcessQuery
+}
+
+// GetProcessQueryOk returns a tuple with the ProcessQuery field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TileDefRequest) GetProcessQueryOk() (TileDefProcessQuery, bool) {
+	if t == nil || t.ProcessQuery == nil {
+		return TileDefProcessQuery{}, false
+	}
+	return *t.ProcessQuery, true
+}
+
+// HasProcessQuery returns a boolean if a field has been set.
+func (t *TileDefRequest) HasProcessQuery() bool {
+	if t != nil && t.ProcessQuery != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProcessQuery allocates a new t.ProcessQuery and returns the pointer to it.
+func (t *TileDefRequest) SetProcessQuery(v TileDefProcessQuery) {
+	t.ProcessQuery = &v
 }
 
 // GetQuery returns the Query field if non-nil, zero value otherwise.
