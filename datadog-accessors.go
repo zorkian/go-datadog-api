@@ -6989,35 +6989,35 @@ func (g *GraphDefinitionRequest) SetAggregator(v string) {
 	g.Aggregator = &v
 }
 
-// GetAPMQuery returns the APMQuery field if non-nil, zero value otherwise.
-func (g *GraphDefinitionRequest) GetAPMQuery() GraphApmOrLogQuery {
-	if g == nil || g.APMQuery == nil {
+// GetApmQuery returns the ApmQuery field if non-nil, zero value otherwise.
+func (g *GraphDefinitionRequest) GetApmQuery() GraphApmOrLogQuery {
+	if g == nil || g.ApmQuery == nil {
 		return GraphApmOrLogQuery{}
 	}
-	return *g.APMQuery
+	return *g.ApmQuery
 }
 
-// GetAPMQueryOk returns a tuple with the APMQuery field if it's non-nil, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (g *GraphDefinitionRequest) GetAPMQueryOk() (GraphApmOrLogQuery, bool) {
-	if g == nil || g.APMQuery == nil {
+func (g *GraphDefinitionRequest) GetApmQueryOk() (GraphApmOrLogQuery, bool) {
+	if g == nil || g.ApmQuery == nil {
 		return GraphApmOrLogQuery{}, false
 	}
-	return *g.APMQuery, true
+	return *g.ApmQuery, true
 }
 
-// HasAPMQuery returns a boolean if a field has been set.
-func (g *GraphDefinitionRequest) HasAPMQuery() bool {
-	if g != nil && g.APMQuery != nil {
+// HasApmQuery returns a boolean if a field has been set.
+func (g *GraphDefinitionRequest) HasApmQuery() bool {
+	if g != nil && g.ApmQuery != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAPMQuery allocates a new g.APMQuery and returns the pointer to it.
-func (g *GraphDefinitionRequest) SetAPMQuery(v GraphApmOrLogQuery) {
-	g.APMQuery = &v
+// SetApmQuery allocates a new g.ApmQuery and returns the pointer to it.
+func (g *GraphDefinitionRequest) SetApmQuery(v GraphApmOrLogQuery) {
+	g.ApmQuery = &v
 }
 
 // GetChangeType returns the ChangeType field if non-nil, zero value otherwise.
@@ -18025,35 +18025,35 @@ func (t *TileDefRequest) SetAggregator(v string) {
 	t.Aggregator = &v
 }
 
-// GetAPMQuery returns the APMQuery field if non-nil, zero value otherwise.
-func (t *TileDefRequest) GetAPMQuery() TileDefApmOrLogQuery {
-	if t == nil || t.APMQuery == nil {
+// GetApmQuery returns the ApmQuery field if non-nil, zero value otherwise.
+func (t *TileDefRequest) GetApmQuery() TileDefApmOrLogQuery {
+	if t == nil || t.ApmQuery == nil {
 		return TileDefApmOrLogQuery{}
 	}
-	return *t.APMQuery
+	return *t.ApmQuery
 }
 
-// GetAPMQueryOk returns a tuple with the APMQuery field if it's non-nil, zero value otherwise
+// GetApmQueryOk returns a tuple with the ApmQuery field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDefRequest) GetAPMQueryOk() (TileDefApmOrLogQuery, bool) {
-	if t == nil || t.APMQuery == nil {
+func (t *TileDefRequest) GetApmQueryOk() (TileDefApmOrLogQuery, bool) {
+	if t == nil || t.ApmQuery == nil {
 		return TileDefApmOrLogQuery{}, false
 	}
-	return *t.APMQuery, true
+	return *t.ApmQuery, true
 }
 
-// HasAPMQuery returns a boolean if a field has been set.
-func (t *TileDefRequest) HasAPMQuery() bool {
-	if t != nil && t.APMQuery != nil {
+// HasApmQuery returns a boolean if a field has been set.
+func (t *TileDefRequest) HasApmQuery() bool {
+	if t != nil && t.ApmQuery != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAPMQuery allocates a new t.APMQuery and returns the pointer to it.
-func (t *TileDefRequest) SetAPMQuery(v TileDefApmOrLogQuery) {
-	t.APMQuery = &v
+// SetApmQuery allocates a new t.ApmQuery and returns the pointer to it.
+func (t *TileDefRequest) SetApmQuery(v TileDefApmOrLogQuery) {
+	t.ApmQuery = &v
 }
 
 // GetChangeType returns the ChangeType field if non-nil, zero value otherwise.

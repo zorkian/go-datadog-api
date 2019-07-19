@@ -37,9 +37,10 @@ type GraphDefinitionRequest struct {
 	ExtraCol       *string                            `json:"extra_col,omitempty"`
 	Metadata       map[string]GraphDefinitionMetadata `json:"metadata,omitempty"`
 
+	// A Graph can only have one of these types of query.
 	Query        *string             `json:"q,omitempty"`
 	LogQuery     *GraphApmOrLogQuery `json:"log_query,omitempty"`
-	APMQuery     *GraphApmOrLogQuery `json:"apm_query,omitempty"`
+	ApmQuery     *GraphApmOrLogQuery `json:"apm_query,omitempty"`
 	ProcessQuery *GraphProcessQuery  `json:"process_query,omitempty"`
 }
 

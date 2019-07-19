@@ -68,9 +68,10 @@ type TileDefRequest struct {
 	TagFilters []*string `json:"tag_filters"`
 	Limit      *int      `json:"limit,omitempty"`
 
+	// A Widget can only have one of these types of query.
 	Query        *string               `json:"q,omitempty"`
 	LogQuery     *TileDefApmOrLogQuery `json:"log_query,omitempty"`
-	APMQuery     *TileDefApmOrLogQuery `json:"apm_query,omitempty"`
+	ApmQuery     *TileDefApmOrLogQuery `json:"apm_query,omitempty"`
 	ProcessQuery *TileDefProcessQuery  `json:"process_query,omitempty"`
 
 	ConditionalFormats []ConditionalFormat        `json:"conditional_formats,omitempty"`
