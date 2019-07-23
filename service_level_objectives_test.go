@@ -24,7 +24,7 @@ func TestServiceLevelObjectiveSerialization(t *testing.T) {
 		Thresholds: []*ServiceLevelObjectiveThreshold{
 			{
 				TimeFrame: String("7d"),
-				SLO:       Float64(99),
+				Target:    Float64(99),
 				Warning:   Float64(99.5),
 			},
 		},
@@ -75,17 +75,17 @@ func getMockSLO(id string) *ServiceLevelObjective {
 		Thresholds: []*ServiceLevelObjectiveThreshold{
 			{
 				TimeFrame: String("7d"),
-				SLO:       Float64(99),
+				Target:    Float64(99),
 				Warning:   Float64(99.5),
 			},
 			{
 				TimeFrame: String("30d"),
-				SLO:       Float64(98),
+				Target:    Float64(98),
 				Warning:   Float64(99),
 			},
 			{
 				TimeFrame: String("90d"),
-				SLO:       Float64(98),
+				Target:    Float64(98),
 				Warning:   Float64(99),
 			},
 		},
@@ -211,15 +211,15 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		thresholds := ServiceLevelObjectiveThresholds{
 			{
 				TimeFrame: String("30d"),
-				SLO:       Float64(99.9),
+				Target:    Float64(99.9),
 			},
 			{
 				TimeFrame: String("7d"),
-				SLO:       Float64(98.9),
+				Target:    Float64(98.9),
 			},
 			{
 				TimeFrame: String("90d"),
-				SLO:       Float64(97.9),
+				Target:    Float64(97.9),
 			},
 		}
 
@@ -232,23 +232,23 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 	t.Run("thresholds are comparable", func(t2 *testing.T) {
 		threshold1 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("30d"),
-			SLO:       Float64(99.9),
+			Target:    Float64(99.9),
 		}
 		threshold2 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("30d"),
-			SLO:       Float64(99.9),
+			Target:    Float64(99.9),
 		}
 		assert.True(t2, threshold1.Equal(threshold2))
 		threshold3 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("30d"),
-			SLO:       Float64(0.9),
+			Target:    Float64(0.9),
 		}
 
 		assert.False(t2, threshold3.Equal(threshold2))
 
 		threshold4 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("7d"),
-			SLO:       Float64(99.9),
+			Target:    Float64(99.9),
 		}
 		assert.False(t2, threshold2.Equal(threshold4))
 	})

@@ -15,7 +15,7 @@ func TestServiceLevelObjectivesCreateGetUpdateAndDelete(t *testing.T) {
 		Thresholds: datadog.ServiceLevelObjectiveThresholds{
 			{
 				TimeFrame: datadog.String("7d"),
-				SLO:       datadog.Float64(99),
+				Target:    datadog.Float64(99),
 				Warning:   datadog.Float64(99.5),
 			},
 		},
@@ -44,12 +44,12 @@ func TestServiceLevelObjectivesCreateGetUpdateAndDelete(t *testing.T) {
 	actual.Thresholds = datadog.ServiceLevelObjectiveThresholds{
 		{
 			TimeFrame: datadog.String("7d"),
-			SLO:       datadog.Float64(99),
+			Target:    datadog.Float64(99),
 			Warning:   datadog.Float64(99.5),
 		},
 		{
 			TimeFrame: datadog.String("30d"),
-			SLO:       datadog.Float64(99),
+			Target:    datadog.Float64(99),
 			Warning:   datadog.Float64(99.5),
 		},
 	}
@@ -71,17 +71,17 @@ func TestServiceLevelObjectivesBulkTimeFrameDelete(t *testing.T) {
 		Thresholds: datadog.ServiceLevelObjectiveThresholds{
 			{
 				TimeFrame: datadog.String("7d"),
-				SLO:       datadog.Float64(99),
+				Target:    datadog.Float64(99),
 				Warning:   datadog.Float64(99.5),
 			},
 			{
 				TimeFrame: datadog.String("30d"),
-				SLO:       datadog.Float64(99),
+				Target:    datadog.Float64(99),
 				Warning:   datadog.Float64(99.5),
 			},
 			{
 				TimeFrame: datadog.String("90d"),
-				SLO:       datadog.Float64(99),
+				Target:    datadog.Float64(99),
 				Warning:   datadog.Float64(99.5),
 			},
 		},
@@ -98,7 +98,7 @@ func TestServiceLevelObjectivesBulkTimeFrameDelete(t *testing.T) {
 		Thresholds: datadog.ServiceLevelObjectiveThresholds{
 			{
 				TimeFrame: datadog.String("7d"),
-				SLO:       datadog.Float64(99),
+				Target:    datadog.Float64(99),
 				Warning:   datadog.Float64(99.5),
 			},
 		},

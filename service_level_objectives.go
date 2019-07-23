@@ -45,8 +45,8 @@ var ServiceLevelObjectiveTypeToID = map[string]int{
 // For example it's the `<SLO: ex 99.999%> of <SLI> within <TimeFrame: ex 7d>
 type ServiceLevelObjectiveThreshold struct {
 	TimeFrame      *string  `json:"timeframe,omitempty"`
-	SLO            *float64 `json:"slo,omitempty"`
-	SLODisplay     *string  `json:"slo_display,omitempty"` // Read-Only for monitor type
+	Target         *float64 `json:"target,omitempty"`
+	TargetDisplay  *string  `json:"target,omitempty"` // Read-Only for monitor type
 	Warning        *float64 `json:"warning,omitempty"`
 	WarningDisplay *string  `json:"warning_display,omitempty"` // Read-Only for monitor type
 }
@@ -61,14 +61,14 @@ func (s *ServiceLevelObjectiveThreshold) Equal(o interface{}) bool {
 	}
 
 	return s.GetTimeFrame() == other.GetTimeFrame() &&
-		Float64AlmostEqual(s.GetSLO(), other.GetSLO(), thresholdTolerance) &&
+		Float64AlmostEqual(s.GetTarget(), other.GetTarget(), thresholdTolerance) &&
 		Float64AlmostEqual(s.GetWarning(), other.GetWarning(), thresholdTolerance)
 }
 
 // String implements Stringer
 func (s ServiceLevelObjectiveThreshold) String() string {
-	return fmt.Sprintf("Threshold{timeframe=%s slo=%f slo_display=%s warning=%f warning_display=%s",
-		s.GetTimeFrame(), s.GetSLO(), s.GetSLODisplay(), s.GetWarning(), s.GetWarningDisplay())
+	return fmt.Sprintf("Threshold{timeframe=%s target=%f target_display=%s warning=%f warning_display=%s",
+		s.GetTimeFrame(), s.GetTarget(), s.GetTargetDisplay(), s.GetWarning(), s.GetWarningDisplay())
 }
 
 // ServiceLevelObjectiveMetricQuery represents a metric-based SLO definition query
@@ -218,7 +218,7 @@ func (slo *ServiceLevelObjective) toCreateUpdate() *createUpdateServiceLevelObje
 	thresholds := make(map[string]*createSLOThreshold, 0)
 	for _, threshold := range slo.Thresholds {
 		thresholds[threshold.GetTimeFrame()] = &createSLOThreshold{
-			SLO:     threshold.SLO,
+			SLO:     threshold.Target,
 			Warning: threshold.Warning,
 		}
 	}
