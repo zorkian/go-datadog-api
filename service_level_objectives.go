@@ -46,7 +46,7 @@ var ServiceLevelObjectiveTypeToID = map[string]int{
 type ServiceLevelObjectiveThreshold struct {
 	TimeFrame      *string  `json:"timeframe,omitempty"`
 	Target         *float64 `json:"target,omitempty"`
-	TargetDisplay  *string  `json:"target,omitempty"` // Read-Only for monitor type
+	TargetDisplay  *string  `json:"target_display,omitempty"` // Read-Only for monitor type
 	Warning        *float64 `json:"warning,omitempty"`
 	WarningDisplay *string  `json:"warning_display,omitempty"` // Read-Only for monitor type
 }
