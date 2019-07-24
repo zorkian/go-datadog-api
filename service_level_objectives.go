@@ -195,47 +195,6 @@ func ServiceLevelObjectiveTimeFrameToDuration(timeframe string) (time.Duration, 
 	}
 }
 
-type createSLOThreshold struct {
-	SLO     *float64 `json:"slo,omitempty"`
-	Warning *float64 `json:"warning,omitempty"`
-}
-
-// createServiceLevelObjective is the appropriate model for creation/update
-// note that thresholds is a map of timeframe:<Threshold definition>
-type createUpdateServiceLevelObjective struct {
-	Name          *string                           `json:"name,omitempty"`
-	Description   *string                           `json:"description,omitempty"`
-	Tags          []string                          `json:"tags,omitempty"`
-	Thresholds    map[string]*createSLOThreshold    `json:"thresholds,omitempty"`
-	Type          *string                           `json:"type,omitempty"`
-	Query         *ServiceLevelObjectiveMetricQuery `json:"query,omitempty"`
-	MonitorIDs    []int                             `json:"monitor_ids,omitempty"`
-	MonitorSearch *string                           `json:"monitor_search,omitempty"`
-	Groups        []string                          `json:"groups,omitempty"`
-}
-
-func (slo *ServiceLevelObjective) toCreateUpdate() *createUpdateServiceLevelObjective {
-	thresholds := make(map[string]*createSLOThreshold, 0)
-	for _, threshold := range slo.Thresholds {
-		thresholds[threshold.GetTimeFrame()] = &createSLOThreshold{
-			SLO:     threshold.Target,
-			Warning: threshold.Warning,
-		}
-	}
-
-	return &createUpdateServiceLevelObjective{
-		Name:          slo.Name,
-		Description:   slo.Description,
-		Tags:          slo.Tags,
-		Thresholds:    thresholds,
-		Type:          slo.Type,
-		Query:         slo.Query,
-		MonitorIDs:    slo.MonitorIDs,
-		MonitorSearch: slo.MonitorSearch,
-		Groups:        slo.Groups,
-	}
-}
-
 // CreateServiceLevelObjective adds a new service level objective to the system. This returns a pointer
 // to the service level objective so you can pass that to UpdateServiceLevelObjective or DeleteServiceLevelObjective
 // later if needed.
@@ -246,7 +205,7 @@ func (client *Client) CreateServiceLevelObjective(slo *ServiceLevelObjective) (*
 		return nil, fmt.Errorf("no SLO specified")
 	}
 
-	if err := client.doJsonRequest("POST", "/v1/slo", slo.toCreateUpdate(), &out); err != nil {
+	if err := client.doJsonRequest("POST", "/v1/slo", slo, &out); err != nil {
 		return nil, err
 	}
 	if out.Error != "" {
@@ -265,7 +224,7 @@ func (client *Client) UpdateServiceLevelObjective(slo *ServiceLevelObjective) (*
 		return nil, fmt.Errorf("no SLO specified")
 	}
 
-	if err := client.doJsonRequest("PUT", fmt.Sprintf("/v1/slo/%s", slo.GetID()), slo.toCreateUpdate(), &out); err != nil {
+	if err := client.doJsonRequest("PUT", fmt.Sprintf("/v1/slo/%s", slo.GetID()), slo, &out); err != nil {
 		return nil, err
 	}
 
