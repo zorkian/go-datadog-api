@@ -161,8 +161,8 @@ type ServiceLevelObjective struct {
 	// Informational
 	MonitorTags []string `json:"monitor_tags,omitempty"` // Read-Only
 	Creator     *Creator `json:"creator,omitempty"`      // Read-Only
-	CreatedAt   *int     `json:"created_at"`             // Read-Only
-	ModifiedAt  *int     `json:"modified_at"`            // Read-Only
+	CreatedAt   *int     `json:"created_at,omitempty"`   // Read-Only
+	ModifiedAt  *int     `json:"modified_at,omitempty"`  // Read-Only
 }
 
 var sloTimeFrameToDurationRegex = regexp.MustCompile(`(?P<quantity>\d+)(?P<unit>(d))`)
@@ -253,7 +253,7 @@ func (client *Client) SearchServiceLevelObjectives(limit int, offset int, query 
 		uriValues.Set("offset", fmt.Sprintf("%d", offset))
 	}
 	// Either use `query` or use `ids`
-	hasQuery := query != ""
+	hasQuery := strings.TrimSpace(query) != ""
 	hasIDs := len(ids) > 0
 	if hasQuery && hasIDs {
 		return nil, fmt.Errorf("invalid search: must specify either ids OR query, not both")
@@ -299,24 +299,6 @@ func (client *Client) GetServiceLevelObjective(id string) (*ServiceLevelObjectiv
 	}
 
 	if err := client.doJsonRequest("GET", fmt.Sprintf("/v1/slo/%s", id), nil, &out); err != nil {
-		return nil, err
-	}
-	if out.Error != "" {
-		return nil, fmt.Errorf(out.Error)
-	}
-
-	return out.Data, nil
-}
-
-// GetServiceLevelObjectives retrieves an service level objective by identifier.
-func (client *Client) GetServiceLevelObjectives(ids []string) ([]*ServiceLevelObjective, error) {
-	var out reqServiceLevelObjectives
-
-	if len(ids) == 0 {
-		return nil, fmt.Errorf("no SLO IDs specified")
-	}
-
-	if err := client.doJsonRequest("GET", "/v1/slo", ids, &out); err != nil {
 		return nil, err
 	}
 	if out.Error != "" {
