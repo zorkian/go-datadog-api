@@ -2,6 +2,7 @@ package integration
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
@@ -34,10 +35,14 @@ func TestServiceLevelObjectivesCreateGetUpdateAndDelete(t *testing.T) {
 	assert.Equal(t, expected.Description, actual.Description)
 	assert.True(t, expected.Thresholds.Equal(actual.Thresholds))
 
+	time.Sleep(time.Second)
+
 	// Get
 	found, err := client.GetServiceLevelObjective(actual.GetID())
 	assert.NoError(t, err)
 	assert.Equal(t, actual.GetID(), found.GetID())
+
+	time.Sleep(time.Second)
 
 	// Update
 	actual.SetDescription("Integration test for SLOs - updated")
@@ -53,13 +58,15 @@ func TestServiceLevelObjectivesCreateGetUpdateAndDelete(t *testing.T) {
 			Warning:   datadog.Float64(99.5),
 		},
 	}
-	actual, err = client.UpdateServiceLevelObjective(actual)
+	updated, err := client.UpdateServiceLevelObjective(actual)
 	assert.NoError(t, err)
-	assert.Equal(t, "Integration test for SLOs - updated", actual.GetDescription())
-	assert.Len(t, actual.Thresholds, 2)
+	assert.Equal(t, "Integration test for SLOs - updated", updated.GetDescription())
+	assert.Len(t, updated.Thresholds, 2)
+
+	time.Sleep(time.Second)
 
 	// Delete
-	err = client.DeleteServiceLevelObjective(actual.GetID())
+	err = client.DeleteServiceLevelObjective(updated.GetID())
 	assert.NoError(t, err)
 }
 
@@ -117,6 +124,8 @@ func TestServiceLevelObjectivesBulkTimeFrameDelete(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotEmpty(t, actual2.GetID())
 
+	time.Sleep(time.Second)
+
 	// Do multi-timeframe delete
 	timeframesToDelete := map[string][]string{
 		// delete only 2 of 3 timeframes from 1
@@ -132,6 +141,8 @@ func TestServiceLevelObjectivesBulkTimeFrameDelete(t *testing.T) {
 	resp, err := client.DeleteServiceLevelObjectiveTimeFrames(timeframesToDelete)
 	assert.EqualValues(t, []string{actual2.GetID()}, resp.DeletedIDs)
 	assert.EqualValues(t, []string{actual1.GetID()}, resp.UpdatedIDs)
+
+	time.Sleep(time.Second)
 
 	// Delete
 	err = client.DeleteServiceLevelObjective(actual1.GetID())

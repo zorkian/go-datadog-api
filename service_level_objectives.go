@@ -165,6 +165,35 @@ type ServiceLevelObjective struct {
 	ModifiedAt  *int     `json:"modified_at,omitempty"`  // Read-Only
 }
 
+// implements custom marshaler to ignore some fields
+func (s *ServiceLevelObjective) MarshalJSON() ([]byte, error) {
+	var output struct {
+		ID          *string                         `json:"id,omitempty"`
+		Name        *string                         `json:"name,omitempty"`
+		Description *string                         `json:"description,omitempty"`
+		Tags        []string                        `json:"tags,omitempty"`
+		Thresholds  ServiceLevelObjectiveThresholds `json:"thresholds,omitempty"`
+		Type        *string                         `json:"type,omitempty"`
+		// SLI definition
+		Query         *ServiceLevelObjectiveMetricQuery `json:"query,omitempty"`
+		MonitorIDs    []int                             `json:"monitor_ids,omitempty"`
+		MonitorSearch *string                           `json:"monitor_search,omitempty"`
+		Groups        []string                          `json:"groups,omitempty"`
+	}
+
+	output.ID = s.ID
+	output.Name = s.Name
+	output.Description = s.Description
+	output.Tags = s.Tags
+	output.Thresholds = s.Thresholds
+	output.Type = s.Type
+	output.Query = s.Query
+	output.MonitorIDs = s.MonitorIDs
+	output.MonitorSearch = s.MonitorSearch
+	output.Groups = s.Groups
+	return json.Marshal(&output)
+}
+
 var sloTimeFrameToDurationRegex = regexp.MustCompile(`(?P<quantity>\d+)(?P<unit>(d))`)
 
 // ServiceLevelObjectiveTimeFrameToDuration will convert a timeframe into a duration
@@ -222,6 +251,10 @@ func (client *Client) UpdateServiceLevelObjective(slo *ServiceLevelObjective) (*
 
 	if slo == nil {
 		return nil, fmt.Errorf("no SLO specified")
+	}
+
+	if _, ok := slo.GetIDOk(); !ok {
+		return nil, fmt.Errorf("SLO must be created first")
 	}
 
 	if err := client.doJsonRequest("PUT", fmt.Sprintf("/v1/slo/%s", slo.GetID()), slo, &out); err != nil {
