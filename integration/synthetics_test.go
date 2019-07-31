@@ -33,6 +33,32 @@ func TestSyntheticsCreateAndDelete(t *testing.T) {
 	assert.Equal(t, expected, actual)
 }
 
+func TestSyntheticsCreateAndDeleteSSL(t *testing.T) {
+	expected := getTestSyntheticsSSL()
+	// create the monitor and compare it
+	actual := createTestSyntheticsSSL(t)
+	defer cleanUpSynthetics(t, actual.GetPublicId())
+
+	// Set ID of our original struct to zero so we can easily compare the results
+	expected.SetPublicId(actual.GetPublicId())
+	// Set Creator to the original struct as we can't predict details of the creator
+	expected.SetCreatedAt(actual.GetCreatedAt())
+	expected.SetModifiedAt(actual.GetModifiedAt())
+	expected.SetMonitorId(actual.GetMonitorId())
+
+	assert.Equal(t, expected, actual)
+
+	actual, err := client.GetSyntheticsTest(*actual.PublicId)
+	if err != nil {
+		t.Fatalf("Retrieving a synthetics failed when it shouldn't: (%s)", err)
+	}
+	expected.SetStatus(actual.GetStatus())
+	expected.SetCreatedBy(actual.GetCreatedBy())
+	expected.SetModifiedBy(actual.GetModifiedBy())
+	expected.SetMonitorId(actual.GetMonitorId())
+	assert.Equal(t, expected, actual)
+}
+
 func TestSyntheticsUpdate(t *testing.T) {
 
 	syntheticsTest := createTestSynthetics(t)
@@ -192,12 +218,54 @@ func getTestSynthetics() *datadog.SyntheticsTest {
 		Locations: []string{"aws:eu-central-1"},
 		Status:    datadog.String("live"),
 		Type:      datadog.String("api"),
+		Subtype:   datadog.String("http"),
 		Tags:      []string{"tag1:value1", "tag2:value2"},
 	}
 }
 
 func createTestSynthetics(t *testing.T) *datadog.SyntheticsTest {
 	synthetics := getTestSynthetics()
+	synthetics, err := client.CreateSyntheticsTest(synthetics)
+	if err != nil {
+		t.Fatalf("Creating a synthetics failed when it shouldn't: %s", err)
+	}
+
+	return synthetics
+}
+
+func getTestSyntheticsSSL() *datadog.SyntheticsTest {
+	c := &datadog.SyntheticsConfig{
+		Request: &datadog.SyntheticsRequest{
+			Host: datadog.String("example.org"),
+			Port: datadog.Int(443),
+		},
+		Assertions: []datadog.SyntheticsAssertion{{
+			Type:     datadog.String("certificate"),
+			Property: datadog.String("sslExpirationDate"),
+			Operator: datadog.String("isInMoreThan"),
+			Target:   float64(30),
+		}},
+	}
+	o := &datadog.SyntheticsOptions{
+		TickEvery:        datadog.Int(60),
+		AcceptSelfSigned: datadog.Bool(true),
+	}
+
+	return &datadog.SyntheticsTest{
+		Message:   datadog.String("Test message"),
+		Name:      datadog.String("Test synthetics"),
+		Config:    c,
+		Options:   o,
+		Locations: []string{"aws:eu-central-1"},
+		Status:    datadog.String("live"),
+		Type:      datadog.String("api"),
+		Subtype:   datadog.String("ssl"),
+		Tags:      []string{"tag1:value1", "tag2:value2"},
+	}
+}
+
+func createTestSyntheticsSSL(t *testing.T) *datadog.SyntheticsTest {
+	synthetics := getTestSyntheticsSSL()
 	synthetics, err := client.CreateSyntheticsTest(synthetics)
 	if err != nil {
 		t.Fatalf("Creating a synthetics failed when it shouldn't: %s", err)

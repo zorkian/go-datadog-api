@@ -15855,6 +15855,37 @@ func (s *SyntheticsLocation) SetRegion(v string) {
 	s.Region = &v
 }
 
+// GetAcceptSelfSigned returns the AcceptSelfSigned field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetAcceptSelfSigned() bool {
+	if s == nil || s.AcceptSelfSigned == nil {
+		return false
+	}
+	return *s.AcceptSelfSigned
+}
+
+// GetAcceptSelfSignedOk returns a tuple with the AcceptSelfSigned field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetAcceptSelfSignedOk() (bool, bool) {
+	if s == nil || s.AcceptSelfSigned == nil {
+		return false, false
+	}
+	return *s.AcceptSelfSigned, true
+}
+
+// HasAcceptSelfSigned returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasAcceptSelfSigned() bool {
+	if s != nil && s.AcceptSelfSigned != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAcceptSelfSigned allocates a new s.AcceptSelfSigned and returns the pointer to it.
+func (s *SyntheticsOptions) SetAcceptSelfSigned(v bool) {
+	s.AcceptSelfSigned = &v
+}
+
 // GetFollowRedirects returns the FollowRedirects field if non-nil, zero value otherwise.
 func (s *SyntheticsOptions) GetFollowRedirects() bool {
 	if s == nil || s.FollowRedirects == nil {
@@ -16010,6 +16041,37 @@ func (s *SyntheticsRequest) SetBody(v string) {
 	s.Body = &v
 }
 
+// GetHost returns the Host field if non-nil, zero value otherwise.
+func (s *SyntheticsRequest) GetHost() string {
+	if s == nil || s.Host == nil {
+		return ""
+	}
+	return *s.Host
+}
+
+// GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsRequest) GetHostOk() (string, bool) {
+	if s == nil || s.Host == nil {
+		return "", false
+	}
+	return *s.Host, true
+}
+
+// HasHost returns a boolean if a field has been set.
+func (s *SyntheticsRequest) HasHost() bool {
+	if s != nil && s.Host != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHost allocates a new s.Host and returns the pointer to it.
+func (s *SyntheticsRequest) SetHost(v string) {
+	s.Host = &v
+}
+
 // GetMethod returns the Method field if non-nil, zero value otherwise.
 func (s *SyntheticsRequest) GetMethod() string {
 	if s == nil || s.Method == nil {
@@ -16039,6 +16101,37 @@ func (s *SyntheticsRequest) HasMethod() bool {
 // SetMethod allocates a new s.Method and returns the pointer to it.
 func (s *SyntheticsRequest) SetMethod(v string) {
 	s.Method = &v
+}
+
+// GetPort returns the Port field if non-nil, zero value otherwise.
+func (s *SyntheticsRequest) GetPort() int {
+	if s == nil || s.Port == nil {
+		return 0
+	}
+	return *s.Port
+}
+
+// GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsRequest) GetPortOk() (int, bool) {
+	if s == nil || s.Port == nil {
+		return 0, false
+	}
+	return *s.Port, true
+}
+
+// HasPort returns a boolean if a field has been set.
+func (s *SyntheticsRequest) HasPort() bool {
+	if s != nil && s.Port != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPort allocates a new s.Port and returns the pointer to it.
+func (s *SyntheticsRequest) SetPort(v int) {
+	s.Port = &v
 }
 
 // GetTimeout returns the Timeout field if non-nil, zero value otherwise.
@@ -16504,6 +16597,37 @@ func (s *SyntheticsTest) HasStatus() bool {
 // SetStatus allocates a new s.Status and returns the pointer to it.
 func (s *SyntheticsTest) SetStatus(v string) {
 	s.Status = &v
+}
+
+// GetSubtype returns the Subtype field if non-nil, zero value otherwise.
+func (s *SyntheticsTest) GetSubtype() string {
+	if s == nil || s.Subtype == nil {
+		return ""
+	}
+	return *s.Subtype
+}
+
+// GetSubtypeOk returns a tuple with the Subtype field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsTest) GetSubtypeOk() (string, bool) {
+	if s == nil || s.Subtype == nil {
+		return "", false
+	}
+	return *s.Subtype, true
+}
+
+// HasSubtype returns a boolean if a field has been set.
+func (s *SyntheticsTest) HasSubtype() bool {
+	if s != nil && s.Subtype != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubtype allocates a new s.Subtype and returns the pointer to it.
+func (s *SyntheticsTest) SetSubtype(v string) {
+	s.Subtype = &v
 }
 
 // GetType returns the Type field if non-nil, zero value otherwise.
