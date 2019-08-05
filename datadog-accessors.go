@@ -3517,223 +3517,6 @@ func (c *CreatedBy) SetVerified(v bool) {
 	c.Verified = &v
 }
 
-// GetSLO returns the SLO field if non-nil, zero value otherwise.
-func (c *createSLOThreshold) GetSLO() float64 {
-	if c == nil || c.SLO == nil {
-		return 0
-	}
-	return *c.SLO
-}
-
-// GetSLOOk returns a tuple with the SLO field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createSLOThreshold) GetSLOOk() (float64, bool) {
-	if c == nil || c.SLO == nil {
-		return 0, false
-	}
-	return *c.SLO, true
-}
-
-// HasSLO returns a boolean if a field has been set.
-func (c *createSLOThreshold) HasSLO() bool {
-	if c != nil && c.SLO != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSLO allocates a new c.SLO and returns the pointer to it.
-func (c *createSLOThreshold) SetSLO(v float64) {
-	c.SLO = &v
-}
-
-// GetWarning returns the Warning field if non-nil, zero value otherwise.
-func (c *createSLOThreshold) GetWarning() float64 {
-	if c == nil || c.Warning == nil {
-		return 0
-	}
-	return *c.Warning
-}
-
-// GetWarningOk returns a tuple with the Warning field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createSLOThreshold) GetWarningOk() (float64, bool) {
-	if c == nil || c.Warning == nil {
-		return 0, false
-	}
-	return *c.Warning, true
-}
-
-// HasWarning returns a boolean if a field has been set.
-func (c *createSLOThreshold) HasWarning() bool {
-	if c != nil && c.Warning != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWarning allocates a new c.Warning and returns the pointer to it.
-func (c *createSLOThreshold) SetWarning(v float64) {
-	c.Warning = &v
-}
-
-// GetDescription returns the Description field if non-nil, zero value otherwise.
-func (c *createUpdateServiceLevelObjective) GetDescription() string {
-	if c == nil || c.Description == nil {
-		return ""
-	}
-	return *c.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createUpdateServiceLevelObjective) GetDescriptionOk() (string, bool) {
-	if c == nil || c.Description == nil {
-		return "", false
-	}
-	return *c.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (c *createUpdateServiceLevelObjective) HasDescription() bool {
-	if c != nil && c.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription allocates a new c.Description and returns the pointer to it.
-func (c *createUpdateServiceLevelObjective) SetDescription(v string) {
-	c.Description = &v
-}
-
-// GetMonitorSearch returns the MonitorSearch field if non-nil, zero value otherwise.
-func (c *createUpdateServiceLevelObjective) GetMonitorSearch() string {
-	if c == nil || c.MonitorSearch == nil {
-		return ""
-	}
-	return *c.MonitorSearch
-}
-
-// GetMonitorSearchOk returns a tuple with the MonitorSearch field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createUpdateServiceLevelObjective) GetMonitorSearchOk() (string, bool) {
-	if c == nil || c.MonitorSearch == nil {
-		return "", false
-	}
-	return *c.MonitorSearch, true
-}
-
-// HasMonitorSearch returns a boolean if a field has been set.
-func (c *createUpdateServiceLevelObjective) HasMonitorSearch() bool {
-	if c != nil && c.MonitorSearch != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMonitorSearch allocates a new c.MonitorSearch and returns the pointer to it.
-func (c *createUpdateServiceLevelObjective) SetMonitorSearch(v string) {
-	c.MonitorSearch = &v
-}
-
-// GetName returns the Name field if non-nil, zero value otherwise.
-func (c *createUpdateServiceLevelObjective) GetName() string {
-	if c == nil || c.Name == nil {
-		return ""
-	}
-	return *c.Name
-}
-
-// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createUpdateServiceLevelObjective) GetNameOk() (string, bool) {
-	if c == nil || c.Name == nil {
-		return "", false
-	}
-	return *c.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (c *createUpdateServiceLevelObjective) HasName() bool {
-	if c != nil && c.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName allocates a new c.Name and returns the pointer to it.
-func (c *createUpdateServiceLevelObjective) SetName(v string) {
-	c.Name = &v
-}
-
-// GetQuery returns the Query field if non-nil, zero value otherwise.
-func (c *createUpdateServiceLevelObjective) GetQuery() ServiceLevelObjectiveMetricQuery {
-	if c == nil || c.Query == nil {
-		return ServiceLevelObjectiveMetricQuery{}
-	}
-	return *c.Query
-}
-
-// GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createUpdateServiceLevelObjective) GetQueryOk() (ServiceLevelObjectiveMetricQuery, bool) {
-	if c == nil || c.Query == nil {
-		return ServiceLevelObjectiveMetricQuery{}, false
-	}
-	return *c.Query, true
-}
-
-// HasQuery returns a boolean if a field has been set.
-func (c *createUpdateServiceLevelObjective) HasQuery() bool {
-	if c != nil && c.Query != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetQuery allocates a new c.Query and returns the pointer to it.
-func (c *createUpdateServiceLevelObjective) SetQuery(v ServiceLevelObjectiveMetricQuery) {
-	c.Query = &v
-}
-
-// GetType returns the Type field if non-nil, zero value otherwise.
-func (c *createUpdateServiceLevelObjective) GetType() string {
-	if c == nil || c.Type == nil {
-		return ""
-	}
-	return *c.Type
-}
-
-// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (c *createUpdateServiceLevelObjective) GetTypeOk() (string, bool) {
-	if c == nil || c.Type == nil {
-		return "", false
-	}
-	return *c.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (c *createUpdateServiceLevelObjective) HasType() bool {
-	if c != nil && c.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType allocates a new c.Type and returns the pointer to it.
-func (c *createUpdateServiceLevelObjective) SetType(v string) {
-	c.Type = &v
-}
-
 // GetEmail returns the Email field if non-nil, zero value otherwise.
 func (c *Creator) GetEmail() string {
 	if c == nil || c.Email == nil {
@@ -15235,66 +15018,66 @@ func (s *ServiceLevelObjectiveMetricQuery) SetNumerator(v string) {
 	s.Numerator = &v
 }
 
-// GetSLO returns the SLO field if non-nil, zero value otherwise.
-func (s *ServiceLevelObjectiveThreshold) GetSLO() float64 {
-	if s == nil || s.SLO == nil {
+// GetTarget returns the Target field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveThreshold) GetTarget() float64 {
+	if s == nil || s.Target == nil {
 		return 0
 	}
-	return *s.SLO
+	return *s.Target
 }
 
-// GetSLOOk returns a tuple with the SLO field if it's non-nil, zero value otherwise
+// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *ServiceLevelObjectiveThreshold) GetSLOOk() (float64, bool) {
-	if s == nil || s.SLO == nil {
+func (s *ServiceLevelObjectiveThreshold) GetTargetOk() (float64, bool) {
+	if s == nil || s.Target == nil {
 		return 0, false
 	}
-	return *s.SLO, true
+	return *s.Target, true
 }
 
-// HasSLO returns a boolean if a field has been set.
-func (s *ServiceLevelObjectiveThreshold) HasSLO() bool {
-	if s != nil && s.SLO != nil {
+// HasTarget returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveThreshold) HasTarget() bool {
+	if s != nil && s.Target != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSLO allocates a new s.SLO and returns the pointer to it.
-func (s *ServiceLevelObjectiveThreshold) SetSLO(v float64) {
-	s.SLO = &v
+// SetTarget allocates a new s.Target and returns the pointer to it.
+func (s *ServiceLevelObjectiveThreshold) SetTarget(v float64) {
+	s.Target = &v
 }
 
-// GetSLODisplay returns the SLODisplay field if non-nil, zero value otherwise.
-func (s *ServiceLevelObjectiveThreshold) GetSLODisplay() string {
-	if s == nil || s.SLODisplay == nil {
+// GetTargetDisplay returns the TargetDisplay field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveThreshold) GetTargetDisplay() string {
+	if s == nil || s.TargetDisplay == nil {
 		return ""
 	}
-	return *s.SLODisplay
+	return *s.TargetDisplay
 }
 
-// GetSLODisplayOk returns a tuple with the SLODisplay field if it's non-nil, zero value otherwise
+// GetTargetDisplayOk returns a tuple with the TargetDisplay field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (s *ServiceLevelObjectiveThreshold) GetSLODisplayOk() (string, bool) {
-	if s == nil || s.SLODisplay == nil {
+func (s *ServiceLevelObjectiveThreshold) GetTargetDisplayOk() (string, bool) {
+	if s == nil || s.TargetDisplay == nil {
 		return "", false
 	}
-	return *s.SLODisplay, true
+	return *s.TargetDisplay, true
 }
 
-// HasSLODisplay returns a boolean if a field has been set.
-func (s *ServiceLevelObjectiveThreshold) HasSLODisplay() bool {
-	if s != nil && s.SLODisplay != nil {
+// HasTargetDisplay returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveThreshold) HasTargetDisplay() bool {
+	if s != nil && s.TargetDisplay != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSLODisplay allocates a new s.SLODisplay and returns the pointer to it.
-func (s *ServiceLevelObjectiveThreshold) SetSLODisplay(v string) {
-	s.SLODisplay = &v
+// SetTargetDisplay allocates a new s.TargetDisplay and returns the pointer to it.
+func (s *ServiceLevelObjectiveThreshold) SetTargetDisplay(v string) {
+	s.TargetDisplay = &v
 }
 
 // GetTimeFrame returns the TimeFrame field if non-nil, zero value otherwise.

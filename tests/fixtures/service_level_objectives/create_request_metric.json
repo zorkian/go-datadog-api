@@ -1,0 +1,27 @@
+{
+  "name": "Test SLO",
+  "tags": ["product:foo"],
+  "type": "metric",
+  "description": "test slo description",
+  "query": {
+    "numerator": "sum:my.metric{type:good}.as_count()",
+    "denominator": "sum:my.metric{*}.as_count()"
+  },
+  "thresholds": [
+    {
+      "timeframe": "7d",
+      "target": 99.0,
+      "warning": 99.5
+    },
+    {
+      "timeframe": "30d",
+      "target": 98,
+      "warning": 99
+    },
+    {
+      "timeframe": "90d",
+      "target": 98,
+      "warning": 99
+    }
+  ]
+}

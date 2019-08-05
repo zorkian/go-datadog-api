@@ -24,7 +24,7 @@ func TestServiceLevelObjectiveSerialization(t *testing.T) {
 		Thresholds: []*ServiceLevelObjectiveThreshold{
 			{
 				TimeFrame: String("7d"),
-				SLO:       Float64(99),
+				Target:    Float64(99),
 				Warning:   Float64(99.5),
 			},
 		},
@@ -50,8 +50,48 @@ func TestServiceLevelObjectiveSerialization(t *testing.T) {
 	assert.Nil(t, deserializedSLO.Groups)
 }
 
-func testSLOGetMock(t *testing.T, fixturePath string) (*httptest.Server, *Client) {
+const sloTestFixturePrefix = "./tests/fixtures/service_level_objectives/"
+
+func testSLOGetMock(t *testing.T, expectedInputFixturePath, fixturePath string) (*httptest.Server, *Client) {
+
+	if expectedInputFixturePath != "" {
+		expectedInputFixturePath = sloTestFixturePrefix + expectedInputFixturePath
+	}
+	fixturePath = sloTestFixturePrefix + fixturePath
+
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if expectedInputFixturePath != "" && r != nil {
+			body := r.Body
+			if body == nil {
+				t.Fatal("nil body received")
+			}
+			defer body.Close()
+			payload, err := ioutil.ReadAll(body)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			var payloadContent interface{}
+			err = json.Unmarshal(payload, &payloadContent)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			expectedPayload, err := ioutil.ReadFile(expectedInputFixturePath)
+			if err != nil {
+				t.Fatal(err)
+			}
+			var expectedPayloadContent interface{}
+			err = json.Unmarshal(expectedPayload, &expectedPayloadContent)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			if !assert.Equal(t, expectedPayloadContent, payloadContent) {
+				t.Fatalf("expected input did not match actual input")
+			}
+		}
+
 		response, err := ioutil.ReadFile(fixturePath)
 		if err != nil {
 			t.Fatal(err)
@@ -67,60 +107,71 @@ func testSLOGetMock(t *testing.T, fixturePath string) (*httptest.Server, *Client
 }
 
 func getMockSLO(id string) *ServiceLevelObjective {
+	var sloID *string = nil
+	if id != "" {
+		sloID = &id
+	}
 	return &ServiceLevelObjective{
-		ID:          &id,
+		ID:          sloID,
 		Name:        sptr("Test SLO"),
-		Description: sptr("Test Description"),
+		Description: sptr("test slo description"),
 		Tags:        []string{"product:foo"},
 		Thresholds: []*ServiceLevelObjectiveThreshold{
 			{
 				TimeFrame: String("7d"),
-				SLO:       Float64(99),
+				Target:    Float64(99),
 				Warning:   Float64(99.5),
 			},
 			{
 				TimeFrame: String("30d"),
-				SLO:       Float64(98),
+				Target:    Float64(98),
 				Warning:   Float64(99),
 			},
 			{
 				TimeFrame: String("90d"),
-				SLO:       Float64(98),
+				Target:    Float64(98),
 				Warning:   Float64(99),
 			},
 		},
-		Type:       &ServiceLevelObjectiveTypeMonitor,
-		MonitorIDs: []int{1},
 	}
 }
 
 func TestServiceLevelObjectiveIntegration(t *testing.T) {
 
 	t.Run("CreateMonitor", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/create_response.json")
+		ts, c := testSLOGetMock(t2, "create_request_monitor.json", "create_response_monitor.json")
 		defer ts.Close()
 
 		slo := getMockSLO("")
+		slo.SetType(ServiceLevelObjectiveTypeMonitor)
+		slo.MonitorIDs = []int{1}
 		created, err := c.CreateServiceLevelObjective(slo)
 		assert.NoError(t2, err)
 		assert.Equal(t2, "12345678901234567890123456789012", created.GetID())
 	})
 
 	t.Run("CreateMetric", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/create_response_metric.json")
+		ts, c := testSLOGetMock(t2, "create_request_metric.json", "create_response_metric.json")
 		defer ts.Close()
 
 		slo := getMockSLO("")
+		slo.SetType(ServiceLevelObjectiveTypeMetric)
+		slo.SetQuery(ServiceLevelObjectiveMetricQuery{
+			Numerator:   String("sum:my.metric{type:good}.as_count()"),
+			Denominator: String("sum:my.metric{*}.as_count()"),
+		})
 		created, err := c.CreateServiceLevelObjective(slo)
 		assert.NoError(t2, err)
 		assert.Equal(t2, "abcdefabcdefabcdefabcdefabcdefab", created.GetID())
 	})
 
 	t.Run("Update", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/update_response.json")
+		ts, c := testSLOGetMock(t2, "update_request.json", "update_response.json")
 		defer ts.Close()
 
 		slo := getMockSLO("12345678901234567890123456789012")
+		slo.SetType(ServiceLevelObjectiveTypeMonitor)
+		slo.MonitorIDs = []int{1}
 		slo, err := c.UpdateServiceLevelObjective(slo)
 		assert.NoError(t2, err)
 		assert.Equal(t2, "12345678901234567890123456789012", slo.GetID())
@@ -128,7 +179,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 	})
 
 	t.Run("Delete", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/delete_response.json")
+		ts, c := testSLOGetMock(t2, "", "delete_response.json")
 		defer ts.Close()
 
 		slo := getMockSLO("12345678901234567890123456789012")
@@ -137,7 +188,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 	})
 
 	t.Run("DeleteMany", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/delete_many_response.json")
+		ts, c := testSLOGetMock(t2, "delete_many_request.json", "delete_many_response.json")
 		defer ts.Close()
 
 		err := c.DeleteServiceLevelObjectives(
@@ -147,7 +198,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 	})
 
 	t.Run("DeleteByTimeframe", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/delete_by_timeframe_response.json")
+		ts, c := testSLOGetMock(t2, "delete_by_timeframe_request.json", "delete_by_timeframe_response.json")
 		defer ts.Close()
 
 		/* Some Context for this test case:  This is useful for doing individual time-frame deletes across different SLOs (used by the web list view bulk delete)
@@ -169,7 +220,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 	})
 
 	t.Run("GetByID", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/get_by_id_response.json")
+		ts, c := testSLOGetMock(t2, "", "get_by_id_response.json")
 		defer ts.Close()
 
 		slo, err := c.GetServiceLevelObjective("12345678901234567890123456789012")
@@ -177,11 +228,11 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		assert.Equal(t2, "12345678901234567890123456789012", slo.GetID())
 	})
 
-	t.Run("GetManyWithIDs", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/get_many_response.json")
+	t.Run("SearchWithIDs", func(t2 *testing.T) {
+		ts, c := testSLOGetMock(t2, "", "get_many_response.json")
 		defer ts.Close()
 
-		slos, err := c.GetServiceLevelObjectives([]string{"12345678901234567890123456789012", "abcdefabcdefabcdefabcdefabcdefab"})
+		slos, err := c.SearchServiceLevelObjectives(1000, 0, "", []string{"12345678901234567890123456789012", "abcdefabcdefabcdefabcdefabcdefab"})
 		assert.NoError(t2, err)
 		assert.Len(t2, slos, 2)
 
@@ -197,8 +248,8 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		assert.True(t2, contains(slos, "abcdefabcdefabcdefabcdefabcdefab"))
 	})
 
-	t.Run("Search", func(t2 *testing.T) {
-		ts, c := testSLOGetMock(t2, "./tests/fixtures/service_level_objectives/search_response.json")
+	t.Run("SearchWithQuery", func(t2 *testing.T) {
+		ts, c := testSLOGetMock(t2, "", "search_response.json")
 		defer ts.Close()
 
 		slos, err := c.SearchServiceLevelObjectives(1000, 0, "service:foo AND team:a", nil)
@@ -211,15 +262,15 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		thresholds := ServiceLevelObjectiveThresholds{
 			{
 				TimeFrame: String("30d"),
-				SLO:       Float64(99.9),
+				Target:    Float64(99.9),
 			},
 			{
 				TimeFrame: String("7d"),
-				SLO:       Float64(98.9),
+				Target:    Float64(98.9),
 			},
 			{
 				TimeFrame: String("90d"),
-				SLO:       Float64(97.9),
+				Target:    Float64(97.9),
 			},
 		}
 
@@ -232,23 +283,23 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 	t.Run("thresholds are comparable", func(t2 *testing.T) {
 		threshold1 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("30d"),
-			SLO:       Float64(99.9),
+			Target:    Float64(99.9),
 		}
 		threshold2 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("30d"),
-			SLO:       Float64(99.9),
+			Target:    Float64(99.9),
 		}
 		assert.True(t2, threshold1.Equal(threshold2))
 		threshold3 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("30d"),
-			SLO:       Float64(0.9),
+			Target:    Float64(0.9),
 		}
 
 		assert.False(t2, threshold3.Equal(threshold2))
 
 		threshold4 := &ServiceLevelObjectiveThreshold{
 			TimeFrame: String("7d"),
-			SLO:       Float64(99.9),
+			Target:    Float64(99.9),
 		}
 		assert.False(t2, threshold2.Equal(threshold4))
 	})

@@ -15,15 +15,15 @@
       "thresholds": [
         {
           "timeframe": "7d",
-          "slo": 99.0,
-          "slo_display": "99.0",
+          "target": 99.0,
+          "target_display": "99.0",
           "warning": 99.5,
           "warning_display": "99.5"
         },
         {
           "timeframe": "30d",
-          "slo": 98,
-          "slo_display": "98.0",
+          "target": 98,
+          "target_display": "98.0",
           "warning": 99,
           "warning_display": "99.0"
         }
