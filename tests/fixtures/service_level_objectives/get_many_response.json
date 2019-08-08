@@ -1,0 +1,73 @@
+{
+  "data": [
+    {
+      "id": "12345678901234567890123456789012",
+      "name": "Test SLO",
+      "tags": ["product:foo"],
+      "monitor_tags": ["service:bar", "team:a"],
+      "type": "monitor",
+      "type_id": 0,
+      "description": "test slo description",
+      "monitor_ids": [1],
+      "thresholds": [
+        {
+          "timeframe": "7d",
+          "target": 99.0,
+          "target_display": "99.0",
+          "warning": 99.5,
+          "warning_display": "99.5"
+        },
+        {
+          "timeframe": "30d",
+          "target": 98,
+          "target_display": "98.0",
+          "warning": 99,
+          "warning_display": "99.0"
+        }
+      ],
+      "creator": {
+        "handle": "jane.doe@example.com",
+        "email": "jane.doe@example.com",
+        "name": "Jane Doe"
+      },
+      "created_at": 1563283800,
+      "modified_at": 1563283800
+    },
+    {
+      "id": "abcdefabcdefabcdefabcdefabcdefab",
+      "name": "Test SLO 2",
+      "tags": ["product:foo"],
+      "type": "metric",
+      "type_id": 1,
+      "description": "test metric slo description",
+      "query": {
+        "numerator": "sum:my.metric{type:good}.as_count()",
+        "denominator": "sum:my.metric{*}.as_count()"
+      },
+      "thresholds": [
+        {
+          "timeframe": "7d",
+          "target": 99.0,
+          "target_display": "99.0",
+          "warning": 99.5,
+          "warning_display": "99.5"
+        },
+        {
+          "timeframe": "30d",
+          "target": 98,
+          "target_display": "98.0",
+          "warning": 99,
+          "warning_display": "99.0"
+        }
+      ],
+      "creator": {
+        "handle": "john.doe@example.com",
+        "email": "john.doe@example.com",
+        "name": "John Doe"
+      },
+      "created_at": 1563283800,
+      "modified_at": 1563283800
+    }
+  ],
+  "error": null
+}
