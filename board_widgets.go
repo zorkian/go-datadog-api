@@ -350,22 +350,19 @@ type QueryValueRequest struct {
 }
 
 type QueryTableDefinition struct {
-	Type            *string               `json:"type"`
-	Requests        []QueryTableRequest   `json:"requests"`
-	RowDimension    []QueryTableDimension `json:"row_dimension"`
-	ColumnDimension []QueryTableDimension `json:"column_dimension"`
-	Title           *string               `json:"title,omitempty"`
-	TitleSize       *string               `json:"title_size,omitempty"`
-	TitleAlign      *string               `json:"title_align,omitempty"`
-	Time            *WidgetTime           `json:"time,omitempty"`
-}
-type QueryTableDimension struct {
-	Header *string `json:"header"`
-	Name   *string `json:"name"`
+	Type       *string             `json:"type"`
+	Requests   []QueryTableRequest `json:"requests"`
+	Title      *string             `json:"title,omitempty"`
+	TitleSize  *string             `json:"title_size,omitempty"`
+	TitleAlign *string             `json:"title_align,omitempty"`
+	Time       *WidgetTime         `json:"time,omitempty"`
 }
 type QueryTableRequest struct {
+	Alias              *string                   `json:"alias,omitempty"`
 	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-	Metadata           []WidgetMetadata          `json:"metadata,omitempty"`
+	Aggregator         *string                   `json:"aggregator,omitempty"`
+	Limit              *int                      `json:"limit,omitempty"`
+	Order              *string                   `json:"order,omitempty"`
 	// A QueryTableRequest should implement exactly one of the following query types
 	MetricQuery  *string              `json:"q,omitempty"`
 	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
