@@ -241,7 +241,7 @@ type HeatmapRequest struct {
 	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
 }
 
-// HostmapDefinition represents the definition for a Heatmap widget
+// HostmapDefinition represents the definition for a Hostmap widget
 type HostmapDefinition struct {
 	Type          *string          `json:"type"`
 	Requests      *HostmapRequests `json:"requests"`
@@ -349,6 +349,7 @@ type QueryValueRequest struct {
 	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
 }
 
+// QueryTableDefinition represents the definition for a Table widget
 type QueryTableDefinition struct {
 	Type       *string             `json:"type"`
 	Requests   []QueryTableRequest `json:"requests"`
@@ -370,7 +371,7 @@ type QueryTableRequest struct {
 	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
 }
 
-// ScatterplotDefinition represents the definition for a Heatmap widget
+// ScatterplotDefinition represents the definition for a Scatterplot widget
 type ScatterplotDefinition struct {
 	Type          *string              `json:"type"`
 	Requests      *ScatterplotRequests `json:"requests"`
@@ -425,7 +426,7 @@ type TimeseriesRequestStyle struct {
 	LineWidth *string `json:"line_width,omitempty"`
 }
 
-// ToplistDefinition represents the definition for a Distribution widget
+// ToplistDefinition represents the definition for a Top list widget
 type ToplistDefinition struct {
 	Type       *string          `json:"type"`
 	Requests   []ToplistRequest `json:"requests"`
