@@ -9,9 +9,9 @@
 package datadog_test
 
 import (
+	"encoding/json"
 	"testing"
 
-	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
 )

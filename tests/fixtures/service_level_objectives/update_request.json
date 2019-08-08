@@ -1,0 +1,25 @@
+{
+  "id": "12345678901234567890123456789012",
+  "name": "Test SLO",
+  "tags": ["product:foo"],
+  "type": "monitor",
+  "description": "test slo description",
+  "monitor_ids": [1],
+  "thresholds": [
+    {
+      "timeframe": "7d",
+      "target": 99.0,
+      "warning": 99.5
+    },
+    {
+      "timeframe": "30d",
+      "target": 98,
+      "warning": 99
+    },
+    {
+      "timeframe": "90d",
+      "target": 98,
+      "warning": 99
+    }
+  ]
+}

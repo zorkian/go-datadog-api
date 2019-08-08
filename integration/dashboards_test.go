@@ -8,27 +8,6 @@ import (
 	"github.com/zorkian/go-datadog-api"
 )
 
-func TestDashboardCreateAndDelete(t *testing.T) {
-	expected := getTestDashboard(createGraph)
-	// create the dashboard and compare it
-	actual, err := client.CreateDashboard(expected)
-	if err != nil {
-		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
-	}
-
-	defer cleanUpDashboard(t, *actual.Id)
-
-	assertDashboardEquals(t, actual, expected)
-
-	// now try to fetch it freshly and compare it again
-	actual, err = client.GetDashboard(*actual.Id)
-	if err != nil {
-		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
-	}
-	assertDashboardEquals(t, actual, expected)
-
-}
-
 func TestDashboardCreateAndDeleteAdvancesTimeseries(t *testing.T) {
 	expected := getTestDashboard(createAdvancedTimeseriesGraph)
 	// create the dashboard and compare it
@@ -112,6 +91,66 @@ func TestDashboardCreateWithCustomGraph(t *testing.T) {
 	assertDashboardEquals(t, actual, expected)
 }
 
+// Create a dashboard with a metrics query graph.
+func TestDashboardCreateWithQuery(t *testing.T) {
+	expected := getTestDashboard(createGraph)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
+// Create a dashboard with a log query graph.
+func TestDashboardCreateWithLogOrApmQuery(t *testing.T) {
+	expected := getTestDashboard(createGraphWithLogQuery)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
+// Create a dashboard with a process query graph.
+func TestDashboardCreateWithProcessQuery(t *testing.T) {
+	expected := getTestDashboard(createGraphWithProcessQuery)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
 func TestDashboardGetWithNewId(t *testing.T) {
 	expected := getTestDashboard(createGraph)
 	// create the dashboard and compare it
@@ -156,6 +195,14 @@ func TestDashboardGetWithNewId(t *testing.T) {
 		assert.Contains(t, err.Error(), "unsupported id type")
 	}
 }
+func createTestDashboard(t *testing.T) *datadog.Dashboard {
+	board := getTestDashboard(createGraph)
+	board, err := client.CreateDashboard(board)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't: %s", err)
+	}
+	return board
+}
 
 func getTestDashboard(createGraph func() []datadog.Graph) *datadog.Dashboard {
 	return &datadog.Dashboard{
@@ -164,16 +211,6 @@ func getTestDashboard(createGraph func() []datadog.Graph) *datadog.Dashboard {
 		TemplateVariables: []datadog.TemplateVariable{},
 		Graphs:            createGraph(),
 	}
-}
-
-func createTestDashboard(t *testing.T) *datadog.Dashboard {
-	board := getTestDashboard(createGraph)
-	board, err := client.CreateDashboard(board)
-	if err != nil {
-		t.Fatalf("Creating a dashboard failed when it shouldn't: %s", err)
-	}
-
-	return board
 }
 
 func cleanUpDashboard(t *testing.T, id int) {
@@ -259,6 +296,60 @@ func createCustomGraph() []datadog.Graph {
 
 	graph := datadog.Graph{
 		Title:      datadog.String("Mandatory graph 2"),
+		Definition: gd,
+	}
+
+	graphs := []datadog.Graph{}
+	graphs = append(graphs, graph)
+	return graphs
+}
+
+func createGraphWithLogQuery() []datadog.Graph {
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Aggregator: datadog.String("avg"),
+		Type:       datadog.String("line"),
+		LogQuery: &datadog.GraphApmOrLogQuery{
+			Index: datadog.String("avg"),
+			Compute: &datadog.GraphApmOrLogQueryCompute{
+				Aggregation: datadog.String("count"),
+				Facet:       datadog.String("host"),
+				Interval:    datadog.Int(300000),
+			},
+			Search:  &datadog.GraphApmOrLogQuerySearch{},
+			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{},
+		},
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 3"),
+		Definition: gd,
+	}
+
+	graphs := []datadog.Graph{}
+	graphs = append(graphs, graph)
+	return graphs
+}
+
+func createGraphWithProcessQuery() []datadog.Graph {
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Aggregator: datadog.String("avg"),
+		Type:       datadog.String("line"),
+		ProcessQuery: &datadog.GraphProcessQuery{
+			Metric: datadog.String("process.stat.cpu.total_pct"),
+			Limit:  datadog.Int(10),
+		},
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 4"),
 		Definition: gd,
 	}
 
