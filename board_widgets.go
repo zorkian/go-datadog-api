@@ -682,10 +682,11 @@ type WidgetConditionalFormat struct {
 
 // WidgetApmOrLogQuery represents an APM or a Log query
 type WidgetApmOrLogQuery struct {
-	Index   *string                `json:"index"`
-	Compute *ApmOrLogQueryCompute  `json:"compute"`
-	Search  *ApmOrLogQuerySearch   `json:"search,omitempty"`
-	GroupBy []ApmOrLogQueryGroupBy `json:"group_by,omitempty"`
+	Index        *string                `json:"index"`
+	Compute      *ApmOrLogQueryCompute  `json:"compute,omitempty"`
+	MultiCompute []ApmOrLogQueryCompute `json:"multi_compute,omitempty"`
+	Search       *ApmOrLogQuerySearch   `json:"search,omitempty"`
+	GroupBy      []ApmOrLogQueryGroupBy `json:"group_by,omitempty"`
 }
 type ApmOrLogQueryCompute struct {
 	Aggregation *string `json:"aggregation"`
