@@ -96,7 +96,7 @@ type TileDefApmOrLogQuery struct {
 type TileDefApmOrLogQueryCompute struct {
 	Aggregation *string `json:"aggregation"`
 	Facet       *string `json:"facet,omitempty"`
-	Interval    *int    `json:"interval,omitempty"`
+	Interval    *string `json:"interval,omitempty"`
 }
 type TileDefApmOrLogQuerySearch struct {
 	Query *string `json:"query"`
