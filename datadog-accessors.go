@@ -17685,18 +17685,18 @@ func (t *TileDefApmOrLogQueryCompute) SetFacet(v string) {
 }
 
 // GetInterval returns the Interval field if non-nil, zero value otherwise.
-func (t *TileDefApmOrLogQueryCompute) GetInterval() int {
+func (t *TileDefApmOrLogQueryCompute) GetInterval() string {
 	if t == nil || t.Interval == nil {
-		return 0
+		return ""
 	}
 	return *t.Interval
 }
 
 // GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (t *TileDefApmOrLogQueryCompute) GetIntervalOk() (int, bool) {
+func (t *TileDefApmOrLogQueryCompute) GetIntervalOk() (string, bool) {
 	if t == nil || t.Interval == nil {
-		return 0, false
+		return "", false
 	}
 	return *t.Interval, true
 }
@@ -17711,7 +17711,7 @@ func (t *TileDefApmOrLogQueryCompute) HasInterval() bool {
 }
 
 // SetInterval allocates a new t.Interval and returns the pointer to it.
-func (t *TileDefApmOrLogQueryCompute) SetInterval(v int) {
+func (t *TileDefApmOrLogQueryCompute) SetInterval(v string) {
 	t.Interval = &v
 }
 

@@ -86,7 +86,7 @@ func TestWidgets(t *testing.T) {
 						Compute: &datadog.TileDefApmOrLogQueryCompute{
 							Aggregation: datadog.String("count"),
 							Facet:       datadog.String("host"),
-							Interval:    datadog.Int(300000),
+							Interval:    datadog.String("300000"),
 						},
 						Search: &datadog.TileDefApmOrLogQuerySearch{},
 						GroupBy: []datadog.TileDefApmOrLogQueryGroupBy{{
@@ -139,7 +139,7 @@ func TestWidgets(t *testing.T) {
 						Compute: &datadog.TileDefApmOrLogQueryCompute{
 							Aggregation: datadog.String("count"),
 							Facet:       datadog.String("host"),
-							Interval:    datadog.Int(300000),
+							Interval:    datadog.String("300000"),
 						},
 						Search:  &datadog.TileDefApmOrLogQuerySearch{},
 						GroupBy: []datadog.TileDefApmOrLogQueryGroupBy{{}},
