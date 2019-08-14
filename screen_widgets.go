@@ -124,7 +124,7 @@ type TileDefMetadata struct {
 }
 
 type ConditionalFormat struct {
-	Color         *string `json:"color,omitempty"`
+	Color         *string `json:"custom_fg_color,omitempty"`
 	Palette       *string `json:"palette,omitempty"`
 	Comparator    *string `json:"comparator,omitempty"`
 	Invert        *bool   `json:"invert,omitempty"`
