@@ -23,11 +23,11 @@ func TestDashboardListItemsV2GetAndUpdate(t *testing.T) {
 	timeboard := createTestDashboard(t)
 	defer cleanUpDashboard(t, *timeboard.Id)
 
-	timeboardItems := []datadog.DashboardListV2Item{
+	timeboardItems := []datadog.DashboardListItemV2{
 		getTestDashboardListItemV2Timeboard(*timeboard.NewId),
 	}
 
-	actualItems, err := client.UpdateDashboardListV2Items(*list.Id, timeboardItems)
+	actualItems, err := client.UpdateDashboardListItemsV2(*list.Id, timeboardItems)
 	if err != nil {
 		t.Fatalf("Updating dashboard list items failed when it shouldn't: %s", err)
 	}
@@ -50,11 +50,11 @@ func TestDashboardListItemsV2GetAndUpdate(t *testing.T) {
 	screenboard := createTestScreenboard(t)
 	defer cleanUpScreenboard(t, *screenboard.Id)
 
-	screenboardItems := []datadog.DashboardListV2Item{
+	screenboardItems := []datadog.DashboardListItemV2{
 		getTestDashboardListItemV2Screenboard(*screenboard.NewId),
 	}
 
-	actualItems, err = client.UpdateDashboardListV2Items(*list.Id, screenboardItems)
+	actualItems, err = client.UpdateDashboardListItemsV2(*list.Id, screenboardItems)
 	if err != nil {
 		t.Fatalf("Updating dashboard list items failed when it shouldn't: %s", err)
 	}
@@ -87,11 +87,11 @@ func TestDashboardListItemsV2AddAndDelete(t *testing.T) {
 	timeboard := createTestDashboard(t)
 	defer cleanUpDashboard(t, *timeboard.Id)
 
-	items := []datadog.DashboardListV2Item{
+	items := []datadog.DashboardListItemV2{
 		getTestDashboardListItemV2Timeboard(*timeboard.NewId),
 	}
 
-	addedItems, err := client.AddDashboardListV2Items(*list.Id, items)
+	addedItems, err := client.AddDashboardListItemsV2(*list.Id, items)
 	if err != nil {
 		t.Fatalf("Adding dashboard list items failed when it shouldn't: %s", err)
 	}
@@ -117,7 +117,7 @@ func TestDashboardListItemsV2AddAndDelete(t *testing.T) {
 
 	items = append(items, getTestDashboardListItemV2Screenboard(*screenboard.NewId))
 
-	addedItems, err = client.AddDashboardListV2Items(*list.Id, items)
+	addedItems, err = client.AddDashboardListItemsV2(*list.Id, items)
 	if err != nil {
 		t.Fatalf("Adding dashboard list items failed when it shouldn't: %s", err)
 	}
@@ -137,7 +137,7 @@ func TestDashboardListItemsV2AddAndDelete(t *testing.T) {
 	}
 
 	// Delete everything in the dashboard list and check length of deleted items is 2
-	deletedItems, err := client.DeleteDashboardListV2Items(*list.Id, items)
+	deletedItems, err := client.DeleteDashboardListItemsV2(*list.Id, items)
 	if err != nil {
 		t.Fatalf("Deleting dashboard list items failed when it shouldn't: %s", err)
 	}
@@ -156,14 +156,14 @@ func TestDashboardListItemsV2AddAndDelete(t *testing.T) {
 	}
 }
 
-func getTestDashboardListItemV2Timeboard(id string) datadog.DashboardListV2Item {
-	return datadog.DashboardListV2Item{
+func getTestDashboardListItemV2Timeboard(id string) datadog.DashboardListItemV2 {
+	return datadog.DashboardListItemV2{
 		ID:   datadog.String(id),
 		Type: datadog.String(datadog.DashboardListItemCustomTimeboard),
 	}
 }
 
-func assertDashboardListItemV2Equals(t *testing.T, actual, expected *datadog.DashboardListV2Item) {
+func assertDashboardListItemV2Equals(t *testing.T, actual, expected *datadog.DashboardListItemV2) {
 	if *actual.ID != *expected.ID {
 		t.Errorf("Dashboard list item id does not match: %s != %s", *actual.ID, *expected.ID)
 	}
@@ -172,8 +172,8 @@ func assertDashboardListItemV2Equals(t *testing.T, actual, expected *datadog.Das
 	}
 }
 
-func getTestDashboardListItemV2Screenboard(id string) datadog.DashboardListV2Item {
-	return datadog.DashboardListV2Item{
+func getTestDashboardListItemV2Screenboard(id string) datadog.DashboardListItemV2 {
+	return datadog.DashboardListItemV2{
 		ID:   datadog.String(id),
 		Type: datadog.String(datadog.DashboardListItemCustomScreenboard),
 	}
