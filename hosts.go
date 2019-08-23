@@ -1,9 +1,9 @@
 package datadog
 
 type HostActionResp struct {
-	Action   string `json:"action"`
-	Hostname string `json:"hostname"`
-	Message  string `json:"message,omitempty"`
+	Action   *string `json:"action"`
+	Hostname *string `json:"hostname"`
+	Message  *string `json:"message,omitempty"`
 }
 
 type HostActionMute struct {
@@ -34,8 +34,8 @@ func (client *Client) UnmuteHost(host string) (*HostActionResp, error) {
 
 // HostTotalsResp defines response to GET /v1/hosts/totals.
 type HostTotalsResp struct {
-	TotalUp     int `json:"total_up"`
-	TotalActive int `json:"total_active"`
+	TotalUp     *int `json:"total_up"`
+	TotalActive *int `json:"total_active"`
 }
 
 // GetHostTotals returns number of total active hosts and total up hosts.

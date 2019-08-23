@@ -8477,6 +8477,99 @@ func (h *HostActionMute) SetOverride(v bool) {
 	h.Override = &v
 }
 
+// GetAction returns the Action field if non-nil, zero value otherwise.
+func (h *HostActionResp) GetAction() string {
+	if h == nil || h.Action == nil {
+		return ""
+	}
+	return *h.Action
+}
+
+// GetActionOk returns a tuple with the Action field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostActionResp) GetActionOk() (string, bool) {
+	if h == nil || h.Action == nil {
+		return "", false
+	}
+	return *h.Action, true
+}
+
+// HasAction returns a boolean if a field has been set.
+func (h *HostActionResp) HasAction() bool {
+	if h != nil && h.Action != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAction allocates a new h.Action and returns the pointer to it.
+func (h *HostActionResp) SetAction(v string) {
+	h.Action = &v
+}
+
+// GetHostname returns the Hostname field if non-nil, zero value otherwise.
+func (h *HostActionResp) GetHostname() string {
+	if h == nil || h.Hostname == nil {
+		return ""
+	}
+	return *h.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostActionResp) GetHostnameOk() (string, bool) {
+	if h == nil || h.Hostname == nil {
+		return "", false
+	}
+	return *h.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (h *HostActionResp) HasHostname() bool {
+	if h != nil && h.Hostname != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname allocates a new h.Hostname and returns the pointer to it.
+func (h *HostActionResp) SetHostname(v string) {
+	h.Hostname = &v
+}
+
+// GetMessage returns the Message field if non-nil, zero value otherwise.
+func (h *HostActionResp) GetMessage() string {
+	if h == nil || h.Message == nil {
+		return ""
+	}
+	return *h.Message
+}
+
+// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostActionResp) GetMessageOk() (string, bool) {
+	if h == nil || h.Message == nil {
+		return "", false
+	}
+	return *h.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (h *HostActionResp) HasMessage() bool {
+	if h != nil && h.Message != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage allocates a new h.Message and returns the pointer to it.
+func (h *HostActionResp) SetMessage(v string) {
+	h.Message = &v
+}
+
 // GetNodeType returns the NodeType field if non-nil, zero value otherwise.
 func (h *HostmapDefinition) GetNodeType() string {
 	if h == nil || h.NodeType == nil {
@@ -9064,6 +9157,68 @@ func (h *HostmapStyle) HasPaletteFlip() bool {
 // SetPaletteFlip allocates a new h.PaletteFlip and returns the pointer to it.
 func (h *HostmapStyle) SetPaletteFlip(v bool) {
 	h.PaletteFlip = &v
+}
+
+// GetTotalActive returns the TotalActive field if non-nil, zero value otherwise.
+func (h *HostTotalsResp) GetTotalActive() int {
+	if h == nil || h.TotalActive == nil {
+		return 0
+	}
+	return *h.TotalActive
+}
+
+// GetTotalActiveOk returns a tuple with the TotalActive field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostTotalsResp) GetTotalActiveOk() (int, bool) {
+	if h == nil || h.TotalActive == nil {
+		return 0, false
+	}
+	return *h.TotalActive, true
+}
+
+// HasTotalActive returns a boolean if a field has been set.
+func (h *HostTotalsResp) HasTotalActive() bool {
+	if h != nil && h.TotalActive != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalActive allocates a new h.TotalActive and returns the pointer to it.
+func (h *HostTotalsResp) SetTotalActive(v int) {
+	h.TotalActive = &v
+}
+
+// GetTotalUp returns the TotalUp field if non-nil, zero value otherwise.
+func (h *HostTotalsResp) GetTotalUp() int {
+	if h == nil || h.TotalUp == nil {
+		return 0
+	}
+	return *h.TotalUp
+}
+
+// GetTotalUpOk returns a tuple with the TotalUp field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostTotalsResp) GetTotalUpOk() (int, bool) {
+	if h == nil || h.TotalUp == nil {
+		return 0, false
+	}
+	return *h.TotalUp, true
+}
+
+// HasTotalUp returns a boolean if a field has been set.
+func (h *HostTotalsResp) HasTotalUp() bool {
+	if h != nil && h.TotalUp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalUp allocates a new h.TotalUp and returns the pointer to it.
+func (h *HostTotalsResp) SetTotalUp(v int) {
+	h.TotalUp = &v
 }
 
 // GetType returns the Type field if non-nil, zero value otherwise.

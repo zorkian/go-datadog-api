@@ -29,6 +29,6 @@ func TestGetHostTotals(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	assert.Equal(t, res.TotalActive, 1)
-	assert.Equal(t, res.TotalUp, 2)
+	assert.Equal(t, *res.TotalActive, 1)
+	assert.Equal(t, *res.TotalUp, 2)
 }
