@@ -294,6 +294,130 @@ func cleanUpIntegrationSlack(t *testing.T) {
 }
 
 /*
+	Webhook Integration
+*/
+
+func TestIntegrationWebhookCreateAndDelete(t *testing.T) {
+	expected := createTestIntegrationWebhook(t)
+	defer cleanUpIntegrationWebhook(t)
+
+	actual, err := client.GetIntegrationWebhook()
+	if err != nil {
+		t.Fatalf("Retrieving a Webhook integration failed when it shouldn't: (%s)", err)
+	}
+
+	expectedWebhooks := make([]*string, len(expected.Webhooks))
+	for _, wh := range expected.Webhooks {
+		expectedWebhooks = append(expectedWebhooks, wh.Name)
+	}
+
+	actualWebhooks := make([]*string, len(actual.Webhooks))
+	for _, wh := range actual.Webhooks {
+		actualWebhooks = append(actualWebhooks, wh.Name)
+	}
+
+	assert.Equal(t, expectedWebhooks, actualWebhooks)
+}
+
+func TestIntegrationWebhookUpdate(t *testing.T) {
+	webhookIntegration := createTestIntegrationWebhook(t)
+	defer cleanUpIntegrationWebhook(t)
+
+	webhookIntegration.Webhooks = append(webhookIntegration.Webhooks, datadog.Webhook{
+		Name:             datadog.String("Test_Webhook2"),
+		URL:              datadog.String("https://test.url.com/webhook"),
+		UseCustomPayload: datadog.String("true"),
+		CustomPayload:    datadog.String("custom_payload"),
+		EncodeAsForm:     datadog.String("true"),
+		Headers:          datadog.String("{'Content-Type': 'application/text', 'Authorization': 'token'}"),
+	})
+
+	if err := client.UpdateIntegrationWebhook(webhookIntegration); err != nil {
+		t.Fatalf("Updating a Webhook integration failed when it shouldn't: %s", err)
+	}
+
+	actual, err := client.GetIntegrationWebhook()
+	if err != nil {
+		t.Fatalf("Retrieving a Webhook integration failed when it shouldn't: %s", err)
+	}
+
+	expectedWebhooks := make([]*string, len(webhookIntegration.Webhooks))
+	for _, wh := range webhookIntegration.Webhooks {
+		expectedWebhooks = append(expectedWebhooks, wh.Name)
+	}
+
+	actualWebhooks := make([]*string, len(actual.Webhooks))
+	for _, wh := range actual.Webhooks {
+		actualWebhooks = append(actualWebhooks, wh.Name)
+	}
+
+	assert.Equal(t, expectedWebhooks, actualWebhooks)
+}
+
+func TestIntegrationWebhookGet(t *testing.T) {
+	webhookIntegration := createTestIntegrationWebhook(t)
+	defer cleanUpIntegrationWebhook(t)
+
+	actual, err := client.GetIntegrationWebhook()
+	if err != nil {
+		t.Fatalf("Retrieving Webhook integration failed when it shouldn't: %s", err)
+	}
+
+	expectedWebhooks := make([]*string, len(webhookIntegration.Webhooks))
+	for _, wh := range webhookIntegration.Webhooks {
+		expectedWebhooks = append(expectedWebhooks, wh.Name)
+	}
+
+	actualWebhooks := make([]*string, len(actual.Webhooks))
+	for _, wh := range actual.Webhooks {
+		actualWebhooks = append(actualWebhooks, wh.Name)
+	}
+
+	assert.Equal(t, expectedWebhooks, actualWebhooks)
+}
+
+func getTestIntegrationWebhook() *datadog.IntegrationWebhookRequest {
+	return &datadog.IntegrationWebhookRequest{
+		Webhooks: []datadog.Webhook{
+			{
+				Name:             datadog.String("Test_Webhook1"),
+				URL:              datadog.String("https://test.url.com/webhook"),
+				UseCustomPayload: datadog.String("true"),
+				CustomPayload:    datadog.String("custom_payload"),
+				EncodeAsForm:     datadog.String("true"),
+				Headers:          datadog.String("{'Content-Type': 'application/text', 'Authorization': 'token'}"),
+			},
+		},
+	}
+}
+
+func createTestIntegrationWebhook(t *testing.T) *datadog.IntegrationWebhookRequest {
+	webhookIntegration := getTestIntegrationWebhook()
+
+	err := client.CreateIntegrationWebhook(webhookIntegration)
+	if err != nil {
+		t.Fatalf("Creating a Webhook integration failed when it shouldn't: %s", err)
+	}
+
+	return webhookIntegration
+}
+
+func cleanUpIntegrationWebhook(t *testing.T) {
+	if err := client.DeleteIntegrationWebhook(); err != nil {
+		t.Fatalf("Deleting the Webhook integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
+	}
+
+	webhookIntegration, err := client.GetIntegrationWebhook()
+	if webhookIntegration != nil {
+		t.Fatal("Webhook Integration hasn't been deleted when it should have been. Manual cleanup needed.")
+	}
+
+	if err == nil {
+		t.Fatal("Fetching deleted Webhook integration didn't lead to an error.")
+	}
+}
+
+/*
 	AWS Integration
 */
 

@@ -23569,6 +23569,156 @@ func (u *UserAgentParser) HasIsEncoded() bool {
 	return false
 }
 
+// GetCustomPayload returns the CustomPayload field if non-nil, zero value otherwise.
+func (w *Webhook) GetCustomPayload() string {
+	if w == nil || w.CustomPayload == nil {
+		return ""
+	}
+	return *w.CustomPayload
+}
+
+// GetCustomPayloadOk returns a tuple with the CustomPayload field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Webhook) GetCustomPayloadOk() (string, bool) {
+	if w == nil || w.CustomPayload == nil {
+		return "", false
+	}
+	return *w.CustomPayload, true
+}
+
+// HasCustomPayload returns a boolean if a field has been set.
+func (w *Webhook) HasCustomPayload() bool {
+	if w != nil && w.CustomPayload != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomPayload allocates a new w.CustomPayload and returns the pointer to it.
+func (w *Webhook) SetCustomPayload(v string) {
+	w.CustomPayload = &v
+}
+
+// GetEncodeAsForm returns the EncodeAsForm field if non-nil, zero value otherwise.
+func (w *Webhook) GetEncodeAsForm() string {
+	if w == nil || w.EncodeAsForm == nil {
+		return ""
+	}
+	return *w.EncodeAsForm
+}
+
+// GetEncodeAsFormOk returns a tuple with the EncodeAsForm field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Webhook) GetEncodeAsFormOk() (string, bool) {
+	if w == nil || w.EncodeAsForm == nil {
+		return "", false
+	}
+	return *w.EncodeAsForm, true
+}
+
+// HasEncodeAsForm returns a boolean if a field has been set.
+func (w *Webhook) HasEncodeAsForm() bool {
+	if w != nil && w.EncodeAsForm != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEncodeAsForm allocates a new w.EncodeAsForm and returns the pointer to it.
+func (w *Webhook) SetEncodeAsForm(v string) {
+	w.EncodeAsForm = &v
+}
+
+// GetHeaders returns the Headers field if non-nil, zero value otherwise.
+func (w *Webhook) GetHeaders() string {
+	if w == nil || w.Headers == nil {
+		return ""
+	}
+	return *w.Headers
+}
+
+// GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Webhook) GetHeadersOk() (string, bool) {
+	if w == nil || w.Headers == nil {
+		return "", false
+	}
+	return *w.Headers, true
+}
+
+// HasHeaders returns a boolean if a field has been set.
+func (w *Webhook) HasHeaders() bool {
+	if w != nil && w.Headers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders allocates a new w.Headers and returns the pointer to it.
+func (w *Webhook) SetHeaders(v string) {
+	w.Headers = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (w *Webhook) GetName() string {
+	if w == nil || w.Name == nil {
+		return ""
+	}
+	return *w.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Webhook) GetNameOk() (string, bool) {
+	if w == nil || w.Name == nil {
+		return "", false
+	}
+	return *w.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (w *Webhook) HasName() bool {
+	if w != nil && w.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new w.Name and returns the pointer to it.
+func (w *Webhook) SetName(v string) {
+	w.Name = &v
+}
+
+// GetURL returns the URL field if non-nil, zero value otherwise.
+func (w *Webhook) GetURL() string {
+	if w == nil || w.URL == nil {
+		return ""
+	}
+	return *w.URL
+}
+
+// GetURLOk returns a tuple with the URL field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Webhook) GetURLOk() (string, bool) {
+	if w == nil || w.URL == nil {
+		return "", false
+	}
+	return *w.URL, true
+}
+
+// HasURL returns a boolean if a field has been set.
+func (w *Webhook) HasURL() bool {
+	if w != nil && w.URL != nil {
+		return true
+	}
+
+	return false
+}
+
 // SetIsEncoded allocates a new u.IsEncoded and returns the pointer to it.
 func (u *UserAgentParser) SetIsEncoded(v bool) {
 	u.IsEncoded = &v
@@ -23600,9 +23750,45 @@ func (u *UserAgentParser) HasTarget() bool {
 	return false
 }
 
+// SetURL allocates a new w.URL and returns the pointer to it.
+func (w *Webhook) SetURL(v string) {
+	w.URL = &v
+}
+
+// GetUseCustomPayload returns the UseCustomPayload field if non-nil, zero value otherwise.
+func (w *Webhook) GetUseCustomPayload() string {
+	if w == nil || w.UseCustomPayload == nil {
+		return ""
+	}
+	return *w.UseCustomPayload
+}
+
+// GetUseCustomPayloadOk returns a tuple with the UseCustomPayload field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Webhook) GetUseCustomPayloadOk() (string, bool) {
+	if w == nil || w.UseCustomPayload == nil {
+		return "", false
+	}
+	return *w.UseCustomPayload, true
+}
+
+// HasUseCustomPayload returns a boolean if a field has been set.
+func (w *Webhook) HasUseCustomPayload() bool {
+	if w != nil && w.UseCustomPayload != nil {
+		return true
+	}
+
+	return false
+}
+
 // SetTarget allocates a new u.Target and returns the pointer to it.
 func (u *UserAgentParser) SetTarget(v string) {
 	u.Target = &v
+}
+
+// SetUseCustomPayload allocates a new w.UseCustomPayload and returns the pointer to it.
+func (w *Webhook) SetUseCustomPayload(v string) {
+	w.UseCustomPayload = &v
 }
 
 // GetAlertID returns the AlertID field if non-nil, zero value otherwise.
