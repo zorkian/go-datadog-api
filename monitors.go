@@ -197,9 +197,51 @@ func (self *Client) GetMonitorsByName(name string) ([]Monitor, error) {
 }
 
 // GetMonitorsByTags retrieves monitors by a slice of tags
-func (self *Client) GetMonitorsByTags(tags []string) ([]Monitor, error) {
+func (self *Client) GetMonitorsByTags(monitorTags []string) ([]Monitor, error) {
 	var out reqMonitors
-	query, err := url.ParseQuery(fmt.Sprintf("monitor_tags=%v", strings.Join(tags, ",")))
+	query, err := url.ParseQuery(fmt.Sprintf("monitor_tags=%v", strings.Join(monitorTags, ",")))
+	if err != nil {
+		return nil, err
+	}
+
+	err = self.doJsonRequest("GET", fmt.Sprintf("/v1/monitor?%v", query.Encode()), nil, &out.Monitors)
+	if err != nil {
+		return nil, err
+	}
+	return out.Monitors, nil
+}
+
+// GetMonitorsWithGroupsByTags retrieves monitors by tags, monitor_tags, groupState
+func (self *Client) GetMonitorsWithGroupsByTags(monitorTags []string, tags []string, groupState []string, withDowntimes bool) ([]Monitor, error) {
+	var out reqMonitors
+
+	queryStr := ""
+	if len(monitorTags) > 0 {
+		queryStr = fmt.Sprintf("monitor_tags=%v", strings.Join(monitorTags, ","))
+	}
+	if len(tags) > 0 {
+		if queryStr != "" {
+			queryStr += "&"
+		}
+		queryStr += fmt.Sprintf("tags=%v", strings.Join(tags, ","))
+	}
+	if len(groupState) > 0 {
+		if queryStr != "" {
+			queryStr += "&"
+		}
+		queryStr += fmt.Sprintf("group_states=%v", strings.Join(groupState, ","))
+	}
+
+	if queryStr != "" {
+		queryStr += "&"
+	}
+	if withDowntimes {
+		queryStr += "with_downtimes=true"
+	} else {
+		queryStr += "with_downtimes=false"
+	}
+
+	query, err := url.ParseQuery(queryStr)
 	if err != nil {
 		return nil, err
 	}
