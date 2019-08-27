@@ -1,9 +1,9 @@
 package datadog
 
 type HostActionResp struct {
-	Action   *string `json:"action"`
-	Hostname *string `json:"hostname"`
-	Message  *string `json:"message,omitempty"`
+	Action   string `json:"action"`
+	Hostname string `json:"hostname"`
+	Message  string `json:"message,omitempty"`
 }
 
 type HostActionMute struct {
