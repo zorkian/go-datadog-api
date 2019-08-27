@@ -28,8 +28,9 @@ type Response struct {
 	Error  string `json:"error"`
 }
 
-// uriForAPI is to be called with something like "/v1/events" and it will give
-// the proper request URI to be posted to.
+// uriForAPI is to be called with either an API resource like "/v1/events"
+// or a full URL like the IP Ranges one
+// and it will give the proper request URI to be posted to.
 func (client *Client) uriForAPI(api string) (string, error) {
 	var err error
 	// If api is an endpoint starting with v1, we construct the apiBase URL using the baseUrl to which we append "/api" and the actual value of api
