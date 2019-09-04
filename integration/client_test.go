@@ -52,3 +52,10 @@ func TestBaseUrl(t *testing.T) {
 		assert.Equal(t, "https://another.datadoghq.com", c.GetBaseUrl())
 	})
 }
+
+func TestExtraHeader(t *testing.T) {
+	t.Run("No Extra Header for backward compatibility", func(t *testing.T) {
+		c := datadog.NewClient("foo", "bar")
+		assert.Empty(t, c.ExtraHeader)
+	})
+}
