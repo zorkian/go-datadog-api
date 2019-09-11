@@ -33,8 +33,8 @@ type Response struct {
 // and it will give the proper request URI to be posted to.
 func (client *Client) uriForAPI(api string) (string, error) {
 	var err error
-	// If api is an endpoint starting with v1, we construct the apiBase URL using the baseUrl to which we append "/api" and the actual value of api
-	if strings.Contains(api, "v1") {
+	// If api is a URI such as /v1/hosts/, /v2/dashboards... add credentials and return a properly formatted URL
+	if !strings.HasPrefix(api, "https://") || !strings.HasPrefix(api, "http://") {
 		apiBase, err := url.Parse(client.baseUrl + "/api" + api)
 		if err != nil {
 			return "", err
