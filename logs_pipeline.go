@@ -16,6 +16,7 @@ const (
 	logsPipelinesPath = "/v1/logs/config/pipelines"
 )
 
+// LogsPipeline struct to represent the json object received from Logs Public Config API.
 type LogsPipeline struct {
 	Id         *string              `json:"id,omitempty"`
 	Type       *string              `json:"type,omitempty"`
@@ -26,10 +27,12 @@ type LogsPipeline struct {
 	Processors []LogsProcessor      `json:"processors,omitempty"`
 }
 
+// FilterConfiguration struct to represent the json object of filter configuration.
 type FilterConfiguration struct {
 	Query *string `json:"query"`
 }
 
+// GetLogsPipeline queries Logs Public Config API with given a pipeline id for the complete pipeline object.
 func (client *Client) GetLogsPipeline(id string) (*LogsPipeline, error) {
 	var pipeline LogsPipeline
 	if err := client.doJsonRequest("GET", fmt.Sprintf(logsPipelinesPath+"/%s", id), nil, &pipeline); err != nil {
@@ -38,6 +41,7 @@ func (client *Client) GetLogsPipeline(id string) (*LogsPipeline, error) {
 	return &pipeline, nil
 }
 
+// CreateLogsPipeline sends pipeline creation request to Config API
 func (client *Client) CreateLogsPipeline(pipeline *LogsPipeline) (*LogsPipeline, error) {
 	var createdPipeline = &LogsPipeline{}
 	if err := client.doJsonRequest("POST", logsPipelinesPath, pipeline, createdPipeline); err != nil {
@@ -46,6 +50,7 @@ func (client *Client) CreateLogsPipeline(pipeline *LogsPipeline) (*LogsPipeline,
 	return createdPipeline, nil
 }
 
+// UpdateLogsPipeline updates the pipeline object of a given pipeline id.
 func (client *Client) UpdateLogsPipeline(id string, pipeline *LogsPipeline) (*LogsPipeline, error) {
 	var updatedPipeline = &LogsPipeline{}
 	if err := client.doJsonRequest("PUT", fmt.Sprintf(logsPipelinesPath+"/%s", id), pipeline, updatedPipeline); err != nil {
@@ -54,7 +59,7 @@ func (client *Client) UpdateLogsPipeline(id string, pipeline *LogsPipeline) (*Lo
 	return updatedPipeline, nil
 }
 
-// DeleteLogsPipeline returns 200 OK when operation succeed
+// DeleteLogsPipeline deletes the pipeline for a given id, returns 200 OK when operation succeed
 func (client *Client) DeleteLogsPipeline(id string) error {
 	return client.doJsonRequest("DELETE", fmt.Sprintf(logsPipelinesPath+"/%s", id), nil, nil)
 }
