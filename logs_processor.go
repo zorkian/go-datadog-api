@@ -23,18 +23,17 @@ const (
 type LogsProcessor struct {
 	Name       *string     `json:"name"`
 	IsEnabled  *bool       `json:"is_enabled"`
+	Type       *string     `json:"type"`
 	Definition interface{} `json:"definition"`
 }
 
 type ArithmeticProcessor struct {
-	Type             *string `json:"type"`
 	Expression       *string `json:"expression"`
 	Target           *string `json:"target"`
 	IsReplaceMissing *bool   `json:"is_replace_missing"`
 }
 
 type AttributeRemapper struct {
-	Type               *string  `json:"type"`
 	Sources            []string `json:"sources"`
 	SourceType         *string  `json:"source_type"`
 	Target             *string  `json:"target"`
@@ -44,7 +43,6 @@ type AttributeRemapper struct {
 }
 
 type CategoryProcessor struct {
-	Type       *string    `json:"type"`
 	Target     *string    `json:"target"`
 	Categories []Category `json:"categories"`
 }
@@ -55,12 +53,10 @@ type Category struct {
 }
 
 type SourceRemapper struct {
-	Type    *string  `json:"type"`
 	Sources []string `json:"sources"`
 }
 
 type GrokParser struct {
-	Type     *string   `json:"type"`
 	Source   *string   `json:"source"`
 	GrokRule *GrokRule `json:"grok"`
 }
@@ -71,23 +67,85 @@ type GrokRule struct {
 }
 
 type NestedPipeline struct {
-	Type       *string              `json:"type"`
 	Filter     *FilterConfiguration `json:"filter"`
 	Processors []LogsProcessor      `json:"processors,omitempty"`
 }
 
 type UrlParser struct {
-	Type                   *string  `json:"type"`
 	Sources                []string `json:"sources"`
 	Target                 *string  `json:"target"`
 	NormalizeEndingSlashes *bool    `json:"normalize_ending_slashes"`
 }
 
 type UserAgentParser struct {
-	Type      *string  `json:"type"`
 	Sources   []string `json:"sources"`
 	Target    *string  `json:"target"`
 	IsEncoded *bool    `json:"is_encoded"`
+}
+
+// convert converts the first argument of type interface{} to a map of string and interface{}
+// and sign the result to the second argument.
+func convert(definition interface{}, processor map[string]interface{}) error {
+	inrec, err := json.Marshal(definition)
+	if err != nil {
+		return err
+	}
+	if err = json.Unmarshal(inrec, &processor); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (processor *LogsProcessor) MarshalJSON() ([]byte, error) {
+	var mapProcessor = make(map[string]interface{})
+	switch *processor.Type {
+	case ARITHMETIC_PROCESSOR:
+		if err := convert(processor.Definition.(ArithmeticProcessor), mapProcessor); err != nil {
+			return nil, err
+		}
+	case ATTIBUTE_REMAPPER_PROCESSOR:
+		if err := convert(processor.Definition.(AttributeRemapper), mapProcessor); err != nil {
+			return nil, err
+		}
+	case CATEGORY_PROCESSOR:
+		if err := convert(processor.Definition.(CategoryProcessor), mapProcessor); err != nil {
+			return nil, err
+		}
+	case DATE_REMAPPER_PROCESSOR,
+		MESSAGE_REMAPPER_PROCESSOR,
+		SERVICE_REMAPPER_PROCESSOR,
+		STATUS_REMAPPER_PROCESSOR,
+		TRACE_ID_REMAPPER_PROCESSOR:
+		if err := convert(processor.Definition.(SourceRemapper), mapProcessor); err != nil {
+			return nil, err
+		}
+	case GROK_PARSER_PROCESSOR:
+		if err := convert(processor.Definition.(GrokParser), mapProcessor); err != nil {
+			return nil, err
+		}
+	case NESTED_PIPELINE_PROCESSOR:
+		if err := convert(processor.Definition.(NestedPipeline), mapProcessor); err != nil {
+			return nil, err
+		}
+	case URL_PARSER_PROCESSOR:
+		if err := convert(processor.Definition.(UrlParser), mapProcessor); err != nil {
+			return nil, err
+		}
+	case USER_AGENT_PARSER_PROCESSOR:
+		if err := convert(processor.Definition.(UserAgentParser), mapProcessor); err != nil {
+			return nil, err
+		}
+	default:
+		return nil, fmt.Errorf("cannot marshal processor of type: %s", *processor.Type)
+	}
+	mapProcessor["name"] = processor.Name
+	mapProcessor["is_enabled"] = processor.IsEnabled
+	mapProcessor["type"] = processor.Type
+	jsn, err := json.Marshal(mapProcessor)
+	if err != nil {
+		return nil, err
+	}
+	return jsn, err
 }
 
 func (processor *LogsProcessor) UnmarshalJSON(data []byte) error {
@@ -102,6 +160,7 @@ func (processor *LogsProcessor) UnmarshalJSON(data []byte) error {
 
 	processor.Name = processorHandler.Name
 	processor.IsEnabled = processorHandler.IsEnabled
+	processor.Type = processorHandler.Type
 
 	switch *processorHandler.Type {
 	case ARITHMETIC_PROCESSOR:
@@ -122,48 +181,28 @@ func (processor *LogsProcessor) UnmarshalJSON(data []byte) error {
 			return err
 		}
 		processor.Definition = categoryProcessor
-	case DATE_REMAPPER_PROCESSOR:
-		var dateRemapper SourceRemapper
-		if err := json.Unmarshal(data, &dateRemapper); err != nil {
+	case DATE_REMAPPER_PROCESSOR,
+		MESSAGE_REMAPPER_PROCESSOR,
+		SERVICE_REMAPPER_PROCESSOR,
+		STATUS_REMAPPER_PROCESSOR,
+		TRACE_ID_REMAPPER_PROCESSOR:
+		var sourceRemapper SourceRemapper
+		if err := json.Unmarshal(data, &sourceRemapper); err != nil {
 			return err
 		}
-		processor.Definition = dateRemapper
+		processor.Definition = sourceRemapper
 	case GROK_PARSER_PROCESSOR:
 		var grokParser GrokParser
 		if err := json.Unmarshal(data, &grokParser); err != nil {
 			return err
 		}
 		processor.Definition = grokParser
-	case MESSAGE_REMAPPER_PROCESSOR:
-		var messageRemapper SourceRemapper
-		if err := json.Unmarshal(data, &messageRemapper); err != nil {
-			return err
-		}
-		processor.Definition = messageRemapper
 	case NESTED_PIPELINE_PROCESSOR:
 		var nestedPipeline NestedPipeline
 		if err := json.Unmarshal(data, &nestedPipeline); err != nil {
 			return err
 		}
 		processor.Definition = nestedPipeline
-	case SERVICE_REMAPPER_PROCESSOR:
-		var serviceRemapper SourceRemapper
-		if err := json.Unmarshal(data, &serviceRemapper); err != nil {
-			return err
-		}
-		processor.Definition = serviceRemapper
-	case STATUS_REMAPPER_PROCESSOR:
-		var statusRemapper SourceRemapper
-		if err := json.Unmarshal(data, &statusRemapper); err != nil {
-			return err
-		}
-		processor.Definition = statusRemapper
-	case TRACE_ID_REMAPPER_PROCESSOR:
-		var traceIdRemapper SourceRemapper
-		if err := json.Unmarshal(data, &traceIdRemapper); err != nil {
-			return err
-		}
-		processor.Definition = traceIdRemapper
 	case URL_PARSER_PROCESSOR:
 		var urlParser UrlParser
 		if err := json.Unmarshal(data, &urlParser); err != nil {

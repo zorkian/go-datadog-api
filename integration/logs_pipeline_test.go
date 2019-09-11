@@ -19,8 +19,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 				{
 					Name:      datadog.String("nested pipeline"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("pipeline"),
 					Definition: datadog.NestedPipeline{
-						Type: datadog.String("pipeline"),
 						Filter: &datadog.FilterConfiguration{
 							Query: datadog.String("service:nest"),
 						},
@@ -28,8 +28,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 							{
 								Name:      datadog.String("test arithmetic processor"),
 								IsEnabled: datadog.Bool(true),
+								Type:      datadog.String("arithmetic-processor"),
 								Definition: datadog.ArithmeticProcessor{
-									Type:             datadog.String("arithmetic-processor"),
 									Expression:       datadog.String("(time1-time2)*1000"),
 									Target:           datadog.String("my_arithmetic"),
 									IsReplaceMissing: datadog.Bool(false),
@@ -37,8 +37,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 							}, {
 								Name:      datadog.String("test trace Id processor"),
 								IsEnabled: datadog.Bool(true),
+								Type:      datadog.String("trace-id-remapper"),
 								Definition: datadog.SourceRemapper{
-									Type:    datadog.String("trace-id-remapper"),
 									Sources: []string{"dummy_trace_id1", "dummy_trace_id2"},
 								},
 							},
@@ -47,8 +47,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 				}, {
 					Name:      datadog.String("test grok parser"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("grok-parser"),
 					Definition: datadog.GrokParser{
-						Type:   datadog.String("grok-parser"),
 						Source: datadog.String("text"),
 						GrokRule: &datadog.GrokRule{
 							SupportRules: datadog.String("date_parser %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
@@ -58,8 +58,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 				}, {
 					Name:      datadog.String("test remapper"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("attribute-remapper"),
 					Definition: datadog.AttributeRemapper{
-						Type:               datadog.String("attribute-remapper"),
 						Sources:            []string{"tag_1"},
 						SourceType:         datadog.String("tag"),
 						Target:             datadog.String("tag_3"),
@@ -70,8 +70,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 				}, {
 					Name:      datadog.String("test user-agent parser"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("user-agent-parser"),
 					Definition: datadog.UserAgentParser{
-						Type:      datadog.String("user-agent-parser"),
 						Sources:   []string{"user_agent"},
 						Target:    datadog.String("my_agent.details"),
 						IsEncoded: datadog.Bool(false),
@@ -79,8 +79,8 @@ func TestLogsPipelineCrud(t *testing.T) {
 				}, {
 					Name:      datadog.String("test url parser"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("url-parser"),
 					Definition: datadog.UrlParser{
-						Type:                   datadog.String("url-parser"),
 						Sources:                []string{"http_test"},
 						Target:                 datadog.String("http_test.details"),
 						NormalizeEndingSlashes: datadog.Bool(false),
@@ -88,36 +88,36 @@ func TestLogsPipelineCrud(t *testing.T) {
 				}, {
 					Name:      datadog.String("test date remapper"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("date-remapper"),
 					Definition: datadog.SourceRemapper{
-						Type:    datadog.String("date-remapper"),
 						Sources: []string{"attribute_1", "attribute_2"},
 					},
 				}, {
 					Name:      datadog.String("test message remapper"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("message-remapper"),
 					Definition: datadog.SourceRemapper{
-						Type:    datadog.String("message-remapper"),
 						Sources: []string{"attribute_1", "attribute_2"},
 					},
 				}, {
 					Name:      datadog.String("test status remapper"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("status-remapper"),
 					Definition: datadog.SourceRemapper{
-						Type:    datadog.String("status-remapper"),
 						Sources: []string{"attribute_1", "attribute_2"},
 					},
 				}, {
 					Name:      datadog.String("test service remapper"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("service-remapper"),
 					Definition: datadog.SourceRemapper{
-						Type:    datadog.String("service-remapper"),
 						Sources: []string{"attribute_1", "attribute_2"},
 					},
 				}, {
 					Name:      datadog.String("test category processor"),
 					IsEnabled: datadog.Bool(true),
+					Type:      datadog.String("category-processor"),
 					Definition: datadog.CategoryProcessor{
-						Type:   datadog.String("category-processor"),
 						Target: datadog.String("test_category"),
 						Categories: []datadog.Category{
 							{

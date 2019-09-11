@@ -33,8 +33,8 @@ func TestLogsPipelineListGetAndUpdate(t *testing.T) {
 	assert.Nil(t, err)
 	size := len(pipelineList.PipelineIds)
 	assert.True(t, size >= 2)
-	assert.Equal(t, createdPipeline1.Id, pipelineList.PipelineIds[size-2])
-	assert.Equal(t, createdPipeline2.Id, pipelineList.PipelineIds[size-1])
+	assert.Equal(t, *createdPipeline1.Id, pipelineList.PipelineIds[size-2])
+	assert.Equal(t, *createdPipeline2.Id, pipelineList.PipelineIds[size-1])
 
 	pipelineList.PipelineIds[size-2], pipelineList.PipelineIds[size-1] =
 		pipelineList.PipelineIds[size-1], pipelineList.PipelineIds[size-2]
@@ -42,7 +42,7 @@ func TestLogsPipelineListGetAndUpdate(t *testing.T) {
 	assert.Nil(t, err)
 	size = len(updatedList.PipelineIds)
 	assert.True(t, size >= 2)
-	assert.Equal(t, createdPipeline1.Id, updatedList.PipelineIds[size-1])
-	assert.Equal(t, createdPipeline2.Id, updatedList.PipelineIds[size-2])
+	assert.Equal(t, *createdPipeline1.Id, updatedList.PipelineIds[size-1])
+	assert.Equal(t, *createdPipeline2.Id, updatedList.PipelineIds[size-2])
 
 }

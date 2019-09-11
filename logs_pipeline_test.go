@@ -42,121 +42,121 @@ var expectedPipeline = &LogsPipeline{
 		{
 			Name:      String("nested pipeline"),
 			IsEnabled: Bool(true),
-		//	Definition: NestedPipeline{
-		//		Type: String("pipeline"),
-		//		Filter: &FilterConfiguration{
-		//			Query: String("service:nest"),
-		//		},
-		//		Processors: []LogsProcessor{
-		//			{
-		//				Name:      String("test arithmetic processor"),
-		//				IsEnabled: Bool(true),
-		//				Definition: ArithmeticProcessor{
-		//					Type:             String("arithmetic-processor"),
-		//					Expression:       String("(time1-time2)*1000"),
-		//					Target:           String("my_arithmetic"),
-		//					IsReplaceMissing: Bool(false),
-		//				},
-		//			}, {
-		//				Name:      String("test trace Id processor"),
-		//				IsEnabled: Bool(true),
-		//				Definition: SourceRemapper{
-		//					Type:    String("trace-id-remapper"),
-		//					Sources: []string{"dummy_trace_id1", "dummy_trace_id2"},
-		//				},
-		//			},
-		//		},
-		//	},
-		//}, {
-		//	Name:      String("test grok parser"),
-		//	IsEnabled: Bool(true),
-		//	Definition: GrokParser{
-		//		Type:   String("grok-parser"),
-		//		Source: String("text"),
-		//		GrokRule: &GrokRule{
-		//			SupportRules: String("date_parser %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
-		//			MatchRules:   String("rule %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
-		//		},
-		//	},
-		//}, {
-		//	Name:      String("test remapper"),
-		//	IsEnabled: Bool(true),
-		//	Definition: AttributeRemapper{
-		//		Type:               String("attribute-remapper"),
-		//		Sources:            []string{"tag_1"},
-		//		SourceType:         String("tag"),
-		//		Target:             String("tag_3"),
-		//		TargetType:         String("tag"),
-		//		PreserveSource:     Bool(false),
-		//		OverrideOnConflict: Bool(true),
-		//	},
-		//}, {
-		//	Name:      String("test user-agent parser"),
-		//	IsEnabled: Bool(true),
-		//	Definition: UserAgentParser{
-		//		Type:      String("user-agent-parser"),
-		//		Sources:   []string{"user_agent"},
-		//		Target:    String("my_agent.details"),
-		//		IsEncoded: Bool(false),
-		//	},
-		//}, {
-		//	Name:      String("test url parser"),
-		//	IsEnabled: Bool(true),
-		//	Definition: UrlParser{
-		//		Type:                   String("url-parser"),
-		//		Sources:                []string{"http_test"},
-		//		Target:                 String("http_test.details"),
-		//		NormalizeEndingSlashes: Bool(false),
-		//	},
-		//}, {
-		//	Name:      String("test date remapper"),
-		//	IsEnabled: Bool(true),
-		//	Definition: SourceRemapper{
-		//		Type:    String("date-remapper"),
-		//		Sources: []string{"attribute_1", "attribute_2"},
-		//	},
-		//}, {
-		//	Name:      String("test message remapper"),
-		//	IsEnabled: Bool(true),
-		//	Definition: SourceRemapper{
-		//		Type:    String("message-remapper"),
-		//		Sources: []string{"attribute_1", "attribute_2"},
-		//	},
-		//}, {
-		//	Name:      String("test status remapper"),
-		//	IsEnabled: Bool(true),
-		//	Definition: SourceRemapper{
-		//		Type:    String("status-remapper"),
-		//		Sources: []string{"attribute_1", "attribute_2"},
-		//	},
-		//}, {
-		//	Name:      String("test service remapper"),
-		//	IsEnabled: Bool(true),
-		//	Definition: SourceRemapper{
-		//		Type:    String("service-remapper"),
-		//		Sources: []string{"attribute_1", "attribute_2"},
-		//	},
-		//}, {
-		//	Name:      String("test category processor"),
-		//	IsEnabled: Bool(true),
-		//	Definition: CategoryProcessor{
-		//		Type:   String("category-processor"),
-		//		Target: String("test_category"),
-		//		Categories: []Category{
-		//			{
-		//				Name: String("5xx"),
-		//				Filter: &FilterConfiguration{
-		//					Query: String("status_code:[500 TO 599]"),
-		//				},
-		//			},
-		//			{
-		//				Name: String("4xx"),
-		//				Filter: &FilterConfiguration{
-		//					Query: String("status_code:[400 TO 499]"),
-		//				},
-		//			},
-		//		},
-		//	},
+			Type:      String("pipeline"),
+			Definition: NestedPipeline{
+				Filter: &FilterConfiguration{
+					Query: String("service:nest"),
+				},
+				Processors: []LogsProcessor{
+					{
+						Name:      String("test arithmetic processor"),
+						IsEnabled: Bool(true),
+						Type:      String("arithmetic-processor"),
+						Definition: ArithmeticProcessor{
+							Expression:       String("(time1-time2)*1000"),
+							Target:           String("my_arithmetic"),
+							IsReplaceMissing: Bool(false),
+						},
+					}, {
+						Name:      String("test trace Id processor"),
+						IsEnabled: Bool(true),
+						Type:      String("trace-id-remapper"),
+						Definition: SourceRemapper{
+							Sources: []string{"dummy_trace_id1", "dummy_trace_id2"},
+						},
+					},
+				},
+			},
+		}, {
+			Name:      String("test grok parser"),
+			IsEnabled: Bool(true),
+			Type:      String("grok-parser"),
+			Definition: GrokParser{
+				Source: String("text"),
+				GrokRule: &GrokRule{
+					SupportRules: String("date_parser %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
+					MatchRules:   String("rule %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
+				},
+			},
+		}, {
+			Name:      String("test remapper"),
+			IsEnabled: Bool(true),
+			Type:      String("attribute-remapper"),
+			Definition: AttributeRemapper{
+				Sources:            []string{"tag_1"},
+				SourceType:         String("tag"),
+				Target:             String("tag_3"),
+				TargetType:         String("tag"),
+				PreserveSource:     Bool(false),
+				OverrideOnConflict: Bool(true),
+			},
+		}, {
+			Name:      String("test user-agent parser"),
+			IsEnabled: Bool(true),
+			Type:      String("user-agent-parser"),
+			Definition: UserAgentParser{
+				Sources:   []string{"user_agent"},
+				Target:    String("my_agent.details"),
+				IsEncoded: Bool(false),
+			},
+		}, {
+			Name:      String("test url parser"),
+			IsEnabled: Bool(true),
+			Type:      String("url-parser"),
+			Definition: UrlParser{
+				Sources:                []string{"http_test"},
+				Target:                 String("http_test.details"),
+				NormalizeEndingSlashes: Bool(false),
+			},
+		}, {
+			Name:      String("test date remapper"),
+			IsEnabled: Bool(true),
+			Type:      String("date-remapper"),
+			Definition: SourceRemapper{
+				Sources: []string{"attribute_1", "attribute_2"},
+			},
+		}, {
+			Name:      String("test message remapper"),
+			IsEnabled: Bool(true),
+			Type:      String("message-remapper"),
+			Definition: SourceRemapper{
+				Sources: []string{"attribute_1", "attribute_2"},
+			},
+		}, {
+			Name:      String("test status remapper"),
+			IsEnabled: Bool(true),
+			Type:      String("status-remapper"),
+			Definition: SourceRemapper{
+				Sources: []string{"attribute_1", "attribute_2"},
+			},
+		}, {
+			Name:      String("test service remapper"),
+			IsEnabled: Bool(true),
+			Type:      String("service-remapper"),
+			Definition: SourceRemapper{
+				Sources: []string{"attribute_1", "attribute_2"},
+			},
+		}, {
+			Name:      String("test category processor"),
+			IsEnabled: Bool(true),
+			Type:      String("category-processor"),
+			Definition: CategoryProcessor{
+				Target: String("test_category"),
+				Categories: []Category{
+					{
+						Name: String("5xx"),
+						Filter: &FilterConfiguration{
+							Query: String("status_code:[500 TO 599]"),
+						},
+					},
+					{
+						Name: String("4xx"),
+						Filter: &FilterConfiguration{
+							Query: String("status_code:[400 TO 499]"),
+						},
+					},
+				},
+			},
 		},
 	},
 }

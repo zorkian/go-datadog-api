@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"fmt"
-	"log"
 )
 
 const (
@@ -42,10 +41,8 @@ func (client *Client) GetLogsPipeline(id string) (*LogsPipeline, error) {
 func (client *Client) CreateLogsPipeline(pipeline *LogsPipeline) (*LogsPipeline, error) {
 	var createdPipeline = &LogsPipeline{}
 	if err := client.doJsonRequest("POST", logsPipelinesPath, pipeline, createdPipeline); err != nil {
-		fmt.Println(err)
 		return nil, err
 	}
-	log.Println(createdPipeline)
 	return createdPipeline, nil
 }
 

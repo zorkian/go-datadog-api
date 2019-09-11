@@ -192,7 +192,6 @@ func (client *Client) createRequest(method, api string, reqbody interface{}) (*h
 	var bodyReader io.Reader
 	if method != "GET" && reqbody != nil {
 		bjson, err := json.Marshal(reqbody)
-		fmt.Println(string(bjson))
 		if err != nil {
 			return nil, err
 		}

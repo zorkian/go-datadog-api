@@ -5,7 +5,7 @@ const (
 )
 
 type LogsPipelineList struct {
-	PipelineIds []*string `json:"pipeline_ids"`
+	PipelineIds []string `json:"pipeline_ids"`
 }
 
 func (client *Client) GetLogsPipelineList() (*LogsPipelineList, error) {
