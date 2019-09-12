@@ -35,7 +35,7 @@ type FilterConfiguration struct {
 // GetLogsPipeline queries Logs Public Config API with given a pipeline id for the complete pipeline object.
 func (client *Client) GetLogsPipeline(id string) (*LogsPipeline, error) {
 	var pipeline LogsPipeline
-	if err := client.doJsonRequest("GET", fmt.Sprintf(logsPipelinesPath+"/%s", id), nil, &pipeline); err != nil {
+	if err := client.doJsonRequest("GET", fmt.Sprintf("%s/%s", logsPipelinesPath, id), nil, &pipeline); err != nil {
 		return nil, err
 	}
 	return &pipeline, nil
@@ -53,7 +53,7 @@ func (client *Client) CreateLogsPipeline(pipeline *LogsPipeline) (*LogsPipeline,
 // UpdateLogsPipeline updates the pipeline object of a given pipeline id.
 func (client *Client) UpdateLogsPipeline(id string, pipeline *LogsPipeline) (*LogsPipeline, error) {
 	var updatedPipeline = &LogsPipeline{}
-	if err := client.doJsonRequest("PUT", fmt.Sprintf(logsPipelinesPath+"/%s", id), pipeline, updatedPipeline); err != nil {
+	if err := client.doJsonRequest("PUT", fmt.Sprintf("%s/%s", logsPipelinesPath, id), pipeline, updatedPipeline); err != nil {
 		return nil, err
 	}
 	return updatedPipeline, nil
@@ -61,5 +61,5 @@ func (client *Client) UpdateLogsPipeline(id string, pipeline *LogsPipeline) (*Lo
 
 // DeleteLogsPipeline deletes the pipeline for a given id, returns 200 OK when operation succeed
 func (client *Client) DeleteLogsPipeline(id string) error {
-	return client.doJsonRequest("DELETE", fmt.Sprintf(logsPipelinesPath+"/%s", id), nil, nil)
+	return client.doJsonRequest("DELETE", fmt.Sprintf("%s/%s", logsPipelinesPath, id), nil, nil)
 }

@@ -98,61 +98,26 @@ type UserAgentParser struct {
 	IsEncoded *bool    `json:"is_encoded"`
 }
 
-// convert converts the first argument of type interface{} to a map of string and interface{}
-// and sign the result to the second argument.
-func convert(definition interface{}, processor map[string]interface{}) error {
+// buildProcessor converts processor Definition of type interface{} to a map of string and interface{}.
+// Simple cast from interface{} to map[string]interface{} will not work for our case here,
+// since the underlying types of Definition are the processor structs.
+func buildProcessor(definition interface{}) (map[string]interface{}, error) {
 	inrec, err := json.Marshal(definition)
 	if err != nil {
-		return err
+		return nil, err
 	}
+	var processor map[string]interface{}
 	if err = json.Unmarshal(inrec, &processor); err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return processor, err
 }
 
 // MarshalJSON serializes logsprocessor struct to config API compatible json object.
 func (processor *LogsProcessor) MarshalJSON() ([]byte, error) {
-	var mapProcessor = make(map[string]interface{})
-	switch *processor.Type {
-	case ArithmeticProcessorType:
-		if err := convert(processor.Definition.(ArithmeticProcessor), mapProcessor); err != nil {
-			return nil, err
-		}
-	case AttributeRemapperType:
-		if err := convert(processor.Definition.(AttributeRemapper), mapProcessor); err != nil {
-			return nil, err
-		}
-	case CategoryProcessorType:
-		if err := convert(processor.Definition.(CategoryProcessor), mapProcessor); err != nil {
-			return nil, err
-		}
-	case DateRemapperType,
-		MessageRemapperType,
-		ServiceRemapperType,
-		StatusRemapperType,
-		TraceIdRemapperType:
-		if err := convert(processor.Definition.(SourceRemapper), mapProcessor); err != nil {
-			return nil, err
-		}
-	case GrokParserType:
-		if err := convert(processor.Definition.(GrokParser), mapProcessor); err != nil {
-			return nil, err
-		}
-	case NestedPipelineType:
-		if err := convert(processor.Definition.(NestedPipeline), mapProcessor); err != nil {
-			return nil, err
-		}
-	case UrlParserType:
-		if err := convert(processor.Definition.(UrlParser), mapProcessor); err != nil {
-			return nil, err
-		}
-	case UserAgentParserType:
-		if err := convert(processor.Definition.(UserAgentParser), mapProcessor); err != nil {
-			return nil, err
-		}
-	default:
-		return nil, fmt.Errorf("cannot marshal processor of type: %s", *processor.Type)
+	mapProcessor, err := buildProcessor(processor.Definition)
+	if err != nil {
+		return nil, err
 	}
 	mapProcessor["name"] = processor.Name
 	mapProcessor["is_enabled"] = processor.IsEnabled
