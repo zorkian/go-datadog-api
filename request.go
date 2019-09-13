@@ -34,7 +34,7 @@ type Response struct {
 func (client *Client) uriForAPI(api string) (string, error) {
 	var err error
 	// If api is a URI such as /v1/hosts/, /v2/dashboards... add credentials and return a properly formatted URL
-	if !strings.HasPrefix(api, "https://") || !strings.HasPrefix(api, "http://") {
+	if !(strings.HasPrefix(api, "https://") || strings.HasPrefix(api, "http://")) {
 		apiBase, err := url.Parse(client.baseUrl + "/api" + api)
 		if err != nil {
 			return "", err
