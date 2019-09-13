@@ -1,0 +1,35 @@
+{
+  "name": "main",
+  "filter": {
+    "query": "*"
+  },
+  "num_retention_days": 90,
+  "daily_limit": 151000000,
+  "is_rate_limited": false,
+  "exclusion_filters": [
+    {
+      "name": "Filter 1",
+      "is_enabled": true,
+      "filter": {
+        "query": "source:agent status:info",
+        "sample_rate": 1.0
+      }
+    },
+    {
+      "name": "Filter 2",
+      "is_enabled": true,
+      "filter": {
+        "query": "source:agent",
+        "sample_rate": 0.8
+      }
+    },
+    {
+      "name": "Filter 3",
+      "is_enabled": true,
+      "filter": {
+        "query": "source:debug",
+        "sample_rate": 0.5
+      }
+    }
+  ]
+}
