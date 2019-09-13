@@ -9066,6 +9066,68 @@ func (h *HostmapStyle) SetPaletteFlip(v bool) {
 	h.PaletteFlip = &v
 }
 
+// GetTotalActive returns the TotalActive field if non-nil, zero value otherwise.
+func (h *HostTotalsResp) GetTotalActive() int {
+	if h == nil || h.TotalActive == nil {
+		return 0
+	}
+	return *h.TotalActive
+}
+
+// GetTotalActiveOk returns a tuple with the TotalActive field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostTotalsResp) GetTotalActiveOk() (int, bool) {
+	if h == nil || h.TotalActive == nil {
+		return 0, false
+	}
+	return *h.TotalActive, true
+}
+
+// HasTotalActive returns a boolean if a field has been set.
+func (h *HostTotalsResp) HasTotalActive() bool {
+	if h != nil && h.TotalActive != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalActive allocates a new h.TotalActive and returns the pointer to it.
+func (h *HostTotalsResp) SetTotalActive(v int) {
+	h.TotalActive = &v
+}
+
+// GetTotalUp returns the TotalUp field if non-nil, zero value otherwise.
+func (h *HostTotalsResp) GetTotalUp() int {
+	if h == nil || h.TotalUp == nil {
+		return 0
+	}
+	return *h.TotalUp
+}
+
+// GetTotalUpOk returns a tuple with the TotalUp field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *HostTotalsResp) GetTotalUpOk() (int, bool) {
+	if h == nil || h.TotalUp == nil {
+		return 0, false
+	}
+	return *h.TotalUp, true
+}
+
+// HasTotalUp returns a boolean if a field has been set.
+func (h *HostTotalsResp) HasTotalUp() bool {
+	if h != nil && h.TotalUp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalUp allocates a new h.TotalUp and returns the pointer to it.
+func (h *HostTotalsResp) SetTotalUp(v int) {
+	h.TotalUp = &v
+}
+
 // GetType returns the Type field if non-nil, zero value otherwise.
 func (i *IframeDefinition) GetType() string {
 	if i == nil || i.Type == nil {
