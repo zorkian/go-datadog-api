@@ -6338,6 +6338,161 @@ func (e *EventTimelineDefinition) SetType(v string) {
 	e.Type = &v
 }
 
+// GetFilter returns the Filter field if non-nil, zero value otherwise.
+func (e *ExclusionFilter) GetFilter() Filter {
+	if e == nil || e.Filter == nil {
+		return Filter{}
+	}
+	return *e.Filter
+}
+
+// GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (e *ExclusionFilter) GetFilterOk() (Filter, bool) {
+	if e == nil || e.Filter == nil {
+		return Filter{}, false
+	}
+	return *e.Filter, true
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (e *ExclusionFilter) HasFilter() bool {
+	if e != nil && e.Filter != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFilter allocates a new e.Filter and returns the pointer to it.
+func (e *ExclusionFilter) SetFilter(v Filter) {
+	e.Filter = &v
+}
+
+// GetIsEnabled returns the IsEnabled field if non-nil, zero value otherwise.
+func (e *ExclusionFilter) GetIsEnabled() bool {
+	if e == nil || e.IsEnabled == nil {
+		return false
+	}
+	return *e.IsEnabled
+}
+
+// GetIsEnabledOk returns a tuple with the IsEnabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (e *ExclusionFilter) GetIsEnabledOk() (bool, bool) {
+	if e == nil || e.IsEnabled == nil {
+		return false, false
+	}
+	return *e.IsEnabled, true
+}
+
+// HasIsEnabled returns a boolean if a field has been set.
+func (e *ExclusionFilter) HasIsEnabled() bool {
+	if e != nil && e.IsEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsEnabled allocates a new e.IsEnabled and returns the pointer to it.
+func (e *ExclusionFilter) SetIsEnabled(v bool) {
+	e.IsEnabled = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (e *ExclusionFilter) GetName() string {
+	if e == nil || e.Name == nil {
+		return ""
+	}
+	return *e.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (e *ExclusionFilter) GetNameOk() (string, bool) {
+	if e == nil || e.Name == nil {
+		return "", false
+	}
+	return *e.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (e *ExclusionFilter) HasName() bool {
+	if e != nil && e.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new e.Name and returns the pointer to it.
+func (e *ExclusionFilter) SetName(v string) {
+	e.Name = &v
+}
+
+// GetQuery returns the Query field if non-nil, zero value otherwise.
+func (f *Filter) GetQuery() string {
+	if f == nil || f.Query == nil {
+		return ""
+	}
+	return *f.Query
+}
+
+// GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (f *Filter) GetQueryOk() (string, bool) {
+	if f == nil || f.Query == nil {
+		return "", false
+	}
+	return *f.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (f *Filter) HasQuery() bool {
+	if f != nil && f.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery allocates a new f.Query and returns the pointer to it.
+func (f *Filter) SetQuery(v string) {
+	f.Query = &v
+}
+
+// GetSampleRate returns the SampleRate field if non-nil, zero value otherwise.
+func (f *Filter) GetSampleRate() float64 {
+	if f == nil || f.SampleRate == nil {
+		return 0
+	}
+	return *f.SampleRate
+}
+
+// GetSampleRateOk returns a tuple with the SampleRate field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (f *Filter) GetSampleRateOk() (float64, bool) {
+	if f == nil || f.SampleRate == nil {
+		return 0, false
+	}
+	return *f.SampleRate, true
+}
+
+// HasSampleRate returns a boolean if a field has been set.
+func (f *Filter) HasSampleRate() bool {
+	if f != nil && f.SampleRate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSampleRate allocates a new f.SampleRate and returns the pointer to it.
+func (f *Filter) SetSampleRate(v float64) {
+	f.SampleRate = &v
+}
+
 // GetQuery returns the Query field if non-nil, zero value otherwise.
 func (f *FilterConfiguration) GetQuery() string {
 	if f == nil || f.Query == nil {
@@ -10769,6 +10924,161 @@ func (l *LogSet) HasName() bool {
 // SetName allocates a new l.Name and returns the pointer to it.
 func (l *LogSet) SetName(v string) {
 	l.Name = &v
+}
+
+// GetDailyLimit returns the DailyLimit field if non-nil, zero value otherwise.
+func (l *LogsIndex) GetDailyLimit() int64 {
+	if l == nil || l.DailyLimit == nil {
+		return 0
+	}
+	return *l.DailyLimit
+}
+
+// GetDailyLimitOk returns a tuple with the DailyLimit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsIndex) GetDailyLimitOk() (int64, bool) {
+	if l == nil || l.DailyLimit == nil {
+		return 0, false
+	}
+	return *l.DailyLimit, true
+}
+
+// HasDailyLimit returns a boolean if a field has been set.
+func (l *LogsIndex) HasDailyLimit() bool {
+	if l != nil && l.DailyLimit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDailyLimit allocates a new l.DailyLimit and returns the pointer to it.
+func (l *LogsIndex) SetDailyLimit(v int64) {
+	l.DailyLimit = &v
+}
+
+// GetFilter returns the Filter field if non-nil, zero value otherwise.
+func (l *LogsIndex) GetFilter() FilterConfiguration {
+	if l == nil || l.Filter == nil {
+		return FilterConfiguration{}
+	}
+	return *l.Filter
+}
+
+// GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsIndex) GetFilterOk() (FilterConfiguration, bool) {
+	if l == nil || l.Filter == nil {
+		return FilterConfiguration{}, false
+	}
+	return *l.Filter, true
+}
+
+// HasFilter returns a boolean if a field has been set.
+func (l *LogsIndex) HasFilter() bool {
+	if l != nil && l.Filter != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFilter allocates a new l.Filter and returns the pointer to it.
+func (l *LogsIndex) SetFilter(v FilterConfiguration) {
+	l.Filter = &v
+}
+
+// GetIsRateLimited returns the IsRateLimited field if non-nil, zero value otherwise.
+func (l *LogsIndex) GetIsRateLimited() bool {
+	if l == nil || l.IsRateLimited == nil {
+		return false
+	}
+	return *l.IsRateLimited
+}
+
+// GetIsRateLimitedOk returns a tuple with the IsRateLimited field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsIndex) GetIsRateLimitedOk() (bool, bool) {
+	if l == nil || l.IsRateLimited == nil {
+		return false, false
+	}
+	return *l.IsRateLimited, true
+}
+
+// HasIsRateLimited returns a boolean if a field has been set.
+func (l *LogsIndex) HasIsRateLimited() bool {
+	if l != nil && l.IsRateLimited != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsRateLimited allocates a new l.IsRateLimited and returns the pointer to it.
+func (l *LogsIndex) SetIsRateLimited(v bool) {
+	l.IsRateLimited = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (l *LogsIndex) GetName() string {
+	if l == nil || l.Name == nil {
+		return ""
+	}
+	return *l.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsIndex) GetNameOk() (string, bool) {
+	if l == nil || l.Name == nil {
+		return "", false
+	}
+	return *l.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (l *LogsIndex) HasName() bool {
+	if l != nil && l.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new l.Name and returns the pointer to it.
+func (l *LogsIndex) SetName(v string) {
+	l.Name = &v
+}
+
+// GetNumRetentionDays returns the NumRetentionDays field if non-nil, zero value otherwise.
+func (l *LogsIndex) GetNumRetentionDays() int64 {
+	if l == nil || l.NumRetentionDays == nil {
+		return 0
+	}
+	return *l.NumRetentionDays
+}
+
+// GetNumRetentionDaysOk returns a tuple with the NumRetentionDays field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsIndex) GetNumRetentionDaysOk() (int64, bool) {
+	if l == nil || l.NumRetentionDays == nil {
+		return 0, false
+	}
+	return *l.NumRetentionDays, true
+}
+
+// HasNumRetentionDays returns a boolean if a field has been set.
+func (l *LogsIndex) HasNumRetentionDays() bool {
+	if l != nil && l.NumRetentionDays != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNumRetentionDays allocates a new l.NumRetentionDays and returns the pointer to it.
+func (l *LogsIndex) SetNumRetentionDays(v int64) {
+	l.NumRetentionDays = &v
 }
 
 // GetFilter returns the Filter field if non-nil, zero value otherwise.
