@@ -31,11 +31,11 @@ func TestValidAuth(t *testing.T) {
 }
 
 func TestBaseUrl(t *testing.T) {
-	t.Run("Base url defaults to https://app.datadoghq.com", func(t *testing.T) {
+	t.Run("Base url defaults to https://api.datadoghq.com", func(t *testing.T) {
 		assert.Empty(t, os.Getenv("DATADOG_HOST"))
 
 		c := datadog.NewClient("abc", "def")
-		assert.Equal(t, "https://app.datadoghq.com", c.GetBaseUrl())
+		assert.Equal(t, "https://api.datadoghq.com", c.GetBaseUrl())
 	})
 
 	t.Run("Base url defaults DATADOG_HOST environment variable if set", func(t *testing.T) {
