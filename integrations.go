@@ -197,6 +197,12 @@ func (client *Client) CreateIntegrationAWS(awsAccount *IntegrationAWSAccount) (*
 	return &out, nil
 }
 
+// UpdateIntegrationAWS updates an already existing AWS Account in the AWS Integration
+func (client *Client) UpdateIntegrationAWS(awsAccount *IntegrationAWSAccount) error {
+	additionalParameters := "account_id=" + *awsAccount.AccountID + "&role_name=" + *awsAccount.RoleName
+	return client.doJsonRequest("PUT", "/v1/integration/aws?" + additionalParameters, awsAccount, nil)
+}
+
 // GetIntegrationAWS gets all the AWS Accounts in the AWS Integrations from Datadog.
 func (client *Client) GetIntegrationAWS() (*[]IntegrationAWSAccount, error) {
 	var response IntegrationAWSAccountGetResponse
