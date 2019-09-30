@@ -187,24 +187,24 @@ type IntegrationAWSAccountDeleteRequest struct {
 
 type IntegrationAWSLambdaARNRequest struct {
 	AccountID *string `json:"account_id"`
-	LambdaARN  *string `json:"lambda_arn"`
+	LambdaARN *string `json:"lambda_arn"`
 }
 
 // IntegrationAWSLambdaARN is only defined to properly parse the AWS logs GET response
 type IntegrationAWSLambdaARN struct {
-	LambdaARN  *string `json:"arn"`
+	LambdaARN *string `json:"arn"`
 }
 
 type IntegrationAWSServicesLogCollection struct {
-	AccountID *string `json:"account_id"`
+	AccountID *string  `json:"account_id"`
 	Services  []string `json:"services"`
 }
 
 // IntegrationAWSLogs is only defined to properly parse the AWS logs GET response
 type IntegrationAWSLogCollection struct {
-	AccountID *string `json:"account_id"`
+	AccountID  *string                   `json:"account_id"`
 	LambdaARNs []IntegrationAWSLambdaARN `json:"lambdas"`
-	Services []string `json:"services"`
+	Services   []string                  `json:"services"`
 }
 
 // CreateIntegrationAWS adds a new AWS Account in the AWS Integrations.
@@ -222,7 +222,7 @@ func (client *Client) CreateIntegrationAWS(awsAccount *IntegrationAWSAccount) (*
 // UpdateIntegrationAWS updates an already existing AWS Account in the AWS Integration
 func (client *Client) UpdateIntegrationAWS(awsAccount *IntegrationAWSAccount) error {
 	additionalParameters := "account_id=" + *awsAccount.AccountID + "&role_name=" + *awsAccount.RoleName
-	return client.doJsonRequest("PUT", "/v1/integration/aws?" + additionalParameters, awsAccount, nil)
+	return client.doJsonRequest("PUT", "/v1/integration/aws?"+additionalParameters, awsAccount, nil)
 }
 
 // GetIntegrationAWS gets all the AWS Accounts in the AWS Integrations from Datadog.
