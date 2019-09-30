@@ -185,6 +185,28 @@ type IntegrationAWSAccountDeleteRequest struct {
 	RoleName  *string `json:"role_name"`
 }
 
+type IntegrationAWSLambdaARNRequest struct {
+	AccountID *string `json:"account_id"`
+	LambdaARN  *string `json:"lambda_arn"`
+}
+
+// IntegrationAWSLambdaARN is only defined to properly parse the AWS logs GET response
+type IntegrationAWSLambdaARN struct {
+	LambdaARN  *string `json:"arn"`
+}
+
+type IntegrationAWSServicesLogCollection struct {
+	AccountID *string `json:"account_id"`
+	Services  []string `json:"services"`
+}
+
+// IntegrationAWSLogs is only defined to properly parse the AWS logs GET response
+type IntegrationAWSLogCollection struct {
+	AccountID *string `json:"account_id"`
+	LambdaARNs []IntegrationAWSLambdaARN `json:"lambdas"`
+	Services []string `json:"services"`
+}
+
 // CreateIntegrationAWS adds a new AWS Account in the AWS Integrations.
 // Use this if you want to setup the integration for the first time
 // or to add more accounts.
@@ -216,6 +238,31 @@ func (client *Client) GetIntegrationAWS() (*[]IntegrationAWSAccount, error) {
 // DeleteIntegrationAWS removes a specific AWS Account from the AWS Integration.
 func (client *Client) DeleteIntegrationAWS(awsAccount *IntegrationAWSAccountDeleteRequest) error {
 	return client.doJsonRequest("DELETE", "/v1/integration/aws", awsAccount, nil)
+}
+
+// AttachLambdaARNIntegrationAWS attach a lambda ARN to an AWS account ID to enable log collection
+func (client *Client) AttachLambdaARNIntegrationAWS(lambdaARN *IntegrationAWSLambdaARNRequest) error {
+	return client.doJsonRequest("POST", "/v1/integration/aws/logs", lambdaARN, nil)
+}
+
+// EnableLogCollectionAWSServices enables the log collection for the given AWS services
+func (client *Client) EnableLogCollectionAWSServices(services *IntegrationAWSServicesLogCollection) error {
+	return client.doJsonRequest("POST", "/v1/integration/aws/logs/services", services, nil)
+}
+
+// GetIntegrationAWSLogCollection gets all the configuration for the AWS log collection
+func (client *Client) GetIntegrationAWSLogCollection() (*[]IntegrationAWSLogCollection, error) {
+	var response []IntegrationAWSLogCollection
+	if err := client.doJsonRequest("GET", "/v1/integration/aws/logs", nil, &response); err != nil {
+		return nil, err
+	}
+
+	return &response, nil
+}
+
+// DeleteAWSLogCollection removes the log collection configuration for a given ARN and AWS account
+func (client *Client) DeleteAWSLogCollection(lambdaARN *IntegrationAWSLambdaARNRequest) error {
+	return client.doJsonRequest("DELETE", "/v1/integration/aws/logs", lambdaARN, nil)
 }
 
 /*
