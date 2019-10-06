@@ -274,3 +274,46 @@ func (client *Client) UpdateIntegrationGCP(cir *IntegrationGCPUpdateRequest) err
 func (client *Client) DeleteIntegrationGCP(cir *IntegrationGCPDeleteRequest) error {
 	return client.doJsonRequest("DELETE", "/v1/integration/gcp", cir, nil)
 }
+
+/*
+	Azure Integration
+*/
+
+// IntegrationAzure defines the response for listing Datadog-Azure CloudPlatform integration.
+type IntegrationAzure struct {
+	TenantName  *string `json:"tenant_name"`
+	ClientID    *string `json:"client_id"`
+	HostFilters *string `json:"host_filters,omitempty"`
+}
+
+// IntegrationAzureCreateRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
+type IntegrationAzureCreateorUpdateRequest struct {
+	TenantName   *string `json:"tenant_name"`
+	ClientID     *string `json:"client_id"`
+	ClientSecret *string `json:"client_secret"`
+	HostFilters  *string `json:"host_filters,omitempty"`
+}
+
+// CreateIntegrationAzure updates an Azure Cloud Platform Integration.
+func (client *Client) CreateIntegrationAzure(air *IntegrationAzureCreateorUpdateRequest) error {
+	return client.doJsonRequest("POST", "/v1/integration/azure", air, nil)
+}
+
+// UpdateIntegrationAzure updates an Azure Cloud Platform Integration.
+func (client *Client) UpdateIntegrationAzure(air *IntegrationAzureCreateorUpdateRequest) error {
+	return client.doJsonRequest("PUT", "/v1/integration/azure", air, nil)
+}
+
+// DeleteIntegrationGCP deletes a Google Cloud Platform Integration.
+func (client *Client) DeleteIntegrationAzure(air *IntegrationAzure) error {
+	return client.doJsonRequest("DELETE", "/v1/integration/azure", air, nil)
+}
+
+// ListIntegrationGCP gets all Google Cloud Platform Integrations.
+func (client *Client) ListIntegrationAzure() ([]*IntegrationAzure, error) {
+	var list []*IntegrationAzure
+	if err := client.doJsonRequest("GET", "/v1/integration/azure", nil, &list); err != nil {
+		return nil, err
+	}
+	return list, nil
+}
