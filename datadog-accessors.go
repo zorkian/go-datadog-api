@@ -10089,6 +10089,502 @@ func (i *IntegrationAWSAccountDeleteRequest) SetRoleName(v string) {
 	i.RoleName = &v
 }
 
+// GetClientID returns the ClientID field if non-nil, zero value otherwise.
+func (i *IntegrationAzure) GetClientID() string {
+	if i == nil || i.ClientID == nil {
+		return ""
+	}
+	return *i.ClientID
+}
+
+// GetClientIDOk returns a tuple with the ClientID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzure) GetClientIDOk() (string, bool) {
+	if i == nil || i.ClientID == nil {
+		return "", false
+	}
+	return *i.ClientID, true
+}
+
+// HasClientID returns a boolean if a field has been set.
+func (i *IntegrationAzure) HasClientID() bool {
+	if i != nil && i.ClientID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientID allocates a new i.ClientID and returns the pointer to it.
+func (i *IntegrationAzure) SetClientID(v string) {
+	i.ClientID = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationAzure) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzure) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationAzure) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationAzure) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetTenantName returns the TenantName field if non-nil, zero value otherwise.
+func (i *IntegrationAzure) GetTenantName() string {
+	if i == nil || i.TenantName == nil {
+		return ""
+	}
+	return *i.TenantName
+}
+
+// GetTenantNameOk returns a tuple with the TenantName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzure) GetTenantNameOk() (string, bool) {
+	if i == nil || i.TenantName == nil {
+		return "", false
+	}
+	return *i.TenantName, true
+}
+
+// HasTenantName returns a boolean if a field has been set.
+func (i *IntegrationAzure) HasTenantName() bool {
+	if i != nil && i.TenantName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantName allocates a new i.TenantName and returns the pointer to it.
+func (i *IntegrationAzure) SetTenantName(v string) {
+	i.TenantName = &v
+}
+
+// GetClientID returns the ClientID field if non-nil, zero value otherwise.
+func (i *IntegrationAzureCreateRequest) GetClientID() string {
+	if i == nil || i.ClientID == nil {
+		return ""
+	}
+	return *i.ClientID
+}
+
+// GetClientIDOk returns a tuple with the ClientID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureCreateRequest) GetClientIDOk() (string, bool) {
+	if i == nil || i.ClientID == nil {
+		return "", false
+	}
+	return *i.ClientID, true
+}
+
+// HasClientID returns a boolean if a field has been set.
+func (i *IntegrationAzureCreateRequest) HasClientID() bool {
+	if i != nil && i.ClientID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientID allocates a new i.ClientID and returns the pointer to it.
+func (i *IntegrationAzureCreateRequest) SetClientID(v string) {
+	i.ClientID = &v
+}
+
+// GetClientSecret returns the ClientSecret field if non-nil, zero value otherwise.
+func (i *IntegrationAzureCreateRequest) GetClientSecret() string {
+	if i == nil || i.ClientSecret == nil {
+		return ""
+	}
+	return *i.ClientSecret
+}
+
+// GetClientSecretOk returns a tuple with the ClientSecret field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureCreateRequest) GetClientSecretOk() (string, bool) {
+	if i == nil || i.ClientSecret == nil {
+		return "", false
+	}
+	return *i.ClientSecret, true
+}
+
+// HasClientSecret returns a boolean if a field has been set.
+func (i *IntegrationAzureCreateRequest) HasClientSecret() bool {
+	if i != nil && i.ClientSecret != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientSecret allocates a new i.ClientSecret and returns the pointer to it.
+func (i *IntegrationAzureCreateRequest) SetClientSecret(v string) {
+	i.ClientSecret = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationAzureCreateRequest) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureCreateRequest) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationAzureCreateRequest) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationAzureCreateRequest) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetTenantName returns the TenantName field if non-nil, zero value otherwise.
+func (i *IntegrationAzureCreateRequest) GetTenantName() string {
+	if i == nil || i.TenantName == nil {
+		return ""
+	}
+	return *i.TenantName
+}
+
+// GetTenantNameOk returns a tuple with the TenantName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureCreateRequest) GetTenantNameOk() (string, bool) {
+	if i == nil || i.TenantName == nil {
+		return "", false
+	}
+	return *i.TenantName, true
+}
+
+// HasTenantName returns a boolean if a field has been set.
+func (i *IntegrationAzureCreateRequest) HasTenantName() bool {
+	if i != nil && i.TenantName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantName allocates a new i.TenantName and returns the pointer to it.
+func (i *IntegrationAzureCreateRequest) SetTenantName(v string) {
+	i.TenantName = &v
+}
+
+// GetClientID returns the ClientID field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateAccountRequest) GetClientID() string {
+	if i == nil || i.ClientID == nil {
+		return ""
+	}
+	return *i.ClientID
+}
+
+// GetClientIDOk returns a tuple with the ClientID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateAccountRequest) GetClientIDOk() (string, bool) {
+	if i == nil || i.ClientID == nil {
+		return "", false
+	}
+	return *i.ClientID, true
+}
+
+// HasClientID returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateAccountRequest) HasClientID() bool {
+	if i != nil && i.ClientID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientID allocates a new i.ClientID and returns the pointer to it.
+func (i *IntegrationAzureUpdateAccountRequest) SetClientID(v string) {
+	i.ClientID = &v
+}
+
+// GetClientSecret returns the ClientSecret field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateAccountRequest) GetClientSecret() string {
+	if i == nil || i.ClientSecret == nil {
+		return ""
+	}
+	return *i.ClientSecret
+}
+
+// GetClientSecretOk returns a tuple with the ClientSecret field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateAccountRequest) GetClientSecretOk() (string, bool) {
+	if i == nil || i.ClientSecret == nil {
+		return "", false
+	}
+	return *i.ClientSecret, true
+}
+
+// HasClientSecret returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateAccountRequest) HasClientSecret() bool {
+	if i != nil && i.ClientSecret != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientSecret allocates a new i.ClientSecret and returns the pointer to it.
+func (i *IntegrationAzureUpdateAccountRequest) SetClientSecret(v string) {
+	i.ClientSecret = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateAccountRequest) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateAccountRequest) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateAccountRequest) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationAzureUpdateAccountRequest) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetNewClientID returns the NewClientID field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateAccountRequest) GetNewClientID() string {
+	if i == nil || i.NewClientID == nil {
+		return ""
+	}
+	return *i.NewClientID
+}
+
+// GetNewClientIDOk returns a tuple with the NewClientID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateAccountRequest) GetNewClientIDOk() (string, bool) {
+	if i == nil || i.NewClientID == nil {
+		return "", false
+	}
+	return *i.NewClientID, true
+}
+
+// HasNewClientID returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateAccountRequest) HasNewClientID() bool {
+	if i != nil && i.NewClientID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewClientID allocates a new i.NewClientID and returns the pointer to it.
+func (i *IntegrationAzureUpdateAccountRequest) SetNewClientID(v string) {
+	i.NewClientID = &v
+}
+
+// GetNewClientName returns the NewClientName field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateAccountRequest) GetNewClientName() string {
+	if i == nil || i.NewClientName == nil {
+		return ""
+	}
+	return *i.NewClientName
+}
+
+// GetNewClientNameOk returns a tuple with the NewClientName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateAccountRequest) GetNewClientNameOk() (string, bool) {
+	if i == nil || i.NewClientName == nil {
+		return "", false
+	}
+	return *i.NewClientName, true
+}
+
+// HasNewClientName returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateAccountRequest) HasNewClientName() bool {
+	if i != nil && i.NewClientName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewClientName allocates a new i.NewClientName and returns the pointer to it.
+func (i *IntegrationAzureUpdateAccountRequest) SetNewClientName(v string) {
+	i.NewClientName = &v
+}
+
+// GetTenantName returns the TenantName field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateAccountRequest) GetTenantName() string {
+	if i == nil || i.TenantName == nil {
+		return ""
+	}
+	return *i.TenantName
+}
+
+// GetTenantNameOk returns a tuple with the TenantName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateAccountRequest) GetTenantNameOk() (string, bool) {
+	if i == nil || i.TenantName == nil {
+		return "", false
+	}
+	return *i.TenantName, true
+}
+
+// HasTenantName returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateAccountRequest) HasTenantName() bool {
+	if i != nil && i.TenantName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantName allocates a new i.TenantName and returns the pointer to it.
+func (i *IntegrationAzureUpdateAccountRequest) SetTenantName(v string) {
+	i.TenantName = &v
+}
+
+// GetClientID returns the ClientID field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateHostFiltersRequest) GetClientID() string {
+	if i == nil || i.ClientID == nil {
+		return ""
+	}
+	return *i.ClientID
+}
+
+// GetClientIDOk returns a tuple with the ClientID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateHostFiltersRequest) GetClientIDOk() (string, bool) {
+	if i == nil || i.ClientID == nil {
+		return "", false
+	}
+	return *i.ClientID, true
+}
+
+// HasClientID returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateHostFiltersRequest) HasClientID() bool {
+	if i != nil && i.ClientID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClientID allocates a new i.ClientID and returns the pointer to it.
+func (i *IntegrationAzureUpdateHostFiltersRequest) SetClientID(v string) {
+	i.ClientID = &v
+}
+
+// GetHostFilters returns the HostFilters field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateHostFiltersRequest) GetHostFilters() string {
+	if i == nil || i.HostFilters == nil {
+		return ""
+	}
+	return *i.HostFilters
+}
+
+// GetHostFiltersOk returns a tuple with the HostFilters field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateHostFiltersRequest) GetHostFiltersOk() (string, bool) {
+	if i == nil || i.HostFilters == nil {
+		return "", false
+	}
+	return *i.HostFilters, true
+}
+
+// HasHostFilters returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateHostFiltersRequest) HasHostFilters() bool {
+	if i != nil && i.HostFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHostFilters allocates a new i.HostFilters and returns the pointer to it.
+func (i *IntegrationAzureUpdateHostFiltersRequest) SetHostFilters(v string) {
+	i.HostFilters = &v
+}
+
+// GetTenantName returns the TenantName field if non-nil, zero value otherwise.
+func (i *IntegrationAzureUpdateHostFiltersRequest) GetTenantName() string {
+	if i == nil || i.TenantName == nil {
+		return ""
+	}
+	return *i.TenantName
+}
+
+// GetTenantNameOk returns a tuple with the TenantName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAzureUpdateHostFiltersRequest) GetTenantNameOk() (string, bool) {
+	if i == nil || i.TenantName == nil {
+		return "", false
+	}
+	return *i.TenantName, true
+}
+
+// HasTenantName returns a boolean if a field has been set.
+func (i *IntegrationAzureUpdateHostFiltersRequest) HasTenantName() bool {
+	if i != nil && i.TenantName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantName allocates a new i.TenantName and returns the pointer to it.
+func (i *IntegrationAzureUpdateHostFiltersRequest) SetTenantName(v string) {
+	i.TenantName = &v
+}
+
 // GetClientEmail returns the ClientEmail field if non-nil, zero value otherwise.
 func (i *IntegrationGCP) GetClientEmail() string {
 	if i == nil || i.ClientEmail == nil {

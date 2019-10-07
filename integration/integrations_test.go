@@ -464,3 +464,101 @@ func cleanUpIntegrationGCP(t *testing.T) {
 	}
 	assert.Equal(t, 0, len(actual))
 }
+
+/*
+	Azure Integration
+*/
+
+func getIntegrationAzureCreateRequest() *datadog.IntegrationAzureCreateRequest {
+	return &datadog.IntegrationAzureCreateRequest{
+		TenantName:   datadog.String("testc44-1234-5678-9101-cc00736ftest"),
+		ClientID:     datadog.String("testc7f6-1234-5678-9101-3fcbf464test"),
+		ClientSecret: datadog.String("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		HostFilters:  datadog.String("foo:bar,buzz:lightyear"),
+	}
+}
+
+func createTestIntegrationAzure(t *testing.T) *datadog.IntegrationAzureCreateRequest {
+	req := getIntegrationAzureCreateRequest()
+	err := client.CreateIntegrationAzure(req)
+	if err != nil {
+		t.Fatalf("Creating an Azure integration failed when it shouldn't: %s", err)
+	}
+	return req
+}
+
+func TestIntegrationAzureCreateAndDelete(t *testing.T) {
+	expected := createTestIntegrationAzure(t)
+	defer cleanUpIntegrationAzure(t)
+
+	actual, err := client.ListIntegrationAzure()
+	if err != nil {
+		t.Fatalf("Retrieving an Azure integration failed when it shouldn't: (%s)", err)
+	}
+	assert.Equal(t, 2, len(actual))
+	assert.Equal(t, expected.GetTenantName(), actual[0].GetTenantName())
+	assert.Equal(t, expected.GetClientID(), actual[0].GetClientID())
+	assert.Equal(t, expected.GetHostFilters(), actual[0].GetHostFilters())
+}
+
+func TestIntegrationAzureUpdateHostFilters(t *testing.T) {
+	req := createTestIntegrationAzure(t)
+	defer cleanUpIntegrationAzure(t)
+
+	newHostFilters := datadog.String("name0:value0,name1:value1")
+
+	if err := client.UpdateIntegrationAzureHostFilters(&datadog.IntegrationAzureUpdateHostFiltersRequest{
+		TenantName:  req.TenantName,
+		ClientID:    req.ClientID,
+		HostFilters: newHostFilters,
+	}); err != nil {
+		t.Fatalf("Updating an Azure integration failed when it shouldn't: %s", err)
+	}
+
+	actual, err := client.ListIntegrationAzure()
+	if err != nil {
+		t.Fatalf("Retrieving an Azure integration failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, 2, len(actual))
+	assert.Equal(t, req.GetTenantName(), actual[0].GetTenantName())
+	assert.Equal(t, req.GetClientID(), actual[0].GetClientID())
+	assert.Equal(t, newHostFilters, actual[0].HostFilters)
+}
+
+func TestIntegrationAzureUpdateAccount(t *testing.T) {
+	req := createTestIntegrationAzure(t)
+	defer cleanUpIntegrationAzure(t)
+
+	newTenantName := datadog.String("testc55-1234-5678-9101-cc00736ftest")
+	newClientID := datadog.String("testc8f7-1234-5678-9101-3fcbf464test")
+
+	if err := client.UpdateIntegrationAccountAzure(&datadog.IntegrationAzureUpdateAccountRequest{
+		TenantName: newTenantName,
+		ClientID:   newClientID,
+	}); err != nil {
+		t.Fatalf("Updating an Azure integration failed when it shouldn't: %s", err)
+	}
+
+	actual, err := client.ListIntegrationAzure()
+	if err != nil {
+		t.Fatalf("Retrieving an Azure integration failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, 2, len(actual))
+	assert.Equal(t, req.GetTenantName(), actual[0].GetTenantName())
+	assert.Equal(t, req.GetClientID(), actual[0].GetClientID())
+}
+
+func cleanUpIntegrationAzure(t *testing.T) {
+	if err := client.DeleteIntegrationAzure(&datadog.IntegrationAzure{
+		TenantName: datadog.String("testc44-1234-5678-9101-cc00736ftest"),
+		ClientID:   datadog.String("testc7f6-1234-5678-9101-3fcbf464test"),
+	}); err != nil {
+		t.Fatalf("Deleting the Azure integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
+	}
+
+	actual, err := client.ListIntegrationAzure()
+	if err != nil {
+		t.Fatalf("Fetching deleted Azure integration led to an error: %s", err)
+	}
+	assert.Equal(t, 1, len(actual))
+}

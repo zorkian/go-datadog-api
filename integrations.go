@@ -287,29 +287,51 @@ type IntegrationAzure struct {
 }
 
 // IntegrationAzureCreateRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
-type IntegrationAzureCreateorUpdateRequest struct {
+type IntegrationAzureCreateRequest struct {
 	TenantName   *string `json:"tenant_name"`
 	ClientID     *string `json:"client_id"`
 	ClientSecret *string `json:"client_secret"`
 	HostFilters  *string `json:"host_filters,omitempty"`
 }
 
+// IntegrationAzureUpdateHostFiltersRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
+type IntegrationAzureUpdateHostFiltersRequest struct {
+	TenantName  *string `json:"tenant_name"`
+	ClientID    *string `json:"client_id"`
+	HostFilters *string `json:"host_filters"`
+}
+
+// IntegrationAzureUpdateAccountRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
+type IntegrationAzureUpdateAccountRequest struct {
+	TenantName    *string `json:"tenant_name"`
+	ClientID      *string `json:"client_id"`
+	ClientSecret  *string `json:"client_secret,omitempty"`
+	HostFilters   *string `json:"host_filters,omitempty"`
+	NewClientID   *string `json:"new_client_id,omitempty"`
+	NewClientName *string `json:"new_client_name,omitempty"`
+}
+
 // CreateIntegrationAzure updates an Azure Cloud Platform Integration.
-func (client *Client) CreateIntegrationAzure(air *IntegrationAzureCreateorUpdateRequest) error {
+func (client *Client) CreateIntegrationAzure(air *IntegrationAzureCreateRequest) error {
 	return client.doJsonRequest("POST", "/v1/integration/azure", air, nil)
 }
 
+// UpdateIntegrationAzureHostFilters updates the host filters of a given Azure Cloud Platform Integration.
+func (client *Client) UpdateIntegrationAzureHostFilters(air *IntegrationAzureUpdateHostFiltersRequest) error {
+	return client.doJsonRequest("POST", "/v1/integration/azure/host_filters", air, nil)
+}
+
 // UpdateIntegrationAzure updates an Azure Cloud Platform Integration.
-func (client *Client) UpdateIntegrationAzure(air *IntegrationAzureCreateorUpdateRequest) error {
+func (client *Client) UpdateIntegrationAccountAzure(air *IntegrationAzureUpdateAccountRequest) error {
 	return client.doJsonRequest("PUT", "/v1/integration/azure", air, nil)
 }
 
-// DeleteIntegrationGCP deletes a Google Cloud Platform Integration.
+// DeleteIntegrationAzure deletes an Azure Cloud Platform Integration.
 func (client *Client) DeleteIntegrationAzure(air *IntegrationAzure) error {
 	return client.doJsonRequest("DELETE", "/v1/integration/azure", air, nil)
 }
 
-// ListIntegrationGCP gets all Google Cloud Platform Integrations.
+// ListIntegrationAzure gets all Azure Cloud Platform Integrations.
 func (client *Client) ListIntegrationAzure() ([]*IntegrationAzure, error) {
 	var list []*IntegrationAzure
 	if err := client.doJsonRequest("GET", "/v1/integration/azure", nil, &list); err != nil {
