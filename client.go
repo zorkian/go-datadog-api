@@ -24,6 +24,9 @@ type Client struct {
 	//The Http Client that is used to make requests
 	HttpClient   *http.Client
 	RetryTimeout time.Duration
+
+	//Option to specify extra headers like User-Agent
+	ExtraHeader map[string]string
 }
 
 // valid is the struct to unmarshal validation endpoint responses into.

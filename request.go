@@ -236,5 +236,9 @@ func (client *Client) createRequest(method, api string, reqbody interface{}) (*h
 	if bodyReader != nil {
 		req.Header.Add("Content-Type", "application/json")
 	}
+	for k, v := range client.ExtraHeader {
+		req.Header.Add(k, v)
+	}
+
 	return req, nil
 }
