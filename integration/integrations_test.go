@@ -469,8 +469,8 @@ func cleanUpIntegrationGCP(t *testing.T) {
 	Azure Integration
 */
 
-func getIntegrationAzureCreateRequest() *datadog.IntegrationAzureCreateRequest {
-	return &datadog.IntegrationAzureCreateRequest{
+func getIntegrationAzureCreateRequest() *datadog.IntegrationAzure {
+	return &datadog.IntegrationAzure{
 		TenantName:   datadog.String("testc44-1234-5678-9101-cc00736ftest"),
 		ClientID:     datadog.String("testc7f6-1234-5678-9101-3fcbf464test"),
 		ClientSecret: datadog.String("testingx./Sw*g/Y33t..R1cH+hScMDt"),
@@ -478,7 +478,7 @@ func getIntegrationAzureCreateRequest() *datadog.IntegrationAzureCreateRequest {
 	}
 }
 
-func createTestIntegrationAzure(t *testing.T) *datadog.IntegrationAzureCreateRequest {
+func createTestIntegrationAzure(t *testing.T) *datadog.IntegrationAzure {
 	req := getIntegrationAzureCreateRequest()
 	err := client.CreateIntegrationAzure(req)
 	if err != nil {
@@ -507,7 +507,7 @@ func TestIntegrationAzureUpdateHostFilters(t *testing.T) {
 
 	newHostFilters := datadog.String("name0:value0,name1:value1")
 
-	if err := client.UpdateIntegrationAzureHostFilters(&datadog.IntegrationAzureUpdateHostFiltersRequest{
+	if err := client.UpdateIntegrationAzureHostFilters(&datadog.IntegrationAzure{
 		TenantName:  req.TenantName,
 		ClientID:    req.ClientID,
 		HostFilters: newHostFilters,

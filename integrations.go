@@ -281,27 +281,13 @@ func (client *Client) DeleteIntegrationGCP(cir *IntegrationGCPDeleteRequest) err
 
 // IntegrationAzure defines the response for listing Datadog-Azure CloudPlatform integration.
 type IntegrationAzure struct {
-	TenantName  *string `json:"tenant_name"`
-	ClientID    *string `json:"client_id"`
-	HostFilters *string `json:"host_filters,omitempty"`
-}
-
-// IntegrationAzureCreateRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
-type IntegrationAzureCreateRequest struct {
 	TenantName   *string `json:"tenant_name"`
 	ClientID     *string `json:"client_id"`
-	ClientSecret *string `json:"client_secret"`
+	ClientSecret *string `json:"client_secret,omitempty"`
 	HostFilters  *string `json:"host_filters,omitempty"`
 }
 
-// IntegrationAzureUpdateHostFiltersRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
-type IntegrationAzureUpdateHostFiltersRequest struct {
-	TenantName  *string `json:"tenant_name"`
-	ClientID    *string `json:"client_id"`
-	HostFilters *string `json:"host_filters"`
-}
-
-// IntegrationAzureUpdateAccountRequest defines the request payload for creating Datadog-Azure CloudPlatform integration.
+// IntegrationAzureUpdateAccountRequest defines the request payload for updating a Datadog-Azure CloudPlatform integration.
 type IntegrationAzureUpdateAccountRequest struct {
 	TenantName    *string `json:"tenant_name"`
 	ClientID      *string `json:"client_id"`
@@ -311,13 +297,13 @@ type IntegrationAzureUpdateAccountRequest struct {
 	NewClientName *string `json:"new_client_name,omitempty"`
 }
 
-// CreateIntegrationAzure updates an Azure Cloud Platform Integration.
-func (client *Client) CreateIntegrationAzure(air *IntegrationAzureCreateRequest) error {
+// CreateIntegrationAzure creates an Azure Cloud Platform Integration.
+func (client *Client) CreateIntegrationAzure(air *IntegrationAzure) error {
 	return client.doJsonRequest("POST", "/v1/integration/azure", air, nil)
 }
 
 // UpdateIntegrationAzureHostFilters updates the host filters of a given Azure Cloud Platform Integration.
-func (client *Client) UpdateIntegrationAzureHostFilters(air *IntegrationAzureUpdateHostFiltersRequest) error {
+func (client *Client) UpdateIntegrationAzureHostFilters(air *IntegrationAzure) error {
 	return client.doJsonRequest("POST", "/v1/integration/azure/host_filters", air, nil)
 }
 
