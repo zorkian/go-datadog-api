@@ -10089,6 +10089,161 @@ func (i *IntegrationAWSAccountDeleteRequest) SetRoleName(v string) {
 	i.RoleName = &v
 }
 
+// GetLambdaARN returns the LambdaARN field if non-nil, zero value otherwise.
+func (i *IntegrationAWSLambdaARN) GetLambdaARN() string {
+	if i == nil || i.LambdaARN == nil {
+		return ""
+	}
+	return *i.LambdaARN
+}
+
+// GetLambdaARNOk returns a tuple with the LambdaARN field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAWSLambdaARN) GetLambdaARNOk() (string, bool) {
+	if i == nil || i.LambdaARN == nil {
+		return "", false
+	}
+	return *i.LambdaARN, true
+}
+
+// HasLambdaARN returns a boolean if a field has been set.
+func (i *IntegrationAWSLambdaARN) HasLambdaARN() bool {
+	if i != nil && i.LambdaARN != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLambdaARN allocates a new i.LambdaARN and returns the pointer to it.
+func (i *IntegrationAWSLambdaARN) SetLambdaARN(v string) {
+	i.LambdaARN = &v
+}
+
+// GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+func (i *IntegrationAWSLambdaARNRequest) GetAccountID() string {
+	if i == nil || i.AccountID == nil {
+		return ""
+	}
+	return *i.AccountID
+}
+
+// GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAWSLambdaARNRequest) GetAccountIDOk() (string, bool) {
+	if i == nil || i.AccountID == nil {
+		return "", false
+	}
+	return *i.AccountID, true
+}
+
+// HasAccountID returns a boolean if a field has been set.
+func (i *IntegrationAWSLambdaARNRequest) HasAccountID() bool {
+	if i != nil && i.AccountID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountID allocates a new i.AccountID and returns the pointer to it.
+func (i *IntegrationAWSLambdaARNRequest) SetAccountID(v string) {
+	i.AccountID = &v
+}
+
+// GetLambdaARN returns the LambdaARN field if non-nil, zero value otherwise.
+func (i *IntegrationAWSLambdaARNRequest) GetLambdaARN() string {
+	if i == nil || i.LambdaARN == nil {
+		return ""
+	}
+	return *i.LambdaARN
+}
+
+// GetLambdaARNOk returns a tuple with the LambdaARN field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAWSLambdaARNRequest) GetLambdaARNOk() (string, bool) {
+	if i == nil || i.LambdaARN == nil {
+		return "", false
+	}
+	return *i.LambdaARN, true
+}
+
+// HasLambdaARN returns a boolean if a field has been set.
+func (i *IntegrationAWSLambdaARNRequest) HasLambdaARN() bool {
+	if i != nil && i.LambdaARN != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLambdaARN allocates a new i.LambdaARN and returns the pointer to it.
+func (i *IntegrationAWSLambdaARNRequest) SetLambdaARN(v string) {
+	i.LambdaARN = &v
+}
+
+// GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+func (i *IntegrationAWSLogCollection) GetAccountID() string {
+	if i == nil || i.AccountID == nil {
+		return ""
+	}
+	return *i.AccountID
+}
+
+// GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAWSLogCollection) GetAccountIDOk() (string, bool) {
+	if i == nil || i.AccountID == nil {
+		return "", false
+	}
+	return *i.AccountID, true
+}
+
+// HasAccountID returns a boolean if a field has been set.
+func (i *IntegrationAWSLogCollection) HasAccountID() bool {
+	if i != nil && i.AccountID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountID allocates a new i.AccountID and returns the pointer to it.
+func (i *IntegrationAWSLogCollection) SetAccountID(v string) {
+	i.AccountID = &v
+}
+
+// GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+func (i *IntegrationAWSServicesLogCollection) GetAccountID() string {
+	if i == nil || i.AccountID == nil {
+		return ""
+	}
+	return *i.AccountID
+}
+
+// GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationAWSServicesLogCollection) GetAccountIDOk() (string, bool) {
+	if i == nil || i.AccountID == nil {
+		return "", false
+	}
+	return *i.AccountID, true
+}
+
+// HasAccountID returns a boolean if a field has been set.
+func (i *IntegrationAWSServicesLogCollection) HasAccountID() bool {
+	if i != nil && i.AccountID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountID allocates a new i.AccountID and returns the pointer to it.
+func (i *IntegrationAWSServicesLogCollection) SetAccountID(v string) {
+	i.AccountID = &v
+}
+
 // GetClientEmail returns the ClientEmail field if non-nil, zero value otherwise.
 func (i *IntegrationGCP) GetClientEmail() string {
 	if i == nil || i.ClientEmail == nil {
