@@ -331,6 +331,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 			time.Unix(1571162100, 0),
 			time.Unix(1571766900, 0),
 		)
+
 		assert.NoError(t2, err)
 		assert.Nil(t2, resp.Error)
 		assert.Equal(t2, float32(100), resp.Data.Overall.Uptime)

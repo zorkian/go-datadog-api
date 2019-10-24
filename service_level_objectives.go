@@ -516,11 +516,11 @@ func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsInt64s() ([]int64
 }
 
 type ServiceLevelObjectiveHistoryMetricSeries struct {
-	ResultType      string `json:"res_type"`
-	Interval        int    `json:"interval"`
-	ResponseVersion string `json:"resp_version"`
-	Query           string `json:"query"`   // a CSV of <numerator>, <denominator> queries
-	Message         string `json:"message"` // optional message if there are specific query issues/warnings
+	ResultType      string      `json:"res_type"`
+	Interval        int         `json:"interval"`
+	ResponseVersion json.Number `json:"resp_version"`
+	Query           string      `json:"query"`   // a CSV of <numerator>, <denominator> queries
+	Message         string      `json:"message"` // optional message if there are specific query issues/warnings
 
 	Numerator   *ServiceLevelObjectiveHistoryMetricSeriesData `json:"numerator"`
 	Denominator *ServiceLevelObjectiveHistoryMetricSeriesData `json:"denominator"`
