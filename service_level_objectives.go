@@ -165,7 +165,7 @@ type ServiceLevelObjective struct {
 	ModifiedAt  *int     `json:"modified_at,omitempty"`  // Read-Only
 }
 
-// implements custom marshaler to ignore some fields
+// MarshalJSON implements custom marshaler to ignore some fields
 func (s *ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 	var output struct {
 		ID          *string                         `json:"id,omitempty"`
