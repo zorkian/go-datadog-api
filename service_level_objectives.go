@@ -474,8 +474,10 @@ func (client *Client) CheckCanDeleteServiceLevelObjectives(ids []string) (*Servi
 	return &out, nil
 }
 
+// ServiceLevelObjectiveHistorySeriesPoint is a convenient wrapper for (timestamp, value) history data response.
 type ServiceLevelObjectiveHistorySeriesPoint [2]json.Number
 
+// ServiceLevelObjectiveHistoryMetricSeriesData contains the `batch_query` like history data for `metric` based SLOs
 type ServiceLevelObjectiveHistoryMetricSeriesData struct {
 	Count    int64       `json:"count"`
 	Sum      json.Number `json:"sum"`
@@ -491,6 +493,7 @@ type ServiceLevelObjectiveHistoryMetricSeriesData struct {
 	Times  []int64       `json:"times"`
 }
 
+// ValuesAsFloats will transform all the values into a slice of float64
 func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsFloats() ([]float64, error) {
 	out := make([]float64, len(d.Values))
 	for i := 0; i < len(d.Values); i++ {
@@ -503,6 +506,7 @@ func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsFloats() ([]float
 	return out, nil
 }
 
+// ValuesAsInt64s will transform all the values into a slice of int64
 func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsInt64s() ([]int64, error) {
 	out := make([]int64, len(d.Values))
 	for i := 0; i < len(d.Values); i++ {
@@ -515,6 +519,7 @@ func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsInt64s() ([]int64
 	return out, nil
 }
 
+// ServiceLevelObjectiveHistoryMetricSeries defines the SLO history data response for `metric` type SLOs
 type ServiceLevelObjectiveHistoryMetricSeries struct {
 	ResultType      string      `json:"res_type"`
 	Interval        int         `json:"interval"`
@@ -526,6 +531,7 @@ type ServiceLevelObjectiveHistoryMetricSeries struct {
 	Denominator *ServiceLevelObjectiveHistoryMetricSeriesData `json:"denominator"`
 }
 
+// ServiceLevelObjectiveHistoryMonitorSeries defines the SLO history data response for `monitor` type SLOs
 type ServiceLevelObjectiveHistoryMonitorSeries struct {
 	Uptime        float32                                   `json:"uptime"`
 	SpanPrecision json.Number                               `json:"span_precision"`
@@ -535,6 +541,8 @@ type ServiceLevelObjectiveHistoryMonitorSeries struct {
 	History       []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
 }
 
+// ServiceLevelObjectiveHistoryOverall defines the overall SLO history data response
+// for `monitor` type SLOs there is an additional `History` property that rolls up the overall state correctly.
 type ServiceLevelObjectiveHistoryOverall struct {
 	Uptime        float32                `json:"uptime"`
 	SpanPrecision json.Number            `json:"span_precision"`
@@ -546,6 +554,10 @@ type ServiceLevelObjectiveHistoryOverall struct {
 	History []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
 }
 
+// ServiceLevelObjectiveHistoryResponseData contains the SLO history data response.
+// for `monitor` based SLOs use the `Groups` property for historical data along with the `Overall.History`
+// for `metric` based SLOs use the `Metrics` property for historical data. This contains `batch_query` like response
+//    data
 type ServiceLevelObjectiveHistoryResponseData struct {
 	Errors     []string                                  `json:"errors"`
 	ToTs       int64                                     `json:"to_ts"`
@@ -560,11 +572,13 @@ type ServiceLevelObjectiveHistoryResponseData struct {
 	Groups []*ServiceLevelObjectiveHistoryMonitorSeries `json:"groups"`
 }
 
+// ServiceLevelObjectiveHistoryResponse is the canonical response for SLO history data.
 type ServiceLevelObjectiveHistoryResponse struct {
 	Data  *ServiceLevelObjectiveHistoryResponseData `json:"data"`
 	Error *string                                   `json:"error"`
 }
 
+// GetServiceLevelObjectiveHistory will retrieve the history data for a given SLO and provided from/to times
 func (client *Client) GetServiceLevelObjectiveHistory(id string, fromTs time.Time, toTs time.Time) (*ServiceLevelObjectiveHistoryResponse, error) {
 	var out ServiceLevelObjectiveHistoryResponse
 

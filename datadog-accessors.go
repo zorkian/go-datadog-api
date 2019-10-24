@@ -16879,6 +16879,192 @@ func (s *ServiceLevelObjectiveDeleteTimeFramesError) SetTimeFrame(v string) {
 }
 
 // GetDenominator returns the Denominator field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) GetDenominator() ServiceLevelObjectiveHistoryMetricSeriesData {
+	if s == nil || s.Denominator == nil {
+		return ServiceLevelObjectiveHistoryMetricSeriesData{}
+	}
+	return *s.Denominator
+}
+
+// GetDenominatorOk returns a tuple with the Denominator field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) GetDenominatorOk() (ServiceLevelObjectiveHistoryMetricSeriesData, bool) {
+	if s == nil || s.Denominator == nil {
+		return ServiceLevelObjectiveHistoryMetricSeriesData{}, false
+	}
+	return *s.Denominator, true
+}
+
+// HasDenominator returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) HasDenominator() bool {
+	if s != nil && s.Denominator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDenominator allocates a new s.Denominator and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) SetDenominator(v ServiceLevelObjectiveHistoryMetricSeriesData) {
+	s.Denominator = &v
+}
+
+// GetNumerator returns the Numerator field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) GetNumerator() ServiceLevelObjectiveHistoryMetricSeriesData {
+	if s == nil || s.Numerator == nil {
+		return ServiceLevelObjectiveHistoryMetricSeriesData{}
+	}
+	return *s.Numerator
+}
+
+// GetNumeratorOk returns a tuple with the Numerator field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) GetNumeratorOk() (ServiceLevelObjectiveHistoryMetricSeriesData, bool) {
+	if s == nil || s.Numerator == nil {
+		return ServiceLevelObjectiveHistoryMetricSeriesData{}, false
+	}
+	return *s.Numerator, true
+}
+
+// HasNumerator returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) HasNumerator() bool {
+	if s != nil && s.Numerator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNumerator allocates a new s.Numerator and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryMetricSeries) SetNumerator(v ServiceLevelObjectiveHistoryMetricSeriesData) {
+	s.Numerator = &v
+}
+
+// GetData returns the Data field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryResponse) GetData() ServiceLevelObjectiveHistoryResponseData {
+	if s == nil || s.Data == nil {
+		return ServiceLevelObjectiveHistoryResponseData{}
+	}
+	return *s.Data
+}
+
+// GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryResponse) GetDataOk() (ServiceLevelObjectiveHistoryResponseData, bool) {
+	if s == nil || s.Data == nil {
+		return ServiceLevelObjectiveHistoryResponseData{}, false
+	}
+	return *s.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryResponse) HasData() bool {
+	if s != nil && s.Data != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetData allocates a new s.Data and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryResponse) SetData(v ServiceLevelObjectiveHistoryResponseData) {
+	s.Data = &v
+}
+
+// GetError returns the Error field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryResponse) GetError() string {
+	if s == nil || s.Error == nil {
+		return ""
+	}
+	return *s.Error
+}
+
+// GetErrorOk returns a tuple with the Error field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryResponse) GetErrorOk() (string, bool) {
+	if s == nil || s.Error == nil {
+		return "", false
+	}
+	return *s.Error, true
+}
+
+// HasError returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryResponse) HasError() bool {
+	if s != nil && s.Error != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetError allocates a new s.Error and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryResponse) SetError(v string) {
+	s.Error = &v
+}
+
+// GetMetrics returns the Metrics field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryResponseData) GetMetrics() ServiceLevelObjectiveHistoryMetricSeries {
+	if s == nil || s.Metrics == nil {
+		return ServiceLevelObjectiveHistoryMetricSeries{}
+	}
+	return *s.Metrics
+}
+
+// GetMetricsOk returns a tuple with the Metrics field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryResponseData) GetMetricsOk() (ServiceLevelObjectiveHistoryMetricSeries, bool) {
+	if s == nil || s.Metrics == nil {
+		return ServiceLevelObjectiveHistoryMetricSeries{}, false
+	}
+	return *s.Metrics, true
+}
+
+// HasMetrics returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryResponseData) HasMetrics() bool {
+	if s != nil && s.Metrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetrics allocates a new s.Metrics and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryResponseData) SetMetrics(v ServiceLevelObjectiveHistoryMetricSeries) {
+	s.Metrics = &v
+}
+
+// GetOverall returns the Overall field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryResponseData) GetOverall() ServiceLevelObjectiveHistoryOverall {
+	if s == nil || s.Overall == nil {
+		return ServiceLevelObjectiveHistoryOverall{}
+	}
+	return *s.Overall
+}
+
+// GetOverallOk returns a tuple with the Overall field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryResponseData) GetOverallOk() (ServiceLevelObjectiveHistoryOverall, bool) {
+	if s == nil || s.Overall == nil {
+		return ServiceLevelObjectiveHistoryOverall{}, false
+	}
+	return *s.Overall, true
+}
+
+// HasOverall returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryResponseData) HasOverall() bool {
+	if s != nil && s.Overall != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverall allocates a new s.Overall and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryResponseData) SetOverall(v ServiceLevelObjectiveHistoryOverall) {
+	s.Overall = &v
+}
+
+// GetDenominator returns the Denominator field if non-nil, zero value otherwise.
 func (s *ServiceLevelObjectiveMetricQuery) GetDenominator() string {
 	if s == nil || s.Denominator == nil {
 		return ""
