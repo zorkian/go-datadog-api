@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"sort"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -302,6 +303,56 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 			Target:    Float64(99.9),
 		}
 		assert.False(t2, threshold2.Equal(threshold4))
+	})
+
+	t.Run("CheckCanDelete", func(t2 *testing.T) {
+		ts, c := testSLOGetMock(t2, "", "check_can_delete_response.json")
+		defer ts.Close()
+
+		resp, err := c.CheckCanDeleteServiceLevelObjectives(
+			[]string{"12345678901234567890123456789012", "abcdefabcdefabcdefabcdefabcdefab"},
+		)
+		assert.NoError(t2, err)
+		assert.EqualValues(t2, []string{"12345678901234567890123456789012"}, resp.Data.OK)
+		assert.EqualValues(t2,
+			map[string]string{
+				"abcdefabcdefabcdefabcdefabcdefab": "SLO abcdefabcdefabcdefabcdefabcdefab is used in dashboard 123-456-789",
+			},
+			resp.Errors,
+		)
+	})
+
+	t.Run("GetServiceLevelObjectiveHistory-Metric", func(t2 *testing.T) {
+		ts, c := testSLOGetMock(t2, "", "get_history_metric_response.json")
+		defer ts.Close()
+
+		resp, err := c.GetServiceLevelObjectiveHistory(
+			"12345678901234567890123456789012",
+			time.Unix(1571162100, 0),
+			time.Unix(1571766900, 0),
+		)
+		assert.NoError(t2, err)
+		assert.Nil(t2, resp.Error)
+		assert.Equal(t2, float32(100), resp.Data.Overall.Uptime)
+		assert.Equal(t2, json.Number("3698988"), resp.Data.Metrics.Numerator.Sum)
+		assert.Equal(t2, json.Number("3698988"), resp.Data.Metrics.Denominator.Sum)
+	})
+
+	t.Run("GetServiceLevelObjectiveHistory-Monitor", func(t2 *testing.T) {
+		ts, c := testSLOGetMock(t2, "", "get_history_monitor_response.json")
+		defer ts.Close()
+
+		resp, err := c.GetServiceLevelObjectiveHistory(
+			"12345678901234567890123456789012",
+			time.Unix(1571162100, 0),
+			time.Unix(1571766900, 0),
+		)
+		assert.NoError(t2, err)
+		assert.Nil(t2, resp.Error)
+		assert.Equal(t2, float32(6.765872955322266), resp.Data.Overall.Uptime)
+		assert.Len(t2, resp.Data.Groups, 1)
+		assert.Equal(t2, float32(6.765872955322266), resp.Data.Groups[0].Uptime)
+		assert.Equal(t2, "some:tag", resp.Data.Groups[0].Name)
 	})
 
 }

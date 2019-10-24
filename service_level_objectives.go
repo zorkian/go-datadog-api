@@ -441,3 +441,154 @@ func (client *Client) DeleteServiceLevelObjectiveTimeFrames(timeframeByID map[st
 
 	return out.Data, nil
 }
+
+// ServiceLevelObjectivesCanDeleteResponse is the response for a check can delete SLO endpoint.
+type ServiceLevelObjectivesCanDeleteResponse struct {
+	Data struct {
+		OK []string `json:"ok"`
+	} `json:"data"`
+	Errors map[string]string `json:"errors"`
+}
+
+// CheckCanDeleteServiceLevelObjectives checks if the SLO is referenced within Datadog.
+// This is useful to prevent accidental deletion.
+func (client *Client) CheckCanDeleteServiceLevelObjectives(ids []string) (*ServiceLevelObjectivesCanDeleteResponse, error) {
+	var out ServiceLevelObjectivesCanDeleteResponse
+
+	if len(ids) == 0 {
+		return nil, fmt.Errorf("nothing specified")
+	}
+
+	uriValues := make(url.Values, 0)
+	uriValues.Set("ids", strings.Join(ids, ","))
+	uri := "/v1/slo/can_delete"
+	encodedQuery := uriValues.Encode()
+	if encodedQuery != "" {
+		uri += "?" + encodedQuery
+	}
+
+	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
+		return nil, err
+	}
+
+	return &out, nil
+}
+
+type ServiceLevelObjectiveHistorySeriesPoint [2]json.Number
+
+type ServiceLevelObjectiveHistoryMetricSeriesData struct {
+	Count    int64       `json:"count"`
+	Sum      json.Number `json:"sum"`
+	MetaData struct {
+		QueryIndex int     `json:"query_index"`
+		Aggregator string  `json:"aggr"`
+		Scope      string  `json:"scope"`
+		Metric     string  `json:"metric"`
+		Expression string  `json:"expression"`
+		Unit       *string `json:"unit"`
+	} `json:"metadata"`
+	Values []json.Number `json:"values"`
+	Times  []int64       `json:"times"`
+}
+
+func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsFloats() ([]float64, error) {
+	out := make([]float64, len(d.Values))
+	for i := 0; i < len(d.Values); i++ {
+		v, err := d.Values[i].Float64()
+		if err != nil {
+			return out, fmt.Errorf("could not deserialize value at index %d: %s", i, err)
+		}
+		out[i] = v
+	}
+	return out, nil
+}
+
+func (d *ServiceLevelObjectiveHistoryMetricSeriesData) ValuesAsInt64s() ([]int64, error) {
+	out := make([]int64, len(d.Values))
+	for i := 0; i < len(d.Values); i++ {
+		v, err := d.Values[i].Int64()
+		if err != nil {
+			return out, fmt.Errorf("could not deserialize value at index %d: %s", i, err)
+		}
+		out[i] = v
+	}
+	return out, nil
+}
+
+type ServiceLevelObjectiveHistoryMetricSeries struct {
+	ResultType      string `json:"res_type"`
+	Interval        int    `json:"interval"`
+	ResponseVersion string `json:"resp_version"`
+	Query           string `json:"query"`   // a CSV of <numerator>, <denominator> queries
+	Message         string `json:"message"` // optional message if there are specific query issues/warnings
+
+	Numerator   *ServiceLevelObjectiveHistoryMetricSeriesData `json:"numerator"`
+	Denominator *ServiceLevelObjectiveHistoryMetricSeriesData `json:"denominator"`
+}
+
+type ServiceLevelObjectiveHistoryMonitorSeries struct {
+	Uptime        float32                                   `json:"uptime"`
+	SpanPrecision json.Number                               `json:"span_precision"`
+	Name          string                                    `json:"name"`
+	Precision     map[string]json.Number                    `json:"precision"`
+	Preview       bool                                      `json:"preview"`
+	History       []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
+}
+
+type ServiceLevelObjectiveHistoryOverall struct {
+	Uptime        float32                `json:"uptime"`
+	SpanPrecision json.Number            `json:"span_precision"`
+	Name          string                 `json:"name"`
+	Precision     map[string]json.Number `json:"precision"`
+	Preview       bool                   `json:"preview"`
+
+	// Monitor extension
+	History []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
+}
+
+type ServiceLevelObjectiveHistoryResponseData struct {
+	Errors     []string                                  `json:"errors"`
+	ToTs       int64                                     `json:"to_ts"`
+	FromTs     int64                                     `json:"from_ts"`
+	Thresholds map[string]ServiceLevelObjectiveThreshold `json:"thresholds"`
+	Overall    *ServiceLevelObjectiveHistoryOverall      `json:"overall"`
+
+	// metric based SLO
+	Metrics *ServiceLevelObjectiveHistoryMetricSeries `json:"series"`
+
+	// monitor based SLO
+	Groups []*ServiceLevelObjectiveHistoryMonitorSeries `json:"groups"`
+}
+
+type ServiceLevelObjectiveHistoryResponse struct {
+	Data  *ServiceLevelObjectiveHistoryResponseData `json:"data"`
+	Error *string                                   `json:"error"`
+}
+
+func (client *Client) GetServiceLevelObjectiveHistory(id string, fromTs time.Time, toTs time.Time) (*ServiceLevelObjectiveHistoryResponse, error) {
+	var out ServiceLevelObjectiveHistoryResponse
+
+	if id == "" {
+		return nil, fmt.Errorf("nothing specified")
+	}
+
+	if !toTs.After(fromTs) {
+		return nil, fmt.Errorf("toTs must be after fromTs")
+	}
+
+	uriValues := make(url.Values, 0)
+	uriValues.Set("from_ts", fmt.Sprintf("%d", fromTs.Unix()))
+	uriValues.Set("to_ts", fmt.Sprintf("%d", toTs.Unix()))
+
+	uri := fmt.Sprintf("/v1/slo/%s/history", id)
+	encodedQuery := uriValues.Encode()
+	if encodedQuery != "" {
+		uri += "?" + encodedQuery
+	}
+
+	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
+		return nil, err
+	}
+
+	return &out, nil
+}
