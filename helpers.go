@@ -19,6 +19,10 @@ import (
 // to store v and returns a pointer to it.
 func Bool(v bool) *bool { return &v }
 
+// CBool is a helper routine that allocates a new convertible bool value
+// to store v and returns a pointer to it.
+func CBool(v bool) *ConvertibleBool { return (*ConvertibleBool)(&v) }
+
 // GetBool is a helper routine that returns a boolean representing
 // if a value was set, and if so, dereferences the pointer to it.
 func GetBool(v *bool) (bool, bool) {

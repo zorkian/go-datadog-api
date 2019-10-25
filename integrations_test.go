@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
 )
 
 func TestIntegrationWebhookGet(t *testing.T) {
@@ -30,33 +31,14 @@ func TestIntegrationWebhookGet(t *testing.T) {
 }
 
 var expectedIntegrationWebhook = &IntegrationWebhook{
-	Hooks: []*IntegrationWebhookHook{
+	Hooks: []IntegrationWebhookHook{
 		{
 			Name:				String("Test"),
 			Url:				String("http://example.com"),
-			EncodeAsForm:		Bool(false),
-			UseCustomPayload:	Bool(true),
+			EncodeAsForm:		CBool(false),
+			UseCustomPayload:	CBool(true),
 			CustomPayload:		String("{\n\"body\": \"$EVENT_MSG\",\n    \"last_updated\": \"$LAST_UPDATED\",\n    \"event_type\": \"$EVENT_TYPE\",\n    \"title\": \"$EVENT_TITLE\",\n    \"date\": \"$DATE\",\n    \"org\": {\n        \"id\": \"$ORG_ID\",\n        \"name\": \"$ORG_NAME\"\n    },\n    \"id\": \"$ID\"\n}"),
 			Headers:			String("X-Dummy-Header: Dummy-Value"),
 		},
 	},
-}
-
-func TestIntegrationWebhookGetError(t *testing.T) {
-	errorMessage := "500 - Something bad happened!"
-	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(errorMessage))
-	}))
-
-	defer ts.Close()
-
-	client := Client{
-		baseUrl:    ts.URL,
-		HttpClient: http.DefaultClient,
-	}
-
-	integrationWebhook, err := client.GetIntegrationWebhook()
-	assert.Nil(t, integrationWebhook)
-	assert.Equal(t, errorMessage, err.Error())
 }
