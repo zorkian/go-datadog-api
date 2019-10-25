@@ -8,7 +8,9 @@
 
 package datadog
 
-import "net/url"
+import (
+	"net/url"
+)
 
 /*
 	PagerDuty Integration
@@ -331,3 +333,47 @@ func (client *Client) UpdateIntegrationGCP(cir *IntegrationGCPUpdateRequest) err
 func (client *Client) DeleteIntegrationGCP(cir *IntegrationGCPDeleteRequest) error {
 	return client.doJsonRequest("DELETE", "/v1/integration/gcp", cir, nil)
 }
+
+/*
+	WebHook Integration
+*/
+
+// IntegrationWebhookHook defines the response for listing Webhook integrations.
+type IntegrationWebhookHook struct {
+	Name 				*string `json:"name"`
+	Url  				*string `json:"url"`
+	UseCustomPayload	*bool   `json:"use_custom_payload"`
+	CustomPayload		*string `json:"custom_payload"`
+	EncodeAsForm		*bool	`json:"encode_as_form"`
+	Headers				*string	`json:"headers"`
+}
+
+type IntegrationWebhook struct {
+	Hooks []*IntegrationWebhookHook `json:"hooks"`
+}
+
+// GetIntegrationWebhook Gets the hooks in the webhook integration
+func (client *Client) GetIntegrationWebhook() (*IntegrationWebhook, error)  {
+	var list *IntegrationWebhook
+	if err := client.doJsonRequest("GET", "/v1/integration/webhooks", nil, &list); err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
+// CreateIntegrationWebhook creates the hooks in the webhook integration
+func (client *Client) CreateIntegrationWebhook(cir *IntegrationWebhook) error {
+	return client.doJsonRequest("POST", "/v1/integration/webhooks", cir, nil)
+}
+
+// UpdateIntegrationWebhook updates hooks in the webhook integration
+func (client *Client) UpdateIntegrationWebhook(cir *IntegrationWebhook) error {
+	return client.doJsonRequest("PUT", "/v1/integration/webhooks", cir, nil)
+}
+
+// DeleteIntegrationWebhook deletes the webhook integration
+func (client *Client) DeleteIntegrationWebhook() error {
+	return client.doJsonRequest("DELETE", "/v1/integration/webhooks", nil, nil)
+}
+
+
