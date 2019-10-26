@@ -517,7 +517,7 @@ func TestIntegrationWebhookUpdate(t *testing.T) {
 	assert.Equal(t, req.Hooks[0].EncodeAsForm, actual.Hooks[0].EncodeAsForm)
 	assert.Equal(t, req.Hooks[0].UseCustomPayload, actual.Hooks[0].UseCustomPayload)
 	assert.Equal(t, req.Hooks[0].CustomPayload, actual.Hooks[0].CustomPayload)
-	assert.Equal(t, req.Hooks[0].Headers, newHeaders)
+	assert.Equal(t, newHeaders, actual.Hooks[0].Headers)
 }
 
 func getTestIntegrationWebhook() *datadog.IntegrationWebhook {
@@ -526,8 +526,8 @@ func getTestIntegrationWebhook() *datadog.IntegrationWebhook {
 			{
 				Name:				datadog.String("Test"),
 				Url:				datadog.String("http://example.com"),
-				EncodeAsForm:		datadog.CBool(false),
-				UseCustomPayload:	datadog.CBool(true),
+				EncodeAsForm:		datadog.String("false"),
+				UseCustomPayload:	datadog.String("true"),
 				CustomPayload:		datadog.String("{\n\"body\": \"$EVENT_MSG\",\n    \"last_updated\": \"$LAST_UPDATED\",\n    \"event_type\": \"$EVENT_TYPE\",\n    \"title\": \"$EVENT_TITLE\",\n    \"date\": \"$DATE\",\n    \"org\": {\n        \"id\": \"$ORG_ID\",\n        \"name\": \"$ORG_NAME\"\n    },\n    \"id\": \"$ID\"\n}"),
 				Headers:			datadog.String("X-Dummy-Header: Dummy-Value"),
 			},
@@ -550,9 +550,7 @@ func cleanUpIntegrationWebhook(t *testing.T) {
 	}
 
 	actual, err := client.GetIntegrationWebhook()
-	if err != nil {
-		t.Fatalf("Fetching deleted Webhook integration didn't lead to an error: %s", err)
-	}
-	assert.Equal(t, 0, len(actual))
+	assert.NotNilf(t, err, "Fetching deleted Webhook integration didn't lead to an error: %s", err)
+	assert.Nil(t, actual)
 }
 
