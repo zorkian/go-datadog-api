@@ -470,86 +470,86 @@ func cleanUpIntegrationGCP(t *testing.T) {
 */
 
 func TestIntegrationWebhookCreateAndDelete(t *testing.T) {
-    expected := createTestIntegrationWebhook(t)
-    defer cleanUpIntegrationWebhook(t)
+	expected := createTestIntegrationWebhook(t)
+	defer cleanUpIntegrationWebhook(t)
 
-    actual, err := client.GetIntegrationWebhook()
-    if err != nil {
-        t.Fatalf("Retrieving a Webhook integration failed when it shouldn't: (%s)", err)
-    }
-    assert.Equal(t, 1, len(actual.Hooks))
-    assert.Equal(t, expected.Hooks[0].Name, actual.Hooks[0].Name)
-    assert.Equal(t, expected.Hooks[0].Url, actual.Hooks[0].Url)
-    assert.Equal(t, expected.Hooks[0].EncodeAsForm, actual.Hooks[0].EncodeAsForm)
-    assert.Equal(t, expected.Hooks[0].UseCustomPayload, actual.Hooks[0].UseCustomPayload)
-    assert.Equal(t, expected.Hooks[0].CustomPayload, actual.Hooks[0].CustomPayload)
-    assert.Equal(t, expected.Hooks[0].Headers, actual.Hooks[0].Headers)
+	actual, err := client.GetIntegrationWebhook()
+	if err != nil {
+		t.Fatalf("Retrieving a Webhook integration failed when it shouldn't: (%s)", err)
+	}
+	assert.Equal(t, 1, len(actual.Hooks))
+	assert.Equal(t, expected.Hooks[0].Name, actual.Hooks[0].Name)
+	assert.Equal(t, expected.Hooks[0].Url, actual.Hooks[0].Url)
+	assert.Equal(t, expected.Hooks[0].EncodeAsForm, actual.Hooks[0].EncodeAsForm)
+	assert.Equal(t, expected.Hooks[0].UseCustomPayload, actual.Hooks[0].UseCustomPayload)
+	assert.Equal(t, expected.Hooks[0].CustomPayload, actual.Hooks[0].CustomPayload)
+	assert.Equal(t, expected.Hooks[0].Headers, actual.Hooks[0].Headers)
 }
 
 func TestIntegrationWebhookUpdate(t *testing.T) {
-    req := createTestIntegrationWebhook(t)
-    defer cleanUpIntegrationWebhook(t)
+	req := createTestIntegrationWebhook(t)
+	defer cleanUpIntegrationWebhook(t)
 
-    newHeaders := datadog.String("name0:value0,name1:value1")
+	newHeaders := datadog.String("name0:value0,name1:value1")
 
-    if err := client.UpdateIntegrationWebhook(&datadog.IntegrationWebhook{
-        Hooks: []datadog.IntegrationWebhookHook{
-            {
-                Name:             req.Hooks[0].Name,
-                Url:              req.Hooks[0].Url,
-                EncodeAsForm:     req.Hooks[0].EncodeAsForm,
-                UseCustomPayload: req.Hooks[0].UseCustomPayload,
-                CustomPayload:    req.Hooks[0].CustomPayload,
-                Headers:          newHeaders,
-            },
-        },
-    }); err != nil {
-        t.Fatalf("Updating a Webhook integration failed when it shouldn't: %s", err)
-    }
+	if err := client.UpdateIntegrationWebhook(&datadog.IntegrationWebhook{
+		Hooks: []datadog.IntegrationWebhookHook{
+			{
+				Name:             req.Hooks[0].Name,
+				Url:              req.Hooks[0].Url,
+				EncodeAsForm:     req.Hooks[0].EncodeAsForm,
+				UseCustomPayload: req.Hooks[0].UseCustomPayload,
+				CustomPayload:    req.Hooks[0].CustomPayload,
+				Headers:          newHeaders,
+			},
+		},
+	}); err != nil {
+		t.Fatalf("Updating a Webhook integration failed when it shouldn't: %s", err)
+	}
 
-    actual, err := client.GetIntegrationWebhook()
-    if err != nil {
-        t.Fatalf("Retrieving a Webhook integration failed when it shouldn't: %s", err)
-    }
-    assert.Equal(t, 1, len(actual.Hooks))
-    assert.Equal(t, req.Hooks[0].Name, actual.Hooks[0].Name)
-    assert.Equal(t, req.Hooks[0].Url, actual.Hooks[0].Url)
-    assert.Equal(t, req.Hooks[0].EncodeAsForm, actual.Hooks[0].EncodeAsForm)
-    assert.Equal(t, req.Hooks[0].UseCustomPayload, actual.Hooks[0].UseCustomPayload)
-    assert.Equal(t, req.Hooks[0].CustomPayload, actual.Hooks[0].CustomPayload)
-    assert.Equal(t, newHeaders, actual.Hooks[0].Headers)
+	actual, err := client.GetIntegrationWebhook()
+	if err != nil {
+		t.Fatalf("Retrieving a Webhook integration failed when it shouldn't: %s", err)
+	}
+	assert.Equal(t, 1, len(actual.Hooks))
+	assert.Equal(t, req.Hooks[0].Name, actual.Hooks[0].Name)
+	assert.Equal(t, req.Hooks[0].Url, actual.Hooks[0].Url)
+	assert.Equal(t, req.Hooks[0].EncodeAsForm, actual.Hooks[0].EncodeAsForm)
+	assert.Equal(t, req.Hooks[0].UseCustomPayload, actual.Hooks[0].UseCustomPayload)
+	assert.Equal(t, req.Hooks[0].CustomPayload, actual.Hooks[0].CustomPayload)
+	assert.Equal(t, newHeaders, actual.Hooks[0].Headers)
 }
 
 func getTestIntegrationWebhook() *datadog.IntegrationWebhook {
-    return &datadog.IntegrationWebhook{
-        Hooks: []datadog.IntegrationWebhookHook{
-            {
-                Name:             datadog.String("Test"),
-                Url:              datadog.String("http://example.com"),
-                EncodeAsForm:     datadog.String("false"),
-                UseCustomPayload: datadog.String("true"),
-                CustomPayload:    datadog.String("{\n\"body\": \"$EVENT_MSG\",\n    \"last_updated\": \"$LAST_UPDATED\",\n    \"event_type\": \"$EVENT_TYPE\",\n    \"title\": \"$EVENT_TITLE\",\n    \"date\": \"$DATE\",\n    \"org\": {\n        \"id\": \"$ORG_ID\",\n        \"name\": \"$ORG_NAME\"\n    },\n    \"id\": \"$ID\"\n}"),
-                Headers:          datadog.String("X-Dummy-Header: Dummy-Value"),
-            },
-        },
-    }
+	return &datadog.IntegrationWebhook{
+		Hooks: []datadog.IntegrationWebhookHook{
+			{
+				Name:             datadog.String("Test"),
+				Url:              datadog.String("http://example.com"),
+				EncodeAsForm:     datadog.String("false"),
+				UseCustomPayload: datadog.String("true"),
+				CustomPayload:    datadog.String("{\n\"body\": \"$EVENT_MSG\",\n    \"last_updated\": \"$LAST_UPDATED\",\n    \"event_type\": \"$EVENT_TYPE\",\n    \"title\": \"$EVENT_TITLE\",\n    \"date\": \"$DATE\",\n    \"org\": {\n        \"id\": \"$ORG_ID\",\n        \"name\": \"$ORG_NAME\"\n    },\n    \"id\": \"$ID\"\n}"),
+				Headers:          datadog.String("X-Dummy-Header: Dummy-Value"),
+			},
+		},
+	}
 }
 
 func createTestIntegrationWebhook(t *testing.T) *datadog.IntegrationWebhook {
-    req := getTestIntegrationWebhook()
-    err := client.CreateIntegrationWebhook(req)
-    if err != nil {
-        t.Fatalf("Creating a Webhook integration failed when it shouldn't: %s", err)
-    }
-    return req
+	req := getTestIntegrationWebhook()
+	err := client.CreateIntegrationWebhook(req)
+	if err != nil {
+		t.Fatalf("Creating a Webhook integration failed when it shouldn't: %s", err)
+	}
+	return req
 }
 
 func cleanUpIntegrationWebhook(t *testing.T) {
-    if err := client.DeleteIntegrationWebhook(); err != nil {
-        t.Fatalf("Deleting the Webhook integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
-    }
+	if err := client.DeleteIntegrationWebhook(); err != nil {
+		t.Fatalf("Deleting the Webhook integration failed when it shouldn't. Manual cleanup needed. (%s)", err)
+	}
 
-    actual, err := client.GetIntegrationWebhook()
-    assert.NotNilf(t, err, "Fetching deleted Webhook integration didn't lead to an error: %s", err)
-    assert.Nil(t, actual)
+	actual, err := client.GetIntegrationWebhook()
+	assert.NotNilf(t, err, "Fetching deleted Webhook integration didn't lead to an error: %s", err)
+	assert.Nil(t, actual)
 }
