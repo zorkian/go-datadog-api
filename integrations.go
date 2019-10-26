@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"net/url"
-	"strings"
 )
 
 /*
@@ -341,12 +340,12 @@ func (client *Client) DeleteIntegrationGCP(cir *IntegrationGCPDeleteRequest) err
 
 // IntegrationWebhookHook defines the response for listing Webhook integrations.
 type IntegrationWebhookHook struct {
-	Name 				*string 			`json:"name"`
-	Url  				*string 			`json:"url"`
-	UseCustomPayload	*ConvertibleBool	`json:"use_custom_payload"`
-	CustomPayload		*string 			`json:"custom_payload"`
-	EncodeAsForm		*ConvertibleBool	`json:"encode_as_form"`
-	Headers				*string				`json:"headers"`
+	Name 				*string `json:"name"`
+	Url  				*string `json:"url"`
+	UseCustomPayload	*string	`json:"use_custom_payload"`
+	CustomPayload		*string `json:"custom_payload"`
+	EncodeAsForm		*string	`json:"encode_as_form"`
+	Headers				*string	`json:"headers"`
 }
 
 type IntegrationWebhook struct {
@@ -375,13 +374,4 @@ func (client *Client) UpdateIntegrationWebhook(cir *IntegrationWebhook) error {
 // DeleteIntegrationWebhook deletes the webhook integration
 func (client *Client) DeleteIntegrationWebhook() error {
 	return client.doJsonRequest("DELETE", "/v1/integration/webhooks", nil, nil)
-}
-
-// Bool allows 0/1 to also become boolean.
-type ConvertibleBool bool
-
-func (bit *ConvertibleBool) UnmarshalJSON(b []byte) error {
-	txt := strings.ToLower(strings.Trim(string(b), `"`))
-	*bit = ConvertibleBool(txt == "1" || txt == "true")
-	return nil
 }

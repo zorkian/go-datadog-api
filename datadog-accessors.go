@@ -11051,18 +11051,18 @@ func (i *IntegrationWebhookHook) SetCustomPayload(v string) {
 }
 
 // GetEncodeAsForm returns the EncodeAsForm field if non-nil, zero value otherwise.
-func (i *IntegrationWebhookHook) GetEncodeAsForm() ConvertibleBool {
+func (i *IntegrationWebhookHook) GetEncodeAsForm() string {
 	if i == nil || i.EncodeAsForm == nil {
-		return false
+		return ""
 	}
 	return *i.EncodeAsForm
 }
 
 // GetEncodeAsFormOk returns a tuple with the EncodeAsForm field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (i *IntegrationWebhookHook) GetEncodeAsFormOk() (ConvertibleBool, bool) {
+func (i *IntegrationWebhookHook) GetEncodeAsFormOk() (string, bool) {
 	if i == nil || i.EncodeAsForm == nil {
-		return false, false
+		return "", false
 	}
 	return *i.EncodeAsForm, true
 }
@@ -11077,7 +11077,7 @@ func (i *IntegrationWebhookHook) HasEncodeAsForm() bool {
 }
 
 // SetEncodeAsForm allocates a new i.EncodeAsForm and returns the pointer to it.
-func (i *IntegrationWebhookHook) SetEncodeAsForm(v ConvertibleBool) {
+func (i *IntegrationWebhookHook) SetEncodeAsForm(v string) {
 	i.EncodeAsForm = &v
 }
 
@@ -11175,18 +11175,18 @@ func (i *IntegrationWebhookHook) SetUrl(v string) {
 }
 
 // GetUseCustomPayload returns the UseCustomPayload field if non-nil, zero value otherwise.
-func (i *IntegrationWebhookHook) GetUseCustomPayload() ConvertibleBool {
+func (i *IntegrationWebhookHook) GetUseCustomPayload() string {
 	if i == nil || i.UseCustomPayload == nil {
-		return false
+		return ""
 	}
 	return *i.UseCustomPayload
 }
 
 // GetUseCustomPayloadOk returns a tuple with the UseCustomPayload field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (i *IntegrationWebhookHook) GetUseCustomPayloadOk() (ConvertibleBool, bool) {
+func (i *IntegrationWebhookHook) GetUseCustomPayloadOk() (string, bool) {
 	if i == nil || i.UseCustomPayload == nil {
-		return false, false
+		return "", false
 	}
 	return *i.UseCustomPayload, true
 }
@@ -11201,7 +11201,7 @@ func (i *IntegrationWebhookHook) HasUseCustomPayload() bool {
 }
 
 // SetUseCustomPayload allocates a new i.UseCustomPayload and returns the pointer to it.
-func (i *IntegrationWebhookHook) SetUseCustomPayload(v ConvertibleBool) {
+func (i *IntegrationWebhookHook) SetUseCustomPayload(v string) {
 	i.UseCustomPayload = &v
 }
 
