@@ -11019,6 +11019,192 @@ func (i *IntegrationSlackRequest) SetRunCheck(v bool) {
 	i.RunCheck = &v
 }
 
+// GetCustomPayload returns the CustomPayload field if non-nil, zero value otherwise.
+func (i *IntegrationWebhookHook) GetCustomPayload() string {
+	if i == nil || i.CustomPayload == nil {
+		return ""
+	}
+	return *i.CustomPayload
+}
+
+// GetCustomPayloadOk returns a tuple with the CustomPayload field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationWebhookHook) GetCustomPayloadOk() (string, bool) {
+	if i == nil || i.CustomPayload == nil {
+		return "", false
+	}
+	return *i.CustomPayload, true
+}
+
+// HasCustomPayload returns a boolean if a field has been set.
+func (i *IntegrationWebhookHook) HasCustomPayload() bool {
+	if i != nil && i.CustomPayload != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomPayload allocates a new i.CustomPayload and returns the pointer to it.
+func (i *IntegrationWebhookHook) SetCustomPayload(v string) {
+	i.CustomPayload = &v
+}
+
+// GetEncodeAsForm returns the EncodeAsForm field if non-nil, zero value otherwise.
+func (i *IntegrationWebhookHook) GetEncodeAsForm() ConvertibleBool {
+	if i == nil || i.EncodeAsForm == nil {
+		return false
+	}
+	return *i.EncodeAsForm
+}
+
+// GetEncodeAsFormOk returns a tuple with the EncodeAsForm field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationWebhookHook) GetEncodeAsFormOk() (ConvertibleBool, bool) {
+	if i == nil || i.EncodeAsForm == nil {
+		return false, false
+	}
+	return *i.EncodeAsForm, true
+}
+
+// HasEncodeAsForm returns a boolean if a field has been set.
+func (i *IntegrationWebhookHook) HasEncodeAsForm() bool {
+	if i != nil && i.EncodeAsForm != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEncodeAsForm allocates a new i.EncodeAsForm and returns the pointer to it.
+func (i *IntegrationWebhookHook) SetEncodeAsForm(v ConvertibleBool) {
+	i.EncodeAsForm = &v
+}
+
+// GetHeaders returns the Headers field if non-nil, zero value otherwise.
+func (i *IntegrationWebhookHook) GetHeaders() string {
+	if i == nil || i.Headers == nil {
+		return ""
+	}
+	return *i.Headers
+}
+
+// GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationWebhookHook) GetHeadersOk() (string, bool) {
+	if i == nil || i.Headers == nil {
+		return "", false
+	}
+	return *i.Headers, true
+}
+
+// HasHeaders returns a boolean if a field has been set.
+func (i *IntegrationWebhookHook) HasHeaders() bool {
+	if i != nil && i.Headers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHeaders allocates a new i.Headers and returns the pointer to it.
+func (i *IntegrationWebhookHook) SetHeaders(v string) {
+	i.Headers = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (i *IntegrationWebhookHook) GetName() string {
+	if i == nil || i.Name == nil {
+		return ""
+	}
+	return *i.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationWebhookHook) GetNameOk() (string, bool) {
+	if i == nil || i.Name == nil {
+		return "", false
+	}
+	return *i.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (i *IntegrationWebhookHook) HasName() bool {
+	if i != nil && i.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new i.Name and returns the pointer to it.
+func (i *IntegrationWebhookHook) SetName(v string) {
+	i.Name = &v
+}
+
+// GetUrl returns the Url field if non-nil, zero value otherwise.
+func (i *IntegrationWebhookHook) GetUrl() string {
+	if i == nil || i.Url == nil {
+		return ""
+	}
+	return *i.Url
+}
+
+// GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationWebhookHook) GetUrlOk() (string, bool) {
+	if i == nil || i.Url == nil {
+		return "", false
+	}
+	return *i.Url, true
+}
+
+// HasUrl returns a boolean if a field has been set.
+func (i *IntegrationWebhookHook) HasUrl() bool {
+	if i != nil && i.Url != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl allocates a new i.Url and returns the pointer to it.
+func (i *IntegrationWebhookHook) SetUrl(v string) {
+	i.Url = &v
+}
+
+// GetUseCustomPayload returns the UseCustomPayload field if non-nil, zero value otherwise.
+func (i *IntegrationWebhookHook) GetUseCustomPayload() ConvertibleBool {
+	if i == nil || i.UseCustomPayload == nil {
+		return false
+	}
+	return *i.UseCustomPayload
+}
+
+// GetUseCustomPayloadOk returns a tuple with the UseCustomPayload field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (i *IntegrationWebhookHook) GetUseCustomPayloadOk() (ConvertibleBool, bool) {
+	if i == nil || i.UseCustomPayload == nil {
+		return false, false
+	}
+	return *i.UseCustomPayload, true
+}
+
+// HasUseCustomPayload returns a boolean if a field has been set.
+func (i *IntegrationWebhookHook) HasUseCustomPayload() bool {
+	if i != nil && i.UseCustomPayload != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUseCustomPayload allocates a new i.UseCustomPayload and returns the pointer to it.
+func (i *IntegrationWebhookHook) SetUseCustomPayload(v ConvertibleBool) {
+	i.UseCustomPayload = &v
+}
+
 // GetID returns the ID field if non-nil, zero value otherwise.
 func (l *LogSet) GetID() json.Number {
 	if l == nil || l.ID == nil {
