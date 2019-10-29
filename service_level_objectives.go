@@ -586,11 +586,7 @@ func (client *Client) GetServiceLevelObjectiveHistory(id string, fromTs time.Tim
 	uriValues.Set("from_ts", fmt.Sprintf("%d", fromTs.Unix()))
 	uriValues.Set("to_ts", fmt.Sprintf("%d", toTs.Unix()))
 
-	uri := fmt.Sprintf("/v1/slo/%s/history", id)
-	encodedQuery := uriValues.Encode()
-	if encodedQuery != "" {
-		uri += "?" + encodedQuery
-	}
+	uri := fmt.Sprintf("/v1/slo/%s/history?%s", id, uriValues.Encode())
 
 	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
 		return nil, err
