@@ -301,11 +301,7 @@ func (client *Client) SearchServiceLevelObjectives(limit int, offset int, query 
 		uriValues.Set("ids", strings.Join(ids, ","))
 	}
 
-	uri := "/v1/slo"
-	encodedQuery := uriValues.Encode()
-	if encodedQuery != "" {
-		uri += "?" + encodedQuery
-	}
+	uri := "/v1/slo?" + uriValues.Encode()
 
 	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
 		return nil, err
@@ -461,11 +457,7 @@ func (client *Client) CheckCanDeleteServiceLevelObjectives(ids []string) (*Servi
 
 	uriValues := make(url.Values, 0)
 	uriValues.Set("ids", strings.Join(ids, ","))
-	uri := "/v1/slo/can_delete"
-	encodedQuery := uriValues.Encode()
-	if encodedQuery != "" {
-		uri += "?" + encodedQuery
-	}
+	uri := "/v1/slo/can_delete?" + uriValues.Encode()
 
 	if err := client.doJsonRequest("GET", uri, nil, &out); err != nil {
 		return nil, err
