@@ -139,19 +139,19 @@ func TestLogsPipelineCrud(t *testing.T) {
 					IsEnabled: datadog.Bool(true),
 					Type:      datadog.String("string-builder-processor"),
 					Definition: datadog.StringBuilderProcessor{
-						Template: datadog.String("hello %{user.name}"),
+						Template:         datadog.String("hello %{user.name}"),
 						IsReplaceMissing: datadog.Bool(false),
-						Target: datadog.String("target"),
+						Target:           datadog.String("target"),
 					},
 				}, {
-				Name: datadog.String("geo ip parser test"),
-				IsEnabled: datadog.Bool(false),
-				Type: datadog.String("geo-ip-parser"),
-				Definition: datadog.GeoIPParser{
-				Sources: []string{"source1", "source2"},
-				Target: datadog.String("target"),
-			},
-			},
+					Name:      datadog.String("geo ip parser test"),
+					IsEnabled: datadog.Bool(false),
+					Type:      datadog.String("geo-ip-parser"),
+					Definition: datadog.GeoIPParser{
+						Sources: []string{"source1", "source2"},
+						Target:  datadog.String("target"),
+					},
+				},
 			},
 		})
 

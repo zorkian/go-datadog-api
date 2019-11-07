@@ -211,7 +211,6 @@ func (processor *LogsProcessor) UnmarshalJSON(data []byte) error {
 		if err := json.Unmarshal(data, &stringBuilder); err != nil {
 			return err
 		}
-		fmt.Println(stringBuilder)
 		processor.Definition = stringBuilder
 	case UrlParserType:
 		var urlParser UrlParser

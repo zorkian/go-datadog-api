@@ -158,22 +158,22 @@ var expectedPipeline = &LogsPipeline{
 					},
 				},
 			},
-		},  {
+		}, {
 			Name:      String("test string builder processor"),
 			IsEnabled: Bool(true),
 			Type:      String("string-builder-processor"),
 			Definition: StringBuilderProcessor{
-				Template: String("hello %{user.name}"),
+				Template:         String("hello %{user.name}"),
 				IsReplaceMissing: Bool(false),
-				Target: String("target"),
+				Target:           String("target"),
 			},
 		}, {
-			Name: String("geo ip parser test"),
+			Name:      String("geo ip parser test"),
 			IsEnabled: Bool(false),
-			Type: String("geo-ip-parser"),
+			Type:      String("geo-ip-parser"),
 			Definition: GeoIPParser{
 				Sources: []string{"source1", "source2"},
-				Target: String("target"),
+				Target:  String("target"),
 			},
 		},
 	},
