@@ -72,7 +72,8 @@ var expectedPipeline = &LogsPipeline{
 			IsEnabled: Bool(true),
 			Type:      String("grok-parser"),
 			Definition: GrokParser{
-				Source: String("text"),
+				Source:  String("text"),
+				Samples: []string{"sample1", "sample2"},
 				GrokRule: &GrokRule{
 					SupportRules: String("date_parser %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
 					MatchRules:   String("rule %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"),
@@ -156,6 +157,23 @@ var expectedPipeline = &LogsPipeline{
 						},
 					},
 				},
+			},
+		},  {
+			Name:      String("test string builder processor"),
+			IsEnabled: Bool(true),
+			Type:      String("string-builder-processor"),
+			Definition: StringBuilderProcessor{
+				Template: String("hello %{user.name}"),
+				IsReplaceMissing: Bool(false),
+				Target: String("target"),
+			},
+		}, {
+			Name: String("geo ip parser test"),
+			IsEnabled: Bool(false),
+			Type: String("geo-ip-parser"),
+			Definition: GeoIPParser{
+				Sources: []string{"source1", "source2"},
+				Target: String("target"),
 			},
 		},
 	},
