@@ -6679,6 +6679,37 @@ func (f *FreeTextDefinition) SetType(v string) {
 	f.Type = &v
 }
 
+// GetTarget returns the Target field if non-nil, zero value otherwise.
+func (g *GeoIPParser) GetTarget() string {
+	if g == nil || g.Target == nil {
+		return ""
+	}
+	return *g.Target
+}
+
+// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (g *GeoIPParser) GetTargetOk() (string, bool) {
+	if g == nil || g.Target == nil {
+		return "", false
+	}
+	return *g.Target, true
+}
+
+// HasTarget returns a boolean if a field has been set.
+func (g *GeoIPParser) HasTarget() bool {
+	if g != nil && g.Target != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTarget allocates a new g.Target and returns the pointer to it.
+func (g *GeoIPParser) SetTarget(v string) {
+	g.Target = &v
+}
+
 // GetDefinition returns the Definition field if non-nil, zero value otherwise.
 func (g *Graph) GetDefinition() GraphDefinition {
 	if g == nil || g.Definition == nil {
@@ -17806,6 +17837,99 @@ func (s *ServicePDRequest) HasServiceName() bool {
 // SetServiceName allocates a new s.ServiceName and returns the pointer to it.
 func (s *ServicePDRequest) SetServiceName(v string) {
 	s.ServiceName = &v
+}
+
+// GetIsReplaceMissing returns the IsReplaceMissing field if non-nil, zero value otherwise.
+func (s *StringBuilderProcessor) GetIsReplaceMissing() bool {
+	if s == nil || s.IsReplaceMissing == nil {
+		return false
+	}
+	return *s.IsReplaceMissing
+}
+
+// GetIsReplaceMissingOk returns a tuple with the IsReplaceMissing field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *StringBuilderProcessor) GetIsReplaceMissingOk() (bool, bool) {
+	if s == nil || s.IsReplaceMissing == nil {
+		return false, false
+	}
+	return *s.IsReplaceMissing, true
+}
+
+// HasIsReplaceMissing returns a boolean if a field has been set.
+func (s *StringBuilderProcessor) HasIsReplaceMissing() bool {
+	if s != nil && s.IsReplaceMissing != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsReplaceMissing allocates a new s.IsReplaceMissing and returns the pointer to it.
+func (s *StringBuilderProcessor) SetIsReplaceMissing(v bool) {
+	s.IsReplaceMissing = &v
+}
+
+// GetTarget returns the Target field if non-nil, zero value otherwise.
+func (s *StringBuilderProcessor) GetTarget() string {
+	if s == nil || s.Target == nil {
+		return ""
+	}
+	return *s.Target
+}
+
+// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *StringBuilderProcessor) GetTargetOk() (string, bool) {
+	if s == nil || s.Target == nil {
+		return "", false
+	}
+	return *s.Target, true
+}
+
+// HasTarget returns a boolean if a field has been set.
+func (s *StringBuilderProcessor) HasTarget() bool {
+	if s != nil && s.Target != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTarget allocates a new s.Target and returns the pointer to it.
+func (s *StringBuilderProcessor) SetTarget(v string) {
+	s.Target = &v
+}
+
+// GetTemplate returns the Template field if non-nil, zero value otherwise.
+func (s *StringBuilderProcessor) GetTemplate() string {
+	if s == nil || s.Template == nil {
+		return ""
+	}
+	return *s.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *StringBuilderProcessor) GetTemplateOk() (string, bool) {
+	if s == nil || s.Template == nil {
+		return "", false
+	}
+	return *s.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (s *StringBuilderProcessor) HasTemplate() bool {
+	if s != nil && s.Template != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplate allocates a new s.Template and returns the pointer to it.
+func (s *StringBuilderProcessor) SetTemplate(v string) {
+	s.Template = &v
 }
 
 // GetFillMax returns the FillMax field if non-nil, zero value otherwise.
