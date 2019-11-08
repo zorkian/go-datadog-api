@@ -68,7 +68,7 @@ func (c *Client) GetBaseUrl() string {
 	return c.baseUrl
 }
 
-// Validate checks if the API and application keys are valid.
+// Validate checks if the API key (not the APP key) is valid.
 func (client *Client) Validate() (bool, error) {
 	var out valid
 	var resp *http.Response
