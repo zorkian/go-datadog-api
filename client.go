@@ -90,6 +90,10 @@ func (client *Client) Validate() (bool, error) {
 
 	defer resp.Body.Close()
 
+	if resp.StatusCode == http.StatusForbidden {
+		return false, nil
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return false, err
