@@ -82,6 +82,8 @@ func (client *Client) Validate() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+	req.Header.Set("DD-API-KEY", client.apiKey)
+	req.Header.Set("DD-APPLICATION-KEY", client.appKey)
 
 	resp, err = client.doRequestWithRetries(req, client.RetryTimeout)
 	if err != nil {
