@@ -7,9 +7,9 @@ import (
 )
 
 func TestSeriesSubmit(t *testing.T) {
-	metrics := []dd.Metric{dd.Metric{
+	metrics := []dd.Metric{{
 		Metric: dd.String("test.metric"),
-		Points: []dd.DataPoint{dd.DataPoint{dd.Float64(1.0), dd.Float64(2.0)}},
+		Points: []dd.DataPoint{{dd.Float64(1.0), dd.Float64(2.0)}},
 		Type:   dd.String("gauge"),
 		Host:   dd.String("myhost"),
 		Tags:   []string{"some:tag"},
