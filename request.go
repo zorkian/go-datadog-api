@@ -28,7 +28,7 @@ type Response struct {
 	Error  string `json:"error"`
 }
 
-func (client *Client) apiAcceptsKeysInHeaders(api string) (bool) {
+func (client *Client) apiAcceptsKeysInHeaders(api string) bool {
 	for _, prefix := range []string{"/v1/series", "/v1/check_run", "/v1/events", "/v1/screen"} {
 		if strings.HasPrefix(api, prefix) {
 			return false
