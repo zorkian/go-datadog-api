@@ -328,6 +328,11 @@ func (client *Client) UpdateIntegrationGCP(cir *IntegrationGCPUpdateRequest) err
 	return client.doJsonRequest("POST", "/v1/integration/gcp/host_filters", cir, nil)
 }
 
+// UpdateIntegrationGCPProject updates a Google Cloud Platform Integration project.
+func (client *Client) UpdateIntegrationGCPProject(cir *IntegrationGCPCreateRequest) error {
+	return client.doJsonRequest("PUT", "/v1/integration/gcp", cir, nil)
+}
+
 // DeleteIntegrationGCP deletes a Google Cloud Platform Integration.
 func (client *Client) DeleteIntegrationGCP(cir *IntegrationGCPDeleteRequest) error {
 	return client.doJsonRequest("DELETE", "/v1/integration/gcp", cir, nil)
