@@ -293,6 +293,7 @@ type IntegrationGCPCreateRequest struct {
 	AuthProviderX509CertURL *string `json:"auth_provider_x509_cert_url"` // Should be https://www.googleapis.com/oauth2/v1/certs
 	ClientX509CertURL       *string `json:"client_x509_cert_url"`        // https://www.googleapis.com/robot/v1/metadata/x509/<CLIENT_EMAIL>
 	HostFilters             *string `json:"host_filters,omitempty"`
+	AutoMute                *bool   `json:"automute,omitempty"`
 }
 
 // IntegrationGCPUpdateRequest defines the request payload for updating Datadog-Google CloudPlatform integration.
