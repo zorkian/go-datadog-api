@@ -11763,6 +11763,99 @@ func (l *LogStreamDefinition) SetType(v string) {
 	l.Type = &v
 }
 
+// GetDefaultLookup returns the DefaultLookup field if non-nil, zero value otherwise.
+func (l *LookupProcessor) GetDefaultLookup() string {
+	if l == nil || l.DefaultLookup == nil {
+		return ""
+	}
+	return *l.DefaultLookup
+}
+
+// GetDefaultLookupOk returns a tuple with the DefaultLookup field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LookupProcessor) GetDefaultLookupOk() (string, bool) {
+	if l == nil || l.DefaultLookup == nil {
+		return "", false
+	}
+	return *l.DefaultLookup, true
+}
+
+// HasDefaultLookup returns a boolean if a field has been set.
+func (l *LookupProcessor) HasDefaultLookup() bool {
+	if l != nil && l.DefaultLookup != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultLookup allocates a new l.DefaultLookup and returns the pointer to it.
+func (l *LookupProcessor) SetDefaultLookup(v string) {
+	l.DefaultLookup = &v
+}
+
+// GetSource returns the Source field if non-nil, zero value otherwise.
+func (l *LookupProcessor) GetSource() string {
+	if l == nil || l.Source == nil {
+		return ""
+	}
+	return *l.Source
+}
+
+// GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LookupProcessor) GetSourceOk() (string, bool) {
+	if l == nil || l.Source == nil {
+		return "", false
+	}
+	return *l.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (l *LookupProcessor) HasSource() bool {
+	if l != nil && l.Source != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSource allocates a new l.Source and returns the pointer to it.
+func (l *LookupProcessor) SetSource(v string) {
+	l.Source = &v
+}
+
+// GetTarget returns the Target field if non-nil, zero value otherwise.
+func (l *LookupProcessor) GetTarget() string {
+	if l == nil || l.Target == nil {
+		return ""
+	}
+	return *l.Target
+}
+
+// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LookupProcessor) GetTargetOk() (string, bool) {
+	if l == nil || l.Target == nil {
+		return "", false
+	}
+	return *l.Target, true
+}
+
+// HasTarget returns a boolean if a field has been set.
+func (l *LookupProcessor) HasTarget() bool {
+	if l != nil && l.Target != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTarget allocates a new l.Target and returns the pointer to it.
+func (l *LookupProcessor) SetTarget(v string) {
+	l.Target = &v
+}
+
 // GetColorPreference returns the ColorPreference field if non-nil, zero value otherwise.
 func (m *ManageStatusDefinition) GetColorPreference() string {
 	if m == nil || m.ColorPreference == nil {

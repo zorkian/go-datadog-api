@@ -1,10 +1,11 @@
 package integration
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/zorkian/go-datadog-api"
 	"log"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/zorkian/go-datadog-api"
 )
 
 func TestLogsPipelineCrud(t *testing.T) {
@@ -150,6 +151,16 @@ func TestLogsPipelineCrud(t *testing.T) {
 					Definition: datadog.GeoIPParser{
 						Sources: []string{"source1", "source2"},
 						Target:  datadog.String("target"),
+					},
+				}, {
+					Name:      datadog.String("lookup processor test"),
+					IsEnabled: datadog.Bool(false),
+					Type:      datadog.String("lookup-processor"),
+					Definition: datadog.LookupProcessor{
+						Source:        datadog.String("source"),
+						Target:        datadog.String("target"),
+						LookupTable:   []string{"key1,value1", "key2,value2"},
+						DefaultLookup: datadog.String("default"),
 					},
 				},
 			},
