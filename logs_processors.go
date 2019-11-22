@@ -99,7 +99,7 @@ type LookupProcessor struct {
 	Source        *string  `json:"source"`
 	Target        *string  `json:"target"`
 	LookupTable   []string `json:"lookup_table"`
-	DefaultLookup *string  `json:"default_lookup"`
+	DefaultLookup *string  `json:"default_lookup,omitempty"`
 }
 
 // NestedPipeline represents the pipeline as processor from config API.
