@@ -10276,18 +10276,18 @@ func (i *IntegrationAWSServicesLogCollection) SetAccountID(v string) {
 }
 
 // GetAutoMute returns the AutoMute field if non-nil, zero value otherwise.
-func (i *IntegrationGCP) GetAutoMute() string {
+func (i *IntegrationGCP) GetAutoMute() bool {
 	if i == nil || i.AutoMute == nil {
-		return ""
+		return false
 	}
 	return *i.AutoMute
 }
 
 // GetAutoMuteOk returns a tuple with the AutoMute field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (i *IntegrationGCP) GetAutoMuteOk() (string, bool) {
+func (i *IntegrationGCP) GetAutoMuteOk() (bool, bool) {
 	if i == nil || i.AutoMute == nil {
-		return "", false
+		return false, false
 	}
 	return *i.AutoMute, true
 }
@@ -10302,7 +10302,7 @@ func (i *IntegrationGCP) HasAutoMute() bool {
 }
 
 // SetAutoMute allocates a new i.AutoMute and returns the pointer to it.
-func (i *IntegrationGCP) SetAutoMute(v string) {
+func (i *IntegrationGCP) SetAutoMute(v bool) {
 	i.AutoMute = &v
 }
 
