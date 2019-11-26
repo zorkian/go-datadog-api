@@ -278,7 +278,7 @@ type IntegrationGCP struct {
 	ProjectID   *string `json:"project_id"`
 	ClientEmail *string `json:"client_email"`
 	HostFilters *string `json:"host_filters"`
-	AutoMute    *string `json:"automute,omitempty"`
+	AutoMute    *bool   `json:"automute,omitempty"`
 }
 
 // IntegrationGCPCreateRequest defines the request payload for creating Datadog-Google CloudPlatform integration.
