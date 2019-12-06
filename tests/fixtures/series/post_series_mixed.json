@@ -1,0 +1,19 @@
+{"series" :
+    [
+        {"metric":"test.metric",
+         "points":[[1575591864, 20]],
+         "type":"rate",
+         "host":"test.example.com",
+         "tags":["environment:test"],
+         "interval": 20},
+        {"metric":"test.metric.duration",
+         "points":[[1575591810.01, 73.45]],
+         "type":"gauge"},
+        {"metric":"test.metric.hits",
+         "points":[
+             [1575591810.5, 54],
+             [1575591899.6, 73],
+             [1575591810.9, 73]
+        ]}
+   ]
+}
