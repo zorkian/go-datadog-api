@@ -26,7 +26,7 @@ type Metric struct {
 	Host     *string     `json:"host,omitempty"`
 	Tags     []string    `json:"tags,omitempty"`
 	Unit     *string     `json:"unit,omitempty"`
-	Interval int         `json:"interval,omitempty"`
+	Interval *int        `json:"interval,omitempty"`
 }
 
 // Unit represents a unit definition that we might receive when query for timeseries data.

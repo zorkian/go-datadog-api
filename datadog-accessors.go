@@ -12569,6 +12569,37 @@ func (m *Metric) SetHost(v string) {
 	m.Host = &v
 }
 
+// GetInterval returns the Interval field if non-nil, zero value otherwise.
+func (m *Metric) GetInterval() int {
+	if m == nil || m.Interval == nil {
+		return 0
+	}
+	return *m.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *Metric) GetIntervalOk() (int, bool) {
+	if m == nil || m.Interval == nil {
+		return 0, false
+	}
+	return *m.Interval, true
+}
+
+// HasInterval returns a boolean if a field has been set.
+func (m *Metric) HasInterval() bool {
+	if m != nil && m.Interval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterval allocates a new m.Interval and returns the pointer to it.
+func (m *Metric) SetInterval(v int) {
+	m.Interval = &v
+}
+
 // GetMetric returns the Metric field if non-nil, zero value otherwise.
 func (m *Metric) GetMetric() string {
 	if m == nil || m.Metric == nil {
