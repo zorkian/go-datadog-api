@@ -12352,6 +12352,37 @@ func (m *ManageStatusDefinition) SetQuery(v string) {
 	m.Query = &v
 }
 
+// GetShowLastTriggered returns the ShowLastTriggered field if non-nil, zero value otherwise.
+func (m *ManageStatusDefinition) GetShowLastTriggered() bool {
+	if m == nil || m.ShowLastTriggered == nil {
+		return false
+	}
+	return *m.ShowLastTriggered
+}
+
+// GetShowLastTriggeredOk returns a tuple with the ShowLastTriggered field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *ManageStatusDefinition) GetShowLastTriggeredOk() (bool, bool) {
+	if m == nil || m.ShowLastTriggered == nil {
+		return false, false
+	}
+	return *m.ShowLastTriggered, true
+}
+
+// HasShowLastTriggered returns a boolean if a field has been set.
+func (m *ManageStatusDefinition) HasShowLastTriggered() bool {
+	if m != nil && m.ShowLastTriggered != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowLastTriggered allocates a new m.ShowLastTriggered and returns the pointer to it.
+func (m *ManageStatusDefinition) SetShowLastTriggered(v bool) {
+	m.ShowLastTriggered = &v
+}
+
 // GetSort returns the Sort field if non-nil, zero value otherwise.
 func (m *ManageStatusDefinition) GetSort() string {
 	if m == nil || m.Sort == nil {
@@ -12412,6 +12443,37 @@ func (m *ManageStatusDefinition) HasStart() bool {
 // SetStart allocates a new m.Start and returns the pointer to it.
 func (m *ManageStatusDefinition) SetStart(v int) {
 	m.Start = &v
+}
+
+// GetSummaryType returns the SummaryType field if non-nil, zero value otherwise.
+func (m *ManageStatusDefinition) GetSummaryType() string {
+	if m == nil || m.SummaryType == nil {
+		return ""
+	}
+	return *m.SummaryType
+}
+
+// GetSummaryTypeOk returns a tuple with the SummaryType field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *ManageStatusDefinition) GetSummaryTypeOk() (string, bool) {
+	if m == nil || m.SummaryType == nil {
+		return "", false
+	}
+	return *m.SummaryType, true
+}
+
+// HasSummaryType returns a boolean if a field has been set.
+func (m *ManageStatusDefinition) HasSummaryType() bool {
+	if m != nil && m.SummaryType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSummaryType allocates a new m.SummaryType and returns the pointer to it.
+func (m *ManageStatusDefinition) SetSummaryType(v string) {
+	m.SummaryType = &v
 }
 
 // GetTitle returns the Title field if non-nil, zero value otherwise.
@@ -25186,6 +25248,37 @@ func (w *Widget) SetServiceService(v string) {
 	w.ServiceService = &v
 }
 
+// GetShowLastTriggered returns the ShowLastTriggered field if non-nil, zero value otherwise.
+func (w *Widget) GetShowLastTriggered() bool {
+	if w == nil || w.ShowLastTriggered == nil {
+		return false
+	}
+	return *w.ShowLastTriggered
+}
+
+// GetShowLastTriggeredOk returns a tuple with the ShowLastTriggered field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Widget) GetShowLastTriggeredOk() (bool, bool) {
+	if w == nil || w.ShowLastTriggered == nil {
+		return false, false
+	}
+	return *w.ShowLastTriggered, true
+}
+
+// HasShowLastTriggered returns a boolean if a field has been set.
+func (w *Widget) HasShowLastTriggered() bool {
+	if w != nil && w.ShowLastTriggered != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetShowLastTriggered allocates a new w.ShowLastTriggered and returns the pointer to it.
+func (w *Widget) SetShowLastTriggered(v bool) {
+	w.ShowLastTriggered = &v
+}
+
 // GetSizeVersion returns the SizeVersion field if non-nil, zero value otherwise.
 func (w *Widget) GetSizeVersion() string {
 	if w == nil || w.SizeVersion == nil {
@@ -25246,6 +25339,37 @@ func (w *Widget) HasSizing() bool {
 // SetSizing allocates a new w.Sizing and returns the pointer to it.
 func (w *Widget) SetSizing(v string) {
 	w.Sizing = &v
+}
+
+// GetSummaryType returns the SummaryType field if non-nil, zero value otherwise.
+func (w *Widget) GetSummaryType() string {
+	if w == nil || w.SummaryType == nil {
+		return ""
+	}
+	return *w.SummaryType
+}
+
+// GetSummaryTypeOk returns a tuple with the SummaryType field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Widget) GetSummaryTypeOk() (string, bool) {
+	if w == nil || w.SummaryType == nil {
+		return "", false
+	}
+	return *w.SummaryType, true
+}
+
+// HasSummaryType returns a boolean if a field has been set.
+func (w *Widget) HasSummaryType() bool {
+	if w != nil && w.SummaryType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSummaryType allocates a new w.SummaryType and returns the pointer to it.
+func (w *Widget) SetSummaryType(v string) {
+	w.SummaryType = &v
 }
 
 // GetText returns the Text field if non-nil, zero value otherwise.
