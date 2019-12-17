@@ -154,6 +154,15 @@ func (client *Client) doJsonRequestUnredacted(method, api string,
 		body = []byte{'{', '}'}
 	}
 
+	limited, short := isRateLimited(method, api)
+	if limited {
+		err := client.updateRateLimits(resp, short)
+		if err != nil {
+			// Inability to update the rate limiting stats should not be a blocking error.
+			fmt.Errorf("Error Updating the Rate Limit statistics: %s", err.Error())
+		}
+	}
+
 	// Try to parse common response fields to check whether there's an error reported in a response.
 	var common *Response
 	err = json.Unmarshal(body, &common)
