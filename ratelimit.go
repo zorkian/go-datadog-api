@@ -30,8 +30,8 @@ func isRateLimited(method string, endpoint string) (limited bool, shortEndpoint 
 }
 
 func (client *Client) updateRateLimits(resp *http.Response, api string) error {
-	if resp.Header == nil {
-		return fmt.Errorf("header missing from the HTTP response.")
+	if resp == nil || resp.Header == nil {
+		return fmt.Errorf("could not parse headers from the HTTP response.")
 	}
 	client.m.Lock()
 	defer client.m.Unlock()
