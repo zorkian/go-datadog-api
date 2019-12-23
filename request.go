@@ -159,7 +159,7 @@ func (client *Client) doJsonRequestUnredacted(method, api string,
 		err := client.updateRateLimits(resp, short)
 		if err != nil {
 			// Inability to update the rate limiting stats should not be a blocking error.
-			fmt.Errorf("Error Updating the Rate Limit statistics: %s", err.Error())
+			fmt.Printf("Error Updating the Rate Limit statistics: %s", err.Error())
 		}
 	}
 
