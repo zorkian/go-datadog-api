@@ -31,12 +31,12 @@ type Client struct {
 
 	// rateLimiting is used to store the rate limitting stats.
 	// More information in the official documentation: https://docs.datadoghq.com/api/?lang=bash#rate-limiting
-	rateLimitingStats map[string]rateLimit
+	rateLimitingStats map[string]RateLimit
 	// Mutex to protect the rate limiting map.
 	m sync.Mutex
 }
 
-type rateLimit struct {
+type RateLimit struct {
 	Limit     string
 	Period    string
 	Reset     string
@@ -63,7 +63,7 @@ func NewClient(apiKey, appKey string) *Client {
 		baseUrl:           baseUrl,
 		HttpClient:        http.DefaultClient,
 		RetryTimeout:      time.Duration(60 * time.Second),
-		rateLimitingStats: make(map[string]rateLimit),
+		rateLimitingStats: make(map[string]RateLimit),
 	}
 }
 

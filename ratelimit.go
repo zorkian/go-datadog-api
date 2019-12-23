@@ -35,7 +35,7 @@ func (client *Client) updateRateLimits(resp *http.Response, api string) error {
 	}
 	client.m.Lock()
 	defer client.m.Unlock()
-	client.rateLimitingStats[api] = rateLimit{
+	client.rateLimitingStats[api] = RateLimit{
 		Limit:     resp.Header.Get("X-RateLimit-Limit"),
 		Reset:     resp.Header.Get("X-RateLimit-Reset"),
 		Period:    resp.Header.Get("X-RateLimit-Period"),
@@ -45,7 +45,7 @@ func (client *Client) updateRateLimits(resp *http.Response, api string) error {
 }
 
 // GetRateLimitStats is a threadsafe getter to retrieve the rate limiting stats associated with the Client.
-func (client *Client) GetRateLimitStats() map[string]rateLimit {
+func (client *Client) GetRateLimitStats() map[string]RateLimit {
 	client.m.Lock()
 	defer client.m.Unlock()
 	return client.rateLimitingStats

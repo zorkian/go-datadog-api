@@ -49,48 +49,48 @@ func Test_isRateLimited(t *testing.T) {
 func Test_updateRateLimits(t *testing.T) {
 	// fake client to ensure that we are race free.
 	client := Client{
-		rateLimitingStats: make(map[string]rateLimit),
+		rateLimitingStats: make(map[string]RateLimit),
 	}
 	tests := []struct {
 		desc   string
 		api    string
 		resp   *http.Response
-		header rateLimit
+		header RateLimit
 		error  error
 	}{
 		{
 			"nominal case query",
 			"/v1/query",
 			makeHeader("1", "2", "3", "4"),
-			rateLimit{"1", "2", "3", "4"},
+			RateLimit{"1", "2", "3", "4"},
 			nil,
 		},
 		{
 			"nominal case logs",
 			"/v1/logs-queries/list",
 			makeHeader("2", "2", "1", "5"),
-			rateLimit{"2", "2", "1", "5"},
+			RateLimit{"2", "2", "1", "5"},
 			nil,
 		},
 		{
 			"no response",
 			"",
 			nil,
-			rateLimit{},
+			RateLimit{},
 			fmt.Errorf("could not parse headers from the HTTP response."),
 		},
 		{
 			"no header",
 			"/v2/error",
 			makeEmptyHeader(),
-			rateLimit{},
+			RateLimit{},
 			fmt.Errorf("could not parse headers from the HTTP response."),
 		},
 		{
 			"update case query",
 			"/v1/query",
 			makeHeader("2", "4", "6", "4"),
-			rateLimit{"2", "4", "6", "4"},
+			RateLimit{"2", "4", "6", "4"},
 			nil,
 		},
 	}
