@@ -3579,6 +3579,130 @@ func (c *ConditionalFormat) SetValue(v string) {
 	c.Value = &v
 }
 
+// GetHost returns the Host field if non-nil, zero value otherwise.
+func (c *Content) GetHost() string {
+	if c == nil || c.Host == nil {
+		return ""
+	}
+	return *c.Host
+}
+
+// GetHostOk returns a tuple with the Host field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *Content) GetHostOk() (string, bool) {
+	if c == nil || c.Host == nil {
+		return "", false
+	}
+	return *c.Host, true
+}
+
+// HasHost returns a boolean if a field has been set.
+func (c *Content) HasHost() bool {
+	if c != nil && c.Host != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHost allocates a new c.Host and returns the pointer to it.
+func (c *Content) SetHost(v string) {
+	c.Host = &v
+}
+
+// GetMessage returns the Message field if non-nil, zero value otherwise.
+func (c *Content) GetMessage() string {
+	if c == nil || c.Message == nil {
+		return ""
+	}
+	return *c.Message
+}
+
+// GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *Content) GetMessageOk() (string, bool) {
+	if c == nil || c.Message == nil {
+		return "", false
+	}
+	return *c.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (c *Content) HasMessage() bool {
+	if c != nil && c.Message != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage allocates a new c.Message and returns the pointer to it.
+func (c *Content) SetMessage(v string) {
+	c.Message = &v
+}
+
+// GetService returns the Service field if non-nil, zero value otherwise.
+func (c *Content) GetService() string {
+	if c == nil || c.Service == nil {
+		return ""
+	}
+	return *c.Service
+}
+
+// GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *Content) GetServiceOk() (string, bool) {
+	if c == nil || c.Service == nil {
+		return "", false
+	}
+	return *c.Service, true
+}
+
+// HasService returns a boolean if a field has been set.
+func (c *Content) HasService() bool {
+	if c != nil && c.Service != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetService allocates a new c.Service and returns the pointer to it.
+func (c *Content) SetService(v string) {
+	c.Service = &v
+}
+
+// GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
+func (c *Content) GetTimestamp() time.Time {
+	if c == nil || c.Timestamp == nil {
+		return time.Time{}
+	}
+	return *c.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (c *Content) GetTimestampOk() (time.Time, bool) {
+	if c == nil || c.Timestamp == nil {
+		return time.Time{}, false
+	}
+	return *c.Timestamp, true
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (c *Content) HasTimestamp() bool {
+	if c != nil && c.Timestamp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp allocates a new c.Timestamp and returns the pointer to it.
+func (c *Content) SetTimestamp(v time.Time) {
+	c.Timestamp = &v
+}
+
 // GetAccessRole returns the AccessRole field if non-nil, zero value otherwise.
 func (c *CreatedBy) GetAccessRole() string {
 	if c == nil || c.AccessRole == nil {
@@ -11392,6 +11516,37 @@ func (i *IntegrationSlackRequest) SetRunCheck(v bool) {
 }
 
 // GetID returns the ID field if non-nil, zero value otherwise.
+func (l *Logs) GetID() string {
+	if l == nil || l.ID == nil {
+		return ""
+	}
+	return *l.ID
+}
+
+// GetIDOk returns a tuple with the ID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *Logs) GetIDOk() (string, bool) {
+	if l == nil || l.ID == nil {
+		return "", false
+	}
+	return *l.ID, true
+}
+
+// HasID returns a boolean if a field has been set.
+func (l *Logs) HasID() bool {
+	if l != nil && l.ID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetID allocates a new l.ID and returns the pointer to it.
+func (l *Logs) SetID(v string) {
+	l.ID = &v
+}
+
+// GetID returns the ID field if non-nil, zero value otherwise.
 func (l *LogSet) GetID() json.Number {
 	if l == nil || l.ID == nil {
 		return ""
@@ -11606,6 +11761,254 @@ func (l *LogsIndex) HasNumRetentionDays() bool {
 // SetNumRetentionDays allocates a new l.NumRetentionDays and returns the pointer to it.
 func (l *LogsIndex) SetNumRetentionDays(v int64) {
 	l.NumRetentionDays = &v
+}
+
+// GetNextLogID returns the NextLogID field if non-nil, zero value otherwise.
+func (l *LogsList) GetNextLogID() string {
+	if l == nil || l.NextLogID == nil {
+		return ""
+	}
+	return *l.NextLogID
+}
+
+// GetNextLogIDOk returns a tuple with the NextLogID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsList) GetNextLogIDOk() (string, bool) {
+	if l == nil || l.NextLogID == nil {
+		return "", false
+	}
+	return *l.NextLogID, true
+}
+
+// HasNextLogID returns a boolean if a field has been set.
+func (l *LogsList) HasNextLogID() bool {
+	if l != nil && l.NextLogID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNextLogID allocates a new l.NextLogID and returns the pointer to it.
+func (l *LogsList) SetNextLogID(v string) {
+	l.NextLogID = &v
+}
+
+// GetStatus returns the Status field if non-nil, zero value otherwise.
+func (l *LogsList) GetStatus() string {
+	if l == nil || l.Status == nil {
+		return ""
+	}
+	return *l.Status
+}
+
+// GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsList) GetStatusOk() (string, bool) {
+	if l == nil || l.Status == nil {
+		return "", false
+	}
+	return *l.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (l *LogsList) HasStatus() bool {
+	if l != nil && l.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus allocates a new l.Status and returns the pointer to it.
+func (l *LogsList) SetStatus(v string) {
+	l.Status = &v
+}
+
+// GetIndex returns the Index field if non-nil, zero value otherwise.
+func (l *LogsListRequest) GetIndex() string {
+	if l == nil || l.Index == nil {
+		return ""
+	}
+	return *l.Index
+}
+
+// GetIndexOk returns a tuple with the Index field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsListRequest) GetIndexOk() (string, bool) {
+	if l == nil || l.Index == nil {
+		return "", false
+	}
+	return *l.Index, true
+}
+
+// HasIndex returns a boolean if a field has been set.
+func (l *LogsListRequest) HasIndex() bool {
+	if l != nil && l.Index != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndex allocates a new l.Index and returns the pointer to it.
+func (l *LogsListRequest) SetIndex(v string) {
+	l.Index = &v
+}
+
+// GetLimit returns the Limit field if non-nil, zero value otherwise.
+func (l *LogsListRequest) GetLimit() int {
+	if l == nil || l.Limit == nil {
+		return 0
+	}
+	return *l.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsListRequest) GetLimitOk() (int, bool) {
+	if l == nil || l.Limit == nil {
+		return 0, false
+	}
+	return *l.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (l *LogsListRequest) HasLimit() bool {
+	if l != nil && l.Limit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit allocates a new l.Limit and returns the pointer to it.
+func (l *LogsListRequest) SetLimit(v int) {
+	l.Limit = &v
+}
+
+// GetQuery returns the Query field if non-nil, zero value otherwise.
+func (l *LogsListRequest) GetQuery() string {
+	if l == nil || l.Query == nil {
+		return ""
+	}
+	return *l.Query
+}
+
+// GetQueryOk returns a tuple with the Query field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsListRequest) GetQueryOk() (string, bool) {
+	if l == nil || l.Query == nil {
+		return "", false
+	}
+	return *l.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (l *LogsListRequest) HasQuery() bool {
+	if l != nil && l.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery allocates a new l.Query and returns the pointer to it.
+func (l *LogsListRequest) SetQuery(v string) {
+	l.Query = &v
+}
+
+// GetSort returns the Sort field if non-nil, zero value otherwise.
+func (l *LogsListRequest) GetSort() string {
+	if l == nil || l.Sort == nil {
+		return ""
+	}
+	return *l.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsListRequest) GetSortOk() (string, bool) {
+	if l == nil || l.Sort == nil {
+		return "", false
+	}
+	return *l.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (l *LogsListRequest) HasSort() bool {
+	if l != nil && l.Sort != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSort allocates a new l.Sort and returns the pointer to it.
+func (l *LogsListRequest) SetSort(v string) {
+	l.Sort = &v
+}
+
+// GetStartAt returns the StartAt field if non-nil, zero value otherwise.
+func (l *LogsListRequest) GetStartAt() string {
+	if l == nil || l.StartAt == nil {
+		return ""
+	}
+	return *l.StartAt
+}
+
+// GetStartAtOk returns a tuple with the StartAt field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsListRequest) GetStartAtOk() (string, bool) {
+	if l == nil || l.StartAt == nil {
+		return "", false
+	}
+	return *l.StartAt, true
+}
+
+// HasStartAt returns a boolean if a field has been set.
+func (l *LogsListRequest) HasStartAt() bool {
+	if l != nil && l.StartAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartAt allocates a new l.StartAt and returns the pointer to it.
+func (l *LogsListRequest) SetStartAt(v string) {
+	l.StartAt = &v
+}
+
+// GetTime returns the Time field if non-nil, zero value otherwise.
+func (l *LogsListRequest) GetTime() QueryTime {
+	if l == nil || l.Time == nil {
+		return QueryTime{}
+	}
+	return *l.Time
+}
+
+// GetTimeOk returns a tuple with the Time field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (l *LogsListRequest) GetTimeOk() (QueryTime, bool) {
+	if l == nil || l.Time == nil {
+		return QueryTime{}, false
+	}
+	return *l.Time, true
+}
+
+// HasTime returns a boolean if a field has been set.
+func (l *LogsListRequest) HasTime() bool {
+	if l != nil && l.Time != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTime allocates a new l.Time and returns the pointer to it.
+func (l *LogsListRequest) SetTime(v QueryTime) {
+	l.Time = &v
 }
 
 // GetFilter returns the Filter field if non-nil, zero value otherwise.
@@ -14768,6 +15171,99 @@ func (q *QueryTableRequest) HasProcessQuery() bool {
 // SetProcessQuery allocates a new q.ProcessQuery and returns the pointer to it.
 func (q *QueryTableRequest) SetProcessQuery(v WidgetProcessQuery) {
 	q.ProcessQuery = &v
+}
+
+// GetTimeFrom returns the TimeFrom field if non-nil, zero value otherwise.
+func (q *QueryTime) GetTimeFrom() string {
+	if q == nil || q.TimeFrom == nil {
+		return ""
+	}
+	return *q.TimeFrom
+}
+
+// GetTimeFromOk returns a tuple with the TimeFrom field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryTime) GetTimeFromOk() (string, bool) {
+	if q == nil || q.TimeFrom == nil {
+		return "", false
+	}
+	return *q.TimeFrom, true
+}
+
+// HasTimeFrom returns a boolean if a field has been set.
+func (q *QueryTime) HasTimeFrom() bool {
+	if q != nil && q.TimeFrom != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeFrom allocates a new q.TimeFrom and returns the pointer to it.
+func (q *QueryTime) SetTimeFrom(v string) {
+	q.TimeFrom = &v
+}
+
+// GetTimeTo returns the TimeTo field if non-nil, zero value otherwise.
+func (q *QueryTime) GetTimeTo() string {
+	if q == nil || q.TimeTo == nil {
+		return ""
+	}
+	return *q.TimeTo
+}
+
+// GetTimeToOk returns a tuple with the TimeTo field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryTime) GetTimeToOk() (string, bool) {
+	if q == nil || q.TimeTo == nil {
+		return "", false
+	}
+	return *q.TimeTo, true
+}
+
+// HasTimeTo returns a boolean if a field has been set.
+func (q *QueryTime) HasTimeTo() bool {
+	if q != nil && q.TimeTo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeTo allocates a new q.TimeTo and returns the pointer to it.
+func (q *QueryTime) SetTimeTo(v string) {
+	q.TimeTo = &v
+}
+
+// GetTimeZone returns the TimeZone field if non-nil, zero value otherwise.
+func (q *QueryTime) GetTimeZone() string {
+	if q == nil || q.TimeZone == nil {
+		return ""
+	}
+	return *q.TimeZone
+}
+
+// GetTimeZoneOk returns a tuple with the TimeZone field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryTime) GetTimeZoneOk() (string, bool) {
+	if q == nil || q.TimeZone == nil {
+		return "", false
+	}
+	return *q.TimeZone, true
+}
+
+// HasTimeZone returns a boolean if a field has been set.
+func (q *QueryTime) HasTimeZone() bool {
+	if q != nil && q.TimeZone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeZone allocates a new q.TimeZone and returns the pointer to it.
+func (q *QueryTime) SetTimeZone(v string) {
+	q.TimeZone = &v
 }
 
 // GetAutoscale returns the Autoscale field if non-nil, zero value otherwise.
