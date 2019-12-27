@@ -61,14 +61,14 @@ func Test_updateRateLimits(t *testing.T) {
 		{
 			"nominal case query",
 			"/v1/query",
-			makeHeader("1", "2", "3", "4"),
+			makeHeader(RateLimit{"1", "2", "3", "4"}),
 			RateLimit{"1", "2", "3", "4"},
 			nil,
 		},
 		{
 			"nominal case logs",
 			"/v1/logs-queries/list",
-			makeHeader("2", "2", "1", "5"),
+			makeHeader(RateLimit{"2", "2", "1", "5"}),
 			RateLimit{"2", "2", "1", "5"},
 			nil,
 		},
@@ -89,7 +89,7 @@ func Test_updateRateLimits(t *testing.T) {
 		{
 			"update case query",
 			"/v1/query",
-			makeHeader("2", "4", "6", "4"),
+			makeHeader(RateLimit{"2", "4", "6", "4"}),
 			RateLimit{"2", "4", "6", "4"},
 			nil,
 		},
@@ -104,14 +104,14 @@ func Test_updateRateLimits(t *testing.T) {
 	}
 }
 
-func makeHeader(limit, period, reset, remaining string) *http.Response {
+func makeHeader(r RateLimit) *http.Response {
 	h := http.Response{
 		Header: make(map[string][]string),
 	}
-	h.Header.Set("X-RateLimit-Limit", limit)
-	h.Header.Set("X-RateLimit-Reset", reset)
-	h.Header.Set("X-RateLimit-Period", period)
-	h.Header.Set("X-RateLimit-Remaining", remaining)
+	h.Header.Set("X-RateLimit-Limit", r.Limit)
+	h.Header.Set("X-RateLimit-Reset", r.Reset)
+	h.Header.Set("X-RateLimit-Period", r.Period)
+	h.Header.Set("X-RateLimit-Remaining", r.Remaining)
 	return &h
 }
 
