@@ -48,5 +48,10 @@ func (client *Client) updateRateLimits(resp *http.Response, api string) error {
 func (client *Client) GetRateLimitStats() map[string]RateLimit {
 	client.m.Lock()
 	defer client.m.Unlock()
-	return client.rateLimitingStats
+	// Shallow copy to avoid corrupted data
+	mapCopy := make(map[string]RateLimit, len(client.rateLimitingStats))
+	for k, v := range client.rateLimitingStats {
+		mapCopy[k] = v
+	}
+	return mapCopy
 }
