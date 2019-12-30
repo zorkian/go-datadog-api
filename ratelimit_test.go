@@ -4,47 +4,9 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"net/http"
+	"net/url"
 	"testing"
 )
-
-func Test_isRateLimited(t *testing.T) {
-	tests := []struct {
-		desc             string
-		endpoint         string
-		method           string
-		isRateLimited    bool
-		endpointFormated string
-	}{
-		{
-			desc:             "is rate limited",
-			endpoint:         "/v1/query?&query=avg:system.cpu.user{*}by{host}",
-			method:           "GET",
-			isRateLimited:    true,
-			endpointFormated: "/v1/query",
-		},
-		{
-			desc:             "is not rate limited",
-			endpoint:         "/v1/series?api_key=12",
-			method:           "POST",
-			isRateLimited:    false,
-			endpointFormated: "",
-		},
-		{
-			desc:             "is rate limited but wrong method",
-			endpoint:         "/v1/query?&query=avg:system.cpu.user{*}by{host}",
-			method:           "POST",
-			isRateLimited:    false,
-			endpointFormated: "",
-		},
-	}
-	for i, tt := range tests {
-		t.Run(fmt.Sprintf("#%d %s", i, tt.desc), func(t *testing.T) {
-			limited, edpt := isRateLimited(tt.method, tt.endpoint)
-			assert.Equal(t, limited, tt.isRateLimited)
-			assert.Equal(t, edpt, tt.endpointFormated)
-		})
-	}
-}
 
 func Test_updateRateLimits(t *testing.T) {
 	// fake client to ensure that we are race free.
@@ -53,42 +15,49 @@ func Test_updateRateLimits(t *testing.T) {
 	}
 	tests := []struct {
 		desc   string
-		api    string
+		api    *url.URL
 		resp   *http.Response
 		header RateLimit
 		error  error
 	}{
 		{
 			"nominal case query",
-			"/v1/query",
+			&url.URL{Path: "/v1/query"},
 			makeHeader(RateLimit{"1", "2", "3", "4"}),
 			RateLimit{"1", "2", "3", "4"},
 			nil,
 		},
 		{
 			"nominal case logs",
-			"/v1/logs-queries/list",
+			&url.URL{Path: "/v1/logs-queries/list"},
 			makeHeader(RateLimit{"2", "2", "1", "5"}),
 			RateLimit{"2", "2", "1", "5"},
 			nil,
 		},
 		{
 			"no response",
-			"",
+			&url.URL{Path: ""},
 			nil,
 			RateLimit{},
-			fmt.Errorf("could not parse headers from the HTTP response."),
+			fmt.Errorf("malformed HTTP content."),
 		},
 		{
 			"no header",
-			"/v2/error",
+			&url.URL{Path: "/v2/error"},
 			makeEmptyHeader(),
 			RateLimit{},
-			fmt.Errorf("could not parse headers from the HTTP response."),
+			fmt.Errorf("malformed HTTP content."),
+		},
+		{
+			"not rate limited",
+			&url.URL{Path: "/v2/error"},
+			makeHeader(RateLimit{}),
+			RateLimit{},
+			nil,
 		},
 		{
 			"update case query",
-			"/v1/query",
+			&url.URL{Path: "/v1/query"},
 			makeHeader(RateLimit{"2", "4", "6", "4"}),
 			RateLimit{"2", "4", "6", "4"},
 			nil,
@@ -99,7 +68,7 @@ func Test_updateRateLimits(t *testing.T) {
 		t.Run(fmt.Sprintf("#%d %s", i, tt.desc), func(t *testing.T) {
 			err := client.updateRateLimits(tt.resp, tt.api)
 			assert.Equal(t, tt.error, err)
-			assert.Equal(t, tt.header, client.rateLimitingStats[tt.api])
+			assert.Equal(t, tt.header, client.rateLimitingStats[tt.api.Path])
 		})
 	}
 }
