@@ -20,8 +20,9 @@ func TestLogsIndexGet(t *testing.T) {
 	defer ts.Close()
 
 	client := Client{
-		baseUrl:    ts.URL,
-		HttpClient: http.DefaultClient,
+		baseUrl:           ts.URL,
+		HttpClient:        http.DefaultClient,
+		rateLimitingStats: make(map[string]RateLimit),
 	}
 
 	logsIndex, err := client.GetLogsIndex("main")
