@@ -19110,6 +19110,37 @@ func (s *SyntheticsOptions) SetMinLocationFailed(v int) {
 	s.MinLocationFailed = &v
 }
 
+// GetRetry returns the Retry field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetRetry() SyntheticsOptionsRetry {
+	if s == nil || s.Retry == nil {
+		return SyntheticsOptionsRetry{}
+	}
+	return *s.Retry
+}
+
+// GetRetryOk returns a tuple with the Retry field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetRetryOk() (SyntheticsOptionsRetry, bool) {
+	if s == nil || s.Retry == nil {
+		return SyntheticsOptionsRetry{}, false
+	}
+	return *s.Retry, true
+}
+
+// HasRetry returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasRetry() bool {
+	if s != nil && s.Retry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRetry allocates a new s.Retry and returns the pointer to it.
+func (s *SyntheticsOptions) SetRetry(v SyntheticsOptionsRetry) {
+	s.Retry = &v
+}
+
 // GetTickEvery returns the TickEvery field if non-nil, zero value otherwise.
 func (s *SyntheticsOptions) GetTickEvery() int {
 	if s == nil || s.TickEvery == nil {
@@ -19139,6 +19170,68 @@ func (s *SyntheticsOptions) HasTickEvery() bool {
 // SetTickEvery allocates a new s.TickEvery and returns the pointer to it.
 func (s *SyntheticsOptions) SetTickEvery(v int) {
 	s.TickEvery = &v
+}
+
+// GetCount returns the Count field if non-nil, zero value otherwise.
+func (s *SyntheticsOptionsRetry) GetCount() int {
+	if s == nil || s.Count == nil {
+		return 0
+	}
+	return *s.Count
+}
+
+// GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptionsRetry) GetCountOk() (int, bool) {
+	if s == nil || s.Count == nil {
+		return 0, false
+	}
+	return *s.Count, true
+}
+
+// HasCount returns a boolean if a field has been set.
+func (s *SyntheticsOptionsRetry) HasCount() bool {
+	if s != nil && s.Count != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCount allocates a new s.Count and returns the pointer to it.
+func (s *SyntheticsOptionsRetry) SetCount(v int) {
+	s.Count = &v
+}
+
+// GetInterval returns the Interval field if non-nil, zero value otherwise.
+func (s *SyntheticsOptionsRetry) GetInterval() int {
+	if s == nil || s.Interval == nil {
+		return 0
+	}
+	return *s.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptionsRetry) GetIntervalOk() (int, bool) {
+	if s == nil || s.Interval == nil {
+		return 0, false
+	}
+	return *s.Interval, true
+}
+
+// HasInterval returns a boolean if a field has been set.
+func (s *SyntheticsOptionsRetry) HasInterval() bool {
+	if s != nil && s.Interval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterval allocates a new s.Interval and returns the pointer to it.
+func (s *SyntheticsOptionsRetry) SetInterval(v int) {
+	s.Interval = &v
 }
 
 // GetBody returns the Body field if non-nil, zero value otherwise.

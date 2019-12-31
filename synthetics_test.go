@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -115,6 +116,15 @@ func TestGetSyntheticsTestApi(t *testing.T) {
 	expectedFollowRedirects := true
 	if followRedirects := options.GetFollowRedirects(); followRedirects != expectedFollowRedirects {
 		t.Fatalf("expect options.follow_redirects %v. Got %v", expectedFollowRedirects, followRedirects)
+	}
+
+	expectedRetry := SyntheticsOptionsRetry{
+		Count:    Int(3),
+		Interval: Int(1000),
+	}
+
+	if retry := options.GetRetry(); !reflect.DeepEqual(retry, expectedRetry) {
+		t.Fatalf("expect options.retry %v. Got %v", expectedRetry, retry)
 	}
 
 	locations := c.Locations
