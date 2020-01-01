@@ -52,12 +52,17 @@ type SyntheticsAssertion struct {
 }
 
 type SyntheticsOptions struct {
-	TickEvery          *int     `json:"tick_every,omitempty"`
-	FollowRedirects    *bool    `json:"follow_redirects,omitempty"`
-	MinFailureDuration *int     `json:"min_failure_duration,omitempty"`
-	MinLocationFailed  *int     `json:"min_location_failed,omitempty"`
-	DeviceIds          []string `json:"device_ids,omitempty"`
-	AcceptSelfSigned   *bool    `json:"accept_self_signed,omitempty"`
+	TickEvery          *int           `json:"tick_every,omitempty"`
+	FollowRedirects    *bool          `json:"follow_redirects,omitempty"`
+	MinFailureDuration *int           `json:"min_failure_duration,omitempty"`
+	MinLocationFailed  *int           `json:"min_location_failed,omitempty"`
+	DeviceIds          []string       `json:"device_ids,omitempty"`
+	AcceptSelfSigned   *bool          `json:"accept_self_signed,omitempty"`
+	MonitorOption      *MonitorOption `json:"monitor_option,omitempty"`
+}
+
+type MonitorOption struct {
+	RenotifyInterval *int `json:"renotify_interval,omitempty"`
 }
 
 type SyntheticsUser struct {

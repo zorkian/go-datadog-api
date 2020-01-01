@@ -4,7 +4,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2019 by authors and contributors.
+ * Copyright 2020 by authors and contributors.
 */
 
 package datadog
@@ -13127,6 +13127,37 @@ func (m *Monitor) SetType(v string) {
 	m.Type = &v
 }
 
+// GetRenotifyInterval returns the RenotifyInterval field if non-nil, zero value otherwise.
+func (m *MonitorOption) GetRenotifyInterval() int {
+	if m == nil || m.RenotifyInterval == nil {
+		return 0
+	}
+	return *m.RenotifyInterval
+}
+
+// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *MonitorOption) GetRenotifyIntervalOk() (int, bool) {
+	if m == nil || m.RenotifyInterval == nil {
+		return 0, false
+	}
+	return *m.RenotifyInterval, true
+}
+
+// HasRenotifyInterval returns a boolean if a field has been set.
+func (m *MonitorOption) HasRenotifyInterval() bool {
+	if m != nil && m.RenotifyInterval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRenotifyInterval allocates a new m.RenotifyInterval and returns the pointer to it.
+func (m *MonitorOption) SetRenotifyInterval(v int) {
+	m.RenotifyInterval = &v
+}
+
 // GetName returns the Name field if non-nil, zero value otherwise.
 func (m *MonitorQueryOpts) GetName() string {
 	if m == nil || m.Name == nil {
@@ -19108,6 +19139,37 @@ func (s *SyntheticsOptions) HasMinLocationFailed() bool {
 // SetMinLocationFailed allocates a new s.MinLocationFailed and returns the pointer to it.
 func (s *SyntheticsOptions) SetMinLocationFailed(v int) {
 	s.MinLocationFailed = &v
+}
+
+// GetMonitorOption returns the MonitorOption field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetMonitorOption() MonitorOption {
+	if s == nil || s.MonitorOption == nil {
+		return MonitorOption{}
+	}
+	return *s.MonitorOption
+}
+
+// GetMonitorOptionOk returns a tuple with the MonitorOption field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetMonitorOptionOk() (MonitorOption, bool) {
+	if s == nil || s.MonitorOption == nil {
+		return MonitorOption{}, false
+	}
+	return *s.MonitorOption, true
+}
+
+// HasMonitorOption returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasMonitorOption() bool {
+	if s != nil && s.MonitorOption != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorOption allocates a new s.MonitorOption and returns the pointer to it.
+func (s *SyntheticsOptions) SetMonitorOption(v MonitorOption) {
+	s.MonitorOption = &v
 }
 
 // GetTickEvery returns the TickEvery field if non-nil, zero value otherwise.
