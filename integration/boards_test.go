@@ -70,12 +70,12 @@ func getTestBoardWithTemplateVars() *datadog.Board {
 
 func getTestTemplateVars() []datadog.TemplateVariable {
 	return []datadog.TemplateVariable{
-		datadog.TemplateVariable{
+		{
 			Name:    datadog.String("Template Var 1"),
 			Prefix:  datadog.String("var1"),
 			Default: datadog.String("value1"),
 		},
-		datadog.TemplateVariable{
+		{
 			Name:   datadog.String("Template Var 2"),
 			Prefix: datadog.String("var2"),
 		},
@@ -84,23 +84,23 @@ func getTestTemplateVars() []datadog.TemplateVariable {
 
 func getTestTemplateVarPresets() []datadog.TemplateVariablePreset {
 	return []datadog.TemplateVariablePreset{
-		datadog.TemplateVariablePreset{
+		{
 			Name: datadog.String("Preset 1"),
 			TemplateVariables: []datadog.TemplateVariablePresetValue{
-				datadog.TemplateVariablePresetValue{
+				{
 					Name:  datadog.String("Template Var 1"),
 					Value: datadog.String("Preset 1 Var 1"),
 				},
-				datadog.TemplateVariablePresetValue{
+				{
 					Name:  datadog.String("Template Var 2"),
 					Value: datadog.String("Preset 1 Var 2"),
 				},
 			},
 		},
-		datadog.TemplateVariablePreset{
+		{
 			Name: datadog.String("Preset 2"),
 			TemplateVariables: []datadog.TemplateVariablePresetValue{
-				datadog.TemplateVariablePresetValue{
+				{
 					Name:  datadog.String("Template Var 1"),
 					Value: datadog.String("Preset 2 Var 1"),
 				},
