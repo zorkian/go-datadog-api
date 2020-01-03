@@ -25,6 +25,25 @@ func TestOrderedBoardCreateAndDelete(t *testing.T) {
 	assertBoardEquals(t, actual, expected)
 }
 
+func TestBoardWithTemplateVarsAndPresets(t *testing.T) {
+	expected := getTestBoardWithTemplateVars()
+
+	// Create the dashboard and compare it
+	actual, err := client.CreateBoard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpBoard(t, *actual.Id)
+	assertBoardEquals(t, actual, expected)
+
+	// Now try to fetch it freshly and compare it again
+	actual, err = client.GetBoard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertBoardEquals(t, actual, expected)
+}
+
 // Helpers for the tests
 
 func getTestBoard() *datadog.Board {
@@ -34,6 +53,59 @@ func getTestBoard() *datadog.Board {
 		LayoutType:  datadog.String("ordered"),
 		Description: datadog.String("Test Dashboard description"),
 		IsReadOnly:  datadog.Bool(false),
+	}
+}
+
+func getTestBoardWithTemplateVars() *datadog.Board {
+	return &datadog.Board{
+		Title:                   datadog.String("Test Dashboard"),
+		Widgets:                 createWidgets(),
+		LayoutType:              datadog.String("ordered"),
+		Description:             datadog.String("Test Dashboard description"),
+		IsReadOnly:              datadog.Bool(false),
+		TemplateVariables:       getTestTemplateVars(),
+		TemplateVariablePresets: getTestTemplateVarPresets(),
+	}
+}
+
+func getTestTemplateVars() []datadog.TemplateVariable {
+	return []datadog.TemplateVariable{
+		datadog.TemplateVariable{
+			Name:    datadog.String("Template Var 1"),
+			Prefix:  datadog.String("var1"),
+			Default: datadog.String("value1"),
+		},
+		datadog.TemplateVariable{
+			Name:   datadog.String("Template Var 2"),
+			Prefix: datadog.String("var2"),
+		},
+	}
+}
+
+func getTestTemplateVarPresets() []datadog.TemplateVariablePreset {
+	return []datadog.TemplateVariablePreset{
+		datadog.TemplateVariablePreset{
+			Name: datadog.String("Preset 1"),
+			TemplateVariables: []datadog.TemplateVariablePresetValue{
+				datadog.TemplateVariablePresetValue{
+					Name:  datadog.String("Template Var 1"),
+					Value: datadog.String("Preset 1 Var 1"),
+				},
+				datadog.TemplateVariablePresetValue{
+					Name:  datadog.String("Template Var 2"),
+					Value: datadog.String("Preset 1 Var 2"),
+				},
+			},
+		},
+		datadog.TemplateVariablePreset{
+			Name: datadog.String("Preset 2"),
+			TemplateVariables: []datadog.TemplateVariablePresetValue{
+				datadog.TemplateVariablePresetValue{
+					Name:  datadog.String("Template Var 1"),
+					Value: datadog.String("Preset 2 Var 1"),
+				},
+			},
+		},
 	}
 }
 
@@ -122,7 +194,10 @@ func assertBoardEquals(t *testing.T, actual, expected *datadog.Board) {
 		t.Errorf("Dashboard description does not match: %s != %s", *actual.Description, *expected.Description)
 	}
 	if len(actual.TemplateVariables) != len(expected.TemplateVariables) {
-		t.Errorf("Number of Dashboard template variables does not match: %d != %d", len(actual.TemplateVariables), len(expected.TemplateVariables))
+		t.Errorf("Number of template variables does not match: %d != %d", len(actual.TemplateVariables), len(expected.TemplateVariables))
+	}
+	if len(actual.TemplateVariablePresets) != len(expected.TemplateVariablePresets) {
+		t.Errorf("Number of template variables presets does not match: %d != %d", len(actual.TemplateVariablePresets), len(expected.TemplateVariablePresets))
 	}
 	if *actual.IsReadOnly != *expected.IsReadOnly {
 		t.Errorf("Dashboard description does not match: %v != %v", *actual.IsReadOnly, *expected.IsReadOnly)
