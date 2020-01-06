@@ -53,6 +53,8 @@ func TestGetLogsListPages(t *testing.T) {
 			assert.Nil(err)
 			w.Write(response)
 		} else {
+			assert.Equal(*responseBody.StartAt, "BBBBBWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA")
+
 			response, err := ioutil.ReadFile("./tests/fixtures/logs/loglist_page_response.json")
 
 			assert.Nil(err)

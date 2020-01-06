@@ -21,6 +21,7 @@ type QueryTime struct {
 	TimeFrom *string `json:"from"`
 	TimeTo   *string `json:"to"`
 	TimeZone *string `json:"timezone,omitempty"`
+	Offset   *int    `json:"offset,omitempty"`
 }
 
 // LogsList represents the base API response returned by the list API
@@ -74,7 +75,7 @@ func (client *Client) GetLogsListPages(logsRequest *LogsListRequest) (logs []Log
 
 	response, err := client.GetLogsList(logsRequest)
 	if err != nil {
-		return response.Logs, err
+		return nil, err
 	}
 
 	logs = append(logs, response.Logs...)

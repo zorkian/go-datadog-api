@@ -4,7 +4,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2019 by authors and contributors.
+ * Copyright 2020 by authors and contributors.
 */
 
 package datadog
@@ -15171,6 +15171,37 @@ func (q *QueryTableRequest) HasProcessQuery() bool {
 // SetProcessQuery allocates a new q.ProcessQuery and returns the pointer to it.
 func (q *QueryTableRequest) SetProcessQuery(v WidgetProcessQuery) {
 	q.ProcessQuery = &v
+}
+
+// GetOffset returns the Offset field if non-nil, zero value otherwise.
+func (q *QueryTime) GetOffset() int {
+	if q == nil || q.Offset == nil {
+		return 0
+	}
+	return *q.Offset
+}
+
+// GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryTime) GetOffsetOk() (int, bool) {
+	if q == nil || q.Offset == nil {
+		return 0, false
+	}
+	return *q.Offset, true
+}
+
+// HasOffset returns a boolean if a field has been set.
+func (q *QueryTime) HasOffset() bool {
+	if q != nil && q.Offset != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOffset allocates a new q.Offset and returns the pointer to it.
+func (q *QueryTime) SetOffset(v int) {
+	q.Offset = &v
 }
 
 // GetTimeFrom returns the TimeFrom field if non-nil, zero value otherwise.
