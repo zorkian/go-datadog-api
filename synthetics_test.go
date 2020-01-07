@@ -121,7 +121,7 @@ func TestGetSyntheticsTestApi(t *testing.T) {
 	if retry := options.GetRetry(); *retry.Count != *expectedRetry.Count {
 		t.Fatalf("expect options.retry.Count %+v. Got %+v", expectedRetry.Count, retry.Count)
 	}
-	if retry := options.GetRetry(); *retry.Count != *expectedRetry.Count {
+	if retry := options.GetRetry(); *retry.Interval != *expectedRetry.Interval {
 		t.Fatalf("expect options.retry.Interval %+v. Got %+v", expectedRetry.Interval, retry.Interval)
 	}
 
