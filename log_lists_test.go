@@ -74,7 +74,7 @@ func TestGetLogsListPages(t *testing.T) {
 		Limit: Int(50),
 	}
 
-	logs, err := client.GetLogsListPages(req)
+	logs, err := client.GetLogsListPages(req, -1)
 
 	assert.Nil(err)
 	assert.Len(logs, 3)
