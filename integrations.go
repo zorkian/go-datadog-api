@@ -386,7 +386,7 @@ func (client *Client) DeleteIntegrationAzure(air *IntegrationAzure) error {
 }
 
 // ListIntegrationAzure gets all Azure Cloud Platform Integrations.
-func (client *Client) ListIntegrationAzure() ([]*IntegrationAzure, error) {
+func (client *Client) ListIntegrationsAzure() ([]*IntegrationAzure, error) {
 	var list []*IntegrationAzure
 	if err := client.doJsonRequest("GET", "/v1/integration/azure", nil, &list); err != nil {
 		return nil, err
