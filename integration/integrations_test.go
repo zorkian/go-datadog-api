@@ -399,6 +399,7 @@ func TestIntegrationGCPCreateAndDelete(t *testing.T) {
 	assert.Equal(t, expected.ProjectID, actual[0].ProjectID)
 	assert.Equal(t, expected.ClientEmail, actual[0].ClientEmail)
 	assert.Equal(t, expected.HostFilters, actual[0].HostFilters)
+	assert.Equal(t, expected.AutoMute, actual[0].AutoMute)
 }
 
 func TestIntegrationGCPUpdate(t *testing.T) {
@@ -406,11 +407,21 @@ func TestIntegrationGCPUpdate(t *testing.T) {
 	defer cleanUpIntegrationGCP(t)
 
 	newHostFilters := datadog.String("name0:value0,name1:value1")
+	newAutoMute := datadog.Bool(false)
 
 	if err := client.UpdateIntegrationGCP(&datadog.IntegrationGCPUpdateRequest{
-		ProjectID:   req.ProjectID,
-		ClientEmail: req.ClientEmail,
-		HostFilters: newHostFilters,
+		Type:                    req.Type,
+		ProjectID:               req.ProjectID,
+		PrivateKeyID:            req.PrivateKeyID,
+		PrivateKey:              req.PrivateKey,
+		ClientEmail:             req.ClientEmail,
+		ClientID:                req.ClientID,
+		AuthURI:                 req.AuthURI,
+		TokenURI:                req.TokenURI,
+		AuthProviderX509CertURL: req.AuthProviderX509CertURL,
+		ClientX509CertURL:       req.ClientX509CertURL,
+		HostFilters:             newHostFilters,
+		AutoMute:                newAutoMute,
 	}); err != nil {
 		t.Fatalf("Updating a GCP integration failed when it shouldn't: %s", err)
 	}
@@ -423,6 +434,7 @@ func TestIntegrationGCPUpdate(t *testing.T) {
 	assert.Equal(t, req.ProjectID, actual[0].ProjectID)
 	assert.Equal(t, req.ClientEmail, actual[0].ClientEmail)
 	assert.Equal(t, newHostFilters, actual[0].HostFilters)
+	assert.Equal(t, newAutoMute, actual[0].AutoMute)
 }
 
 func getTestIntegrationGCPCreateRequest() *datadog.IntegrationGCPCreateRequest {
@@ -438,6 +450,7 @@ func getTestIntegrationGCPCreateRequest() *datadog.IntegrationGCPCreateRequest {
 		AuthProviderX509CertURL: datadog.String("https://www.googleapis.com/oauth2/v1/certs"),
 		ClientX509CertURL:       datadog.String("https://www.googleapis.com/robot/v1/metadata/x509/go-datadog-api@test-project-id.iam.gserviceaccount.com"),
 		HostFilters:             datadog.String("foo:bar,buzz:lightyear"),
+		AutoMute:                datadog.Bool(true),
 	}
 }
 

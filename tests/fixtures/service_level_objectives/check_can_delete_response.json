@@ -1,0 +1,8 @@
+{
+  "data": {
+    "ok": ["12345678901234567890123456789012"]
+  },
+  "errors": {
+    "abcdefabcdefabcdefabcdefabcdefab": "SLO abcdefabcdefabcdefabcdefabcdefab is used in dashboard 123-456-789"
+  }
+}

@@ -39,6 +39,7 @@
       "name": "test grok parser",
       "is_enabled": true,
       "source": "text",
+      "samples": ["sample1", "sample2"],
       "grok": {
         "support_rules": "date_parser %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}",
         "match_rules": "rule %{date(\"yyyy-MM-dd HH:mm:ss,SSS\"):timestamp}"
@@ -133,6 +134,30 @@
       ],
       "target": "test_category",
       "type": "category-processor"
+    },
+    {
+      "name": "test string builder processor",
+      "is_enabled": true,
+      "template": "hello %{user.name}",
+      "is_replace_missing": false,
+      "target": "target",
+      "type": "string-builder-processor"
+    },
+    {
+      "name": "geo ip parser test",
+      "is_enabled": false,
+      "sources": ["source1", "source2"],
+      "target": "target",
+      "type": "geo-ip-parser"
+    },
+    {
+      "name": "lookup processor test",
+      "is_enabled": false,
+      "source": "source",
+      "target": "target",
+      "lookup_table": ["key1,value1", "key2,value2"],
+      "default_lookup": "default",
+      "type": "lookup-processor"
     }
   ]
 }
