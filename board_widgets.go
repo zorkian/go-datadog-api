@@ -305,7 +305,7 @@ type LogStreamDefinition struct {
 // ManageStatusDefinition represents the definition for a Manage Status widget
 type ManageStatusDefinition struct {
 	Type              *string `json:"type"`
-	SummaryType       *string `json:"summary_type"`
+	SummaryType       *string `json:"summary_type,omitempty"`
 	Query             *string `json:"query"`
 	Sort              *string `json:"sort,omitempty"`
 	Count             *int    `json:"count,omitempty"`
