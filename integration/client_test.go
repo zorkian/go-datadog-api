@@ -59,3 +59,11 @@ func TestExtraHeader(t *testing.T) {
 		assert.Empty(t, c.ExtraHeader)
 	})
 }
+
+func TestInsertExtraHeader(t *testing.T) {
+	t.Run("ExtraHeader map should be initialised", func(t *testing.T) {
+		c := datadog.NewClient("foo", "bar")
+		c.ExtraHeader["foo"] = "bar"
+		assert.Equal(t, c.ExtraHeader["foo"], "bar")
+	})
+}

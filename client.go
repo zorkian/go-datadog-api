@@ -64,6 +64,7 @@ func NewClient(apiKey, appKey string) *Client {
 		HttpClient:        http.DefaultClient,
 		RetryTimeout:      time.Duration(60 * time.Second),
 		rateLimitingStats: make(map[string]RateLimit),
+		ExtraHeader:       make(map[string]string),
 	}
 }
 
