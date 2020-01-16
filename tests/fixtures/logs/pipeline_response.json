@@ -149,6 +149,15 @@
       "sources": ["source1", "source2"],
       "target": "target",
       "type": "geo-ip-parser"
+    },
+    {
+      "name": "lookup processor test",
+      "is_enabled": false,
+      "source": "source",
+      "target": "target",
+      "lookup_table": ["key1,value1", "key2,value2"],
+      "default_lookup": "default",
+      "type": "lookup-processor"
     }
   ]
 }

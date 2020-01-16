@@ -1,0 +1,21 @@
+{
+    "logs": [
+        {
+            "id": "BBBBBWgN8Xwgr1vKDQAAAABBV2dOOFh3ZzZobm1mWXJFYTR0OA",
+            "content": {
+                "timestamp": "2019-01-02T10:42:36.320Z",
+                "tags": [
+                    "team:B"
+                ],
+                "attributes": {
+                    "customAttribute": 456,
+                    "duration": 5432
+                },
+                "host": "i-321",
+                "service": "agent",
+                "message": "host connected to remote"
+            }
+        }
+    ],
+    "status": "ok"
+}

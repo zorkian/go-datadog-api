@@ -1,11 +1,12 @@
 package datadog
 
 import (
-	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLogsPipelineGetAll(t *testing.T) {
@@ -174,6 +175,16 @@ var expectedPipeline = &LogsPipeline{
 			Definition: GeoIPParser{
 				Sources: []string{"source1", "source2"},
 				Target:  String("target"),
+			},
+		}, {
+			Name:      String("lookup processor test"),
+			IsEnabled: Bool(false),
+			Type:      String("lookup-processor"),
+			Definition: LookupProcessor{
+				Source:        String("source"),
+				Target:        String("target"),
+				LookupTable:   []string{"key1,value1", "key2,value2"},
+				DefaultLookup: String("default"),
 			},
 		},
 	},
