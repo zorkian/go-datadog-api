@@ -4,7 +4,7 @@
  *
  * Please see the included LICENSE file for licensing information.
  *
- * Copyright 2019 by authors and contributors.
+ * Copyright 2020 by authors and contributors.
 */
 
 package datadog
@@ -23569,6 +23569,42 @@ func (u *UserAgentParser) HasIsEncoded() bool {
 	return false
 }
 
+// SetIsEncoded allocates a new u.IsEncoded and returns the pointer to it.
+func (u *UserAgentParser) SetIsEncoded(v bool) {
+	u.IsEncoded = &v
+}
+
+// GetTarget returns the Target field if non-nil, zero value otherwise.
+func (u *UserAgentParser) GetTarget() string {
+	if u == nil || u.Target == nil {
+		return ""
+	}
+	return *u.Target
+}
+
+// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (u *UserAgentParser) GetTargetOk() (string, bool) {
+	if u == nil || u.Target == nil {
+		return "", false
+	}
+	return *u.Target, true
+}
+
+// HasTarget returns a boolean if a field has been set.
+func (u *UserAgentParser) HasTarget() bool {
+	if u != nil && u.Target != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTarget allocates a new u.Target and returns the pointer to it.
+func (u *UserAgentParser) SetTarget(v string) {
+	u.Target = &v
+}
+
 // GetCustomPayload returns the CustomPayload field if non-nil, zero value otherwise.
 func (w *Webhook) GetCustomPayload() string {
 	if w == nil || w.CustomPayload == nil {
@@ -23719,37 +23755,6 @@ func (w *Webhook) HasURL() bool {
 	return false
 }
 
-// SetIsEncoded allocates a new u.IsEncoded and returns the pointer to it.
-func (u *UserAgentParser) SetIsEncoded(v bool) {
-	u.IsEncoded = &v
-}
-
-// GetTarget returns the Target field if non-nil, zero value otherwise.
-func (u *UserAgentParser) GetTarget() string {
-	if u == nil || u.Target == nil {
-		return ""
-	}
-	return *u.Target
-}
-
-// GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (u *UserAgentParser) GetTargetOk() (string, bool) {
-	if u == nil || u.Target == nil {
-		return "", false
-	}
-	return *u.Target, true
-}
-
-// HasTarget returns a boolean if a field has been set.
-func (u *UserAgentParser) HasTarget() bool {
-	if u != nil && u.Target != nil {
-		return true
-	}
-
-	return false
-}
-
 // SetURL allocates a new w.URL and returns the pointer to it.
 func (w *Webhook) SetURL(v string) {
 	w.URL = &v
@@ -23779,11 +23784,6 @@ func (w *Webhook) HasUseCustomPayload() bool {
 	}
 
 	return false
-}
-
-// SetTarget allocates a new u.Target and returns the pointer to it.
-func (u *UserAgentParser) SetTarget(v string) {
-	u.Target = &v
 }
 
 // SetUseCustomPayload allocates a new w.UseCustomPayload and returns the pointer to it.
