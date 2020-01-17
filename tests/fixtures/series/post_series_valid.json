@@ -1,0 +1,9 @@
+{"series" :
+    [{"metric":"test.metric",
+     "points":[[1575591864, 20]],
+     "type":"rate",
+     "host":"test.example.com",
+     "tags":["environment:test"],
+     "interval": 20}
+   ]
+}
