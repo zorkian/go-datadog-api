@@ -2,6 +2,7 @@ package integration
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/zorkian/go-datadog-api"
@@ -117,6 +118,7 @@ func getTestDowntime() *datadog.Downtime {
 		Period:   datadog.Int(1),
 		WeekDays: []string{"Mon", "Tue", "Wed", "Thu", "Fri"},
 	}
+	sec := int(time.Now().Unix())
 
 	return &datadog.Downtime{
 		Active:      datadog.Bool(false),
@@ -127,8 +129,8 @@ func getTestDowntime() *datadog.Downtime {
 		ParentId:    nil,
 		Timezone:    datadog.String("UTC"),
 		Scope:       []string{"env:downtime_test"},
-		Start:       datadog.Int(1577836800),
-		End:         datadog.Int(1577840400),
+		Start:       datadog.Int(sec + 100),
+		End:         datadog.Int(sec + 200),
 		Recurrence:  r,
 		Type:        datadog.Int(2),
 	}
