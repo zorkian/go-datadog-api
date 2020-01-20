@@ -58,7 +58,7 @@ type SyntheticsOptions struct {
 	MinLocationFailed  *int           `json:"min_location_failed,omitempty"`
 	DeviceIds          []string       `json:"device_ids,omitempty"`
 	AcceptSelfSigned   *bool          `json:"accept_self_signed,omitempty"`
-	MonitorOption      *MonitorOption `json:"monitor_option,omitempty"`
+	MonitorOption      *MonitorOption `json:"monitor_options,omitempty"`
 }
 
 type MonitorOption struct {
