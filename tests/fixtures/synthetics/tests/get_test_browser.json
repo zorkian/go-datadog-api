@@ -55,7 +55,7 @@
     "device_ids": [
       "laptop_large"
     ],
-    "monitor_option": {
+    "monitor_options": {
       "renotify_interval": 1600
     }
   }
