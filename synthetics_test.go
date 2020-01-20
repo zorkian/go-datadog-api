@@ -253,7 +253,7 @@ func TestGetSyntheticsTestBrowser(t *testing.T) {
 
 	renotifyInterval := options.MonitorOption.RenotifyInterval
 	expectedRenotifyInterval := 1600
-	if renotifyInterval != renotifyInterval {
+	if renotifyInterval != expectedRenotifyInterval {
 		t.Fatalf("expect renotify_interval %d. Got %d", expectedRenotifyInterval, renotifyInterval)
 	}
 
