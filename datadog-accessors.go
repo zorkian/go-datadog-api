@@ -16475,6 +16475,68 @@ func (r *reqUpdateUser) SetVerified(v bool) {
 	r.Verified = &v
 }
 
+// GetCount returns the Count field if non-nil, zero value otherwise.
+func (r *Retry) GetCount() int {
+	if r == nil || r.Count == nil {
+		return 0
+	}
+	return *r.Count
+}
+
+// GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (r *Retry) GetCountOk() (int, bool) {
+	if r == nil || r.Count == nil {
+		return 0, false
+	}
+	return *r.Count, true
+}
+
+// HasCount returns a boolean if a field has been set.
+func (r *Retry) HasCount() bool {
+	if r != nil && r.Count != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCount allocates a new r.Count and returns the pointer to it.
+func (r *Retry) SetCount(v int) {
+	r.Count = &v
+}
+
+// GetInterval returns the Interval field if non-nil, zero value otherwise.
+func (r *Retry) GetInterval() int {
+	if r == nil || r.Interval == nil {
+		return 0
+	}
+	return *r.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (r *Retry) GetIntervalOk() (int, bool) {
+	if r == nil || r.Interval == nil {
+		return 0, false
+	}
+	return *r.Interval, true
+}
+
+// HasInterval returns a boolean if a field has been set.
+func (r *Retry) HasInterval() bool {
+	if r != nil && r.Interval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInterval allocates a new r.Interval and returns the pointer to it.
+func (r *Retry) SetInterval(v int) {
+	r.Interval = &v
+}
+
 // GetColor returns the Color field if non-nil, zero value otherwise.
 func (r *Rule) GetColor() string {
 	if r == nil || r.Color == nil {
@@ -19761,6 +19823,32 @@ func (s *SyntheticsOptions) SetMinLocationFailed(v int) {
 	s.MinLocationFailed = &v
 }
 
+// GetRetry returns the Retry field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetRetry() Retry {
+	if s == nil || s.Retry == nil {
+		return Retry{}
+	}
+	return *s.Retry
+}
+
+// GetRetryOk returns a tuple with the Retry field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetRetryOk() (Retry, bool) {
+	if s == nil || s.Retry == nil {
+		return Retry{}, false
+	}
+	return *s.Retry, true
+}
+
+// HasRetry returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasRetry() bool {
+	if s != nil && s.Retry != nil {
+		return true
+	}
+
+	return false
+}
+
 // GetMonitorOptions returns the MonitorOptions field if non-nil, zero value otherwise.
 func (s *SyntheticsOptions) GetMonitorOptions() MonitorOptions {
 	if s == nil || s.MonitorOptions == nil {
@@ -19781,12 +19869,12 @@ func (s *SyntheticsOptions) GetMonitorOptionsOk() (MonitorOptions, bool) {
 // HasMonitorOptions returns a boolean if a field has been set.
 func (s *SyntheticsOptions) HasMonitorOptions() bool {
 	if s != nil && s.MonitorOptions != nil {
-		return true
-	}
 
-	return false
+// SetRetry allocates a new s.Retry and returns the pointer to it.
+func (s *SyntheticsOptions) SetRetry(v Retry) {
+	s.Retry = &v
 }
-
+    
 // SetMonitorOptions allocates a new s.MonitorOptions and returns the pointer to it.
 func (s *SyntheticsOptions) SetMonitorOptions(v MonitorOptions) {
 	s.MonitorOptions = &v
@@ -20297,7 +20385,8 @@ func (s *SyntheticsTest) GetName() string {
 }
 
 // GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
+// and a boolean to check if the value has been set
+    
 func (s *SyntheticsTest) GetNameOk() (string, bool) {
 	if s == nil || s.Name == nil {
 		return "", false

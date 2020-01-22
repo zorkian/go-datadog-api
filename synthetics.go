@@ -58,11 +58,17 @@ type SyntheticsOptions struct {
 	MinLocationFailed  *int            `json:"min_location_failed,omitempty"`
 	DeviceIds          []string        `json:"device_ids,omitempty"`
 	AcceptSelfSigned   *bool           `json:"accept_self_signed,omitempty"`
+  Retry              *Retry          `json:"retry,omitempty"`
 	MonitorOptions     *MonitorOptions `json:"monitor_options,omitempty"`
 }
 
 type MonitorOptions struct {
 	RenotifyInterval *int `json:"renotify_interval,omitempty"`
+}
+
+type Retry struct {
+	Count    *int `json:"count,omitempty"`
+	Interval *int `json:"interval,omitempty"`
 }
 
 type SyntheticsUser struct {
