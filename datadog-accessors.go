@@ -19823,6 +19823,37 @@ func (s *SyntheticsOptions) SetMinLocationFailed(v int) {
 	s.MinLocationFailed = &v
 }
 
+// GetMonitorOptions returns the MonitorOptions field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetMonitorOptions() MonitorOptions {
+	if s == nil || s.MonitorOptions == nil {
+		return MonitorOptions{}
+	}
+	return *s.MonitorOptions
+}
+
+// GetMonitorOptionsOk returns a tuple with the MonitorOptions field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetMonitorOptionsOk() (MonitorOptions, bool) {
+	if s == nil || s.MonitorOptions == nil {
+		return MonitorOptions{}, false
+	}
+	return *s.MonitorOptions, true
+}
+
+// HasMonitorOptions returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasMonitorOptions() bool {
+	if s != nil && s.MonitorOptions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorOptions allocates a new s.MonitorOptions and returns the pointer to it.
+func (s *SyntheticsOptions) SetMonitorOptions(v MonitorOptions) {
+	s.MonitorOptions = &v
+}
+
 // GetRetry returns the Retry field if non-nil, zero value otherwise.
 func (s *SyntheticsOptions) GetRetry() Retry {
 	if s == nil || s.Retry == nil {
@@ -19849,35 +19880,9 @@ func (s *SyntheticsOptions) HasRetry() bool {
 	return false
 }
 
-// GetMonitorOptions returns the MonitorOptions field if non-nil, zero value otherwise.
-func (s *SyntheticsOptions) GetMonitorOptions() MonitorOptions {
-	if s == nil || s.MonitorOptions == nil {
-		return MonitorOptions{}
-	}
-	return *s.MonitorOptions
-}
-
-// GetMonitorOptionsOk returns a tuple with the MonitorOptions field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (s *SyntheticsOptions) GetMonitorOptionsOk() (MonitorOptions, bool) {
-	if s == nil || s.MonitorOptions == nil {
-		return MonitorOptions{}, false
-	}
-	return *s.MonitorOptions, true
-}
-
-// HasMonitorOptions returns a boolean if a field has been set.
-func (s *SyntheticsOptions) HasMonitorOptions() bool {
-	if s != nil && s.MonitorOptions != nil {
-
 // SetRetry allocates a new s.Retry and returns the pointer to it.
 func (s *SyntheticsOptions) SetRetry(v Retry) {
 	s.Retry = &v
-}
-    
-// SetMonitorOptions allocates a new s.MonitorOptions and returns the pointer to it.
-func (s *SyntheticsOptions) SetMonitorOptions(v MonitorOptions) {
-	s.MonitorOptions = &v
 }
 
 // GetTickEvery returns the TickEvery field if non-nil, zero value otherwise.
@@ -20385,8 +20390,7 @@ func (s *SyntheticsTest) GetName() string {
 }
 
 // GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set
-    
+// and a boolean to check if the value has been set.
 func (s *SyntheticsTest) GetNameOk() (string, bool) {
 	if s == nil || s.Name == nil {
 		return "", false
