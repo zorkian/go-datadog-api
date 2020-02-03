@@ -171,10 +171,10 @@ type IntegrationWebhookRequest struct {
 type Webhook struct {
 	Name             *string `json:"name"`
 	URL              *string `json:"url"`
-	UseCustomPayload *string `json:"use_custom_payload"`
-	CustomPayload    *string `json:"custom_payload"`
-	EncodeAsForm     *string `json:"encode_as_form"`
-	Headers          *string `json:"headers"`
+	UseCustomPayload *string `json:"use_custom_payload,omitempty"`
+	CustomPayload    *string `json:"custom_payload,omitempty"`
+	EncodeAsForm     *string `json:"encode_as_form,omitempty"`
+	Headers          *string `json:"headers,omitempty"`
 }
 
 // CreateIntegrationWebhook creates new webhook integration object(s).
