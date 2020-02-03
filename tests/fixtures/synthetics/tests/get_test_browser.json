@@ -54,6 +54,9 @@
     "tick_every": 900,
     "device_ids": [
       "laptop_large"
-    ]
+    ],
+    "monitor_options": {
+      "renotify_interval": 1600
+    }
   }
 }

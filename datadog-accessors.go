@@ -13747,6 +13747,37 @@ func (m *Monitor) SetType(v string) {
 	m.Type = &v
 }
 
+// GetRenotifyInterval returns the RenotifyInterval field if non-nil, zero value otherwise.
+func (m *MonitorOptions) GetRenotifyInterval() int {
+	if m == nil || m.RenotifyInterval == nil {
+		return 0
+	}
+	return *m.RenotifyInterval
+}
+
+// GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (m *MonitorOptions) GetRenotifyIntervalOk() (int, bool) {
+	if m == nil || m.RenotifyInterval == nil {
+		return 0, false
+	}
+	return *m.RenotifyInterval, true
+}
+
+// HasRenotifyInterval returns a boolean if a field has been set.
+func (m *MonitorOptions) HasRenotifyInterval() bool {
+	if m != nil && m.RenotifyInterval != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRenotifyInterval allocates a new m.RenotifyInterval and returns the pointer to it.
+func (m *MonitorOptions) SetRenotifyInterval(v int) {
+	m.RenotifyInterval = &v
+}
+
 // GetName returns the Name field if non-nil, zero value otherwise.
 func (m *MonitorQueryOpts) GetName() string {
 	if m == nil || m.Name == nil {
@@ -19790,6 +19821,37 @@ func (s *SyntheticsOptions) HasMinLocationFailed() bool {
 // SetMinLocationFailed allocates a new s.MinLocationFailed and returns the pointer to it.
 func (s *SyntheticsOptions) SetMinLocationFailed(v int) {
 	s.MinLocationFailed = &v
+}
+
+// GetMonitorOptions returns the MonitorOptions field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetMonitorOptions() MonitorOptions {
+	if s == nil || s.MonitorOptions == nil {
+		return MonitorOptions{}
+	}
+	return *s.MonitorOptions
+}
+
+// GetMonitorOptionsOk returns a tuple with the MonitorOptions field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetMonitorOptionsOk() (MonitorOptions, bool) {
+	if s == nil || s.MonitorOptions == nil {
+		return MonitorOptions{}, false
+	}
+	return *s.MonitorOptions, true
+}
+
+// HasMonitorOptions returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasMonitorOptions() bool {
+	if s != nil && s.MonitorOptions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorOptions allocates a new s.MonitorOptions and returns the pointer to it.
+func (s *SyntheticsOptions) SetMonitorOptions(v MonitorOptions) {
+	s.MonitorOptions = &v
 }
 
 // GetRetry returns the Retry field if non-nil, zero value otherwise.
