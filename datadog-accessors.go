@@ -20784,6 +20784,99 @@ func (t *TemplateVariable) SetPrefix(v string) {
 	t.Prefix = &v
 }
 
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (t *TemplateVariablePreset) GetName() string {
+	if t == nil || t.Name == nil {
+		return ""
+	}
+	return *t.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TemplateVariablePreset) GetNameOk() (string, bool) {
+	if t == nil || t.Name == nil {
+		return "", false
+	}
+	return *t.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (t *TemplateVariablePreset) HasName() bool {
+	if t != nil && t.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new t.Name and returns the pointer to it.
+func (t *TemplateVariablePreset) SetName(v string) {
+	t.Name = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (t *TemplateVariablePresetValue) GetName() string {
+	if t == nil || t.Name == nil {
+		return ""
+	}
+	return *t.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TemplateVariablePresetValue) GetNameOk() (string, bool) {
+	if t == nil || t.Name == nil {
+		return "", false
+	}
+	return *t.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (t *TemplateVariablePresetValue) HasName() bool {
+	if t != nil && t.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new t.Name and returns the pointer to it.
+func (t *TemplateVariablePresetValue) SetName(v string) {
+	t.Name = &v
+}
+
+// GetValue returns the Value field if non-nil, zero value otherwise.
+func (t *TemplateVariablePresetValue) GetValue() string {
+	if t == nil || t.Value == nil {
+		return ""
+	}
+	return *t.Value
+}
+
+// GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (t *TemplateVariablePresetValue) GetValueOk() (string, bool) {
+	if t == nil || t.Value == nil {
+		return "", false
+	}
+	return *t.Value, true
+}
+
+// HasValue returns a boolean if a field has been set.
+func (t *TemplateVariablePresetValue) HasValue() bool {
+	if t != nil && t.Value != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValue allocates a new t.Value and returns the pointer to it.
+func (t *TemplateVariablePresetValue) SetValue(v string) {
+	t.Value = &v
+}
+
 // GetCritical returns the Critical field if non-nil, zero value otherwise.
 func (t *ThresholdCount) GetCritical() json.Number {
 	if t == nil || t.Critical == nil {

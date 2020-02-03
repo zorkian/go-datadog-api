@@ -26,7 +26,6 @@ func TestDashboardCreateAndDeleteAdvancesTimeseries(t *testing.T) {
 		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
 	}
 	assertDashboardEquals(t, actual, expected)
-
 }
 
 func TestDashboardUpdate(t *testing.T) {
@@ -195,6 +194,7 @@ func TestDashboardGetWithNewId(t *testing.T) {
 		assert.Contains(t, err.Error(), "unsupported id type")
 	}
 }
+
 func createTestDashboard(t *testing.T) *datadog.Dashboard {
 	board := getTestDashboard(createGraph)
 	board, err := client.CreateDashboard(board)
