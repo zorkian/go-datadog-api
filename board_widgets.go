@@ -188,23 +188,25 @@ type DistributionRequest struct {
 
 // EventStreamDefinition represents the definition for an Event Stream widget
 type EventStreamDefinition struct {
-	Type       *string     `json:"type"`
-	Query      *string     `json:"query"`
-	EventSize  *string     `json:"event_size,omitempty"`
-	Title      *string     `json:"title,omitempty"`
-	TitleSize  *string     `json:"title_size,omitempty"`
-	TitleAlign *string     `json:"title_align,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	Type          *string     `json:"type"`
+	Query         *string     `json:"query"`
+	TagsExecution *string     `json:"tags_execution,omitempty"`
+	EventSize     *string     `json:"event_size,omitempty"`
+	Title         *string     `json:"title,omitempty"`
+	TitleSize     *string     `json:"title_size,omitempty"`
+	TitleAlign    *string     `json:"title_align,omitempty"`
+	Time          *WidgetTime `json:"time,omitempty"`
 }
 
 // EventTimelineDefinition represents the definition for an Event Timeline widget
 type EventTimelineDefinition struct {
-	Type       *string     `json:"type"`
-	Query      *string     `json:"query"`
-	Title      *string     `json:"title,omitempty"`
-	TitleSize  *string     `json:"title_size,omitempty"`
-	TitleAlign *string     `json:"title_align,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	Type          *string     `json:"type"`
+	Query         *string     `json:"query"`
+	TagsExecution *string     `json:"tags_execution,omitempty"`
+	Title         *string     `json:"title,omitempty"`
+	TitleSize     *string     `json:"title_size,omitempty"`
+	TitleAlign    *string     `json:"title_align,omitempty"`
+	Time          *WidgetTime `json:"time,omitempty"`
 }
 
 // FreeTextDefinition represents the definition for a Free Text widget
