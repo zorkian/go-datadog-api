@@ -148,10 +148,11 @@ type ChangeRequest struct {
 	OrderDir     *string `json:"order_dir,omitempty"`
 	ShowPresent  *bool   `json:"show_present,omitempty"`
 	// A ChangeRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // CheckStatusDefinition represents the definition for a Check Status widget
@@ -348,10 +349,11 @@ type QueryValueRequest struct {
 	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	Aggregator         *string                   `json:"aggregator,omitempty"`
 	// A QueryValueRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // QueryTableDefinition represents the definition for a Table widget
@@ -370,10 +372,11 @@ type QueryTableRequest struct {
 	Limit              *int                      `json:"limit,omitempty"`
 	Order              *string                   `json:"order,omitempty"`
 	// A QueryTableRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // ScatterplotDefinition represents the definition for a Scatterplot widget
@@ -437,10 +440,11 @@ type TimeseriesRequest struct {
 	Metadata    []WidgetMetadata        `json:"metadata,omitempty"`
 	DisplayType *string                 `json:"display_type,omitempty"`
 	// A TimeseriesRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 type TimeseriesRequestStyle struct {
 	Palette   *string `json:"palette,omitempty"`
@@ -461,10 +465,11 @@ type ToplistRequest struct {
 	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	Style              *WidgetRequestStyle       `json:"style,omitempty"`
 	// A ToplistRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // TraceServiceDefinition represents the definition for a Trace Service widget
