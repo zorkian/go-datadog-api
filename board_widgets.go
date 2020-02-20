@@ -152,6 +152,7 @@ type ChangeRequest struct {
 	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
 	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
@@ -353,6 +354,7 @@ type QueryValueRequest struct {
 	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
 	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
@@ -376,6 +378,7 @@ type QueryTableRequest struct {
 	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
 	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
@@ -444,6 +447,7 @@ type TimeseriesRequest struct {
 	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
 	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 type TimeseriesRequestStyle struct {
@@ -469,6 +473,7 @@ type ToplistRequest struct {
 	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
 	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
