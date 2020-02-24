@@ -182,10 +182,12 @@ type DistributionDefinition struct {
 type DistributionRequest struct {
 	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// A DistributionRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // EventStreamDefinition represents the definition for an Event Stream widget
@@ -240,10 +242,12 @@ type HeatmapDefinition struct {
 type HeatmapRequest struct {
 	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// A HeatmapRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // HostmapDefinition represents the definition for a Hostmap widget
@@ -266,10 +270,12 @@ type HostmapRequests struct {
 }
 type HostmapRequest struct {
 	// A HostmapRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 type HostmapStyle struct {
 	Palette     *string `json:"palette,omitempty"`
@@ -401,10 +407,12 @@ type ScatterplotRequests struct {
 type ScatterplotRequest struct {
 	Aggregator *string `json:"aggregator,omitempty"`
 	// A ScatterplotRequest should implement exactly one of the following query types
-	MetricQuery  *string              `json:"q,omitempty"`
-	ApmQuery     *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
-	LogQuery     *WidgetApmOrLogQuery `json:"log_query,omitempty"`
-	ProcessQuery *WidgetProcessQuery  `json:"process_query,omitempty"`
+	MetricQuery   *string              `json:"q,omitempty"`
+	ApmQuery      *WidgetApmOrLogQuery `json:"apm_query,omitempty"`
+	LogQuery      *WidgetApmOrLogQuery `json:"log_query,omitempty"`
+	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
+	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // ServiceLevelObjectiveDefinition represents the definition for a Service Level Objective widget
