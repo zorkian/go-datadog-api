@@ -10,7 +10,7 @@
       }
     },
     "overall": {
-      "uptime": 6.765872955322266,
+      "sli_value": 6.765872955322266,
       "span_precision": 2,
       "name": "test uptime",
       "precision": {
@@ -587,7 +587,7 @@
     "from_ts": 1571162100,
     "groups": [
       {
-        "uptime": 6.765872955322266,
+        "sli_value": 6.765872955322266,
         "span_precision": 2,
         "name": "some:tag",
         "precision": {

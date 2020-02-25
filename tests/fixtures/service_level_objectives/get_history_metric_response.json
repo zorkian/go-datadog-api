@@ -77,7 +77,7 @@
       }
     },
     "overall": {
-      "uptime": 100,
+      "sli_value": 100,
       "span_precision": 0,
       "precision": {
         "7d": 0,
