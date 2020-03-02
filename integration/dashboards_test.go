@@ -150,6 +150,46 @@ func TestDashboardCreateWithProcessQuery(t *testing.T) {
 	assertDashboardEquals(t, actual, expected)
 }
 
+// Create a dashboard with a rum query graph.
+func TestDashboardCreateWithRumQuery(t *testing.T) {
+	expected := getTestDashboard(createGraphWithRumQuery)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
+// Create a dashboard with a security query graph.
+func TestDashboardCreateWithSecurityQuery(t *testing.T) {
+	expected := getTestDashboard(createGraphWithSecurityQuery)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
 func TestDashboardGetWithNewId(t *testing.T) {
 	expected := getTestDashboard(createGraph)
 	// create the dashboard and compare it
@@ -326,6 +366,68 @@ func createGraphWithLogQuery() []datadog.Graph {
 
 	graph := datadog.Graph{
 		Title:      datadog.String("Mandatory graph 3"),
+		Definition: gd,
+	}
+
+	graphs := []datadog.Graph{}
+	graphs = append(graphs, graph)
+	return graphs
+}
+
+func createGraphWithRumQuery() []datadog.Graph {
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Type: datadog.String("bars"),
+		RumQuery: &datadog.GraphApmOrLogQuery{
+			Index: datadog.String("rum"),
+			Compute: &datadog.GraphApmOrLogQueryCompute{
+				Aggregation: datadog.String("count"),
+			},
+			Search: &datadog.GraphApmOrLogQuerySearch{
+				Query: datadog.String("status:info"),
+			},
+			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{{
+				Facet: datadog.String("service"),
+			}},
+		},
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 4"),
+		Definition: gd,
+	}
+
+	graphs := []datadog.Graph{}
+	graphs = append(graphs, graph)
+	return graphs
+}
+
+func createGraphWithSecurityQuery() []datadog.Graph {
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Type: datadog.String("bars"),
+		SecurityQuery: &datadog.GraphApmOrLogQuery{
+			Index: datadog.String("signal"),
+			Compute: &datadog.GraphApmOrLogQueryCompute{
+				Aggregation: datadog.String("count"),
+			},
+			Search: &datadog.GraphApmOrLogQuerySearch{
+				Query: datadog.String("status:(high OR critical)"),
+			},
+			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{{
+				Facet: datadog.String("host"),
+			}},
+		},
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 5"),
 		Definition: gd,
 	}
 

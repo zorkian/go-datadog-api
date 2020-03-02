@@ -38,10 +38,12 @@ type GraphDefinitionRequest struct {
 	Metadata       map[string]GraphDefinitionMetadata `json:"metadata,omitempty"`
 
 	// A Graph can only have one of these types of query.
-	Query        *string             `json:"q,omitempty"`
-	LogQuery     *GraphApmOrLogQuery `json:"log_query,omitempty"`
-	ApmQuery     *GraphApmOrLogQuery `json:"apm_query,omitempty"`
-	ProcessQuery *GraphProcessQuery  `json:"process_query,omitempty"`
+	Query         *string             `json:"q,omitempty"`
+	LogQuery      *GraphApmOrLogQuery `json:"log_query,omitempty"`
+	ApmQuery      *GraphApmOrLogQuery `json:"apm_query,omitempty"`
+	ProcessQuery  *GraphProcessQuery  `json:"process_query,omitempty"`
+	RumQuery      *GraphApmOrLogQuery `json:"rum_query,omitempty"`
+	SecurityQuery *GraphApmOrLogQuery `json:"security_query,omitempty"`
 }
 
 // GraphApmOrLogQuery represents an APM or a Log query
