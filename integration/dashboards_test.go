@@ -150,6 +150,46 @@ func TestDashboardCreateWithProcessQuery(t *testing.T) {
 	assertDashboardEquals(t, actual, expected)
 }
 
+// Create a dashboard with a rum query graph.
+func TestDashboardCreateWithRumQuery(t *testing.T) {
+	expected := getTestDashboard(createGraphWithRumQuery)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
+// Create a dashboard with a security query graph.
+func TestDashboardCreateWithSecurityQuery(t *testing.T) {
+	expected := getTestDashboard(createGraphWithSecurityQuery)
+	// create the dashboard and compare it
+	actual, err := client.CreateDashboard(expected)
+	if err != nil {
+		t.Fatalf("Creating a dashboard failed when it shouldn't. (%s)", err)
+	}
+	defer cleanUpDashboard(t, *actual.Id)
+
+	assertDashboardEquals(t, actual, expected)
+
+	// now try to fetch it freshly and compare it again
+	actual, err = client.GetDashboard(*actual.Id)
+	if err != nil {
+		t.Fatalf("Retrieving a dashboard failed when it shouldn't. (%s)", err)
+	}
+	assertDashboardEquals(t, actual, expected)
+}
+
 func TestDashboardGetWithNewId(t *testing.T) {
 	expected := getTestDashboard(createGraph)
 	// create the dashboard and compare it
