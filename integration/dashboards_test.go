@@ -346,7 +346,7 @@ func createGraphWithRumQuery() []datadog.Graph {
 			Compute: &datadog.GraphApmOrLogQueryCompute{
 				Aggregation: datadog.String("count"),
 			},
-			Search:  &datadog.GraphApmOrLogQuerySearch{
+			Search: &datadog.GraphApmOrLogQuerySearch{
 				Query: datadog.String("status:info"),
 			},
 			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{{
@@ -377,7 +377,7 @@ func createGraphWithSecurityQuery() []datadog.Graph {
 			Compute: &datadog.GraphApmOrLogQueryCompute{
 				Aggregation: datadog.String("count"),
 			},
-			Search:  &datadog.GraphApmOrLogQuerySearch{
+			Search: &datadog.GraphApmOrLogQuerySearch{
 				Query: datadog.String("status:(high OR critical)"),
 			},
 			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{{
