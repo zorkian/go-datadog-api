@@ -334,6 +334,68 @@ func createGraphWithLogQuery() []datadog.Graph {
 	return graphs
 }
 
+func createGraphWithRumQuery() []datadog.Graph {
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Type: datadog.String("bars"),
+		RumQuery: &datadog.GraphApmOrLogQuery{
+			Index: datadog.String("rum"),
+			Compute: &datadog.GraphApmOrLogQueryCompute{
+				Aggregation: datadog.String("count"),
+			},
+			Search:  &datadog.GraphApmOrLogQuerySearch{
+				Query: datadog.String("status:info"),
+			},
+			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{{
+				Facet: datadog.String("service"),
+			}},
+		},
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 4"),
+		Definition: gd,
+	}
+
+	graphs := []datadog.Graph{}
+	graphs = append(graphs, graph)
+	return graphs
+}
+
+func createGraphWithSecurityQuery() []datadog.Graph {
+	gd := &datadog.GraphDefinition{}
+	gd.SetViz("timeseries")
+
+	r := gd.Requests
+	gd.Requests = append(r, datadog.GraphDefinitionRequest{
+		Type: datadog.String("bars"),
+		SecurityQuery: &datadog.GraphApmOrLogQuery{
+			Index: datadog.String("signal"),
+			Compute: &datadog.GraphApmOrLogQueryCompute{
+				Aggregation: datadog.String("count"),
+			},
+			Search:  &datadog.GraphApmOrLogQuerySearch{
+				Query: datadog.String("status:(high OR critical)"),
+			},
+			GroupBy: []datadog.GraphApmOrLogQueryGroupBy{{
+				Facet: datadog.String("host"),
+			}},
+		},
+	})
+
+	graph := datadog.Graph{
+		Title:      datadog.String("Mandatory graph 5"),
+		Definition: gd,
+	}
+
+	graphs := []datadog.Graph{}
+	graphs = append(graphs, graph)
+	return graphs
+}
+
 func createGraphWithProcessQuery() []datadog.Graph {
 	gd := &datadog.GraphDefinition{}
 	gd.SetViz("timeseries")
