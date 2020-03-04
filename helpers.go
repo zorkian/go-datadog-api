@@ -163,3 +163,7 @@ func GetFloatFromInterface(intf *interface{}) (*float64, bool, error) {
 	}
 	return result, auto, nil
 }
+
+type DataWrapper struct {
+	Data interface{} `json:"data"`
+}
