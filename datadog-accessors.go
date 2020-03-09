@@ -15483,6 +15483,331 @@ func (q *QueryConfig) SetQueryString(v string) {
 	q.QueryString = &v
 }
 
+<<<<<<< HEAD
+// GetTimeRange returns the TimeRange field if non-nil, zero value otherwise.
+func (q *QueryConfig) GetTimeRange() TimeRange {
+	if q == nil || q.TimeRange == nil {
+		return TimeRange{}
+=======
+// GetCreated returns the Created field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetCreated() time.Time {
+	if p == nil || p.Created == nil {
+		return time.Time{}
+>>>>>>> ISSUE-307 - adding more unit tests
+	}
+	return *q.TimeRange
+}
+
+// GetTimeRangeOk returns a tuple with the TimeRange field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+<<<<<<< HEAD
+func (q *QueryConfig) GetTimeRangeOk() (TimeRange, bool) {
+	if q == nil || q.TimeRange == nil {
+		return TimeRange{}, false
+=======
+func (p *PermissionAttributes) GetCreatedOk() (time.Time, bool) {
+	if p == nil || p.Created == nil {
+		return time.Time{}, false
+>>>>>>> ISSUE-307 - adding more unit tests
+	}
+	return *q.TimeRange, true
+}
+
+<<<<<<< HEAD
+=======
+// HasCreated returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasCreated() bool {
+	if p != nil && p.Created != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated allocates a new p.Created and returns the pointer to it.
+func (p *PermissionAttributes) SetCreated(v time.Time) {
+	p.Created = &v
+}
+
+// GetDescription returns the Description field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetDescription() string {
+	if p == nil || p.Description == nil {
+		return ""
+	}
+	return *p.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (p *PermissionAttributes) GetDescriptionOk() (string, bool) {
+	if p == nil || p.Description == nil {
+		return "", false
+	}
+	return *p.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasDescription() bool {
+	if p != nil && p.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription allocates a new p.Description and returns the pointer to it.
+func (p *PermissionAttributes) SetDescription(v string) {
+	p.Description = &v
+}
+
+// GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetDisplayName() string {
+	if p == nil || p.DisplayName == nil {
+		return ""
+	}
+	return *p.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (p *PermissionAttributes) GetDisplayNameOk() (string, bool) {
+	if p == nil || p.DisplayName == nil {
+		return "", false
+	}
+	return *p.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasDisplayName() bool {
+	if p != nil && p.DisplayName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName allocates a new p.DisplayName and returns the pointer to it.
+func (p *PermissionAttributes) SetDisplayName(v string) {
+	p.DisplayName = &v
+}
+
+// GetDisplayType returns the DisplayType field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetDisplayType() string {
+	if p == nil || p.DisplayType == nil {
+		return ""
+	}
+	return *p.DisplayType
+}
+
+// GetDisplayTypeOk returns a tuple with the DisplayType field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (p *PermissionAttributes) GetDisplayTypeOk() (string, bool) {
+	if p == nil || p.DisplayType == nil {
+		return "", false
+	}
+	return *p.DisplayType, true
+}
+
+// HasDisplayType returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasDisplayType() bool {
+	if p != nil && p.DisplayType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayType allocates a new p.DisplayType and returns the pointer to it.
+func (p *PermissionAttributes) SetDisplayType(v string) {
+	p.DisplayType = &v
+}
+
+// GetGroupName returns the GroupName field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetGroupName() string {
+	if p == nil || p.GroupName == nil {
+		return ""
+	}
+	return *p.GroupName
+}
+
+// GetGroupNameOk returns a tuple with the GroupName field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (p *PermissionAttributes) GetGroupNameOk() (string, bool) {
+	if p == nil || p.GroupName == nil {
+		return "", false
+	}
+	return *p.GroupName, true
+}
+
+// HasGroupName returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasGroupName() bool {
+	if p != nil && p.GroupName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupName allocates a new p.GroupName and returns the pointer to it.
+func (p *PermissionAttributes) SetGroupName(v string) {
+	p.GroupName = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetName() string {
+	if p == nil || p.Name == nil {
+		return ""
+	}
+	return *p.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (p *PermissionAttributes) GetNameOk() (string, bool) {
+	if p == nil || p.Name == nil {
+		return "", false
+	}
+	return *p.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasName() bool {
+	if p != nil && p.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new p.Name and returns the pointer to it.
+func (p *PermissionAttributes) SetName(v string) {
+	p.Name = &v
+}
+
+// GetRestricted returns the Restricted field if non-nil, zero value otherwise.
+func (p *PermissionAttributes) GetRestricted() bool {
+	if p == nil || p.Restricted == nil {
+		return false
+	}
+	return *p.Restricted
+}
+
+// GetRestrictedOk returns a tuple with the Restricted field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (p *PermissionAttributes) GetRestrictedOk() (bool, bool) {
+	if p == nil || p.Restricted == nil {
+		return false, false
+	}
+	return *p.Restricted, true
+}
+
+// HasRestricted returns a boolean if a field has been set.
+func (p *PermissionAttributes) HasRestricted() bool {
+	if p != nil && p.Restricted != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRestricted allocates a new p.Restricted and returns the pointer to it.
+func (p *PermissionAttributes) SetRestricted(v bool) {
+	p.Restricted = &v
+}
+
+// GetLogSet returns the LogSet field if non-nil, zero value otherwise.
+func (q *QueryConfig) GetLogSet() LogSet {
+	if q == nil || q.LogSet == nil {
+		return LogSet{}
+	}
+	return *q.LogSet
+}
+
+// GetLogSetOk returns a tuple with the LogSet field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryConfig) GetLogSetOk() (LogSet, bool) {
+	if q == nil || q.LogSet == nil {
+		return LogSet{}, false
+	}
+	return *q.LogSet, true
+}
+
+// HasLogSet returns a boolean if a field has been set.
+func (q *QueryConfig) HasLogSet() bool {
+	if q != nil && q.LogSet != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLogSet allocates a new q.LogSet and returns the pointer to it.
+func (q *QueryConfig) SetLogSet(v LogSet) {
+	q.LogSet = &v
+}
+
+// GetQueryIsFailed returns the QueryIsFailed field if non-nil, zero value otherwise.
+func (q *QueryConfig) GetQueryIsFailed() bool {
+	if q == nil || q.QueryIsFailed == nil {
+		return false
+	}
+	return *q.QueryIsFailed
+}
+
+// GetQueryIsFailedOk returns a tuple with the QueryIsFailed field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryConfig) GetQueryIsFailedOk() (bool, bool) {
+	if q == nil || q.QueryIsFailed == nil {
+		return false, false
+	}
+	return *q.QueryIsFailed, true
+}
+
+// HasQueryIsFailed returns a boolean if a field has been set.
+func (q *QueryConfig) HasQueryIsFailed() bool {
+	if q != nil && q.QueryIsFailed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryIsFailed allocates a new q.QueryIsFailed and returns the pointer to it.
+func (q *QueryConfig) SetQueryIsFailed(v bool) {
+	q.QueryIsFailed = &v
+}
+
+// GetQueryString returns the QueryString field if non-nil, zero value otherwise.
+func (q *QueryConfig) GetQueryString() string {
+	if q == nil || q.QueryString == nil {
+		return ""
+	}
+	return *q.QueryString
+}
+
+// GetQueryStringOk returns a tuple with the QueryString field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (q *QueryConfig) GetQueryStringOk() (string, bool) {
+	if q == nil || q.QueryString == nil {
+		return "", false
+	}
+	return *q.QueryString, true
+}
+
+// HasQueryString returns a boolean if a field has been set.
+func (q *QueryConfig) HasQueryString() bool {
+	if q != nil && q.QueryString != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryString allocates a new q.QueryString and returns the pointer to it.
+func (q *QueryConfig) SetQueryString(v string) {
+	q.QueryString = &v
+}
+
 // GetTimeRange returns the TimeRange field if non-nil, zero value otherwise.
 func (q *QueryConfig) GetTimeRange() TimeRange {
 	if q == nil || q.TimeRange == nil {
@@ -15500,6 +15825,7 @@ func (q *QueryConfig) GetTimeRangeOk() (TimeRange, bool) {
 	return *q.TimeRange, true
 }
 
+>>>>>>> ISSUE-307 - adding more unit tests
 // HasTimeRange returns a boolean if a field has been set.
 func (q *QueryConfig) HasTimeRange() bool {
 	if q != nil && q.TimeRange != nil {
@@ -17467,6 +17793,7 @@ func (s *ScatterplotDefinition) SetXaxis(v WidgetAxis) {
 	s.Xaxis = &v
 }
 
+<<<<<<< HEAD
 // GetYaxis returns the Yaxis field if non-nil, zero value otherwise.
 func (s *ScatterplotDefinition) GetYaxis() WidgetAxis {
 	if s == nil || s.Yaxis == nil {
@@ -17564,6 +17891,12 @@ func (s *ScatterplotRequest) SetApmQuery(v WidgetApmOrLogQuery) {
 func (s *ScatterplotRequest) GetLogQuery() WidgetApmOrLogQuery {
 	if s == nil || s.LogQuery == nil {
 		return WidgetApmOrLogQuery{}
+=======
+// GetRoleData returns the RoleData field if non-nil, zero value otherwise.
+func (r *RoleResponse) GetRoleData() Role {
+	if r == nil || r.RoleData == nil {
+		return Role{}
+>>>>>>> ISSUE-307 - adding more unit tests
 	}
 	return *s.LogQuery
 }

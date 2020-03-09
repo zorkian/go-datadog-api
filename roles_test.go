@@ -1,6 +1,7 @@
 package datadog
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -171,8 +172,120 @@ func TestClient_GetRoleById(t *testing.T) {
 }
 
 func TestClient_CreateRole(t *testing.T) {
+	roleName := "Test Role"
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/create_role_response.json")
+		if response, err := ioutil.ReadFile("./tests/fixtures/roles/create_role_response.json"); err != nil {
+			t.Fatal(err)
+		} else {
+			_, _ = w.Write(response)
+		}
+
+		expectedType := "roles"
+		if requestBody, err := ioutil.ReadAll(r.Body); err != nil {
+			t.Fatal(err)
+		} else {
+			var roleRequest map[string]*Role
+			println(string(requestBody))
+			if err := json.Unmarshal(requestBody, &roleRequest); err != nil {
+				t.Fatal(err)
+			} else if actualType := roleRequest["data"].GetType(); expectedType != actualType {
+				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
+			} else if actualRoleName := roleRequest["data"].Attributes.GetName(); actualRoleName != roleName {
+				t.Fatalf("expected role name to be '%s', but got '%s'", roleName, actualRoleName)
+			}
+		}
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	role, err := datadogClient.CreateRole(roleName)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if role == nil {
+		t.Fatalf("expected role to be returned, but was nil")
+	}
+
+	expectedId := "3b4d1518-5dce-11ea-ae07-3f6422573100"
+	if actualId := role.GetId(); expectedId != actualId {
+		t.Fatalf("expected id to be '%s', but was '%s'", expectedId, actualId)
+	}
+}
+
+func TestClient_UpdateRoleName(t *testing.T) {
+	roleId := "3b4d1518-5dce-11ea-ae07-3f6422573100"
+	roleName := "Test Role Revised"
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if response, err := ioutil.ReadFile("./tests/fixtures/roles/create_role_response.json"); err != nil {
+			t.Fatal(err)
+		} else {
+			_, _ = w.Write(response)
+		}
+
+		expectedType := "roles"
+		if requestBody, err := ioutil.ReadAll(r.Body); err != nil {
+			t.Fatal(err)
+		} else {
+			var roleRequest map[string]*Role
+			if err := json.Unmarshal(requestBody, &roleRequest); err != nil {
+				t.Fatal(err)
+			} else if actualType := roleRequest["data"].GetType(); expectedType != actualType {
+				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
+			} else if actualRoleId := roleRequest["data"].GetId(); roleId != actualRoleId {
+				t.Fatalf("expected role id to be '%s', but got '%s'", roleId, actualRoleId)
+			} else if actualRoleName := roleRequest["data"].Attributes.GetName(); roleName != actualRoleName {
+				t.Fatalf("expected role name to be '%s', but got '%s'", roleName, actualRoleName)
+			}
+		}
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	role, err := datadogClient.UpdateRoleName(roleId, roleName)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if role == nil {
+		t.Fatalf("expected role to be returned, but was nil")
+	}
+
+	expectedId := roleId
+	if actualId := role.GetId(); expectedId != actualId {
+		t.Fatalf("expected id to be '%s', but was '%s'", expectedId, actualId)
+	}
+}
+
+func TestClient_DeleteRole(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(204)
+		_, _ = w.Write(make([]byte, 0))
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	err := datadogClient.DeleteRole("3b4d1518-5dce-11ea-ae07-3f6422573100")
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestClient_ListRoleUsers(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_roles_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -185,18 +298,63 @@ func TestClient_CreateRole(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	role, err := datadogClient.CreateRole("Test Role")
+	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if role == nil {
-		t.Fatalf("expected role to be returned, but was nil")
+	if roles == nil {
+		t.Fatalf("Expected roles to be returned, but got nil")
+	}
+}
+
+func TestClient_AddRoleUser(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_roles_response.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, _ = w.Write(response)
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
 	}
 
-	expectedId := "3b4d1518-5dce-11ea-ae07-3f6422573100"
-	if actualId := role.GetId(); expectedId != actualId {
-		t.Fatalf("expected id to be '%s', but was '%s'", expectedId, actualId)
+	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if roles == nil {
+		t.Fatalf("Expected roles to be returned, but got nil")
+	}
+}
+
+func TestClient_RemoveRoleUser(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_roles_response.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, _ = w.Write(response)
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if roles == nil {
+		t.Fatalf("Expected roles to be returned, but got nil")
 	}
 }
 
