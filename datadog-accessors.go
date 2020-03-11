@@ -26426,6 +26426,37 @@ func (w *Widget) SetSummaryType(v string) {
 	w.SummaryType = &v
 }
 
+// GetTagsExecution returns the TagsExecution field if non-nil, zero value otherwise.
+func (w *Widget) GetTagsExecution() string {
+	if w == nil || w.TagsExecution == nil {
+		return ""
+	}
+	return *w.TagsExecution
+}
+
+// GetTagsExecutionOk returns a tuple with the TagsExecution field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Widget) GetTagsExecutionOk() (string, bool) {
+	if w == nil || w.TagsExecution == nil {
+		return "", false
+	}
+	return *w.TagsExecution, true
+}
+
+// HasTagsExecution returns a boolean if a field has been set.
+func (w *Widget) HasTagsExecution() bool {
+	if w != nil && w.TagsExecution != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsExecution allocates a new w.TagsExecution and returns the pointer to it.
+func (w *Widget) SetTagsExecution(v string) {
+	w.TagsExecution = &v
+}
+
 // GetText returns the Text field if non-nil, zero value otherwise.
 func (w *Widget) GetText() string {
 	if w == nil || w.Text == nil {
