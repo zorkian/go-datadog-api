@@ -334,7 +334,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 
 		assert.NoError(t2, err)
 		assert.Nil(t2, resp.Error)
-		assert.Equal(t2, float32(100), resp.Data.Overall.Uptime)
+		assert.Equal(t2, float32(100), resp.Data.Overall.SliValue)
 		assert.Equal(t2, json.Number("3698988"), resp.Data.Metrics.Numerator.Sum)
 		assert.Equal(t2, json.Number("3698988"), resp.Data.Metrics.Denominator.Sum)
 	})
@@ -350,9 +350,9 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		)
 		assert.NoError(t2, err)
 		assert.Nil(t2, resp.Error)
-		assert.Equal(t2, float32(6.765872955322266), resp.Data.Overall.Uptime)
+		assert.Equal(t2, float32(6.765872955322266), resp.Data.Overall.SliValue)
 		assert.Len(t2, resp.Data.Groups, 1)
-		assert.Equal(t2, float32(6.765872955322266), resp.Data.Groups[0].Uptime)
+		assert.Equal(t2, float32(6.765872955322266), resp.Data.Groups[0].SliValue)
 		assert.Equal(t2, "some:tag", resp.Data.Groups[0].Name)
 	})
 
