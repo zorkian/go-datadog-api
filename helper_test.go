@@ -128,3 +128,51 @@ func TestHelperGetStringId(t *testing.T) {
 	assert.NotNil(t, err)
 	assert.Contains(t, err.Error(), "unsupported id type")
 }
+
+func TestGetFloatFromInterface(t *testing.T) {
+    var input interface{}
+
+    input = nil
+    val, auto, err := datadog.GetFloatFromInterface(nil)
+    assert.Nil(t, err)
+    assert.Equal(t, false, auto)
+    assert.Nil(t, val)
+
+    input = 0.0
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.Nil(t, err)
+    assert.Equal(t, false, auto)
+    assert.Equal(t, 0.0, *val)
+
+    input = 12.3
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.Nil(t, err)
+    assert.Equal(t, false, auto)
+    assert.Equal(t, 12.3, *val)
+
+    input = 123
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.Nil(t, err)
+    assert.Equal(t, false, auto)
+    assert.Equal(t, 123.0, *val)
+
+    input = int64(1234567890123456789.0)
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.Nil(t, err)
+    assert.Equal(t, false, auto)
+    assert.Equal(t, 1234567890123456789.0, *val)
+
+    input = "auto"
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.Nil(t, err)
+    assert.Equal(t, true, auto)
+    assert.Nil(t, val)
+
+    input = "wrong!"
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.NotNil(t, err)
+
+    input = false
+    val, auto, err = datadog.GetFloatFromInterface(&input)
+    assert.NotNil(t, err)
+}
