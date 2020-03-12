@@ -6121,6 +6121,37 @@ func (e *EventStreamDefinition) SetQuery(v string) {
 	e.Query = &v
 }
 
+// GetTagsExecution returns the TagsExecution field if non-nil, zero value otherwise.
+func (e *EventStreamDefinition) GetTagsExecution() string {
+	if e == nil || e.TagsExecution == nil {
+		return ""
+	}
+	return *e.TagsExecution
+}
+
+// GetTagsExecutionOk returns a tuple with the TagsExecution field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (e *EventStreamDefinition) GetTagsExecutionOk() (string, bool) {
+	if e == nil || e.TagsExecution == nil {
+		return "", false
+	}
+	return *e.TagsExecution, true
+}
+
+// HasTagsExecution returns a boolean if a field has been set.
+func (e *EventStreamDefinition) HasTagsExecution() bool {
+	if e != nil && e.TagsExecution != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsExecution allocates a new e.TagsExecution and returns the pointer to it.
+func (e *EventStreamDefinition) SetTagsExecution(v string) {
+	e.TagsExecution = &v
+}
+
 // GetTime returns the Time field if non-nil, zero value otherwise.
 func (e *EventStreamDefinition) GetTime() WidgetTime {
 	if e == nil || e.Time == nil {
@@ -6305,6 +6336,37 @@ func (e *EventTimelineDefinition) HasQuery() bool {
 // SetQuery allocates a new e.Query and returns the pointer to it.
 func (e *EventTimelineDefinition) SetQuery(v string) {
 	e.Query = &v
+}
+
+// GetTagsExecution returns the TagsExecution field if non-nil, zero value otherwise.
+func (e *EventTimelineDefinition) GetTagsExecution() string {
+	if e == nil || e.TagsExecution == nil {
+		return ""
+	}
+	return *e.TagsExecution
+}
+
+// GetTagsExecutionOk returns a tuple with the TagsExecution field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (e *EventTimelineDefinition) GetTagsExecutionOk() (string, bool) {
+	if e == nil || e.TagsExecution == nil {
+		return "", false
+	}
+	return *e.TagsExecution, true
+}
+
+// HasTagsExecution returns a boolean if a field has been set.
+func (e *EventTimelineDefinition) HasTagsExecution() bool {
+	if e != nil && e.TagsExecution != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsExecution allocates a new e.TagsExecution and returns the pointer to it.
+func (e *EventTimelineDefinition) SetTagsExecution(v string) {
+	e.TagsExecution = &v
 }
 
 // GetTime returns the Time field if non-nil, zero value otherwise.
@@ -26982,6 +27044,37 @@ func (w *Widget) HasSummaryType() bool {
 // SetSummaryType allocates a new w.SummaryType and returns the pointer to it.
 func (w *Widget) SetSummaryType(v string) {
 	w.SummaryType = &v
+}
+
+// GetTagsExecution returns the TagsExecution field if non-nil, zero value otherwise.
+func (w *Widget) GetTagsExecution() string {
+	if w == nil || w.TagsExecution == nil {
+		return ""
+	}
+	return *w.TagsExecution
+}
+
+// GetTagsExecutionOk returns a tuple with the TagsExecution field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Widget) GetTagsExecutionOk() (string, bool) {
+	if w == nil || w.TagsExecution == nil {
+		return "", false
+	}
+	return *w.TagsExecution, true
+}
+
+// HasTagsExecution returns a boolean if a field has been set.
+func (w *Widget) HasTagsExecution() bool {
+	if w != nil && w.TagsExecution != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTagsExecution allocates a new w.TagsExecution and returns the pointer to it.
+func (w *Widget) SetTagsExecution(v string) {
+	w.TagsExecution = &v
 }
 
 // GetText returns the Text field if non-nil, zero value otherwise.
