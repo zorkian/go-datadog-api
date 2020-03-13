@@ -54,16 +54,7 @@ type RoleRelationships struct {
 
 type RoleUsersResponse struct {
 	Meta *RoleMetadata `json:"meta,omitempty"`
-	Data *UserV2       `json:"data,omitempty"`
-}
-
-type OrganizationResponse struct {
-	Data *Organization `json:"data,omitempty"`
-}
-
-type Organization struct {
-	Type *string `json:"type,omitempty"`
-	Id   *string `json:"id,omitempty"`
+	Data []*UserV2     `json:"data,omitempty"`
 }
 
 func (client *Client) ListRoles(pageSize int, pageNumber int, sort Sort, filter string) (*ListRolesResponse, error) {
@@ -158,7 +149,8 @@ func (client *Client) ListRoleUsers(roleId string, pageSize int, pageNumber int,
 		return nil, fmt.Errorf("invalid page number, Value of 'page_number' should be 0 or more")
 	}
 
-	uri := fmt.Sprintf("/v2/roles/%s/users", roleId)
+	uri := fmt.Sprintf("/v2/roles/%s/users?page[size]=%d&page[number]=%d&sort=%s&filter=%s",
+		roleId, pageSize, pageNumber, sort, filter)
 
 	if err := client.doJsonRequest("GET", uri, nil, &roleUsersResponse); err != nil {
 		return nil, err

@@ -9,9 +9,46 @@ import (
 	"time"
 )
 
+func TestClient_ListPermissions(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		response, err := ioutil.ReadFile("./tests/fixtures/permissions/list_permissions_response.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, _ = w.Write(response)
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	permissions, err := datadogClient.ListPermissions()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if permissions == nil {
+		t.Fatalf("Expected permissions to be returned, but got nil")
+	}
+
+	expectedNumPermissions := 17
+	if actualNumPermissions := len(permissions); expectedNumPermissions != actualNumPermissions {
+		t.Fatalf("Expected to have %d permissions, but got %d", expectedNumPermissions, actualNumPermissions)
+	}
+
+	for _, permission := range permissions {
+		if permission.GetId() == "984a2bd4-d3b4-11e8-a1ff-a7f660d43029" {
+			ValidatePermission(permission, t)
+			break
+		}
+	}
+}
+
 func TestClient_ListRolePermissions(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_permissions_response.json")
+		response, err := ioutil.ReadFile("./tests/fixtures/permissions/list_role_permissions_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -64,7 +101,7 @@ func TestClient_GrantRolePermission(t *testing.T) {
 			}
 		}
 
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_permissions_response.json")
+		response, err := ioutil.ReadFile("./tests/fixtures/permissions/list_role_permissions_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -105,7 +142,7 @@ func TestClient_RevokeRolePermission(t *testing.T) {
 			}
 		}
 
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_permissions_response.json")
+		response, err := ioutil.ReadFile("./tests/fixtures/permissions/list_role_permissions_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}

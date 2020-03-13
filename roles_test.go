@@ -285,7 +285,7 @@ func TestClient_DeleteRole(t *testing.T) {
 
 func TestClient_ListRoleUsers(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_roles_response.json")
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_users_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -298,19 +298,217 @@ func TestClient_ListRoleUsers(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
+	users, err := datadogClient.ListRoleUsers("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", 10, 0, SortNameAsc, "")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if roles == nil {
+	if users == nil {
+		t.Fatalf("expected users to be returned, but got nil")
+	}
+
+	expectedUserTotalCount := 2
+	if actualUserTotalCount := users.Meta.Page.GetTotalCount(); expectedUserTotalCount != actualUserTotalCount {
+		t.Fatalf("expected users total count to be %d, but got %d", expectedUserTotalCount, actualUserTotalCount)
+	}
+
+	expectedUserFilteredCount := 2
+	if actualUserFilteredCount := users.Meta.Page.GetTotalFilteredCount(); expectedUserFilteredCount != actualUserFilteredCount {
+		t.Fatalf("expected users filtered count to be %d, but got %d", expectedUserFilteredCount, actualUserFilteredCount)
+	}
+
+	if actualUserCount := len(users.Data); expectedUserFilteredCount != actualUserCount {
+		t.Fatalf("expected number of users returned to be %d, but got %d", expectedUserFilteredCount, actualUserCount)
+	}
+}
+
+func TestClient_ListRoleUsers_Filtered(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_users_filtered_response.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, _ = w.Write(response)
+
+		expectedFilterString := "filter=Jane+Doe"
+		queryParams := strings.Split(r.RequestURI, "?")[1]
+
+		var actualFilterString string
+
+		for _, param := range strings.Split(queryParams, "&") {
+			if strings.Contains(param, "filter=") {
+				actualFilterString = param
+			}
+		}
+
+		if expectedFilterString != actualFilterString {
+			t.Fatalf("expected filter string to be '%s', but was '%s'", expectedFilterString, actualFilterString)
+		}
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	users, err := datadogClient.ListRoleUsers("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", 10, 0, SortNameAsc, "Jane Doe")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if users == nil {
 		t.Fatalf("Expected roles to be returned, but got nil")
+	}
+
+	expectedUserTotalCount := 2
+	if actualUserTotalCount := users.Meta.Page.GetTotalCount(); expectedUserTotalCount != actualUserTotalCount {
+		t.Fatalf("expected users total count to be %d, but got %d", expectedUserTotalCount, actualUserTotalCount)
+	}
+
+	expectedUserFilteredCount := 1
+	if actualUserFilteredCount := users.Meta.Page.GetTotalFilteredCount(); expectedUserFilteredCount != actualUserFilteredCount {
+		t.Fatalf("expected users filtered count to be %d, but got %d", expectedUserFilteredCount, actualUserFilteredCount)
+	}
+
+	if actualUserCount := len(users.Data); expectedUserFilteredCount != actualUserCount {
+		t.Fatalf("expected number of users returned to be %d, but got %d", expectedUserFilteredCount, actualUserCount)
+	}
+
+	userData := users.Data[0]
+
+	expectedType := "users"
+	if actualType := userData.GetType(); expectedType != actualType {
+		t.Fatalf("expected user type to be '%s', but got '%s'", expectedType, actualType)
+	}
+
+	expectedId := "bc611b4a-4447-11ea-a78a-f7832a4ee550"
+	if actualId := userData.GetId(); expectedId != actualId {
+		t.Fatalf("expected user id to be '%s', but got '%s'", expectedId, actualId)
+	}
+
+	if !userData.HasAttributes() {
+		t.Fatalf("expected user to have attributes, but they were nil")
+	}
+
+	userAttributes := userData.Attributes
+
+	expectedName := "Jane Doe"
+	if actualName := userAttributes.GetName(); expectedName != actualName {
+		t.Fatalf("expected user name to be '%s', but got '%s'", expectedName, actualName)
+	}
+
+	expectedHandle := "jdoe"
+	if actualHandle := userAttributes.GetHandle(); expectedHandle != actualHandle {
+		t.Fatalf("expected user name to be '%s', but got '%s'", expectedHandle, actualHandle)
+	}
+
+	expectedCreatedAt, _ := time.Parse(time.RFC3339, "2020-01-31T16:35:48.205684+00:00")
+	if actualCreatedAt := userAttributes.GetCreatedAt(); !expectedCreatedAt.Equal(actualCreatedAt) {
+		t.Fatalf("expected user created timestamp to be '%s', but got '%s'", expectedCreatedAt, actualCreatedAt)
+	}
+
+	expectedEmail := "jdoe@example.com"
+	if actualEmail := userAttributes.GetEmail(); expectedEmail != actualEmail {
+		t.Fatalf("expected user email to be '%s', but got '%s'", expectedEmail, actualEmail)
+	}
+
+	expectedIcon := "https://secure.gravatar.com/avatar/66666666677777777888888889999999?s=48&d=retro"
+	if actualIcon := userAttributes.GetIcon(); expectedIcon != actualIcon {
+		t.Fatalf("expected user icon to be '%s', but got '%s'", expectedIcon, actualIcon)
+	}
+
+	expectedTitle := "DataDog Admin"
+	if actualTitle := userAttributes.GetTitle(); expectedTitle != actualTitle {
+		t.Fatalf("expected user title to be '%s', but got '%s'", expectedTitle, actualTitle)
+	}
+
+	expectedVerified := true
+	if actualVerified := userAttributes.GetVerified(); expectedVerified != actualVerified {
+		t.Fatalf("expected user verified to be %t, but got %t", expectedVerified, actualVerified)
+	}
+
+	expectedDisabled := false
+	if actualDisabled := userAttributes.GetDisabled(); expectedDisabled != actualDisabled {
+		t.Fatalf("expected user disabled to be %t, but got %t", expectedDisabled, actualDisabled)
+	}
+
+	expectedAllowedLoginMethodsCount := 0
+	if actualAllowedLoginMethodsCount := len(userAttributes.AllowedLoginMethods); expectedAllowedLoginMethodsCount != actualAllowedLoginMethodsCount {
+		t.Fatalf("expected number of user allowed login methods to be %d, but got %d", expectedAllowedLoginMethodsCount, actualAllowedLoginMethodsCount)
+	}
+
+	expectedStatus := "Active"
+	if actualStatus := userAttributes.GetStatus(); expectedStatus != actualStatus {
+		t.Fatalf("expected user status to be '%s', but got '%s'", expectedStatus, actualStatus)
+	}
+
+	if !userData.HasRelationships() {
+		t.Fatalf("expected user to have relationships, but they were nil")
+	}
+
+	if !userData.Relationships.HasRoles() {
+		t.Fatalf("expected user relationships to have roles, but they were nil")
+	}
+
+	userRoles := userData.Relationships.Roles.RoleData
+
+	expectedNumRoles := 1
+	if actualNumRoles := len(userRoles); expectedNumRoles != actualNumRoles {
+		t.Fatalf("expected number of user allowed login methods to be %d, but got %d", expectedNumRoles, actualNumRoles)
+	}
+
+	userRoleData := userRoles[0]
+
+	expectedRoleType := "roles"
+	if actualRoleType := userRoleData.GetType(); expectedRoleType != actualRoleType {
+		t.Fatalf("expected user role type to be '%s', but it was '%s'", expectedRoleType, actualRoleType)
+	}
+
+	expectedRoleId := "e85b03a3-42b5-11ea-a78a-874cf4ed7ee4"
+	if actualRoleId := userRoleData.GetId(); expectedRoleId != actualRoleId {
+		t.Fatalf("expected user role id to be '%s', but it was '%s'", expectedRoleId, actualRoleId)
+	}
+
+	if !userData.Relationships.HasOrg() {
+		t.Fatalf("expected user relationships to have an org, but it was nil")
+	}
+
+	if !userData.Relationships.Org.HasData() {
+		t.Fatalf("expected user org to have data, but it was nil")
+	}
+
+	userOrg := userData.Relationships.Org.Data
+
+	expectedOrgType := "orgs"
+	if actualOrgType := userOrg.GetType(); expectedOrgType != actualOrgType {
+		t.Fatalf("expected org type to be '%s', but it was '%s'", expectedOrgType, actualOrgType)
+	}
+
+	expectedOrgId := "e85b03a2-42b5-11ea-a78a-ab1bc28a6c51"
+	if actualOrgId := userOrg.GetId(); expectedOrgId != actualOrgId {
+		t.Fatalf("expected org id to be '%s', but it was '%s'", expectedOrgId, actualOrgId)
 	}
 }
 
 func TestClient_AddRoleUser(t *testing.T) {
+	userId := "4014ebde-64e0-11ea-b5b2-8be7e92064db"
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_roles_response.json")
+		expectedType := "users"
+		if requestBody, err := ioutil.ReadAll(r.Body); err != nil {
+			t.Fatal(err)
+		} else {
+			var userRequest map[string]*Permission
+			if err := json.Unmarshal(requestBody, &userRequest); err != nil {
+				t.Fatal(err)
+			} else if actualType := userRequest["data"].GetType(); expectedType != actualType {
+				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
+			} else if actualUserId := userRequest["data"].GetId(); userId != actualUserId {
+				t.Fatalf("expected user id to be '%s', but got '%s'", userId, actualUserId)
+			}
+		}
+
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_users_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -323,19 +521,48 @@ func TestClient_AddRoleUser(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
+	users, err := datadogClient.AddRoleUser("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", "4014ebde-64e0-11ea-b5b2-8be7e92064db")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if roles == nil {
-		t.Fatalf("Expected roles to be returned, but got nil")
+	if users == nil {
+		t.Fatalf("expected users to be returned, but got nil")
+	}
+
+	expectedUserTotalCount := 2
+	if actualUserTotalCount := users.Meta.Page.GetTotalCount(); expectedUserTotalCount != actualUserTotalCount {
+		t.Fatalf("expected users total count to be %d, but got %d", expectedUserTotalCount, actualUserTotalCount)
+	}
+
+	expectedUserFilteredCount := 2
+	if actualUserFilteredCount := users.Meta.Page.GetTotalFilteredCount(); expectedUserFilteredCount != actualUserFilteredCount {
+		t.Fatalf("expected users filtered count to be %d, but got %d", expectedUserFilteredCount, actualUserFilteredCount)
+	}
+
+	if actualUserCount := len(users.Data); expectedUserFilteredCount != actualUserCount {
+		t.Fatalf("expected number of users returned to be %d, but got %d", expectedUserFilteredCount, actualUserCount)
 	}
 }
 
 func TestClient_RemoveRoleUser(t *testing.T) {
+	userId := "4014ebde-64e0-11ea-b5b2-8be7e92064db"
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_roles_response.json")
+		expectedType := "users"
+		if requestBody, err := ioutil.ReadAll(r.Body); err != nil {
+			t.Fatal(err)
+		} else {
+			var userRequest map[string]*Permission
+			if err := json.Unmarshal(requestBody, &userRequest); err != nil {
+				t.Fatal(err)
+			} else if actualType := userRequest["data"].GetType(); expectedType != actualType {
+				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
+			} else if actualUserId := userRequest["data"].GetId(); userId != actualUserId {
+				t.Fatalf("expected user id to be '%s', but got '%s'", userId, actualUserId)
+			}
+		}
+
+		response, err := ioutil.ReadFile("./tests/fixtures/roles/list_role_users_response.json")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -348,13 +575,27 @@ func TestClient_RemoveRoleUser(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
+	users, err := datadogClient.RemoveRoleUser("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", userId)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if roles == nil {
-		t.Fatalf("Expected roles to be returned, but got nil")
+	if users == nil {
+		t.Fatalf("expected users to be returned, but got nil")
+	}
+
+	expectedUserTotalCount := 2
+	if actualUserTotalCount := users.Meta.Page.GetTotalCount(); expectedUserTotalCount != actualUserTotalCount {
+		t.Fatalf("expected users total count to be %d, but got %d", expectedUserTotalCount, actualUserTotalCount)
+	}
+
+	expectedUserFilteredCount := 2
+	if actualUserFilteredCount := users.Meta.Page.GetTotalFilteredCount(); expectedUserFilteredCount != actualUserFilteredCount {
+		t.Fatalf("expected users filtered count to be %d, but got %d", expectedUserFilteredCount, actualUserFilteredCount)
+	}
+
+	if actualUserCount := len(users.Data); expectedUserFilteredCount != actualUserCount {
+		t.Fatalf("expected number of users returned to be %d, but got %d", expectedUserFilteredCount, actualUserCount)
 	}
 }
 
