@@ -43,7 +43,7 @@ const (
 // different according to widget type.
 type BoardWidget struct {
 	Definition interface{}   `json:"definition"`
-	Id         *int          `json:"id,omitempty"`
+	Id         *int64        `json:"id,omitempty"`
 	Layout     *WidgetLayout `json:"layout,omitempty"`
 }
 
@@ -515,7 +515,7 @@ func (widget *BoardWidget) UnmarshalJSON(data []byte) error {
 		Definition *struct {
 			Type *string `json:"type"`
 		} `json:"definition"`
-		Id     *int          `json:"id,omitempty"`
+		Id     *int64        `json:"id,omitempty"`
 		Layout *WidgetLayout `json:"layout,omitempty"`
 	}
 	if err := json.Unmarshal(data, &widgetHandler); err != nil {
