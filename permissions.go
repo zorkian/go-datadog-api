@@ -53,18 +53,15 @@ func (client *Client) ListRolePermissions(roleId string) ([]*Permission, error) 
 	return permissionsResponse.Data, nil
 }
 
-func (client *Client) GrantRolePermission(roleId string, permissionId string, scope PermissionScope) ([]*Permission, error) {
+func (client *Client) GrantRolePermission(roleId string, permissionId string, scope *PermissionScope) ([]*Permission, error) {
 	var permissionsResponse PermissionsResponse
 
 	uri := fmt.Sprintf("/v2/roles/%s/permissions", roleId)
 
 	permissionRequest := Permission{
-		Type: String("permissions"),
-		Id:   String(permissionId),
-	}
-
-	if len(scope.Indexes) > 0 || len(scope.Pipelines) > 0 {
-		permissionRequest.Scope = &scope
+		Type:  String("permissions"),
+		Id:    String(permissionId),
+		Scope: scope,
 	}
 
 	data := DataWrapper{Data: permissionRequest}

@@ -98,10 +98,6 @@ func TestClient_GrantRolePermission(t *testing.T) {
 				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
 			} else if actualPermissionId := permissionRequest["data"].GetId(); permissionId != actualPermissionId {
 				t.Fatalf("expected permission id to be '%s', but got '%s'", permissionId, actualPermissionId)
-			} else if actualScopeIndexesNum := len(permissionRequest["data"].Scope.Indexes); actualScopeIndexesNum == 0 {
-				t.Fatalf("expected permission scope to have %d indexes, but had %d", 0, actualScopeIndexesNum)
-			} else if actualScopePipelinesNum := len(permissionRequest["data"].Scope.Pipelines); actualScopePipelinesNum == 0 {
-				t.Fatalf("expected permission scope to have %d indexes, but had %d", 0, actualScopePipelinesNum)
 			}
 		}
 
@@ -118,7 +114,7 @@ func TestClient_GrantRolePermission(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.GrantRolePermission(roleId, permissionId, PermissionScope{})
+	roles, err := datadogClient.GrantRolePermission(roleId, permissionId, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -145,9 +141,9 @@ func TestClient_GrantScopedRolePermission(t *testing.T) {
 				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
 			} else if actualPermissionId := permissionRequest["data"].GetId(); permissionId != actualPermissionId {
 				t.Fatalf("expected permission id to be '%s', but got '%s'", permissionId, actualPermissionId)
-			} else if actualScopeIndexesNum := len(permissionRequest["data"].Scope.Indexes); actualScopeIndexesNum == len(indexes) {
+			} else if actualScopeIndexesNum := len(permissionRequest["data"].Scope.Indexes); actualScopeIndexesNum != len(indexes) {
 				t.Fatalf("expected permission scope to have %d indexes, but had %d", len(indexes), actualScopeIndexesNum)
-			} else if actualScopePipelinesNum := len(permissionRequest["data"].Scope.Pipelines); actualScopePipelinesNum == len(pipelines) {
+			} else if actualScopePipelinesNum := len(permissionRequest["data"].Scope.Pipelines); actualScopePipelinesNum != len(pipelines) {
 				t.Fatalf("expected permission scope to have %d indexes, but had %d", len(pipelines), actualScopePipelinesNum)
 			}
 		}
@@ -165,7 +161,7 @@ func TestClient_GrantScopedRolePermission(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.GrantRolePermission(roleId, permissionId, PermissionScope{Indexes: indexes, Pipelines: pipelines})
+	roles, err := datadogClient.GrantRolePermission(roleId, permissionId, &PermissionScope{Indexes: indexes, Pipelines: pipelines})
 	if err != nil {
 		t.Fatal(err)
 	}
