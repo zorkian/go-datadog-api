@@ -304,6 +304,7 @@ type ImageDefinition struct {
 type LogStreamDefinition struct {
 	Type              *string          `json:"type"`
 	Logset            *string          `json:"logset"`
+	Indexes           []string         `json:"indexes,omitempty"`
 	Query             *string          `json:"query,omitempty"`
 	Columns           []string         `json:"columns,omitempty"`
 	Title             *string          `json:"title,omitempty"`

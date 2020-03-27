@@ -497,6 +497,7 @@ func TestWidgets(t *testing.T) {
 			Query:   datadog.String("source:main"),
 			Columns: datadog.String("[\"column_1\",\"column_2\",\"column_3\"]"),
 			Logset:  datadog.String("1234"),
+			Indexes: datadog.String("[\"main\"]"),
 			Time: &datadog.Time{
 				LiveSpan: datadog.String("1h"),
 			},
