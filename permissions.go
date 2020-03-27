@@ -13,7 +13,7 @@ type Permission struct {
 	Type       *string               `json:"type,omitempty"`
 	Id         *string               `json:"id,omitempty"`
 	Attributes *PermissionAttributes `json:"attributes,omitempty"`
-	Scope	   *PermissionScope	     `json:"scope,omitempty"`
+	Scope      *PermissionScope      `json:"scope,omitempty"`
 }
 
 type PermissionAttributes struct {
@@ -27,8 +27,8 @@ type PermissionAttributes struct {
 }
 
 type PermissionScope struct {
-	Indexes		[]*string	`json:"indexes,omitempty"`
-	Pipelines	[]*string	`json:"pipelines,omitempty"`
+	Indexes   []*string `json:"indexes,omitempty"`
+	Pipelines []*string `json:"pipelines,omitempty"`
 }
 
 func (client *Client) ListPermissions() ([]*Permission, error) {
