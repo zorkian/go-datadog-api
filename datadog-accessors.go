@@ -26395,6 +26395,37 @@ func (w *Widget) SetHTML(v string) {
 	w.HTML = &v
 }
 
+// GetIndexes returns the Indexes field if non-nil, zero value otherwise.
+func (w *Widget) GetIndexes() string {
+	if w == nil || w.Indexes == nil {
+		return ""
+	}
+	return *w.Indexes
+}
+
+// GetIndexesOk returns a tuple with the Indexes field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (w *Widget) GetIndexesOk() (string, bool) {
+	if w == nil || w.Indexes == nil {
+		return "", false
+	}
+	return *w.Indexes, true
+}
+
+// HasIndexes returns a boolean if a field has been set.
+func (w *Widget) HasIndexes() bool {
+	if w != nil && w.Indexes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndexes allocates a new w.Indexes and returns the pointer to it.
+func (w *Widget) SetIndexes(v string) {
+	w.Indexes = &v
+}
+
 // GetLayoutVersion returns the LayoutVersion field if non-nil, zero value otherwise.
 func (w *Widget) GetLayoutVersion() string {
 	if w == nil || w.LayoutVersion == nil {
