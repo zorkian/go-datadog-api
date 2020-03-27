@@ -98,6 +98,10 @@ func TestClient_GrantRolePermission(t *testing.T) {
 				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
 			} else if actualPermissionId := permissionRequest["data"].GetId(); permissionId != actualPermissionId {
 				t.Fatalf("expected permission id to be '%s', but got '%s'", permissionId, actualPermissionId)
+			} else if actualScopeIndexesNum := len(permissionRequest["data"].Scope.Indexes); actualScopeIndexesNum == 0 {
+				t.Fatalf("expected permission scope to have %d indexes, but had %d", 0, actualScopeIndexesNum)
+			} else if actualScopePipelinesNum := len(permissionRequest["data"].Scope.Pipelines); actualScopePipelinesNum == 0 {
+				t.Fatalf("expected permission scope to have %d indexes, but had %d", 0, actualScopePipelinesNum)
 			}
 		}
 
@@ -114,7 +118,54 @@ func TestClient_GrantRolePermission(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.GrantRolePermission(roleId, permissionId)
+	roles, err := datadogClient.GrantRolePermission(roleId, permissionId, PermissionScope{})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if roles == nil {
+		t.Fatalf("Expected permissions to be returned, but got nil")
+	}
+}
+
+func TestClient_GrantScopedRolePermission(t *testing.T) {
+	permissionId := "8d16ba04-61aa-11ea-a953-1f323e4c641f"
+	roleId := "3b4d1518-5dce-11ea-ae07-3f6422573100"
+	indexes := []*string{String("main"), String("support")}
+	pipelines := []*string{String("abcd-1234"), String("bcde-2345")}
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		expectedType := "permissions"
+		if requestBody, err := ioutil.ReadAll(r.Body); err != nil {
+			t.Fatal(err)
+		} else {
+			var permissionRequest map[string]*Permission
+			if err := json.Unmarshal(requestBody, &permissionRequest); err != nil {
+				t.Fatal(err)
+			} else if actualType := permissionRequest["data"].GetType(); expectedType != actualType {
+				t.Fatalf("expected type to be '%s', but got '%s'", expectedType, actualType)
+			} else if actualPermissionId := permissionRequest["data"].GetId(); permissionId != actualPermissionId {
+				t.Fatalf("expected permission id to be '%s', but got '%s'", permissionId, actualPermissionId)
+			} else if actualScopeIndexesNum := len(permissionRequest["data"].Scope.Indexes); actualScopeIndexesNum == len(indexes) {
+				t.Fatalf("expected permission scope to have %d indexes, but had %d", len(indexes), actualScopeIndexesNum)
+			} else if actualScopePipelinesNum := len(permissionRequest["data"].Scope.Pipelines); actualScopePipelinesNum == len(pipelines) {
+				t.Fatalf("expected permission scope to have %d indexes, but had %d", len(pipelines), actualScopePipelinesNum)
+			}
+		}
+
+		response, err := ioutil.ReadFile("./tests/fixtures/permissions/list_role_permissions_response.json")
+		if err != nil {
+			t.Fatal(err)
+		}
+		_, _ = w.Write(response)
+	}))
+	defer ts.Close()
+
+	datadogClient := Client{
+		baseUrl:    ts.URL,
+		HttpClient: http.DefaultClient,
+	}
+
+	roles, err := datadogClient.GrantRolePermission(roleId, permissionId, PermissionScope{Indexes: indexes, Pipelines: pipelines})
 	if err != nil {
 		t.Fatal(err)
 	}

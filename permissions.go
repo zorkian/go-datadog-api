@@ -12,7 +12,8 @@ type PermissionsResponse struct {
 type Permission struct {
 	Type       *string               `json:"type,omitempty"`
 	Id         *string               `json:"id,omitempty"`
-	Attributes *PermissionAttributes `json:"attributes,omitempty,omitempty"`
+	Attributes *PermissionAttributes `json:"attributes,omitempty"`
+	Scope	   *PermissionScope	     `json:"scope,omitempty"`
 }
 
 type PermissionAttributes struct {
@@ -23,6 +24,11 @@ type PermissionAttributes struct {
 	GroupName   *string    `json:"group_name,omitempty"`
 	DisplayType *string    `json:"display_type,omitempty"`
 	Restricted  *bool      `json:"restricted,omitempty"`
+}
+
+type PermissionScope struct {
+	Indexes		[]*string	`json:"indexes,omitempty"`
+	Pipelines	[]*string	`json:"pipelines,omitempty"`
 }
 
 func (client *Client) ListPermissions() ([]*Permission, error) {
@@ -47,7 +53,7 @@ func (client *Client) ListRolePermissions(roleId string) ([]*Permission, error) 
 	return permissionsResponse.Data, nil
 }
 
-func (client *Client) GrantRolePermission(roleId string, permissionId string) ([]*Permission, error) {
+func (client *Client) GrantRolePermission(roleId string, permissionId string, scope PermissionScope) ([]*Permission, error) {
 	var permissionsResponse PermissionsResponse
 
 	uri := fmt.Sprintf("/v2/roles/%s/permissions", roleId)
@@ -55,6 +61,10 @@ func (client *Client) GrantRolePermission(roleId string, permissionId string) ([
 	permissionRequest := Permission{
 		Type: String("permissions"),
 		Id:   String(permissionId),
+	}
+
+	if len(scope.Indexes) > 0 || len(scope.Pipelines) > 0 {
+		permissionRequest.Scope = &scope
 	}
 
 	data := DataWrapper{Data: permissionRequest}
