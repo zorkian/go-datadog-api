@@ -60,13 +60,13 @@ func (client *Client) GetEvent(id int) (*Event, error) {
 	return out.Event, nil
 }
 
-// GetEvents returns a slice of events from the query stream.
+// GetEvents returns aggregated events from the query stream.
 func (client *Client) GetEvents(start, end int,
 	priority, sources, tags string) ([]Event, error) {
 	return GetEventsWithAggregation(start, end, priority, sources, tags, false)
 }
 
-// GetEvents returns a slice of events from the query stream.
+// GetEventsWithAggregation returns a slice of events from the query stream.
 func (client *Client) GetEventsWithAggregation(start, end int,
 	priority, sources, tags string, unaggregated bool) ([]Event, error) {
 	// Since this is a GET request, we need to build a query string.
