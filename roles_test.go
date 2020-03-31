@@ -185,7 +185,6 @@ func TestClient_CreateRole(t *testing.T) {
 			t.Fatal(err)
 		} else {
 			var roleRequest map[string]*Role
-			println(string(requestBody))
 			if err := json.Unmarshal(requestBody, &roleRequest); err != nil {
 				t.Fatal(err)
 			} else if actualType := roleRequest["data"].GetType(); expectedType != actualType {
