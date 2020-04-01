@@ -2061,7 +2061,7 @@ func (b *BoardLite) SetUrl(v string) {
 }
 
 // GetId returns the Id field if non-nil, zero value otherwise.
-func (b *BoardWidget) GetId() int {
+func (b *BoardWidget) GetId() int64 {
 	if b == nil || b.Id == nil {
 		return 0
 	}
@@ -2070,7 +2070,7 @@ func (b *BoardWidget) GetId() int {
 
 // GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 // and a boolean to check if the value has been set.
-func (b *BoardWidget) GetIdOk() (int, bool) {
+func (b *BoardWidget) GetIdOk() (int64, bool) {
 	if b == nil || b.Id == nil {
 		return 0, false
 	}
@@ -2087,7 +2087,7 @@ func (b *BoardWidget) HasId() bool {
 }
 
 // SetId allocates a new b.Id and returns the pointer to it.
-func (b *BoardWidget) SetId(v int) {
+func (b *BoardWidget) SetId(v int64) {
 	b.Id = &v
 }
 
