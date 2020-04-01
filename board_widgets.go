@@ -302,14 +302,23 @@ type ImageDefinition struct {
 
 // LogStreamDefinition represents the definition for a Log Stream widget
 type LogStreamDefinition struct {
-	Type       *string     `json:"type"`
-	Logset     *string     `json:"logset"`
-	Query      *string     `json:"query,omitempty"`
-	Columns    []string    `json:"columns,omitempty"`
-	Title      *string     `json:"title,omitempty"`
-	TitleSize  *string     `json:"title_size,omitempty"`
-	TitleAlign *string     `json:"title_align,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	Type       			*string     		`json:"type"`
+	Logset     			*string     		`json:"logset"`
+	Query      			*string     		`json:"query,omitempty"`
+	Columns    			[]string    		`json:"columns,omitempty"`
+	Title      			*string     		`json:"title,omitempty"`
+	TitleSize  			*string     		`json:"title_size,omitempty"`
+	TitleAlign 			*string     		`json:"title_align,omitempty"`
+	Time       			*WidgetTime 		`json:"time,omitempty"`
+	ShowDateColumn		*bool				`json:"show_date_column,omitempty"`
+	ShowMessageColumn	*bool				`json:"show_message_column,omitempty"`
+	MessageDisplay		*string				`json:"message_display,omitempty"`
+	Sort				*WidgetFieldSort	`json:"sort,omitempty"`
+}
+
+type WidgetFieldSort struct {
+	Column	*string	`json:"column"`
+	Order	*string	`json:"order"`
 }
 
 // ManageStatusDefinition represents the definition for a Manage Status widget
