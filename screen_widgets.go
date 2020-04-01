@@ -250,12 +250,12 @@ type Widget struct {
 	SummaryType            *string `json:"summary_type,omitempty"`
 
 	// For LogStream widget
-	Columns             *string             `json:"columns,omitempty"`
-	Logset              *string             `json:"logset,omitempty"`
-	ShowDateColumn      *bool               `json:"show_date_column,omitempty"`
-	ShowMessageColumn   *bool               `json:"show_message_column,omitempty"`
-	MessageDisplay      *string             `json:"message_display,omitempty"`
-	Sort                *WidgetFieldSort    `json:"sort,omitempty"`
+	Columns           *string          `json:"columns,omitempty"`
+	Logset            *string          `json:"logset,omitempty"`
+	ShowDateColumn    *bool            `json:"show_date_column,omitempty"`
+	ShowMessageColumn *bool            `json:"show_message_column,omitempty"`
+	MessageDisplay    *string          `json:"message_display,omitempty"`
+	Sort              *WidgetFieldSort `json:"sort,omitempty"`
 
 	// For Uptime
 	// Widget is undocumented, subject to breaking API changes, and without customer support
