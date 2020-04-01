@@ -500,6 +500,13 @@ func TestWidgets(t *testing.T) {
 			Time: &datadog.Time{
 				LiveSpan: datadog.String("1h"),
 			},
+			ShowDateColumn:    datadog.Bool(true),
+			ShowMessageColumn: datadog.Bool(true),
+			MessageDisplay:    datadog.String("expanded-lg"),
+			Sort: &datadog.WidgetFieldSort{
+				Column: datadog.String("column_1"),
+				Order:  datadog.String("asc"),
+			},
 		},
 		{
 			// Widget is undocumented, subject to breaking API changes, and without customer support
