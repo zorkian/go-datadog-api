@@ -509,6 +509,28 @@ func TestWidgets(t *testing.T) {
 			},
 		},
 		{
+			Type:    datadog.String("log_stream"),
+			X:       datadog.Int(1),
+			Y:       datadog.Int(1),
+			Width:   datadog.Int(5),
+			Height:  datadog.Int(5),
+			Query:   datadog.String("source:main"),
+			Columns: datadog.String("[\"column_1\",\"column_2\",\"column_3\"]"),
+			Indexes: []*string{
+				datadog.String("main"),
+			},
+			Time: &datadog.Time{
+				LiveSpan: datadog.String("1h"),
+			},
+			ShowDateColumn:    datadog.Bool(true),
+			ShowMessageColumn: datadog.Bool(true),
+			MessageDisplay:    datadog.String("expanded-lg"),
+			Sort: &datadog.WidgetFieldSort{
+				Column: datadog.String("column_1"),
+				Order:  datadog.String("asc"),
+			},
+		},
+		{
 			// Widget is undocumented, subject to breaking API changes, and without customer support
 			Type:   datadog.String("uptime"),
 			X:      datadog.Int(1),

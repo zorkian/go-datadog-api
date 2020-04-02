@@ -252,6 +252,7 @@ type Widget struct {
 	// For LogStream widget
 	Columns           *string          `json:"columns,omitempty"`
 	Logset            *string          `json:"logset,omitempty"`
+	Indexes           []*string        `json:"indexes,omitempty"`
 	ShowDateColumn    *bool            `json:"show_date_column,omitempty"`
 	ShowMessageColumn *bool            `json:"show_message_column,omitempty"`
 	MessageDisplay    *string          `json:"message_display,omitempty"`
