@@ -1,0 +1,553 @@
+{
+  "exact_total_matching": true,
+  "total_returned": 3,
+  "host_list": [
+    {
+      "last_reported_time": 1581351140,
+      "name": "i-026c849e51d723a43",
+      "is_muted": false,
+      "mute_timeout": null,
+      "apps": [
+        "agent",
+        "ntp",
+        "check_run",
+        "docker",
+        "kubernetes"
+      ],
+      "tags_by_source": {
+        "Datadog": [
+          "host:i-026c849e51d723a43"
+        ]
+      },
+      "up": true,
+      "metrics": {
+        "load": 0.0064666667,
+        "iowait": 0.0028730612,
+        "cpu": 3.3699706
+      },
+      "sources": [
+        "agent"
+      ],
+      "meta": {
+        "socket-hostname": "datadog-agent-x87g7",
+        "nixV": [
+          "debian",
+          "10.2",
+          ""
+        ],
+        "cpuCores": 1,
+        "macV": [
+          "",
+          "",
+          ""
+        ],
+        "network": {
+          "network-id": "vpc-049c2d7a82b5c8403"
+        },
+        "agent_checks": [
+          [
+            "docker",
+            "docker",
+            "docker",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "cpu",
+            "cpu",
+            "cpu",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "load",
+            "load",
+            "load",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "kubelet",
+            "kubelet",
+            "kubelet:d884b5186b651429",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "uptime",
+            "uptime",
+            "uptime",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "kubernetes_apiserver",
+            "kubernetes_apiserver",
+            "kubernetes_apiserver",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "io",
+            "io",
+            "io",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "ntp",
+            "ntp",
+            "ntp:d884b5186b651429",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "network",
+            "network",
+            "network:e0204ad63d43c949",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "file_handle",
+            "file_handle",
+            "file_handle",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "disk",
+            "disk",
+            "disk:e5dffb8bef24336f",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "memory",
+            "memory",
+            "memory",
+            "OK",
+            "",
+            ""
+          ]
+        ],
+        "platform": "linux",
+        "timezones": [
+          "UTC"
+        ],
+        "winV": [
+          "",
+          "",
+          ""
+        ],
+        "machine": "amd64",
+        "container_meta": {
+          "kubelet_version": "v1.14.7-eks-1861c5",
+          "docker_swarm": "inactive",
+          "docker_version": "18.06.1-ce"
+        },
+        "fbsdV": [
+          "",
+          "",
+          ""
+        ],
+        "gohai": "{\"cpu\":{\"cache_size\":\"36608 KB\",\"cpu_cores\":\"1\",\"cpu_logical_processors\":\"2\",\"family\":\"6\",\"mhz\":\"2499.998\",\"model\":\"85\",\"model_name\":\"Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz\",\"stepping\":\"7\",\"vendor_id\":\"GenuineIntel\"},\"filesystem\":[{\"kb_size\":\"20959212\",\"mounted_on\":\"/\",\"name\":\"overlay\"},{\"kb_size\":\"65536\",\"mounted_on\":\"/dev\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/sys/fs/cgroup\",\"name\":\"tmpfs\"},{\"kb_size\":\"20959212\",\"mounted_on\":\"/tmp\",\"name\":\"/dev/nvme0n1p1\"},{\"kb_size\":\"65536\",\"mounted_on\":\"/dev/shm\",\"name\":\"shm\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/var/run/docker.sock\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/host/sys/fs/cgroup\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/proc/acpi\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/sys/firmware\",\"name\":\"tmpfs\"}],\"memory\":{\"swap_total\":\"0kB\",\"total\":\"3978256kB\"},\"network\":null,\"platform\":{\"GOOARCH\":\"amd64\",\"GOOS\":\"linux\",\"goV\":\"1.12.9\",\"hardware_platform\":\"unknown\",\"hostname\":\"datadog-agent-x87g7\",\"kernel_name\":\"Linux\",\"kernel_release\":\"4.14.146-119.123.amzn2.x86_64\",\"kernel_version\":\"#1 SMP Mon Sep 23 16:58:43 UTC 2019\",\"machine\":\"x86_64\",\"os\":\"GNU/Linux\",\"processor\":\"unknown\",\"pythonV\":\"3.7.4\"}}",
+        "host_id": 15777904,
+        "pythonV": "3.7.4",
+        "processor": "Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz",
+        "socket-fqdn": "datadog-agent-x87g7",
+        "agent_version": "7.16.1"
+      },
+      "host_name": "i-026c849e51d723a43",
+      "aws_id": "i-026c849e51d723a43",
+      "id": 15777904,
+      "aliases": [
+        "i-026c849e51d723a43",
+        "ip-192-168-79-187.eu-central-1.compute.internal",
+        "ip-192-168-79-187.eu-central-1.compute.internal-ekstest1"
+      ]
+    },
+    {
+      "last_reported_time": 1581351140,
+      "name": "i-0ff0a5e125e86170e",
+      "is_muted": false,
+      "mute_timeout": null,
+      "apps": [
+        "ntp",
+        "agent",
+        "check_run",
+        "coredns",
+        "docker",
+        "kubernetes"
+      ],
+      "tags_by_source": {
+        "Datadog": [
+          "host:i-0ff0a5e125e86170e"
+        ]
+      },
+      "up": true,
+      "metrics": {
+        "load": 0.0033,
+        "iowait": 0.0037786027,
+        "cpu": 3.2083638
+      },
+      "sources": [
+        "agent"
+      ],
+      "meta": {
+        "socket-hostname": "datadog-agent-k9zrj",
+        "nixV": [
+          "debian",
+          "10.2",
+          ""
+        ],
+        "agent_checks": [
+          [
+            "ntp",
+            "ntp",
+            "ntp:d884b5186b651429",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "uptime",
+            "uptime",
+            "uptime",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "io",
+            "io",
+            "io",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "cpu",
+            "cpu",
+            "cpu",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "network",
+            "network",
+            "network:e0204ad63d43c949",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "coredns",
+            "coredns",
+            "coredns:a2c3d310d91622ac",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "kubernetes_apiserver",
+            "kubernetes_apiserver",
+            "kubernetes_apiserver",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "docker",
+            "docker",
+            "docker",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "load",
+            "load",
+            "load",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "kubelet",
+            "kubelet",
+            "kubelet:d884b5186b651429",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "file_handle",
+            "file_handle",
+            "file_handle",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "disk",
+            "disk",
+            "disk:e5dffb8bef24336f",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "memory",
+            "memory",
+            "memory",
+            "OK",
+            "",
+            ""
+          ]
+        ],
+        "network": {
+          "network-id": "vpc-049c2d7a82b5c8403"
+        },
+        "cpuCores": 1,
+        "macV": [
+          "",
+          "",
+          ""
+        ],
+        "timezones": [
+          "UTC"
+        ],
+        "winV": [
+          "",
+          "",
+          ""
+        ],
+        "container_meta": {
+          "kubelet_version": "v1.14.7-eks-1861c5",
+          "docker_swarm": "inactive",
+          "docker_version": "18.06.1-ce"
+        },
+        "machine": "amd64",
+        "platform": "linux",
+        "fbsdV": [
+          "",
+          "",
+          ""
+        ],
+        "gohai": "{\"cpu\":{\"cache_size\":\"36608 KB\",\"cpu_cores\":\"1\",\"cpu_logical_processors\":\"2\",\"family\":\"6\",\"mhz\":\"2500.000\",\"model\":\"85\",\"model_name\":\"Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz\",\"stepping\":\"7\",\"vendor_id\":\"GenuineIntel\"},\"filesystem\":[{\"kb_size\":\"20959212\",\"mounted_on\":\"/\",\"name\":\"overlay\"},{\"kb_size\":\"65536\",\"mounted_on\":\"/dev\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/sys/fs/cgroup\",\"name\":\"tmpfs\"},{\"kb_size\":\"20959212\",\"mounted_on\":\"/tmp\",\"name\":\"/dev/nvme0n1p1\"},{\"kb_size\":\"65536\",\"mounted_on\":\"/dev/shm\",\"name\":\"shm\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/var/run/docker.sock\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/host/sys/fs/cgroup\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/proc/acpi\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/sys/firmware\",\"name\":\"tmpfs\"}],\"memory\":{\"swap_total\":\"0kB\",\"total\":\"3978256kB\"},\"network\":null,\"platform\":{\"GOOARCH\":\"amd64\",\"GOOS\":\"linux\",\"goV\":\"1.12.9\",\"hardware_platform\":\"unknown\",\"hostname\":\"datadog-agent-k9zrj\",\"kernel_name\":\"Linux\",\"kernel_release\":\"4.14.146-119.123.amzn2.x86_64\",\"kernel_version\":\"#1 SMP Mon Sep 23 16:58:43 UTC 2019\",\"machine\":\"x86_64\",\"os\":\"GNU/Linux\",\"processor\":\"unknown\",\"pythonV\":\"3.7.4\"}}",
+        "host_id": 15777905,
+        "pythonV": "3.7.4",
+        "processor": "Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz",
+        "socket-fqdn": "datadog-agent-k9zrj",
+        "agent_version": "7.16.1"
+      },
+      "host_name": "i-0ff0a5e125e86170e",
+      "aws_id": "i-0ff0a5e125e86170e",
+      "id": 15777905,
+      "aliases": [
+        "i-0ff0a5e125e86170e",
+        "ip-192-168-40-16.eu-central-1.compute.internal",
+        "ip-192-168-40-16.eu-central-1.compute.internal-ekstest1"
+      ]
+    },
+    {
+      "last_reported_time": 1581352348,
+      "name": "i-0d414b28ceb98280f",
+      "is_muted": false,
+      "mute_timeout": null,
+      "apps": [
+        "ntp",
+        "check_run",
+        "agent",
+        "coredns",
+        "docker",
+        "kubernetes"
+      ],
+      "tags_by_source": {
+        "Datadog": [
+          "host:i-0d414b28ceb98280f"
+        ]
+      },
+      "up": true,
+      "metrics": {
+        "load": 0.0256,
+        "iowait": 0.003779194,
+        "cpu": 3.1801252
+      },
+      "sources": [
+        "agent"
+      ],
+      "meta": {
+        "socket-hostname": "datadog-agent-s5xxw",
+        "nixV": [
+          "debian",
+          "10.2",
+          ""
+        ],
+        "agent_checks": [
+          [
+            "cpu",
+            "cpu",
+            "cpu",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "network",
+            "network",
+            "network:e0204ad63d43c949",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "uptime",
+            "uptime",
+            "uptime",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "memory",
+            "memory",
+            "memory",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "kubernetes_apiserver",
+            "kubernetes_apiserver",
+            "kubernetes_apiserver",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "io",
+            "io",
+            "io",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "kubelet",
+            "kubelet",
+            "kubelet:d884b5186b651429",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "file_handle",
+            "file_handle",
+            "file_handle",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "disk",
+            "disk",
+            "disk:e5dffb8bef24336f",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "coredns",
+            "coredns",
+            "coredns:4634106931b697d0",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "ntp",
+            "ntp",
+            "ntp:d884b5186b651429",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "docker",
+            "docker",
+            "docker",
+            "OK",
+            "",
+            ""
+          ],
+          [
+            "load",
+            "load",
+            "load",
+            "OK",
+            "",
+            ""
+          ]
+        ],
+        "network": {
+          "network-id": "vpc-049c2d7a82b5c8403"
+        },
+        "cpuCores": 1,
+        "macV": [
+          "",
+          "",
+          ""
+        ],
+        "timezones": [
+          "UTC"
+        ],
+        "winV": [
+          "",
+          "",
+          ""
+        ],
+        "container_meta": {
+          "kubelet_version": "v1.14.7-eks-1861c5",
+          "docker_swarm": "inactive",
+          "docker_version": "18.06.1-ce"
+        },
+        "machine": "amd64",
+        "platform": "linux",
+        "fbsdV": [
+          "",
+          "",
+          ""
+        ],
+        "gohai": "{\"cpu\":{\"cache_size\":\"36608 KB\",\"cpu_cores\":\"1\",\"cpu_logical_processors\":\"2\",\"family\":\"6\",\"mhz\":\"2499.998\",\"model\":\"85\",\"model_name\":\"Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz\",\"stepping\":\"7\",\"vendor_id\":\"GenuineIntel\"},\"filesystem\":[{\"kb_size\":\"20959212\",\"mounted_on\":\"/\",\"name\":\"overlay\"},{\"kb_size\":\"65536\",\"mounted_on\":\"/dev\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/sys/fs/cgroup\",\"name\":\"tmpfs\"},{\"kb_size\":\"20959212\",\"mounted_on\":\"/tmp\",\"name\":\"/dev/nvme0n1p1\"},{\"kb_size\":\"65536\",\"mounted_on\":\"/dev/shm\",\"name\":\"shm\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/var/run/docker.sock\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/host/sys/fs/cgroup\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/proc/acpi\",\"name\":\"tmpfs\"},{\"kb_size\":\"1989128\",\"mounted_on\":\"/sys/firmware\",\"name\":\"tmpfs\"}],\"memory\":{\"swap_total\":\"0kB\",\"total\":\"3978256kB\"},\"network\":null,\"platform\":{\"GOOARCH\":\"amd64\",\"GOOS\":\"linux\",\"goV\":\"1.12.9\",\"hardware_platform\":\"unknown\",\"hostname\":\"datadog-agent-s5xxw\",\"kernel_name\":\"Linux\",\"kernel_release\":\"4.14.146-119.123.amzn2.x86_64\",\"kernel_version\":\"#1 SMP Mon Sep 23 16:58:43 UTC 2019\",\"machine\":\"x86_64\",\"os\":\"GNU/Linux\",\"processor\":\"unknown\",\"pythonV\":\"3.7.4\"}}",
+        "host_id": 15777906,
+        "pythonV": "3.7.4",
+        "processor": "Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz",
+        "socket-fqdn": "datadog-agent-s5xxw",
+        "agent_version": "7.16.1"
+      },
+      "host_name": "i-0d414b28ceb98280f",
+      "aws_id": "i-0d414b28ceb98280f",
+      "id": 15777906,
+      "aliases": [
+        "i-0d414b28ceb98280f",
+        "ip-192-168-16-72.eu-central-1.compute.internal",
+        "ip-192-168-16-72.eu-central-1.compute.internal-ekstest1"
+      ]
+    }
+  ],
+  "total_matching": 3
+}
