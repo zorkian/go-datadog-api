@@ -18428,6 +18428,37 @@ func (s *Series) SetUnits(v UnitPair) {
 	s.Units = &v
 }
 
+// GetQueryIndex returns the QueryIndex field if non-nil, zero value otherwise.
+func (s *Series) GetQueryIndex() int {
+	if s == nil || s.QueryIndex == nil {
+		return 0
+	}
+	return *s.QueryIndex
+}
+
+// GetQueryIndexOk returns a tuple with the QueryIndex field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Series) GetQueryIndexOk() (int, bool) {
+	if s == nil || s.QueryIndex == nil {
+		return 0, false
+	}
+	return *s.QueryIndex, true
+}
+
+// HasQueryIndex returns a boolean if a field has been set.
+func (s *Series) HasQueryIndex() bool {
+	if s != nil && s.QueryIndex != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryIndex allocates a new s.QueryIndex and returns the pointer to it.
+func (s *Series) SetQueryIndex(v int) {
+	s.QueryIndex = &v
+}
+
 // GetAccount returns the Account field if non-nil, zero value otherwise.
 func (s *ServiceHookSlackRequest) GetAccount() string {
 	if s == nil || s.Account == nil {
