@@ -18335,6 +18335,37 @@ func (s *Series) SetMetric(v string) {
 	s.Metric = &v
 }
 
+// GetQueryIndex returns the QueryIndex field if non-nil, zero value otherwise.
+func (s *Series) GetQueryIndex() int {
+	if s == nil || s.QueryIndex == nil {
+		return 0
+	}
+	return *s.QueryIndex
+}
+
+// GetQueryIndexOk returns a tuple with the QueryIndex field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *Series) GetQueryIndexOk() (int, bool) {
+	if s == nil || s.QueryIndex == nil {
+		return 0, false
+	}
+	return *s.QueryIndex, true
+}
+
+// HasQueryIndex returns a boolean if a field has been set.
+func (s *Series) HasQueryIndex() bool {
+	if s != nil && s.QueryIndex != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQueryIndex allocates a new s.QueryIndex and returns the pointer to it.
+func (s *Series) SetQueryIndex(v int) {
+	s.QueryIndex = &v
+}
+
 // GetScope returns the Scope field if non-nil, zero value otherwise.
 func (s *Series) GetScope() string {
 	if s == nil || s.Scope == nil {
@@ -18426,37 +18457,6 @@ func (s *Series) HasUnits() bool {
 // SetUnits allocates a new s.Units and returns the pointer to it.
 func (s *Series) SetUnits(v UnitPair) {
 	s.Units = &v
-}
-
-// GetQueryIndex returns the QueryIndex field if non-nil, zero value otherwise.
-func (s *Series) GetQueryIndex() int {
-	if s == nil || s.QueryIndex == nil {
-		return 0
-	}
-	return *s.QueryIndex
-}
-
-// GetQueryIndexOk returns a tuple with the QueryIndex field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (s *Series) GetQueryIndexOk() (int, bool) {
-	if s == nil || s.QueryIndex == nil {
-		return 0, false
-	}
-	return *s.QueryIndex, true
-}
-
-// HasQueryIndex returns a boolean if a field has been set.
-func (s *Series) HasQueryIndex() bool {
-	if s != nil && s.QueryIndex != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetQueryIndex allocates a new s.QueryIndex and returns the pointer to it.
-func (s *Series) SetQueryIndex(v int) {
-	s.QueryIndex = &v
 }
 
 // GetAccount returns the Account field if non-nil, zero value otherwise.
@@ -20441,6 +20441,37 @@ func (s *SyntheticsOptions) HasAcceptSelfSigned() bool {
 // SetAcceptSelfSigned allocates a new s.AcceptSelfSigned and returns the pointer to it.
 func (s *SyntheticsOptions) SetAcceptSelfSigned(v bool) {
 	s.AcceptSelfSigned = &v
+}
+
+// GetAllowInsecure returns the AllowInsecure field if non-nil, zero value otherwise.
+func (s *SyntheticsOptions) GetAllowInsecure() bool {
+	if s == nil || s.AllowInsecure == nil {
+		return false
+	}
+	return *s.AllowInsecure
+}
+
+// GetAllowInsecureOk returns a tuple with the AllowInsecure field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *SyntheticsOptions) GetAllowInsecureOk() (bool, bool) {
+	if s == nil || s.AllowInsecure == nil {
+		return false, false
+	}
+	return *s.AllowInsecure, true
+}
+
+// HasAllowInsecure returns a boolean if a field has been set.
+func (s *SyntheticsOptions) HasAllowInsecure() bool {
+	if s != nil && s.AllowInsecure != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowInsecure allocates a new s.AllowInsecure and returns the pointer to it.
+func (s *SyntheticsOptions) SetAllowInsecure(v bool) {
+	s.AllowInsecure = &v
 }
 
 // GetFollowRedirects returns the FollowRedirects field if non-nil, zero value otherwise.
