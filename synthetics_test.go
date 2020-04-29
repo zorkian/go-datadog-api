@@ -125,6 +125,11 @@ func TestGetSyntheticsTestApi(t *testing.T) {
 		t.Fatalf("expect options.retry.Interval %+v. Got %+v", expectedRetry.Interval, retry.Interval)
 	}
 
+	expectedAllowInsecure := true
+	if allowInsecure := options.GetAllowInsecure(); allowInsecure != expectedAllowInsecure {
+		t.Fatalf("expect options.allow_insecure %v. Got %v", expectedAllowInsecure, allowInsecure)
+	}
+
 	locations := c.Locations
 	expectedLocationsCnt := 1
 	if cnt := len(locations); cnt != expectedLocationsCnt {

@@ -55,6 +55,7 @@
     "follow_redirects": true,
     "min_failure_duration": 30,
     "min_location_failed": 3,
+    "allow_insecure": true,
     "retry": {
       "count": 1,
       "interval": 10
