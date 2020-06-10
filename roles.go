@@ -8,12 +8,12 @@ import (
 type Sort string
 
 const (
-	SortNameAsc        Sort = "name"
-	SortNameDesc       Sort = "-name"
-	SortModifiedAtAsc  Sort = "modified_at"
-	SortModifiedAtDesc Sort = "-modified_at"
-	SortUserCountAsc   Sort = "user_count"
-	SortUserCountDesc  Sort = "-user_count"
+	SortRolesByNameAsc        Sort = "name"
+	SortRolesByNameDesc       Sort = "-name"
+	SortRolesByModifiedAtAsc  Sort = "modified_at"
+	SortRolesByModifiedAtDesc Sort = "-modified_at"
+	SortRolesByUserCountAsc   Sort = "user_count"
+	SortRolesByUserCountDesc  Sort = "-user_count"
 )
 
 type ListRolesResponse struct {
@@ -30,21 +30,21 @@ type RoleMetadata struct {
 }
 
 type Page struct {
-	TotalFilteredCount *int `json:"total_filtered_count,omitempty"`
 	TotalCount         *int `json:"total_count,omitempty"`
+	TotalFilteredCount *int `json:"total_filtered_count,omitempty"`
 }
 
 type Role struct {
-	Type          *string            `json:"type,omitempty"`
-	Id            *string            `json:"id,omitempty"`
 	Attributes    *RoleAttributes    `json:"attributes,omitempty"`
+	Id            *string            `json:"id,omitempty"`
 	Relationships *RoleRelationships `json:"relationships,omitempty"`
+	Type          *string            `json:"type"`
 }
 
 type RoleAttributes struct {
-	Name       *string    `json:"name,omitempty"`
 	CreatedAt  *time.Time `json:"created_at,omitempty"`
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	Name       *string    `json:"name,omitempty"`
 	UserCount  *int       `json:"user_count,omitempty"`
 }
 

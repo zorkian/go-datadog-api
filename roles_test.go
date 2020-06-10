@@ -26,7 +26,7 @@ func TestClient_ListRoles(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "")
+	roles, err := datadogClient.ListRoles(10, 0, SortRolesByNameAsc, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -80,7 +80,7 @@ func TestClient_ListRoles_Filtered(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(10, 0, SortNameAsc, "Datadog Admin Role")
+	roles, err := datadogClient.ListRoles(10, 0, SortRolesByNameAsc, "Datadog Admin Role")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -112,7 +112,7 @@ func TestClient_ListRoles_NegativePageSize(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(-1, 0, SortNameAsc, "")
+	roles, err := datadogClient.ListRoles(-1, 0, SortRolesByNameAsc, "")
 	if roles != nil {
 		t.Fatalf("expected an error and got roles instead")
 	}
@@ -131,7 +131,7 @@ func TestClient_ListRoles_NegativePageNumber(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	roles, err := datadogClient.ListRoles(10, -1, SortNameAsc, "")
+	roles, err := datadogClient.ListRoles(10, -1, SortRolesByNameAsc, "")
 	if roles != nil {
 		t.Fatalf("expected an error and got roles instead")
 	}
@@ -297,7 +297,7 @@ func TestClient_ListRoleUsers(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	users, err := datadogClient.ListRoleUsers("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", 10, 0, SortNameAsc, "")
+	users, err := datadogClient.ListRoleUsers("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", 10, 0, SortRolesByNameAsc, "")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -351,7 +351,7 @@ func TestClient_ListRoleUsers_Filtered(t *testing.T) {
 		HttpClient: http.DefaultClient,
 	}
 
-	users, err := datadogClient.ListRoleUsers("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", 10, 0, SortNameAsc, "Jane Doe")
+	users, err := datadogClient.ListRoleUsers("e85b03a3-42b5-11ea-a78a-874cf4ed7ee4", 10, 0, SortRolesByNameAsc, "Jane Doe")
 	if err != nil {
 		t.Fatal(err)
 	}
