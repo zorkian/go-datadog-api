@@ -14150,37 +14150,6 @@ func (m *Monitor) SetOverallState(v string) {
 	m.OverallState = &v
 }
 
-// GetOverallStateModified returns the OverallStateModified field if non-nil, zero value otherwise.
-func (m *Monitor) GetOverallStateModified() string {
-	if m == nil || m.OverallStateModified == nil {
-		return ""
-	}
-	return *m.OverallStateModified
-}
-
-// GetOverallStateModifiedOk returns a tuple with the OverallStateModified field if it's non-nil, zero value otherwise
-// and a boolean to check if the value has been set.
-func (m *Monitor) GetOverallStateModifiedOk() (string, bool) {
-	if m == nil || m.OverallStateModified == nil {
-		return "", false
-	}
-	return *m.OverallStateModified, true
-}
-
-// HasOverallStateModified returns a boolean if a field has been set.
-func (m *Monitor) HasOverallStateModified() bool {
-	if m != nil && m.OverallStateModified != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOverallStateModified allocates a new m.OverallStateModified and returns the pointer to it.
-func (m *Monitor) SetOverallStateModified(v string) {
-	m.OverallStateModified = &v
-}
-
 // GetQuery returns the Query field if non-nil, zero value otherwise.
 func (m *Monitor) GetQuery() string {
 	if m == nil || m.Query == nil {
