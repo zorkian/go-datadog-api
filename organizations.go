@@ -17,7 +17,7 @@ type OrganizationBilling struct {
 type OrganizationSettings struct {
 	PrivateWidgetShare         *bool                                   `json:"private_widget_share,omitempty"`
 	Saml                       *OrganizationSaml                       `json:"subscription,omitempty"`
-	SamlAutocreateAccessRole   *string                                 `json:"saml_autocreate_access_role"`
+	SamlAutocreateAccessRole   *string                                 `json:"saml_autocreate_access_role,omitempty"`
 	SamlAutocreateUsersDomains *OrganizationSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
 	SamlCanBeEnabled           *bool                                   `json:"saml_can_be_enabled,omitempty"`
 	SamlIdpEndpoint            *string                                 `json:"saml_idp_endpoint,omitempty"`
