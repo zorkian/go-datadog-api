@@ -15111,6 +15111,719 @@ func (o *Options) SetTimeoutH(v int) {
 	o.TimeoutH = &v
 }
 
+// GetBilling returns the Billing field if non-nil, zero value otherwise.
+func (o *Organization) GetBilling() OrganizationBilling {
+	if o == nil || o.Billing == nil {
+		return OrganizationBilling{}
+	}
+	return *o.Billing
+}
+
+// GetBillingOk returns a tuple with the Billing field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetBillingOk() (OrganizationBilling, bool) {
+	if o == nil || o.Billing == nil {
+		return OrganizationBilling{}, false
+	}
+	return *o.Billing, true
+}
+
+// HasBilling returns a boolean if a field has been set.
+func (o *Organization) HasBilling() bool {
+	if o != nil && o.Billing != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBilling allocates a new o.Billing and returns the pointer to it.
+func (o *Organization) SetBilling(v OrganizationBilling) {
+	o.Billing = &v
+}
+
+// GetCreated returns the Created field if non-nil, zero value otherwise.
+func (o *Organization) GetCreated() string {
+	if o == nil || o.Created == nil {
+		return ""
+	}
+	return *o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetCreatedOk() (string, bool) {
+	if o == nil || o.Created == nil {
+		return "", false
+	}
+	return *o.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (o *Organization) HasCreated() bool {
+	if o != nil && o.Created != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated allocates a new o.Created and returns the pointer to it.
+func (o *Organization) SetCreated(v string) {
+	o.Created = &v
+}
+
+// GetDescription returns the Description field if non-nil, zero value otherwise.
+func (o *Organization) GetDescription() string {
+	if o == nil || o.Description == nil {
+		return ""
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetDescriptionOk() (string, bool) {
+	if o == nil || o.Description == nil {
+		return "", false
+	}
+	return *o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Organization) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription allocates a new o.Description and returns the pointer to it.
+func (o *Organization) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetName returns the Name field if non-nil, zero value otherwise.
+func (o *Organization) GetName() string {
+	if o == nil || o.Name == nil {
+		return ""
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetNameOk() (string, bool) {
+	if o == nil || o.Name == nil {
+		return "", false
+	}
+	return *o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *Organization) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName allocates a new o.Name and returns the pointer to it.
+func (o *Organization) SetName(v string) {
+	o.Name = &v
+}
+
+// GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+func (o *Organization) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		return ""
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetPublicIdOk() (string, bool) {
+	if o == nil || o.PublicId == nil {
+		return "", false
+	}
+	return *o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *Organization) HasPublicId() bool {
+	if o != nil && o.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId allocates a new o.PublicId and returns the pointer to it.
+func (o *Organization) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
+// GetSettings returns the Settings field if non-nil, zero value otherwise.
+func (o *Organization) GetSettings() OrganizationSettings {
+	if o == nil || o.Settings == nil {
+		return OrganizationSettings{}
+	}
+	return *o.Settings
+}
+
+// GetSettingsOk returns a tuple with the Settings field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetSettingsOk() (OrganizationSettings, bool) {
+	if o == nil || o.Settings == nil {
+		return OrganizationSettings{}, false
+	}
+	return *o.Settings, true
+}
+
+// HasSettings returns a boolean if a field has been set.
+func (o *Organization) HasSettings() bool {
+	if o != nil && o.Settings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSettings allocates a new o.Settings and returns the pointer to it.
+func (o *Organization) SetSettings(v OrganizationSettings) {
+	o.Settings = &v
+}
+
+// GetSubscription returns the Subscription field if non-nil, zero value otherwise.
+func (o *Organization) GetSubscription() OrganizationSubscription {
+	if o == nil || o.Subscription == nil {
+		return OrganizationSubscription{}
+	}
+	return *o.Subscription
+}
+
+// GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetSubscriptionOk() (OrganizationSubscription, bool) {
+	if o == nil || o.Subscription == nil {
+		return OrganizationSubscription{}, false
+	}
+	return *o.Subscription, true
+}
+
+// HasSubscription returns a boolean if a field has been set.
+func (o *Organization) HasSubscription() bool {
+	if o != nil && o.Subscription != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscription allocates a new o.Subscription and returns the pointer to it.
+func (o *Organization) SetSubscription(v OrganizationSubscription) {
+	o.Subscription = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (o *OrganizationBilling) GetType() string {
+	if o == nil || o.Type == nil {
+		return ""
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationBilling) GetTypeOk() (string, bool) {
+	if o == nil || o.Type == nil {
+		return "", false
+	}
+	return *o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *OrganizationBilling) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new o.Type and returns the pointer to it.
+func (o *OrganizationBilling) SetType(v string) {
+	o.Type = &v
+}
+
+// GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+func (o *OrganizationSaml) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		return false
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSaml) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return false, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *OrganizationSaml) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled allocates a new o.Enabled and returns the pointer to it.
+func (o *OrganizationSaml) SetEnabled(v bool) {
+	o.Enabled = &v
+}
+
+// GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+func (o *OrganizationSamlAutocreateUsersDomains) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		return false
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSamlAutocreateUsersDomains) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return false, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *OrganizationSamlAutocreateUsersDomains) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled allocates a new o.Enabled and returns the pointer to it.
+func (o *OrganizationSamlAutocreateUsersDomains) SetEnabled(v bool) {
+	o.Enabled = &v
+}
+
+// GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+func (o *OrganizationSamlIdpInitiatedLogin) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		return false
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSamlIdpInitiatedLogin) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return false, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *OrganizationSamlIdpInitiatedLogin) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled allocates a new o.Enabled and returns the pointer to it.
+func (o *OrganizationSamlIdpInitiatedLogin) SetEnabled(v bool) {
+	o.Enabled = &v
+}
+
+// GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+func (o *OrganizationSamlStrictMode) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		return false
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSamlStrictMode) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return false, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *OrganizationSamlStrictMode) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled allocates a new o.Enabled and returns the pointer to it.
+func (o *OrganizationSamlStrictMode) SetEnabled(v bool) {
+	o.Enabled = &v
+}
+
+// GetPrivateWidgetShare returns the PrivateWidgetShare field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetPrivateWidgetShare() bool {
+	if o == nil || o.PrivateWidgetShare == nil {
+		return false
+	}
+	return *o.PrivateWidgetShare
+}
+
+// GetPrivateWidgetShareOk returns a tuple with the PrivateWidgetShare field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetPrivateWidgetShareOk() (bool, bool) {
+	if o == nil || o.PrivateWidgetShare == nil {
+		return false, false
+	}
+	return *o.PrivateWidgetShare, true
+}
+
+// HasPrivateWidgetShare returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasPrivateWidgetShare() bool {
+	if o != nil && o.PrivateWidgetShare != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateWidgetShare allocates a new o.PrivateWidgetShare and returns the pointer to it.
+func (o *OrganizationSettings) SetPrivateWidgetShare(v bool) {
+	o.PrivateWidgetShare = &v
+}
+
+// GetSaml returns the Saml field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSaml() OrganizationSaml {
+	if o == nil || o.Saml == nil {
+		return OrganizationSaml{}
+	}
+	return *o.Saml
+}
+
+// GetSamlOk returns a tuple with the Saml field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlOk() (OrganizationSaml, bool) {
+	if o == nil || o.Saml == nil {
+		return OrganizationSaml{}, false
+	}
+	return *o.Saml, true
+}
+
+// HasSaml returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSaml() bool {
+	if o != nil && o.Saml != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSaml allocates a new o.Saml and returns the pointer to it.
+func (o *OrganizationSettings) SetSaml(v OrganizationSaml) {
+	o.Saml = &v
+}
+
+// GetSamlAutocreateAccessRole returns the SamlAutocreateAccessRole field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlAutocreateAccessRole() string {
+	if o == nil || o.SamlAutocreateAccessRole == nil {
+		return ""
+	}
+	return *o.SamlAutocreateAccessRole
+}
+
+// GetSamlAutocreateAccessRoleOk returns a tuple with the SamlAutocreateAccessRole field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlAutocreateAccessRoleOk() (string, bool) {
+	if o == nil || o.SamlAutocreateAccessRole == nil {
+		return "", false
+	}
+	return *o.SamlAutocreateAccessRole, true
+}
+
+// HasSamlAutocreateAccessRole returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlAutocreateAccessRole() bool {
+	if o != nil && o.SamlAutocreateAccessRole != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlAutocreateAccessRole allocates a new o.SamlAutocreateAccessRole and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlAutocreateAccessRole(v string) {
+	o.SamlAutocreateAccessRole = &v
+}
+
+// GetSamlAutocreateUsersDomains returns the SamlAutocreateUsersDomains field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlAutocreateUsersDomains() OrganizationSamlAutocreateUsersDomains {
+	if o == nil || o.SamlAutocreateUsersDomains == nil {
+		return OrganizationSamlAutocreateUsersDomains{}
+	}
+	return *o.SamlAutocreateUsersDomains
+}
+
+// GetSamlAutocreateUsersDomainsOk returns a tuple with the SamlAutocreateUsersDomains field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlAutocreateUsersDomainsOk() (OrganizationSamlAutocreateUsersDomains, bool) {
+	if o == nil || o.SamlAutocreateUsersDomains == nil {
+		return OrganizationSamlAutocreateUsersDomains{}, false
+	}
+	return *o.SamlAutocreateUsersDomains, true
+}
+
+// HasSamlAutocreateUsersDomains returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlAutocreateUsersDomains() bool {
+	if o != nil && o.SamlAutocreateUsersDomains != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlAutocreateUsersDomains allocates a new o.SamlAutocreateUsersDomains and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlAutocreateUsersDomains(v OrganizationSamlAutocreateUsersDomains) {
+	o.SamlAutocreateUsersDomains = &v
+}
+
+// GetSamlCanBeEnabled returns the SamlCanBeEnabled field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlCanBeEnabled() bool {
+	if o == nil || o.SamlCanBeEnabled == nil {
+		return false
+	}
+	return *o.SamlCanBeEnabled
+}
+
+// GetSamlCanBeEnabledOk returns a tuple with the SamlCanBeEnabled field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlCanBeEnabledOk() (bool, bool) {
+	if o == nil || o.SamlCanBeEnabled == nil {
+		return false, false
+	}
+	return *o.SamlCanBeEnabled, true
+}
+
+// HasSamlCanBeEnabled returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlCanBeEnabled() bool {
+	if o != nil && o.SamlCanBeEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlCanBeEnabled allocates a new o.SamlCanBeEnabled and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlCanBeEnabled(v bool) {
+	o.SamlCanBeEnabled = &v
+}
+
+// GetSamlIdpEndpoint returns the SamlIdpEndpoint field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlIdpEndpoint() string {
+	if o == nil || o.SamlIdpEndpoint == nil {
+		return ""
+	}
+	return *o.SamlIdpEndpoint
+}
+
+// GetSamlIdpEndpointOk returns a tuple with the SamlIdpEndpoint field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlIdpEndpointOk() (string, bool) {
+	if o == nil || o.SamlIdpEndpoint == nil {
+		return "", false
+	}
+	return *o.SamlIdpEndpoint, true
+}
+
+// HasSamlIdpEndpoint returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlIdpEndpoint() bool {
+	if o != nil && o.SamlIdpEndpoint != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlIdpEndpoint allocates a new o.SamlIdpEndpoint and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlIdpEndpoint(v string) {
+	o.SamlIdpEndpoint = &v
+}
+
+// GetSamlIdpInitiatedLogin returns the SamlIdpInitiatedLogin field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlIdpInitiatedLogin() OrganizationSamlIdpInitiatedLogin {
+	if o == nil || o.SamlIdpInitiatedLogin == nil {
+		return OrganizationSamlIdpInitiatedLogin{}
+	}
+	return *o.SamlIdpInitiatedLogin
+}
+
+// GetSamlIdpInitiatedLoginOk returns a tuple with the SamlIdpInitiatedLogin field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlIdpInitiatedLoginOk() (OrganizationSamlIdpInitiatedLogin, bool) {
+	if o == nil || o.SamlIdpInitiatedLogin == nil {
+		return OrganizationSamlIdpInitiatedLogin{}, false
+	}
+	return *o.SamlIdpInitiatedLogin, true
+}
+
+// HasSamlIdpInitiatedLogin returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlIdpInitiatedLogin() bool {
+	if o != nil && o.SamlIdpInitiatedLogin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlIdpInitiatedLogin allocates a new o.SamlIdpInitiatedLogin and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlIdpInitiatedLogin(v OrganizationSamlIdpInitiatedLogin) {
+	o.SamlIdpInitiatedLogin = &v
+}
+
+// GetSamlIdpMetadataUploaded returns the SamlIdpMetadataUploaded field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlIdpMetadataUploaded() bool {
+	if o == nil || o.SamlIdpMetadataUploaded == nil {
+		return false
+	}
+	return *o.SamlIdpMetadataUploaded
+}
+
+// GetSamlIdpMetadataUploadedOk returns a tuple with the SamlIdpMetadataUploaded field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlIdpMetadataUploadedOk() (bool, bool) {
+	if o == nil || o.SamlIdpMetadataUploaded == nil {
+		return false, false
+	}
+	return *o.SamlIdpMetadataUploaded, true
+}
+
+// HasSamlIdpMetadataUploaded returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlIdpMetadataUploaded() bool {
+	if o != nil && o.SamlIdpMetadataUploaded != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlIdpMetadataUploaded allocates a new o.SamlIdpMetadataUploaded and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlIdpMetadataUploaded(v bool) {
+	o.SamlIdpMetadataUploaded = &v
+}
+
+// GetSamlLoginUrl returns the SamlLoginUrl field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlLoginUrl() string {
+	if o == nil || o.SamlLoginUrl == nil {
+		return ""
+	}
+	return *o.SamlLoginUrl
+}
+
+// GetSamlLoginUrlOk returns a tuple with the SamlLoginUrl field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlLoginUrlOk() (string, bool) {
+	if o == nil || o.SamlLoginUrl == nil {
+		return "", false
+	}
+	return *o.SamlLoginUrl, true
+}
+
+// HasSamlLoginUrl returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlLoginUrl() bool {
+	if o != nil && o.SamlLoginUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlLoginUrl allocates a new o.SamlLoginUrl and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlLoginUrl(v string) {
+	o.SamlLoginUrl = &v
+}
+
+// GetSamlStrictMode returns the SamlStrictMode field if non-nil, zero value otherwise.
+func (o *OrganizationSettings) GetSamlStrictMode() OrganizationSamlStrictMode {
+	if o == nil || o.SamlStrictMode == nil {
+		return OrganizationSamlStrictMode{}
+	}
+	return *o.SamlStrictMode
+}
+
+// GetSamlStrictModeOk returns a tuple with the SamlStrictMode field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSettings) GetSamlStrictModeOk() (OrganizationSamlStrictMode, bool) {
+	if o == nil || o.SamlStrictMode == nil {
+		return OrganizationSamlStrictMode{}, false
+	}
+	return *o.SamlStrictMode, true
+}
+
+// HasSamlStrictMode returns a boolean if a field has been set.
+func (o *OrganizationSettings) HasSamlStrictMode() bool {
+	if o != nil && o.SamlStrictMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSamlStrictMode allocates a new o.SamlStrictMode and returns the pointer to it.
+func (o *OrganizationSettings) SetSamlStrictMode(v OrganizationSamlStrictMode) {
+	o.SamlStrictMode = &v
+}
+
+// GetType returns the Type field if non-nil, zero value otherwise.
+func (o *OrganizationSubscription) GetType() string {
+	if o == nil || o.Type == nil {
+		return ""
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSubscription) GetTypeOk() (string, bool) {
+	if o == nil || o.Type == nil {
+		return "", false
+	}
+	return *o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *OrganizationSubscription) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType allocates a new o.Type and returns the pointer to it.
+func (o *OrganizationSubscription) SetType(v string) {
+	o.Type = &v
+}
+
 // GetCount returns the Count field if non-nil, zero value otherwise.
 func (p *Params) GetCount() string {
 	if p == nil || p.Count == nil {

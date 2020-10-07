@@ -1,0 +1,35 @@
+{
+  "org": {
+    "public_id": "xxx-xxx-xxx",
+    "name": "test",
+    "billing": {
+      "type": "parent_billing"
+    },
+    "created": "2020-08-01 10:00:00",
+    "description": "description",
+    "settings": {
+      "saml_can_be_enabled": false,
+      "saml_idp_initiated_login": {
+        "enabled": false
+      },
+      "private_widget_share": false,
+      "saml": {
+        "enabled": false
+      },
+      "saml_idp_endpoint": "https://my.saml.endpoint",
+      "saml_autocreate_users_domains": {
+        "domains": ["example.com"],
+        "enabled": false
+      },
+      "saml_autocreate_access_role": "st",
+      "saml_login_url": "https://my.saml.login.url",
+      "saml_idp_metadata_uploaded": false,
+      "saml_strict_mode": {
+        "enabled": false
+      }
+    },
+    "subscription": {
+      "type": "pro"
+    }
+  }
+}
