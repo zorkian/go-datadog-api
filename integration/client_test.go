@@ -30,6 +30,17 @@ func TestValidAuth(t *testing.T) {
 	assert.Equal(t, valid, true)
 }
 
+func TestValidAuthNoAppKey(t *testing.T) {
+	c := datadog.NewClient(os.Getenv("DATADOG_API_KEY"), "")
+	valid, err := c.Validate()
+
+	if err != nil {
+		t.Fatalf("Testing authentication failed when it shouldn't: %s", err)
+	}
+
+	assert.Equal(t, valid, true)
+}
+
 func TestBaseUrl(t *testing.T) {
 	t.Run("Base url defaults to https://api.datadoghq.com", func(t *testing.T) {
 		assert.Empty(t, os.Getenv("DATADOG_HOST"))
