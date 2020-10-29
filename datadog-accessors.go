@@ -9376,6 +9376,37 @@ func (h *HeatmapRequest) SetStyle(v WidgetRequestStyle) {
 	h.Style = &v
 }
 
+// GetAwsID returns the AwsID field if non-nil, zero value otherwise.
+func (h *Host) GetAwsID() string {
+	if h == nil || h.AwsID == nil {
+		return ""
+	}
+	return *h.AwsID
+}
+
+// GetAwsIDOk returns a tuple with the AwsID field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (h *Host) GetAwsIDOk() (string, bool) {
+	if h == nil || h.AwsID == nil {
+		return "", false
+	}
+	return *h.AwsID, true
+}
+
+// HasAwsID returns a boolean if a field has been set.
+func (h *Host) HasAwsID() bool {
+	if h != nil && h.AwsID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAwsID allocates a new h.AwsID and returns the pointer to it.
+func (h *Host) SetAwsID(v string) {
+	h.AwsID = &v
+}
+
 // GetEndTime returns the EndTime field if non-nil, zero value otherwise.
 func (h *HostActionMute) GetEndTime() string {
 	if h == nil || h.EndTime == nil {
