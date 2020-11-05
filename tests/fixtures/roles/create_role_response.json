@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "roles",
+    "id": "3b4d1518-5dce-11ea-ae07-3f6422573100",
+    "attributes": {
+      "name": "Test Role",
+      "created_at": "2020-02-29T16:50:43.607749+00:00",
+      "modified_at": "2020-02-29T16:50:43.607749+00:00"
+    },
+    "relationships": {
+      "permissions": {
+        "data": []
+      }
+    }
+  }
+}

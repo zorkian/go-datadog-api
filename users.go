@@ -8,6 +8,8 @@
 
 package datadog
 
+import "time"
+
 type User struct {
 	Handle     *string `json:"handle,omitempty"`
 	Email      *string `json:"email,omitempty"`
@@ -31,6 +33,31 @@ type reqUpdateUser struct {
 	Verified   *bool   `json:"verified,omitempty"`
 	Disabled   *bool   `json:"disabled,omitempty"`
 	IsAdmin    *bool   `json:"is_admin,omitempty"`
+}
+
+type UserV2 struct {
+	Type          *string            `json:"type,omitempty"`
+	Id            *string            `json:"id,omitempty"`
+	Attributes    *UserAttributes    `json:"attributes,omitempty"`
+	Relationships *UserRelationships `json:"relationships,omitempty"`
+}
+
+type UserAttributes struct {
+	Name                *string    `json:"name,omitempty"`
+	Handle              *string    `json:"handle,omitempty"`
+	CreatedAt           *time.Time `json:"created_at,omitempty"`
+	Email               *string    `json:"email,omitempty"`
+	Icon                *string    `json:"icon,omitempty"`
+	Title               *string    `json:"title,omitempty"`
+	Verified            *bool      `json:"verified,omitempty"`
+	Disabled            *bool      `json:"disabled,omitempty"`
+	AllowedLoginMethods []*string  `json:"allowed_login_methods,omitempty"`
+	Status              *string    `json:"status,omitempty"`
+}
+
+type UserRelationships struct {
+	Roles *ListRolesResponse    `json:"roles,omitempty"`
+	Org   *OrganizationResponse `json:"org,omitempty"`
 }
 
 func reqUpdateUserFromUser(user User) reqUpdateUser {
