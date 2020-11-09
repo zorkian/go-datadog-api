@@ -44,6 +44,7 @@ type GraphDefinitionRequest struct {
 	ProcessQuery  *GraphProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *GraphApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *GraphApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *GraphApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // GraphApmOrLogQuery represents an APM or a Log query

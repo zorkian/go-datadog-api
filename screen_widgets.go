@@ -72,6 +72,7 @@ type TileDefRequest struct {
 	Query        *string               `json:"q,omitempty"`
 	LogQuery     *TileDefApmOrLogQuery `json:"log_query,omitempty"`
 	ApmQuery     *TileDefApmOrLogQuery `json:"apm_query,omitempty"`
+	EventQuery   *TileDefApmOrLogQuery `json:"event_query,omitempty"`
 	ProcessQuery *TileDefProcessQuery  `json:"process_query,omitempty"`
 
 	ConditionalFormats []ConditionalFormat        `json:"conditional_formats,omitempty"`
@@ -86,7 +87,7 @@ type TileDefRequest struct {
 	Metadata           map[string]TileDefMetadata `json:"metadata,omitempty"`
 }
 
-// TileDefApmOrLogQuery represents an APM or a Log query
+// TileDefApmOrLogQuery represents an APM, Log or an Event query
 type TileDefApmOrLogQuery struct {
 	Index   *string                       `json:"index"`
 	Compute *TileDefApmOrLogQueryCompute  `json:"compute"`

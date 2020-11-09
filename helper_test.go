@@ -72,7 +72,7 @@ func TestHelperGetJsonNumberSet(t *testing.T) {
 	m := getTestMonitor()
 
 	if attr, ok := datadog.GetJsonNumberOk(m.Options.Thresholds.Ok); ok {
-		assert.Equal(t, json.Number(2), attr)
+		assert.Equal(t, json.Number("2"), attr)
 	}
 }
 
@@ -93,7 +93,7 @@ func getTestMonitor() *datadog.Monitor {
 		NoDataTimeframe: 60,
 		Silenced:        map[string]int{},
 		Thresholds: &datadog.ThresholdCount{
-			Ok: datadog.JsonNumber(json.Number(2)),
+			Ok: datadog.JsonNumber("2"),
 		},
 	}
 

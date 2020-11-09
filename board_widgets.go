@@ -154,6 +154,7 @@ type ChangeRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // CheckStatusDefinition represents the definition for a Check Status widget
@@ -188,6 +189,7 @@ type DistributionRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // EventStreamDefinition represents the definition for an Event Stream widget
@@ -250,6 +252,7 @@ type HeatmapRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // HostmapDefinition represents the definition for a Hostmap widget
@@ -278,6 +281,7 @@ type HostmapRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 type HostmapStyle struct {
 	Palette     *string `json:"palette,omitempty"`
@@ -374,6 +378,7 @@ type QueryValueRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // QueryTableDefinition represents the definition for a Table widget
@@ -398,6 +403,7 @@ type QueryTableRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // ScatterplotDefinition represents the definition for a Scatterplot widget
@@ -425,6 +431,7 @@ type ScatterplotRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // ServiceLevelObjectiveDefinition represents the definition for a Service Level Objective widget
@@ -469,6 +476,7 @@ type TimeseriesRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 type TimeseriesRequestStyle struct {
 	Palette   *string `json:"palette,omitempty"`
@@ -495,6 +503,7 @@ type ToplistRequest struct {
 	ProcessQuery  *WidgetProcessQuery  `json:"process_query,omitempty"`
 	RumQuery      *WidgetApmOrLogQuery `json:"rum_query,omitempty"`
 	SecurityQuery *WidgetApmOrLogQuery `json:"security_query,omitempty"`
+	EventQuery    *WidgetApmOrLogQuery `json:"event_query,omitempty"`
 }
 
 // TraceServiceDefinition represents the definition for a Trace Service widget
