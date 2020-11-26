@@ -19358,6 +19358,37 @@ func (s *ServiceLevelObjectiveHistoryResponseData) SetOverall(v ServiceLevelObje
 	s.Overall = &v
 }
 
+// GetSlo returns the Slo field if non-nil, zero value otherwise.
+func (s *ServiceLevelObjectiveHistoryResponseData) GetSlo() ServiceLevelObjective {
+	if s == nil || s.Slo == nil {
+		return ServiceLevelObjective{}
+	}
+	return *s.Slo
+}
+
+// GetSloOk returns a tuple with the Slo field if it's non-nil, zero value otherwise
+// and a boolean to check if the value has been set.
+func (s *ServiceLevelObjectiveHistoryResponseData) GetSloOk() (ServiceLevelObjective, bool) {
+	if s == nil || s.Slo == nil {
+		return ServiceLevelObjective{}, false
+	}
+	return *s.Slo, true
+}
+
+// HasSlo returns a boolean if a field has been set.
+func (s *ServiceLevelObjectiveHistoryResponseData) HasSlo() bool {
+	if s != nil && s.Slo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSlo allocates a new s.Slo and returns the pointer to it.
+func (s *ServiceLevelObjectiveHistoryResponseData) SetSlo(v ServiceLevelObjective) {
+	s.Slo = &v
+}
+
 // GetDenominator returns the Denominator field if non-nil, zero value otherwise.
 func (s *ServiceLevelObjectiveMetricQuery) GetDenominator() string {
 	if s == nil || s.Denominator == nil {

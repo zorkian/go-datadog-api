@@ -525,12 +525,15 @@ type ServiceLevelObjectiveHistoryMetricSeries struct {
 
 // ServiceLevelObjectiveHistoryMonitorSeries defines the SLO history data response for `monitor` type SLOs
 type ServiceLevelObjectiveHistoryMonitorSeries struct {
-	SliValue      float32                                   `json:"sli_value"`
-	SpanPrecision json.Number                               `json:"span_precision"`
-	Name          string                                    `json:"name"`
-	Precision     map[string]json.Number                    `json:"precision"`
-	Preview       bool                                      `json:"preview"`
-	History       []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
+	SliValue        float32                                   `json:"sli_value"`
+	SpanPrecision   json.Number                               `json:"span_precision"`
+	Name            string                                    `json:"name"`
+	Precision       map[string]json.Number                    `json:"precision"`
+	Preview         bool                                      `json:"preview"`
+	History         []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
+	MonitorType     string                                    `json:"monitor_type"`
+	MonitorModified int64                                     `json:"monitor_modified"`
+	Errors          []string                                  `json:"errors"`
 }
 
 // ServiceLevelObjectiveHistoryOverall defines the overall SLO history data response
@@ -547,7 +550,7 @@ type ServiceLevelObjectiveHistoryOverall struct {
 }
 
 // ServiceLevelObjectiveHistoryResponseData contains the SLO history data response.
-// for `monitor` based SLOs use the `Groups` property for historical data along with the `Overall.History`
+// for `monitor` based SLOs use the `Monitors` property for historical data along with the `Overall.History`
 // for `metric` based SLOs use the `Metrics` property for historical data. This contains `batch_query` like response
 //    data
 type ServiceLevelObjectiveHistoryResponseData struct {
@@ -556,12 +559,14 @@ type ServiceLevelObjectiveHistoryResponseData struct {
 	FromTs     int64                                     `json:"from_ts"`
 	Thresholds map[string]ServiceLevelObjectiveThreshold `json:"thresholds"`
 	Overall    *ServiceLevelObjectiveHistoryOverall      `json:"overall"`
+	Slo        *ServiceLevelObjective                    `json:"slo"`
+	Type       string                                    `json:"type"`
 
 	// metric based SLO
 	Metrics *ServiceLevelObjectiveHistoryMetricSeries `json:"series"`
 
 	// monitor based SLO
-	Groups []*ServiceLevelObjectiveHistoryMonitorSeries `json:"groups"`
+	Monitors []*ServiceLevelObjectiveHistoryMonitorSeries `json:"monitors"`
 }
 
 // ServiceLevelObjectiveHistoryResponse is the canonical response for SLO history data.

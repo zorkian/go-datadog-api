@@ -351,9 +351,51 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		assert.NoError(t2, err)
 		assert.Nil(t2, resp.Error)
 		assert.Equal(t2, float32(6.765872955322266), resp.Data.Overall.SliValue)
-		assert.Len(t2, resp.Data.Groups, 1)
-		assert.Equal(t2, float32(6.765872955322266), resp.Data.Groups[0].SliValue)
-		assert.Equal(t2, "some:tag", resp.Data.Groups[0].Name)
+
+		typeID := 0
+		createdAt := 1563283800
+		modifiedAt := 1563283800
+		slo := &ServiceLevelObjective{
+			ID:          sptr("12345678901234567890123456789012"),
+			Name:        sptr("Test SLO"),
+			Description: sptr("test slo description"),
+			Tags:        []string{"product:foo"},
+			Thresholds: []*ServiceLevelObjectiveThreshold{
+				{
+					TimeFrame:      String("7d"),
+					Target:         Float64(99),
+					TargetDisplay:  String("99.0"),
+					Warning:        Float64(99.5),
+					WarningDisplay: String("99.5"),
+				},
+				{
+					TimeFrame:      String("30d"),
+					Target:         Float64(98),
+					TargetDisplay:  String("98.0"),
+					Warning:        Float64(99),
+					WarningDisplay: String("99.0"),
+				},
+			},
+			Type:        sptr("monitor"),
+			TypeID:      &typeID,
+			MonitorIDs:  []int{1},
+			MonitorTags: []string{"service:bar", "team:a"},
+			Creator: &Creator{
+				Handle: sptr("jane.doe@example.com"),
+				Email:  sptr("jane.doe@example.com"),
+				Name:   sptr("Jane Doe"),
+			},
+			CreatedAt:  &createdAt,
+			ModifiedAt: &modifiedAt,
+		}
+		assert.Equal(t2, slo, resp.Data.Slo)
+		assert.Equal(t2, "monitor", resp.Data.Type)
+
+		assert.Len(t2, resp.Data.Monitors, 1)
+		assert.Equal(t2, float32(6.765872955322266), resp.Data.Monitors[0].SliValue)
+		assert.Equal(t2, "some:tag", resp.Data.Monitors[0].Name)
+		assert.Equal(t2, "query alert", resp.Data.Monitors[0].MonitorType)
+		assert.Equal(t2, int64(1563283800), resp.Data.Monitors[0].MonitorModified)
 	})
 
 }
