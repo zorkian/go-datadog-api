@@ -116,17 +116,17 @@ type State struct {
 // Monitor allows watching a metric or check that you care about,
 // notifying your team when some defined threshold is exceeded
 type Monitor struct {
-	Creator              *Creator `json:"creator,omitempty"`
-	Id                   *int     `json:"id,omitempty"`
-	Type                 *string  `json:"type,omitempty"`
-	Query                *string  `json:"query,omitempty"`
-	Name                 *string  `json:"name,omitempty"`
-	Message              *string  `json:"message,omitempty"`
-	OverallState         *string  `json:"overall_state,omitempty"`
-	OverallStateModified *string  `json:"overall_state_modified,omitempty"`
-	Tags                 []string `json:"tags"`
-	Options              *Options `json:"options,omitempty"`
-	State                State    `json:"state,omitempty"`
+	Creator              *Creator    `json:"creator,omitempty"`
+	Id                   *int        `json:"id,omitempty"`
+	Type                 *string     `json:"type,omitempty"`
+	Query                *string     `json:"query,omitempty"`
+	Name                 *string     `json:"name,omitempty"`
+	Message              *string     `json:"message,omitempty"`
+	OverallState         *string     `json:"overall_state,omitempty"`
+	OverallStateModified interface{} `json:"overall_state_modified,omitempty"`
+	Tags                 []string    `json:"tags"`
+	Options              *Options    `json:"options,omitempty"`
+	State                State       `json:"state,omitempty"`
 }
 
 // Creator contains the creator of the monitor
@@ -259,6 +259,18 @@ func (client *Client) GetMonitorsWithOptions(opts MonitorQueryOpts) ([]Monitor, 
 	if err != nil {
 		return nil, err
 	}
+	return out.Monitors, nil
+}
+
+// SearchMonitors retrieves monitors by a slice of notifications
+func (client *Client) SearchMonitors(query string) ([]Monitor, error) {
+	var out reqMonitors
+
+	err := client.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/search?query=%v", query), nil, &out)
+	if err != nil {
+		return nil, err
+	}
+
 	return out.Monitors, nil
 }
 
