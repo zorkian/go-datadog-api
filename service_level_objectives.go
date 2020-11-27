@@ -550,7 +550,7 @@ type ServiceLevelObjectiveHistoryOverall struct {
 }
 
 // ServiceLevelObjectiveHistoryResponseData contains the SLO history data response.
-// for `monitor` based SLOs use the `Monitors` property for historical data along with the `Overall.History`
+// for `monitor` based SLOs use the `Groups` property for historical data along with the `Overall.History`
 // for `metric` based SLOs use the `Metrics` property for historical data. This contains `batch_query` like response
 //    data
 type ServiceLevelObjectiveHistoryResponseData struct {
@@ -566,6 +566,7 @@ type ServiceLevelObjectiveHistoryResponseData struct {
 	Metrics *ServiceLevelObjectiveHistoryMetricSeries `json:"series"`
 
 	// monitor based SLO
+	Groups   []*ServiceLevelObjectiveHistoryMonitorSeries `json:"groups"`
 	Monitors []*ServiceLevelObjectiveHistoryMonitorSeries `json:"monitors"`
 }
 
