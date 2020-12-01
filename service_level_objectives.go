@@ -531,6 +531,7 @@ type ServiceLevelObjectiveHistoryMonitorSeries struct {
 	Precision       map[string]json.Number                    `json:"precision"`
 	Preview         bool                                      `json:"preview"`
 	History         []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
+	ID              int64                                     `json:"id"`
 	MonitorType     string                                    `json:"monitor_type"`
 	MonitorModified int64                                     `json:"monitor_modified"`
 	Errors          []string                                  `json:"errors"`

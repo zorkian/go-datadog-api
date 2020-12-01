@@ -396,6 +396,7 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		assert.Equal(t2, "some:tag", resp.Data.Groups[0].Name)
 
 		assert.Len(t2, resp.Data.Monitors, 1)
+		assert.Equal(t2, int64(12345678), resp.Data.Monitors[0].ID)
 		assert.Equal(t2, float32(6.765872955322266), resp.Data.Monitors[0].SliValue)
 		assert.Equal(t2, "some:tag", resp.Data.Monitors[0].Name)
 		assert.Equal(t2, "query alert", resp.Data.Monitors[0].MonitorType)
