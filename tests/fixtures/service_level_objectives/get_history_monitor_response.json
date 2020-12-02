@@ -590,9 +590,7 @@
         "sli_value": 6.765872955322266,
         "span_precision": 2,
         "name": "some:tag",
-        "precision": {
-          "7d": 2
-        },
+        "precision": 1,
         "preview": true,
         "history": [
           [
@@ -1202,9 +1200,7 @@
         "span_precision": 2,
         "id": 12345678,
         "name": "some:tag",
-        "precision": {
-          "7d": 2
-        },
+        "precision": 1,
         "preview": true,
         "monitor_type": "query alert",
         "errors": null,

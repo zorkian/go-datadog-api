@@ -528,7 +528,7 @@ type ServiceLevelObjectiveHistoryMonitorSeries struct {
 	SliValue        float32                                   `json:"sli_value"`
 	SpanPrecision   json.Number                               `json:"span_precision"`
 	Name            string                                    `json:"name"`
-	Precision       map[string]json.Number                    `json:"precision"`
+	Precision       json.Number                               `json:"precision"`
 	Preview         bool                                      `json:"preview"`
 	History         []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
 	ID              int64                                     `json:"id"`
