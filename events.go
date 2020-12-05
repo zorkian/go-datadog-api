@@ -60,9 +60,15 @@ func (client *Client) GetEvent(id int) (*Event, error) {
 	return out.Event, nil
 }
 
-// GetEvents returns a slice of events from the query stream.
+// GetEvents returns aggregated events from the query stream.
 func (client *Client) GetEvents(start, end int,
 	priority, sources, tags string) ([]Event, error) {
+	return client.GetEventsWithAggregation(start, end, priority, sources, tags, false)
+}
+
+// GetEventsWithAggregation returns a slice of events from the query stream.
+func (client *Client) GetEventsWithAggregation(start, end int,
+	priority, sources, tags string, unaggregated bool) ([]Event, error) {
 	// Since this is a GET request, we need to build a query string.
 	vals := url.Values{}
 	vals.Add("start", strconv.Itoa(start))
@@ -75,6 +81,9 @@ func (client *Client) GetEvents(start, end int,
 	}
 	if tags != "" {
 		vals.Add("tags", tags)
+	}
+	if unaggregated {
+		vals.Add("unaggregated", "true")
 	}
 
 	// Now the request and response.
