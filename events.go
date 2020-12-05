@@ -61,12 +61,19 @@ func (client *Client) GetEvent(id int) (*Event, error) {
 }
 
 // GetEvents returns a slice of events from the query stream.
+// unaggregated was added on as variadic to allow a non-breaking change.
+// if addtional parameters are needed this will need to be changed to a struct input or fully variadic.
 func (client *Client) GetEvents(start, end int,
-	priority, sources, tags string) ([]Event, error) {
+	priority, sources, tags string, unaggregated ...bool) ([]Event, error) {
 	// Since this is a GET request, we need to build a query string.
 	vals := url.Values{}
 	vals.Add("start", strconv.Itoa(start))
 	vals.Add("end", strconv.Itoa(end))
+
+	if len(unaggregated) > 0 {
+		vals.Add("unaggregated", strconv.FormatBool(unaggregated[0]))
+	}
+
 	if priority != "" {
 		vals.Add("priority", priority)
 	}
