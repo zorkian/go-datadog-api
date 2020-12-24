@@ -1203,7 +1203,12 @@
         "precision": 1,
         "preview": true,
         "monitor_type": "query alert",
-        "errors": null,
+        "errors": [
+          {
+            "error_type": "ERROR_TYPE",
+            "error_message": "error message"
+          }
+        ],
         "monitor_modified": 1563283800,
         "history": [
           [

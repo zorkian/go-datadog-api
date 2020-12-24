@@ -405,6 +405,8 @@ func TestServiceLevelObjectiveIntegration(t *testing.T) {
 		assert.Equal(t2, int64(1563283800), resp.Data.Monitors[0].MonitorModified)
 		monitor_precision, _ := resp.Data.Monitors[0].Precision.Int64()
 		assert.Equal(t2, int64(1), monitor_precision)
+		assert.Equal(t2, "ERROR_TYPE", resp.Data.Monitors[0].Errors[0].ErrorType)
+		assert.Equal(t2, "error message", resp.Data.Monitors[0].Errors[0].ErrorMessage)
 	})
 
 }
