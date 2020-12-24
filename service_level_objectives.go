@@ -525,12 +525,22 @@ type ServiceLevelObjectiveHistoryMetricSeries struct {
 
 // ServiceLevelObjectiveHistoryMonitorSeries defines the SLO history data response for `monitor` type SLOs
 type ServiceLevelObjectiveHistoryMonitorSeries struct {
-	SliValue      float32                                   `json:"sli_value"`
-	SpanPrecision json.Number                               `json:"span_precision"`
-	Name          string                                    `json:"name"`
-	Precision     map[string]json.Number                    `json:"precision"`
-	Preview       bool                                      `json:"preview"`
-	History       []ServiceLevelObjectiveHistorySeriesPoint `json:"history"`
+	SliValue        float32                                          `json:"sli_value"`
+	SpanPrecision   json.Number                                      `json:"span_precision"`
+	Name            string                                           `json:"name"`
+	Precision       json.Number                                      `json:"precision"`
+	Preview         bool                                             `json:"preview"`
+	History         []ServiceLevelObjectiveHistorySeriesPoint        `json:"history"`
+	ID              int64                                            `json:"id"`
+	MonitorType     string                                           `json:"monitor_type"`
+	MonitorModified int64                                            `json:"monitor_modified"`
+	Errors          []ServiceLevelObjectiveHistoryMonitorSeriesError `json:"errors"`
+}
+
+// ServiceLevelObjectiveHistoryMonitorSeriesError is the error specific to monitors.
+type ServiceLevelObjectiveHistoryMonitorSeriesError struct {
+	ErrorType    string `json:"error_type"`
+	ErrorMessage string `json:"error_message"`
 }
 
 // ServiceLevelObjectiveHistoryOverall defines the overall SLO history data response
@@ -556,12 +566,15 @@ type ServiceLevelObjectiveHistoryResponseData struct {
 	FromTs     int64                                     `json:"from_ts"`
 	Thresholds map[string]ServiceLevelObjectiveThreshold `json:"thresholds"`
 	Overall    *ServiceLevelObjectiveHistoryOverall      `json:"overall"`
+	Slo        *ServiceLevelObjective                    `json:"slo"`
+	Type       string                                    `json:"type"`
 
 	// metric based SLO
 	Metrics *ServiceLevelObjectiveHistoryMetricSeries `json:"series"`
 
 	// monitor based SLO
-	Groups []*ServiceLevelObjectiveHistoryMonitorSeries `json:"groups"`
+	Groups   []*ServiceLevelObjectiveHistoryMonitorSeries `json:"groups"`
+	Monitors []*ServiceLevelObjectiveHistoryMonitorSeries `json:"monitors"`
 }
 
 // ServiceLevelObjectiveHistoryResponse is the canonical response for SLO history data.

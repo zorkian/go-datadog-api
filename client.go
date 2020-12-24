@@ -99,7 +99,7 @@ func (client *Client) Validate() (bool, error) {
 		return false, err
 	}
 	req.Header.Set("DD-API-KEY", client.apiKey)
-	if (client.appKey != "") {
+	if client.appKey != "" {
 		req.Header.Set("DD-APPLICATION-KEY", client.appKey)
 	}
 
