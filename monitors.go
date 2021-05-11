@@ -181,6 +181,15 @@ func (client *Client) GetMonitor(id int) (*Monitor, error) {
 	return &out, nil
 }
 
+// GetMonitorGroupStates retrieves a monitor by identifier and passes the group_states parameter
+func (client *Client) GetMonitorGroupStates(id int, state string) (*Monitor, error) {
+	var out Monitor
+	if err := client.doJsonRequest("GET", fmt.Sprintf("/v1/monitor/%d?group_states=%s", id, state), nil, &out); err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 // GetMonitorsByName retrieves monitors by name
 func (client *Client) GetMonitorsByName(name string) ([]Monitor, error) {
 	return client.GetMonitorsWithOptions(MonitorQueryOpts{Name: &name})
